@@ -7,7 +7,6 @@ DynamicApp
 Directory Structure
 -------------------
 
-	  |-doc/ ........... source documentation
 	  |-lib/ ........... platform code for supported operating systems, core javascripts and www package for test.
 	  | |-android/
 	  | |-ios/

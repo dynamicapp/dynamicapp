@@ -1,0 +1,2988 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no">
+<title>DynamicApp Test Application.</title>
+<link rel="stylesheet" href="css/smoothness/jquery-ui-1.8.17.custom.css" type="text/css">
+<script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+<script type='text/javascript' src='js/jquery-ui-1.8.17.custom.min.js'></script>
+<script type="text/javascript" src="js/jquery-ui-timepicker.js"></script>
+<script type='text/javascript' src='js/iscroll4.js'></script>
+<script type="text/javascript" src="js/jquery-ui-sliderAccess.js"></script>
+<script type="text/javascript" src="js/jquery.simplemodal.js"></script>
+<script type="text/javascript" src="js/DynamicApp.js"></script>
+
+<style type="text/css">
+  html {
+  -webkit-text-size-adjust: none; /* Never autoresize text */
+  }
+
+  #img3by3 {
+  float: left;
+  width: 33%;
+  height: 90px;
+  margin: 0;
+  padding-top: 10px;
+  /* border: 1px solid; */
+  text-align: center;
+
+  }
+
+  /* Overlay */
+  #simplemodal-overlay {background-color:#000; cursor:wait;}
+
+  /* Container */
+  #simplemodal-container {height:300px; width:80%; border:2px solid #bbb; padding:12px; background-color: white;}
+  #simplemodal-container .simplemodal-data {padding:8px;}
+  #simplemodal-container a {color:#ddd;}
+  #simplemodal-container a.modalCloseImg {background:url(css/smoothness/images/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-16px; cursor:pointer;}
+  #simplemodal-container h3 {color:#84b8d9;}
+
+  #wrapper {
+  width:98%;
+  height:310px;
+
+  margin:0 auto !important;
+
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+
+  -webkit-border-radius:10px;
+  border: 1px solid;
+  }
+
+  #wrapperCache1 {
+  width:98%;
+  height:310px;
+
+  margin:0 auto !important;
+
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+
+  -webkit-border-radius:10px;
+  border: 1px solid;
+  }
+
+  #wrapperCache2 {
+  width:98%;
+  height:310px;
+
+  margin:0 auto !important;
+
+  position:relative;
+  z-index:1;
+  overflow:hidden;
+
+  -webkit-border-radius:10px;
+  border: 1px solid;
+  }
+
+  #imgDiv {
+  width:100%;
+  height:310px;
+  float:left;
+  padding:0;
+  }
+
+  #cacheDiv {
+  width:100%;
+  float:left;
+  padding:0;
+  }
+
+  .contentDiv {
+  padding: 5px 0px !important;
+  }
+
+  /* css for timepicker */
+  .ui-datepicker { width: 275px !important;}
+  .ui-timepicker-div, .ui-datepicker-calendar, .ui-datepicker-header, .ui-datepicker-buttonpane { font-size: 10px !important;}
+  .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+  .ui-timepicker-div dl { text-align: left; }
+  .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+  .ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+  .ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+  #ui-timepicker-div-notificationTime .ui-slider { font-size: 14px; }
+
+  #btTestPeerList th, #btTestPeerList td {
+  background-color: white;
+  text-align: center;
+  }
+
+  #btPeerList div:not(#noPeersText) {
+  border-bottom:1px solid;
+  padding:3px;
+  }
+
+  #bt4LETestPeripheralList th, #bt4LETestPeripheralList td {
+  background-color: white;
+  text-align: center;
+  }
+
+  #bt4LEPeripheralList div:not(#no4LEPeripheralText) {
+  border-bottom:1px solid;
+  padding:3px;
+  }
+
+  .btFloatingDiv {
+    background-color: white;
+    border: 2px solid;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+    font-size: 60%;
+
+    /*position: fixed;
+    top: 50%;
+    left: 50%;
+    min-height: 120px;
+    margin-top: -50px;
+    width: 250px;
+    margin-left: -125px;*/
+  }
+
+  .noTitleDialog .ui-dialog-titlebar {display:none}
+</style>
+<script language="javascript">
+<!--
+    var isIOS = false;
+	var isWindows = false;
+    var accordion;
+    
+    $(function() {
+        if ("-ms-user-select" in document.documentElement.style && 
+		        navigator.userAgent.match(/IEMobile\/10\.0/)) {
+	          var msStyle = document.createElement("style");
+
+	          msStyle.appendChild(
+		          document.createTextNode("textarea, select {font-size: 1.5em !important}")
+	          );
+
+	          msStyle.appendChild(
+		          document.createTextNode("td, th {width: 160px !important}")
+	          );
+            
+	          document.getElementsByTagName("head")[0].appendChild(msStyle);
+        }
+        
+        if (navigator.userAgent.match(/iPod|iPad|iPhone/i)){
+            $('.felica').remove();
+            isIOS = true;
+        } else if (navigator.userAgent.match(/Android/)) {
+            $('.bluetoothLE').remove();
+            $('.pdf').remove();
+        } else if (navigator.userAgent.match(/Windows Phone/i)) {
+            $('.bluetoothLE').remove();
+            $('.pdf').remove();
+            $('.felica').remove();
+            $('.database').remove();
+            $('.addressbook').remove();
+	    isWindows = true;
+        }
+        
+        accordion = $('#accordion');
+        accordion.accordion({
+            active: accordion.find('h3').length - 1,
+            collapsible: true,
+            changestart: function(event, ui) {
+                var index = $(this).find("h3").index(ui.newHeader[0]);
+                if(index == 0) {
+                    appVersionShow();
+                } else if(index == 4) { // movie
+                    getThumbnail();
+                }
+                            
+                if(moviePlaylist[currentMovie]) {
+                    if(moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING ||
+                    moviePlaylist[currentMovie].state == Movie.MOVIE_PAUSED) {
+                        stop.click();
+                    }
+                }
+
+                if(soundPlaylist[currentSound]) {
+                    if(soundPlaylist[currentSound].state == Sound.SOUND_RUNNING ||
+                       soundPlaylist[currentSound].state == Sound.SOUND_PAUSED) {
+                        sStop.click();
+                    }
+                }
+            },
+            autoHeight: false
+        });
+      
+        //full height
+        var a = function() {
+            $('section').css({height: '100%'});
+        };
+        setTimeout(a, 100);
+    });
+    
+    
+    /*
+     * App Version
+     *
+     *
+     */
+    function appVersionShow() {   
+        var callback = function(version) {
+            $('#lblAppVersion').html('Version '+ version);
+        };
+        
+        AppVersion.get(callback);
+    }
+    
+    
+    /*
+     * Camera
+     *
+     *
+     */    
+    var imgScroll, imgDiv, imgCount = 0;
+    
+    function loadIScroll() {
+        imgScroll = new iScroll('wrapper', {
+            hScrollbar: false,
+            vScrollbar: false,
+            checkDOMChanges: false
+        });
+    }
+    
+    $(function(){
+      
+        loadIScroll();
+        imgDiv = $('#imgDiv');
+        $('#camera').click(function(event) {
+            var successCallback = function(data) {
+                if(false && imgCount < 9) { // for testing only
+                    for(var i=0;i<9;i++) {
+                        var img = '<div id="img3by3"><img src="'+data+'" style="height:90px;width:90px"/></div>';
+                        imgDiv.append(img);
+                        imgCount++;
+                    }
+                }
+                
+                var img = '<div id="img3by3"><div style="position:relative;background-image:url('+data+');background-size:100%;height:90px;width:90px;text-align:right;margin:0px auto;"><span style="position:absolute;bottom:0px;left:0px;width:90px;height:90px;background: url(\'css/smoothness/images/cameraPhoto.png\') no-repeat scroll right bottom transparent;">&nbsp;</span></div></div>';
+                imgDiv.prepend(img);
+                imgCount++;
+                
+                if(imgCount%3 == 1 && imgCount > 9) {
+                    var newHeight = parseInt(/(\d+)px/.exec(imgDiv.css('height'))) + 100;
+                    imgDiv.css('height', newHeight);
+                    imgScroll.refresh();
+                }
+            };
+            var errorCallback = function(error) {
+                alert("Error: " + error);
+            };
+            var options = {
+                quality: 50,
+                destinationType: Camera.DestinationType.FILE_URI, 
+                sourceType :  Camera.PictureSourceType.CAMERA, 
+                encodingType: Math.round(Math.random()) // returns 1 or 0 for PNG or JPEG resp.
+            };
+            
+            Camera.getPicture(successCallback, errorCallback, options);
+        });
+    });
+	
+    /*
+     * Video Recording
+     * 
+     */
+    var vidRecord, vidPlay, vidStop, vidLblDuration, vidLblPosition;
+    var vSlider, vInterval=500, vProcessFlag = true;
+    var videoTitle = '';
+                  
+	var recordedVideo;
+    
+    function getVideoThumbnail(title) {
+        videoTitle = title;
+        var movie = new Movie(videoTitle);
+        
+        var successCallback = function(data) {
+            if(data.indexOf('null') < 0) {
+                var imgDiv = $('#imgDiv');
+                if (navigator.userAgent.match(/iPod|iPad|iPhone/i)){
+		                var img = '<div id="img3by3" class="movieThumbnail" data-title="'+title+'"><div style="position:relative;background-image:url('+data+');background-size:100%;height:90px;width:90px;text-align:right;margin:0px auto;"><span style="position:absolute;bottom:0px;left:0px;width:90px;height:90px;background: url(\'css/smoothness/images/cameraFilm.png\') no-repeat scroll right bottom transparent;">&nbsp;</span></div></div>';
+		            } else if (navigator.userAgent.match(/Android|Windows/i)) {
+		                var img = '<div id="img3by3" class="movieThumbnail" data-title="'+title+'"><div style="position:relative;height:90px;width:90px;text-align:right;margin:0px auto;font-size:80%; text-align:center;"><img src="'+data+'" width="90px" height="90px"/><span style="position:absolute;bottom:0px;left:0px;top:0px;width:90px;height:90px;background: url(\'css/smoothness/images/cameraFilm.png\') no-repeat scroll right bottom transparent;">&nbsp;</span></div></div>';
+		            }
+                imgDiv.prepend(img);
+                imgCount++;
+                
+                if(imgCount%3 == 1 && imgCount > 9) {
+                    var newHeight = parseInt(/(\d+)px/.exec(imgDiv.css('height'))) + 100;
+                    imgDiv.css('height', newHeight);
+                    imgScroll.refresh();
+                }
+            }
+        };
+        var errorCallback = function(error) {
+            alert('Error generating thumbnail: ' + error);
+        };
+        
+        movie.getThumbnail(successCallback, errorCallback, {offset:20});
+    }
+    
+    function getVideoPosition() {
+        if (vProcessFlag && recordedVideo.state == Movie.MOVIE_RUNNING) {
+            recordedVideo.getCurrentPosition();
+            vidLblPosition.html(recordedVideo.position);
+            vSlider.slider("value", recordedVideo.position);
+            setTimeout(getVideoPosition, vInterval);
+        } else if (vSlider && recordedVideo.state == Movie.MOVIE_STOPPED) {
+            vSlider.hide();
+        }
+    }
+        
+    $(function () {
+    	vidRecord = $('#record');
+      
+        vidPlay = $('#playvideo');
+        vidStop = $('#stopvideo');
+        vidLblDuration = $('#mainContentVideo #duration');
+        vidLblPosition = $('#mainContentVideo #position');
+            
+        vidPlay.click(function (event) {
+            var me = $(this);
+            if (me.val() == 'play') {                   
+                onclickVideoPlay();
+            } else {
+                recordedVideo.pause();
+            }
+            vidStop.removeAttr('disabled');
+        });
+          
+        vidStop.click(function (event) {
+            vProcessFlag = false;
+            if(vSlider)
+                vSlider.hide();
+            vidPlay.val('play');
+            vidStop.attr('disabled', 'disabled');
+            recordedVideo.stop();
+        });
+        
+        $('#imgDiv').on('click', '.movieThumbnail', function() {
+            videoTitle = $(this).attr('data-title');
+            recordedVideo = null;
+            vSlider = null;
+      
+            $('#recordMovieDiv').dialog({
+                modal: true,
+                resizable: false,
+                dialogClass: 'noTitleDialog',
+                autoOpen: false,
+                open: function(event, ui) {
+                  vidPlay.val('play');
+                  $('#playvideo').click();
+                },
+                close: function(event, ui) {
+                    if(vidStop.is(':disabled')) {
+                       $('#recordMovieDiv').dialog('close');
+                       $('#recordMovieDiv').dialog('destroy');
+                    } else {
+                        $('#stopvideo').click();
+                    }
+                }
+            });
+            $('#recordMovieDiv').dialog('open');
+        });
+    });
+    
+    function onclickVideoPlay() {
+    
+        if(!recordedVideo) {
+            var mainContentMovie = $('#mainContentVideoFrame');
+            var offset = mainContentMovie.offset();
+            var sString;
+            
+            var successCallback = function() {
+                var movie = recordedVideo;
+                if(typeof movie == 'undefined')
+                	return;
+                switch(movie.state) {
+                    case Movie.MOVIE_RUNNING :
+                    		if(vidPlay.val() == 'play') {
+                    			vProcessFlag = true;
+                				vidPlay.val('pause');
+                				vidRecord.attr('disabled', 'disabled');
+                			}
+                			
+                            if(!vSlider) {
+                                vSlider = $('#videoSlider')
+                                    .slider({
+                                        min: 0,
+                                        max: movie.duration,
+                                        range: "min",
+                                        value: 1,
+                                        animate: true,
+                                        slide: function(event, ui) {
+                                            vProcessFlag = false;
+                                            movie.setCurrentPosition(ui.value - 1, function(){vProcessFlag = true;getVideoPosition();});
+                                        }
+                                    });
+                            }
+                            if(vSlider.not(':visible')) {
+                                vSlider.show();
+                            }
+                            vidLblDuration.html(recordedVideo.duration);
+                    
+                            getVideoPosition();
+                    
+                            sString = 'playing';
+                    
+                    accordion.accordion('option', {event:''});
+                    
+                            break;
+                    case Movie.MOVIE_STOPPED :
+                            sString = 'stop';
+                            vidPlay.val('play');
+                            vidStop.attr('disabled', 'disabled');
+                            vidRecord.removeAttr('disabled');       
+                            if(vSlider) {
+                                vidLblDuration.html(0);
+                                vidLblPosition.html(0);
+                            } else {
+                                vidLblDuration.html('');
+                                vidLblPosition.html('');
+                            }
+                            
+                            $('#recordMovieDiv').dialog('close');
+                            $('#recordMovieDiv').dialog('destroy');
+                            accordion.accordion('option', 'event', 'click');
+                            
+                            break;
+                    case Movie.MOVIE_PAUSED :
+                            sString = 'pause';
+                            if(vidPlay.val() == 'pause') {
+                    			vProcessFlag = false;
+                				vidPlay.val('play');
+                			}
+                			vidRecord.removeAttr('disabled');
+                            break;
+                    case Movie.MOVIE_NONE :
+                            sString = 'none';
+                            break;
+                    default :
+                            sString = 'default';
+                            break;
+                }
+     		};
+            var errorCallback = function(error) {
+                $('#recordMovieDiv').dialog('close');
+                $('#recordMovieDiv').dialog('destroy');
+                alert('Error: ' + error);
+            };
+            var options = {
+                frame:{posX:offset.left, posY: offset.top, width:mainContentMovie.width(), height:mainContentMovie.height()}, 
+                scalingMode:Movie.SCALING_ASPECT_FIT,
+                controlStyle:Movie.CONTROL_NONE
+            };
+            
+            recordedVideo = new Movie(videoTitle, successCallback, errorCallback, options);
+        }
+        
+        recordedVideo.play();
+    }
+    
+    function record() {
+        var successCallback = function(data) {
+        	videoTitle = data;
+          setTimeout(function(){getVideoThumbnail(videoTitle);}, 200);
+        };
+        
+        var errorCallback = function(error) {
+            alert("Error: " + error);
+        };
+        Camera.recordVideo(successCallback, errorCallback);
+    }
+    
+    /*
+     * Sound
+     *
+     *
+     */
+    
+    //01 Freedom Song.mp3
+    //rockGuitar.mp3
+    //http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3
+    //http://dc340.4shared.com/img/1118481151/f6abdb37/dlink__2Fdownload_2F2uy4DCZ2_3Ftsid_3D00000000-000000-00000000/preview.mp3
+    var sPrevious, sNext, sPlay, sStop, lblSPosition, lblSDuration;
+    var sSlider, sInterval = 500, sProcessFlag = true;
+    
+    var soundTitles = ["Crash-Boom-Kapow_Traffic-Jam-Jam-320.mp3",
+    				   "http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3",
+                       "djnarcs_Freedom-320.mp3"];
+    var currentSound = 0;
+    var soundPlaylist = new Array();
+    
+    function onclickSoundPlay() {
+        if(!soundPlaylist[currentSound]) {
+            var sString;
+            
+            var successCallback = function() {
+                var sound = soundPlaylist[currentSound];
+                
+                switch(sound.state) {
+                    case Sound.SOUND_RUNNING :
+                            if(!sSlider) {
+                                sSlider = $('#soundSlider')
+                                    .slider({
+                                        min: 0,
+                                        max: sound.duration,
+                                        range: "min",
+                                        value: 1,
+                                        animate: true,
+                                        slide: function(event, ui) {
+                                            sProcessFlag = false;
+                                            sound.setCurrentPosition(ui.value - 1, function(){sProcessFlag = true;getSoundPosition();});
+                                        }
+                                    });
+                            }
+                    
+                            if(sSlider.not(':visible')) {
+                                sSlider.show();
+                            }
+                            lblSDuration.html(soundPlaylist[currentSound].duration);
+                            
+                            getSoundPosition();
+                            
+                            sString = 'playing';
+                            break;
+                    case Sound.SOUND_STOPPED :
+                            sString = 'stop';
+                            sPlay.val('play');
+                            sStop.attr('disabled', 'disabled');
+                            if(sSlider) {
+                                lblSPosition.html(0);
+                            } else {
+                                lblSPosition.html('');
+                            }
+                            break;
+                    case Sound.SOUND_PAUSED :
+                            sString = 'pause';
+                            break;
+                    case Sound.SOUND_NONE :
+                            sString = 'none';
+                            break;
+                    default :
+                            sString = 'default';
+                            break;
+                }
+                
+                //lblSDuration.html(soundPlaylist[currentSound].duration + ' ' + sString);
+                //$('#mainContentSound #position').html(soundPlaylist[currentSound].position + ' ' + soundPlaylist[currentSound].state + ' ' + sString);
+            };
+            var errorCallback = function(error) {
+            	if (sPlay.val() == 'pause') {
+	                sPlay.val('play');
+            	}
+                alert('Error: ' + error);
+            };
+            
+            soundPlaylist[currentSound] = new Sound(soundTitles[currentSound], successCallback, errorCallback);
+        }
+        soundPlaylist[currentSound].play({numberOfLoops:2});
+    }
+    
+    function getSoundPosition() {
+        if (sProcessFlag && soundPlaylist[currentSound].state == Sound.SOUND_RUNNING) {
+            soundPlaylist[currentSound].getCurrentPosition();
+            lblSPosition.html(soundPlaylist[currentSound].position);
+            sSlider.slider("value", soundPlaylist[currentSound].position);
+            setTimeout(getSoundPosition, sInterval);
+        } else if (sSlider && soundPlaylist[currentSound].state == Sound.SOUND_STOPPED) {
+            sSlider.hide();
+        }
+    }
+    
+    function onclickSoundRelease() {
+        soundPlaylist[currentSound].release();
+    }
+    
+    $(function () {
+        sPrevious = $('#sPrevious');
+        sNext = $('#sNext');
+        sPlay = $('#sPlay');
+        sStop = $('#sStop');
+        lblSDuration = $('#mainContentSound #duration');
+        lblSPosition = $('#mainContentSound #position');
+
+        if(currentSound < 1){
+            sPrevious.attr('disabled', 'disabled');
+        } else if(currentSound == soundTitles.length-1 || soundTitles.length == 0){
+            sNext.attr('disabled', 'disabled');
+        }
+      
+        sPrevious.click(function (event) {
+            if(soundPlaylist[currentSound] && (soundPlaylist[currentSound].state == Sound.SOUND_RUNNING ||
+                soundPlaylist[currentSound].state == Sound.SOUND_PAUSED || 
+                soundPlaylist[currentSound].state == Sound.SOUND_STARTING)) {
+                sStop.click();
+            }
+            if (currentSound > 0) {
+                currentSound--;
+                sSlider = null;
+            }
+
+            if (currentSound == 0) {
+                $(this).attr('disabled', 'disabled');
+            }
+            alert(soundTitles[currentSound]);
+            if (soundTitles.length > 0) {
+                sNext.removeAttr('disabled');
+            }          
+            lblSDuration.html('');
+            lblSPosition.html('');
+            sStop.attr('disabled', 'disabled');
+        });
+      
+        sPlay.click(function (event) {
+            var me = $(this);
+            if (me.val() == 'play') {
+                sProcessFlag = true;
+                me.val('pause');
+                onclickSoundPlay();
+            } else {
+                sProcessFlag = false;
+                me.val('play');
+                soundPlaylist[currentSound].pause();
+            }
+            sStop.removeAttr('disabled');
+        });
+      
+        sStop.click(function (event) {
+            sProcessFlag = false;
+           	if (typeof sSlider != 'undefined' && sSlider != null)
+            	sSlider.hide();
+            sPlay.val('play');
+            lblSPosition.html(0);
+            sStop.attr('disabled', 'disabled');
+            soundPlaylist[currentSound].stop();
+        });
+      
+        sNext.click(function (event) {
+            if(soundPlaylist[currentSound] && (soundPlaylist[currentSound].state == Sound.SOUND_RUNNING ||
+                soundPlaylist[currentSound].state == Sound.SOUND_PAUSED || 
+                soundPlaylist[currentSound].state == Sound.SOUND_STARTING)) {
+                sStop.click();
+            }
+
+            var max = soundTitles.length - 1;
+            if (currentSound < max) {
+                currentSound++;
+                sSlider = null;
+            }
+            if (currentSound == max) {
+                $(this).attr('disabled', 'disabled');
+            }
+            alert(soundTitles[currentSound]);
+            if (soundTitles.length > 0) {
+                sPrevious.removeAttr('disabled');
+            }
+
+            lblSDuration.html('');
+            lblSPosition.html('');
+            sStop.attr('disabled', 'disabled');
+        });
+    });
+    
+    
+    /*
+     * Movie
+     *
+     *
+     */
+    
+    //http://www.808.dk/pics/video/gizmo.mp4
+    //big-buck-bunny-clip.m4v
+    //http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8
+    
+    var previous, next, play, stop, lblDuration, lblPosition;
+    var slider, interval=500, processFlag = true;
+    var movieTitles = ["1.mp4",
+                       "http://www.808.dk/pics/video/gizmo.mp4",
+                       "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8",
+                       "http://devimages.apple.com/iphone/samples/bipbop/gear3/prog_index.m3u8",
+                       "5.mp4"];
+    var currentMovie = 0;
+    var moviePlaylist = new Array();
+    
+    function getThumbnail() {
+        var movie = new Movie(movieTitles[currentMovie]);
+        
+        var successCallback = function(data) {
+            if(data.indexOf('null') < 0) {
+                $('#mainContentMovieFrame').html('<img src="'+data+'" style="padding:0;margin:0 auto;height:200px;width:100%;"/>');
+            } else {
+                $('#mainContentMovieFrame').html('');
+            }
+        };
+        var errorCallback = function(error) {
+        	$('#mainContentMovieFrame').html('<img src="'+null+'" style="padding:0;margin:0 auto;height:200px;width:100%;"/>');
+            alert('Error generating thumbnail: ' + error);
+        };
+        var options = {offset:1};
+        
+        //movie.duration = 25;
+        movie.getThumbnail(successCallback, errorCallback, options);
+    }
+    
+    
+    function onclickMoviePlay() {
+        if(!moviePlaylist[currentMovie]) {
+            var mainContentMovie = $('#mainContentMovieFrame');
+            var offset = mainContentMovie.offset();
+            var sString;
+            
+            var successCallback = function() {
+                var movie = moviePlaylist[currentMovie];
+                if(typeof movie == 'undefined')
+                	return;
+                switch(movie.state) {
+                    case Movie.MOVIE_RUNNING :
+                    		if(play.val() == 'play') {
+                    			processFlag = true;
+                				play.val('pause');
+                			}
+                			
+                            if(!slider) {
+                                slider = $('#movieSlider')
+                                    .slider({
+                                        min: 0,
+                                        max: movie.duration,
+                                        range: "min",
+                                        value: 1,
+                                        animate: true,
+                                        slide: function(event, ui) {
+                                            processFlag = false;
+                                            movie.setCurrentPosition(ui.value - 1, function(){processFlag = true;getPosition();});
+                                        }
+                                    });
+                            }
+                            if(slider.not(':visible')) {
+                                slider.show();
+                            }
+                            lblDuration.html(moviePlaylist[currentMovie].duration);
+                    
+                            getPosition();
+                    
+                            sString = 'playing';
+                    
+                    accordion.accordion('option', {event:''});
+                    
+                            break;
+                    case Movie.MOVIE_STOPPED :
+                            sString = 'stop';
+                            play.val('play');
+                            stop.attr('disabled', 'disabled');                    
+                            if(slider) {
+                                lblPosition.html(0);
+                            } else {
+                                lblPosition.html('');
+                            }
+                    
+                            accordion.accordion('option', 'event', 'click');
+                            
+                            break;
+                    case Movie.MOVIE_PAUSED :
+                            sString = 'pause';
+                            if(play.val() == 'pause') {
+                    			processFlag = false;
+                				play.val('play');
+                			}
+                            break;
+                    case Movie.MOVIE_NONE :
+                            sString = 'none';
+                            break;
+                    default :
+                            sString = 'default';
+                            break;
+                }
+                
+                //lblDuration.html(moviePlaylist[currentMovie].duration + ' ' + sString);
+                //$('#mainContentMovie #position').html(moviePlaylist[currentMovie].position + '  ' + moviePlaylist[currentMovie].state + ' ' + sString);
+            };
+            var errorCallback = function(error) {
+                alert('Error: ' + error);
+            };
+            var options = {
+                frame:{posX:offset.left, posY: offset.top, width:mainContentMovie.width(), height:mainContentMovie.height()}, 
+                scalingMode:Movie.SCALING_ASPECT_FIT,
+                controlStyle:Movie.CONTROL_NONE
+            };
+            
+            moviePlaylist[currentMovie] = new Movie(movieTitles[currentMovie], successCallback, errorCallback, options);
+        }
+        moviePlaylist[currentMovie].play();
+    }
+    
+    function getPosition() {
+        if (processFlag && moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING) {
+            moviePlaylist[currentMovie].getCurrentPosition();
+            lblPosition.html(moviePlaylist[currentMovie].position);
+            slider.slider("value", moviePlaylist[currentMovie].position);
+            setTimeout(getPosition, interval);
+        } else if (slider && moviePlaylist[currentMovie].state == Movie.MOVIE_STOPPED) {
+            slider.hide();
+        }
+    }
+    
+    function onclickMovieRelease() {
+        moviePlaylist[currentMovie].release();
+    }
+    
+    function onclickMovieGetThumbnail() {
+        movie.getThumbnail(function(data){
+                           $('#thumb').attr('src', data);
+                           $('#thumb').css({'width' : '300px' , 'height' : '200px'});
+                           $('#image').attr('src', data);
+                           }, function(error){
+                                alert('Error generating thumbnail: ' + error);
+                           },{
+                               offset: movie.position                                
+                           });
+    }  
+    
+    $(function () {
+        previous = $('#previous');
+        next = $('#next');
+        play = $('#play');
+        stop = $('#stop');
+        lblDuration = $('#mainContentMovie #duration');
+        lblPosition = $('#mainContentMovie #position');
+
+        if(currentMovie < 1){
+            previous.attr('disabled', 'disabled');
+        } else if(currentMovie == movieTitles.length-1 || movieTitles.length == 0){
+            next.attr('disabled', 'disabled');
+        }
+      
+      
+        previous.click(function (event) {
+            if(moviePlaylist[currentMovie] && (moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING ||
+                moviePlaylist[currentMovie].state == Movie.MOVIE_PAUSED)) {
+                stop.click();
+            }
+            if (currentMovie > 0) {
+                currentMovie--;
+                slider = null;
+            }
+
+            if (currentMovie == 0) {
+                $(this).attr('disabled', 'disabled');
+            }
+            getThumbnail();
+            alert(movieTitles[currentMovie]);
+            if (movieTitles.length > 0) {
+                next.removeAttr('disabled');
+            }          
+            lblDuration.html('');
+            lblPosition.html('');
+            stop.attr('disabled', 'disabled');
+        });
+      
+        play.click(function (event) {
+            var me = $(this);
+            if (me.val() == 'play') {                   
+                onclickMoviePlay();
+            } else {
+                moviePlaylist[currentMovie].pause();
+            }
+            stop.removeAttr('disabled');
+        });
+      
+        stop.click(function (event) {
+            processFlag = false;
+            if(slider)
+            	slider.hide();
+            play.val('play');
+            stop.attr('disabled', 'disabled');
+            moviePlaylist[currentMovie].stop();
+        });
+
+        next.click(function (event) {
+            if(moviePlaylist[currentMovie] && (moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING ||
+                moviePlaylist[currentMovie].state == Movie.MOVIE_PAUSED)) {
+                stop.click();
+            }
+                         
+            var max = movieTitles.length - 1;
+            if (currentMovie < max) {
+                currentMovie++;
+                slider = null;
+            }
+            if (currentMovie == max) {
+                $(this).attr('disabled', 'disabled');
+            }
+            getThumbnail();
+            alert(movieTitles[currentMovie]);
+            if (movieTitles.length > 0) {
+                previous.removeAttr('disabled');
+            }
+                   
+            lblDuration.html('');
+            lblPosition.html('');
+            stop.attr('disabled', 'disabled');
+        });
+    });
+    
+    
+    /*
+     * File
+     *
+     *
+     */
+    // test file = /Users/alliancesoftwareinc/Library/Application Support/iPhone Simulator/5.0/Applications/254C18ED-8816-4646-B62D-880300D4EC0D/Documents/testFile.txt
+    
+    var file;
+    
+    $(function(){$('#fileTest input[type="button"]:not(".initButton")').attr('disabled', 'disabled');});
+    
+    function initSuccess(result) {
+        fileReader = new FileReader(file);
+        fileWriter = new FileWriter(file);
+        $('#fileTest input[type="button"]:not(".initNotRequired")').removeAttr('disabled');
+    };
+    
+    function initError(error) {
+        fileReader = fileWriter = null;
+        $('#fileTest input[type="button"]:not(".initNotRequired")').attr('disabled', 'disabled');
+    };
+    
+    function initFile() {
+        file = new File($('#fileDir').val(), $('#filename').val(), initSuccess, initError);
+        $('#fileTest .initNotRequired').removeAttr('disabled');
+    }
+    
+    function onclickFileCreate() {
+        file.create(function(){alert('create ok @' + file.fullPath);initSuccess();}, 
+                    function(errCode){alert('create error: ' + errCode);initError(errCode)});
+    }
+    
+    function onclickFileIsFile() {
+        alert(file.isFile() ? 'Is a file' : 'Not a file');
+    }
+    
+    function onclickFileIsDirectory() {
+        alert(file.isDirectory() ? 'Is a directory' : 'Not a directory');
+    }
+    
+    function onclickFileCopy() {
+        file.copy($('#copyMoveDir').val(), $('#newFilename').val(), 
+                  function(){alert('copy ok');}, 
+                  function(errCode){alert('Copy error: ' + errCode);});
+    }
+    
+    function onclickFileMove() {
+        file.move($('#copyMoveDir').val(), $('#newFilename').val(),
+                  function(){alert('move ok ' + file.parentPath);}, 
+                  function(errCode){alert('Move error: ' + errCode);});
+    }
+    
+    function onclickFileDelete() {
+        file.remove(function(){alert('delete ok' + file.parentPath);
+                    $('#fileTest input[type="button"]:not(".initNotRequired")').attr('disabled', 'disabled');
+                    }, 
+                    function(errCode){alert('Delete error: ' + errCode);});
+    }
+    
+    var fileReader;
+    function onclickFileReaderRead() {
+        if(!fileReader) {
+            fileReader = new FileReader(file);
+        }
+        fileReader.read(null, 
+                        function(data){$('#readData').val(decodeURIComponent(data));}, 
+                        function(errCode){alert('Read error: ' + errCode);});
+    }
+    
+    //var emptyFile = new File('documents://ztestFolder/', 'empty.txt');
+    var fileWriter;
+    function onclickFileWriterWrite() {
+        if(!fileWriter) {
+            fileWriter = new FileWriter(file);
+        }
+        fileWriter.write($('#fileInputData').val(),
+                         function(data){$('#seekData').val(data.size);},
+                         function(errCode){alert('Write error: ' + errCode);});
+    }
+    function onclickFileWriterSeek() {
+        fileWriter.seek($('#seekData').val());
+    }
+
+    
+    /*
+     * Encryption
+     *
+     *
+     */
+    
+    var encrypt = function() {        
+        var successCallback = function(data) {
+            $('#encOutputData').val(data.encText);
+        };
+        var errorCallback = function(error) {
+            alert('Error: ' + error.msg);
+        };
+        var data = $('#encInputData').val();
+        
+        if(data.length > 0) {
+            Encryptor.encrypt(data, successCallback, errorCallback);
+        }
+    };
+    
+    var decrypt = function() {        
+        var successCallback = function(data) {
+            $('#encOutputData').val(data.decText);
+        };
+        var errorCallback = function(error) {
+            alert('Error: ' + error.msg);
+        };
+        
+        var data = $('#encInputData').val();
+        
+        if(data.length > 0) {
+            Encryptor.decrypt(data, successCallback, errorCallback);
+        }
+    };
+    
+    var swap = function() {
+        $('#encInputData').val($('#encOutputData').val());
+        $('#encOutputData').val('');
+    }
+    
+    
+    /*
+     * Notification
+     *
+     *
+     */
+    var notificationTime;
+    $(function(){
+      var dateNow = new Date();
+      notificationTime = $('#notificationTime');
+      notificationTime.datetimepicker({
+        dateFormat: 'yy-mm-dd',
+        timeFormat: 'hh:mm:ss',
+        beforeShow: function(input, inst) {
+          if(!isWindows) {
+            var offset = notificationTime.offset();
+            inst.dpDiv.css({marginTop: offset.top-100 + 'px'});
+          }
+          
+          notificationTime.datepicker('setTime', new Date());
+        },
+        hour: dateNow.getHours(),
+        hourGrid: 3,
+        minute: dateNow.getMinutes(),
+        minuteGrid: 10,
+        second: dateNow.getSeconds(),
+        showSecond: true,
+        secondGrid: 10,
+        addSliderAccess: true,
+        sliderAccessArgs: { touchonly: false }
+      });
+      
+      $('#hasAction').change(function(event) {
+        if(!$('#hasAction').is(':checked')) {
+          $('#action').attr('disabled', 'disabled');
+        } else {
+          $('#action').removeAttr('disabled');
+        }
+      });
+        
+    });
+    
+    var setNotification = function() {
+        var successCallback = function() {
+            alert('Success: Notification set');
+        };
+        
+        var errorCallback = function() {
+            alert('Error: Notification not set');
+        };
+    
+        var options = { 
+            badge: $('#notificationBadge').val(),
+            hasAction: $('#hasAction').is(':checked'),
+            action: $('#action').val()
+        };
+        
+        Notification.notify(
+            notificationTime.val(), 
+            $('#notificationMsg').val(), 
+            successCallback, 
+            errorCallback, 
+            options
+        );
+    };
+    
+    var cancelNotification = function() {
+        Notification.cancelNotification(notificationTime.val(), 
+                                        function() {
+                                            alert('Notification cancelled');
+                                        }, 
+                                        function() {
+                                            alert('Cancel notification error');
+                                        });
+    };
+    
+    var showLoadingScreen = function(flag) {
+        if(flag == null || flag) {
+            var label = $('#loadingText').val();
+            var style = $("#style option:selected").val();
+            var posX = $('#posX').val();
+            var posY = $('#posY').val();
+            var pos = null;
+            if(isNumber(posX) && isNumber(posY)) {
+                pos = {x:posX, y:posY};
+            }
+            var frame = null;
+            var frameX = $('#frameX').val();
+            var frameY = $('#frameY').val();
+            var frameWidth = $('#frameWidth').val();
+            var frameHeight = $('#frameHeight').val();
+            
+            if(isNumber(frameX) && isNumber(frameY) && isNumber(frameWidth) && isNumber(frameHeight)) {
+                frame = {x:frameX, y:frameY, width:frameWidth, height:frameHeight};
+            }
+            
+            LoadingScreen.startLoad(
+                                    function() {
+                                        var duration = $('#stopAfter').val()*1000;
+                                        setTimeout(LoadingScreen.stopLoad, duration);//hideLoadingScreen();
+                                    }, 
+                                    function() {
+                                        alert('error');
+                                    }, {
+                                        label:label, 
+                                        style:style,
+                                        pos:pos,
+                                        frame:frame,
+                                        isBlackBackground:$('#isBlackBackground').is(':checked')
+                                    });
+        } else {
+            LoadingScreen.stopLoad();
+        }
+    };
+    
+    function isNumber(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+    
+    
+    /*
+     * Cache
+     *
+     *
+     */
+    var cacheScroll;
+    
+    function refreshCacheList() {
+        var cacheList = Cache.getList();
+        var cacheTable = $('#cacheDiv');
+        
+        cacheTable.html('');
+        cacheTable.css('height', cacheList.length * 72 + 'px');
+        for(var i=0; i<cacheList.length; i++) {
+            var obj = cacheList[i];
+            cacheTable.append('ID: ' + obj.id + '<br />' +
+                              'Data: ' + obj.data + '<br />' +
+                              'ExpireDate: ' + obj.expireDate + '<br />' +
+                              '<a href="#" onclick="removeCacheData(\''+obj.id+'\');return false;">Delete</a>' +
+                              '<br /><br />');
+            /*cacheTable.append('<br/>'+JSON.stringify(obj)+
+                              '<span style="text-decoration:underline" onclick="removeCacheData(\''+obj.id+'\');">Delete</span>');*/
+        }
+        cacheScroll.refresh();
+    }
+    
+    function saveCacheData() {
+        Cache.addData(
+            $('#cacheDataInput').val(),
+            $('#expireDate').val(),
+            function(){
+                refreshCacheList();
+                $('#cacheDataInput').val('');
+                $('#expireDate').val('');
+            },
+            function(){alert('error');}
+        );
+    }
+    
+    function removeCacheData(id) {
+        Cache.removeData(id, function() {refreshCacheList();},function() {alert('error');});
+        return false;
+    }  
+    
+    function resetDataCache() {
+        Cache.resetDataCache(function(){refreshCacheList();}, function(){alert('error');});
+    }
+
+    $(function(){
+      cacheScroll = new iScroll('wrapperCache1',
+                                {
+                                hScrollbar: false,
+                                vScrollbar: false,
+                                checkDOMChanges: false
+                                });
+      resourceScroll = new iScroll('wrapperCache2',
+                                   {
+                                   hScrollbar: false,
+                                   vScrollbar: false,
+                                   checkDOMChanges: true
+                                   });
+      
+        $('#expireDate').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            timeFormat: 'hh:mm:ss',	
+            showSecond: true,
+            hourGrid: 3,
+            minuteGrid: 10,
+            secondGrid: 10
+        });
+
+        $('#resourceExpireDate').datetimepicker({
+            dateFormat: 'yy-mm-dd',
+            timeFormat: 'hh:mm:ss',	
+            showSecond: true,
+            hourGrid: 3,
+            minuteGrid: 10,
+            secondGrid: 10
+        });
+    });
+    
+    function addResource() {
+        LoadingScreen.startLoad(function() {
+                                    Cache.addResource($('#resourceURL').val(), 
+                                                      $('#resourceExpireDate').val(),
+                                                      function(result) {
+                                                      	showResourceCache();
+                                                        LoadingScreen.stopLoad();
+                                                      },
+                                                      function() {
+                                                        LoadingScreen.stopLoad();
+                                                        alert('error');
+                                                      });
+        });
+    }
+    
+    function getResource(id) {
+        LoadingScreen.startLoad(function() {
+                                    Cache.updateResource(id, 
+                                                         $('#resourceExpireDate').val(),
+                                                         function(result) {
+                                                         	showResourceCache();
+                                                            LoadingScreen.stopLoad();
+                                                            },
+                                                         function() {
+                                                            LoadingScreen.stopLoad();
+                                                            alert('error');
+                                                         });
+        });
+    }
+    
+    function showResourceCache() {
+        var cacheList = Cache.getResourceList();
+        var cacheTable = $('#cacheResourceDiv');
+
+        cacheTable.html('');
+        cacheTable.css('height', cacheList.length * 76 + 'px');
+        for(var i=0; i<cacheList.length; i++) {
+            var obj = cacheList[i];
+            
+            cacheTable.append(JSON.stringify(obj) + '<br />' +
+                              '<a href="#" onclick="removeResourceData(\''+obj.id+'\');return false;">Delete</a>' + 
+                              '<br />' + 
+                              '<a href="#" onclick="getResource(\''+obj.id+'\');return false;">Get Resource</a>' + 
+                              '<br /><br />');
+        }
+        resourceScroll.refresh();
+    }
+    
+    function removeResourceData(id) {
+        Cache.removeResource(id, function() {showResourceCache();},function(errCode) {alert('error: ' + errCode);});
+        return false;
+    }
+    
+    function resetResourceCache() {
+        Cache.resetResourceCache(function(){showResourceCache()}, function(){alert('error');});
+    }
+    
+    
+    /*
+     * QR Code Reader
+     *
+     *
+     */
+    function qrReaderSuccessCallback(data) {
+        $('#qrReaderResult').html(data);
+    }
+    
+    function qrReaderErrorCallback(error) {
+        alert('QR Code Error: '+error);
+    }
+    
+    function qrReaderScan(_source) {
+        QRReader.read(qrReaderSuccessCallback, qrReaderErrorCallback, {source: _source});
+    }
+    
+    /*
+     * Database
+     *
+     *
+     */
+    var db;
+    
+    function initDb() {
+        var successCallback = function() {
+            alert('Database init success');
+        };
+        var errorCallback = function(error) {
+            alert('Database init error: ' + error);
+        };
+        
+        db = new Database($('#dbName').val(), successCallback, errorCallback);
+    }
+    
+    function dbExecuteQuery() {
+        if(!db) {
+            return;
+        }
+        
+        var successCallback = function(result) {
+            var res = '[]';
+            if(result.length > 0) {
+                res = '[';
+                for(var i=0;i<result.length;i++) {
+                    var item = '{';
+                    for(var one in result[i]) {
+                         item += '"' + one + '":"'  + result[i][one] + '",';
+                    }
+                    res += item.slice(0, -1) + '},';
+                }
+                res = res.slice(0, -1) + ']';
+            } 
+            alert('Result: ' + res);
+        };
+        var errorCallback = function(error) {
+            alert('Database query error: ' + error);
+        };
+        var sql = $('#dbSQL').val();
+        db.executeSQL(sql, null, successCallback, errorCallback);
+    }
+    
+    function dbBeginTrans() {
+        if(!db) {
+            return;
+        }
+        
+        var successCallback = function() {
+            alert('Begin Transaction OK');
+        };
+        var errorCallback = function(error) {
+            alert('Database query error: ' + error);
+        };
+        
+        db.begin(successCallback, errorCallback);
+    }
+    
+    function dbCommit() {
+        if(!db) {
+            return;
+        }
+        
+        var successCallback = function() {
+            alert('Commit OK');
+        };
+        var errorCallback = function(error) {
+            alert('Database query error: ' + error);
+        };
+        
+        db.commit(successCallback, errorCallback);
+    }
+    
+    function dbRollback() {
+        if(!db) {
+            return;
+        }
+        
+        var successCallback = function() {
+            alert('Rollback OK');
+        };
+        var errorCallback = function(error) {
+            alert('Database query error: ' + error);
+        };
+        
+        db.rollback(successCallback, errorCallback);
+    }
+    
+    
+    /*
+     * AddressBook
+     *
+     *
+     */
+    function showAddressBook(isSelect) {
+        if(isSelect) {
+            AddressBook.showForSelection(
+                function(data){
+                    var stringified = JSON.stringify(data);
+                    stringified  = unescape(stringified.replace(/\\u/g, '%u'));
+                    $('#addressBookData').html(stringified);
+                }, 
+                function(message){
+                    alert('Error: ' + message);
+            });
+        } else {
+            AddressBook.show(
+                function(){
+                    alert('Success');
+                }, 
+                function(message){
+                    alert('Error: ' + message);
+            });
+        }
+    }
+    
+    
+    /*
+     * Contacts
+     *
+     *
+     */
+    var contactsContact = null
+    var contactsSearchResult = null;
+     
+    function contactsCreate() {
+        contactsContact = Contacts.create();
+        $('.contactsCreate').prop('disabled', false);
+    }
+    
+    function contactsSearch() {
+        var conditions = new Array();
+        var sc = $('#contactsSearchConditions .searchCondition');
+        
+        if(sc.length == 0) {
+            return;
+        }
+        
+        for(var i=0;i<sc.length;i++) {
+            conditions.push($(sc[i]).children('td:first').text());
+        }
+        
+        var sort = Contacts.SEARCH_ORDER_ASC;
+        
+        var searchSuccess = function(contacts) {
+            contactsSearchResult = contacts;
+            var r = $('#contactsSearchResult');
+            if(contactsSearchResult.length > 0) {
+                for(var i=0;i<contactsSearchResult.length;i++) {
+                    r.append('<tr style="background-color:#FFF" class="contactsSRRow"><td>&nbsp;' + contactsSearchResult[i].id + '</td></tr>');
+                }
+            } else {
+                r.append('<tr style="background-color:#FFF" class="contactsSRRow"><td>&nbsp;No results.</td></tr>');
+            }
+        };
+        var searchError = function(message) {
+            alert('Error: ' + message);
+        };
+        
+        $('#contactsSearchResult .contactsSRRow').remove();
+        
+        Contacts.search(conditions, sort, searchSuccess, searchError);
+    }
+    
+    function contactSave() {
+        var sc = $('#contactsCreateData .createOption');
+        
+        if(sc.length == 0) {
+            return;
+        }
+        //{addresses:[{homeLabel:{country:, city:, street:}}, {workLabel:{country:, city:, street:}}]}
+        for(var i=0;i<sc.length;i++) {
+            var c = $(sc[i]); //tr
+            var key = c.attr('data-key');
+            var value = {};
+            
+            var cIsObject = c.attr('data-isobject');
+            var cIsArray = c.attr('data-isarray');
+            var cIsMultiVal = c.attr('data-ismultival');
+            
+            var k = $('[data-key="' +key + '"]'); //all trs with key
+            
+            if(cIsObject || cIsArray) {
+                if(cIsArray) {
+                    value = new Array();
+                }
+                
+                for(var j=0;j<k.length;j++) {
+                    var kj = $(k[j]); //tr
+                    var kc = kj.children(); //td
+                    
+                    if(cIsArray) {
+                        var temp = {};
+                        
+                        if(cIsMultiVal) {
+                            var mvLabel = kj.attr('data-mvlabel');
+                            for(var _k in value) {
+                                var _kk = null;
+                                for(_kk in value[_k]) { };
+                                if(_kk == mvLabel) {
+                                    temp = value[_k];
+                                    value.splice(_k, 1);
+                                }
+                            }
+                        
+                            if(!temp[mvLabel]) {
+                                temp[mvLabel] = {};
+                            }
+                            temp[mvLabel][kj.attr('data-label')] = kc[1].innerHTML;
+                        } else if(cIsObject) {
+                            temp[kj.attr('data-label')] = kc[1].innerHTML;
+                        } else {
+                            temp = kc[1].innerHTML;
+                        }
+                        
+                        value.push(temp);
+                    } else {
+                        value[kj.attr('data-label')] = kc[1].innerHTML;
+                    }
+                }
+            } else {
+                var kc = k.children(); //td
+                value = kc[1].innerHTML;
+            }
+            
+            contactsContact[key] = value;
+        }
+        
+        if(contactsContact) {
+            contactsContact.save(
+                function() {
+                    contactsContact = null;
+                    $('.contactsCreate').prop('disabled', true);
+                    $('.contactsCreateAction').click();
+                    alert('Successfully saved contact');
+                },
+                function(message){
+                    alert('Error: ' + message);
+                }
+            );
+        }
+    }
+    
+    function contactRemove() {        
+        var removeId = $('#contactsRemoveId').val();
+        if(removeId.length > 0) {
+            var c = Contacts.create();
+            c.id = removeId;
+            c.remove(
+                function() {
+                    alert('Successfully removed contact');
+                },
+                function(message) {
+                    alert('Error: ' + message);
+                }
+            );
+        }
+    }
+    
+    $(function() {
+        var contactProperties;
+        
+        if(isIOS) {
+            contactProperties = [
+                {key: 'id'}, 
+                {key: 'displayName'},
+                {key: 'name', isObject: true, label: ['firstName', 'firstNamePhonetic', 'lastName', 'lastNamePhonetic', 'middleName', 'middleNamePhonetic', 'nickname', 'prefix', 'suffix']},                
+                {key: 'nickname'},
+                {key: 'phoneNumbers', isArray: true, isObject: true, label: ['phoneNumbersFax', 'phoneNumbersIPhone', 'phoneNumbersMain', 'phoneNumbersMobile', 'phoneNumbersOtherFax', 'phoneNumbersPager', 'phoneNumbersPhone', 'phoneNumbersWorkFax']},
+                {key: 'emails',  isArray: true, isObject: true, label: ['homeLabel', 'workLabel', 'otherLabel']},
+                {key: 'addresses', isArray: true, isObject: true, isMultiValue: true, multiValueLabel: ['homeLabel', 'workLabel', 'otherLabel'], label: ['addressesCity', 'addressesCountryCode', 'addressesCountry', 'addressesState', 'addressesStreet', 'addressesZIP'] },
+                {key: 'ims', isArray: true, isObject: true, label: ['imsAim', 'imsFacebook', 'imsGaduGadu', 'imsGoogleTalk', 'imsICQ', 'imsJabber', 'imsMSN', 'imsQQ', 'imsSkype', 'imsYahoo']},
+                {key: 'organizations'},
+                {key: 'birthday'},
+                {key: 'note'},
+                {key: 'photo'},
+                //{key: 'categories'},
+                {key: 'urls', isArray: true, isObject: true, label: ['homePageLabel', 'homeLabel', 'workLabel', 'otherLabel']}];
+		} else if(isWindows) {
+            contactProperties = [
+                  {key: 'id'},
+                  {key: 'displayName'},
+                  {key: 'name', isObject: true, label: ['firstName', 'lastName', 'middleName', 'nickname', 'title', 'suffix']},
+                  {key: 'nickname'},
+                  {key: 'phoneNumbers', isArray: true, isObject: true, label: ['home', 'home2', 'homeFax', 'work', 'work2', 'workFax', 'mobile', 'mobile2', 'company']},
+                  {key: 'emails', isArray: true, isObject: true, label: ['personal', 'work', 'other']},
+                  {key: 'addresses', isArray: true, isObject: true, isMultiValue: true, multiValueLabel: ['home', 'work', 'other'], label: ['city', 'country', 'state', 'street', 'zipcode'] },
+                  //{key: 'ims', isArray: true, isObject: true, label: ['imsAim', 'imsFacebook', 'imsGaduGadu', 'imsGoogleTalk', 'imsICQ', 'imsJabber', 'imsMSN', 'imsQQ', 'imsSkype', 'imsYahoo']},
+                  {key: 'organizations', isObject: true, label: ['company', 'jobTitle']},
+                  {key: 'birthday'},
+                  {key: 'note'},
+                  {key: 'photo'},
+                  //{key: 'categories'},
+                  {key: 'urls'}];
+        } else {
+            contactProperties = [
+                {key: 'id'}, 
+                {key: 'displayName'},
+                {key: 'name', isObject: true, label: ['givenName', 'familyName', 'middleName', 'prefix', 'suffix']},
+                {key: 'nickName'},
+                {key: 'phoneNumbers', isArray: true, isObject: true, label: ['home', 'mobile', 'work', 'workFax', 'homeFax', 'pager', 'other', 'custom', 'callback']},
+                {key: 'emails', isArray: true, isObject: true, label: ['home', 'mobile', 'work', 'other', 'custom']},
+                {key: 'addresses', isArray: true, isObject: true, isMultiValue: true, multiValueLabel: ['home', 'other', 'work', 'custom'], label: ['streetAddress', 'locality', 'region', 'postalCode', 'country']},
+                {key: 'ims', isArray: true, isObject: true, label: ['aim', 'custom', 'googleTalk', 'icq', 'jabber', 'msn', 'netMeeting', 'qq', 'skype', 'yahoo']},
+                {key: 'organizations', isArray: true, isObject: true, isMultiValue: true, multiValueLabel: ['other', 'work', 'custom'], label: ['department', 'title', 'name']},
+                {key: 'birthday'},
+                {key: 'note'},
+                {key: 'photo'},
+               //{key: 'categories', isArray: true, isObject: true, label: ['category']},
+                {key: 'urls', isArray: true, isObject: true, label: ['home', 'custom', 'work', 'blog', 'ftp', 'homepage', 'profile']}];
+        }
+            
+        var sOptions = $('#contactsSearchOptions');
+        var sEOptions = $('#contactsSearchExtraOptions');
+        var cOptions = $('#contactsCreateOptions');
+        var cEOptions = $('#contactsCreateExtraOptions');
+        var cMVOptions = $('#contactsCreateMValOptions');
+        for(var i=0;i<contactProperties.length;i++) {
+            
+            var prop = contactProperties[i];
+            sOptions.append('<option value="'+prop.key+'" class="sub_'+prop.key+'" '
+                        + ((prop.isObject) ? 'data-isobject="true"' : '')
+                        + ((prop.isArray) ? 'data-isarray="true"' : '') + '>' 
+                        + prop.key + '</option>');
+            if(prop.key == 'displayName' && isIOS) {
+                continue;
+            }
+            cOptions.append('<option value="'+prop.key+'" class="sub_'+prop.key+'" '
+                        + ((prop.isObject) ? 'data-isobject="true"' : '')
+                        + ((prop.isMultiValue) ? 'data-ismultival="true"' : '')
+                        + ((prop.isArray) ? 'data-isarray="true"' : '') + '>' 
+                        + prop.key + '</option>');
+
+            if(prop.label) {
+                for(var j=0;j<prop.label.length;j++) {
+                    if(!prop.isArray) {
+                        sEOptions.append('<option value="'+prop.label[j]+'" class="sub_'+prop.key+'">'
+                            +prop.label[j]+ '</option>');
+                    }
+                    cEOptions.append('<option value="'+prop.label[j]+'" class="sub_'+prop.key+'">'
+                        +prop.label[j]+ '</option>');
+                }
+            }
+            
+            if(prop.multiValueLabel) {
+                for(var j=0;j<prop.multiValueLabel.length;j++) {
+                    cMVOptions.append('<option value="'+prop.multiValueLabel[j]+'" class="sub_'+prop.key+'">'
+                        +prop.multiValueLabel[j]+ '</option>');
+                }
+            }
+        }
+
+        cascadeSelect(cOptions, cEOptions);
+        cascadeSelect(cOptions, cMVOptions);
+        cascadeSelect(sOptions, sEOptions);
+        
+        cOptions.change(function(e) {
+            var s = $(this).children('option:selected').val();
+            if(s == 'photo') {
+                $('#contactsCreatePicOpt').show();
+            } else {
+                $('#contactsCreatePicOpt').hide();
+            }
+            
+            /*if(s == 'addresses') {
+                $('.mValForm').show();
+            } else {
+                $('.mValForm').hide();
+            }*/
+        });
+        
+        $('#contactsCreatePicOpt').click(function() {
+            var successCallback = function(imgData) {
+                $('#contactsCreateValue').val(imgData);
+                $('#contactsAddCreateOpt').click();
+            };
+            var errorCallback = function() {};
+            var options = {
+                quality: 50, 
+                destinationType: Camera.DestinationType.FILE_URI, //DATA_URL, 
+                sourceType :  Camera.PictureSourceType.SAVEDPHOTOALBUM, 
+                encodingType: Math.round(Math.random())
+            };
+            Camera.getPicture(successCallback, errorCallback, options);
+        });
+                 
+        // search
+        $('#contactsAddCondition').click(function() {
+            var o = $('#contactsSearchOptions option:selected');
+            var oe = $('#contactsSearchExtraOptions option:selected');
+            var c = $('#contactsSearchCond option:selected').val();
+            var v = $('#contactsSearchValue').val();
+            var id = 'searchOpt' + o.val() + (oe.length > 0 ? oe.val() : '');
+            
+            if(o.length > 0 && v.length > 0) {
+                if($('.searchCondition#'+id).length > 0) {
+                    if(!o.attr('data-isarray')) {
+                        $('.searchCondition#'+id).remove();
+                    }
+                }
+                
+                $('#contactsSearchConditions').append('<tr class="searchCondition" style="background-color:#FFF" id="'+id+'" data-key="'+o.val()+'" ' 
+                    + ((o.attr('data-isobject')) ? 'data-isobject="true" ' : '') 
+                    + ((o.attr('data-isarray')) ? 'data-isarray="true" ' : '') 
+                    + ((oe.val()) ? ('data-label="' + oe.val() + '"') : '')
+                    + '>'
+                    + '<td>' + ((oe.val()) ? oe.val() : o.val())
+                    + ' ' + c + ' '
+                    + v + '</td>'
+                    + '<td style="text-align:center"><input type="button" class="contactsConditionAction" value="-"></td>'
+                    + '</tr>');
+            }
+        });
+        
+        $('#contactsSearchConditions').on('click', '.contactsConditionAction', function() {
+            var p = $(this).parents('tr');
+            p.remove();
+        });    
+        
+        $('#contactsSearchResult').on('click', 'td', function() {
+            var index = $(this).parent().index();
+            
+            if(index > 0) {
+                alert(JSON.stringify(contactsSearchResult[index-1]));
+            }
+        });
+            
+        // create
+        $('.contactsCreate').prop('disabled', true);
+        
+        $('#contactsAddCreateOpt').click(function() {
+            var o = $('#contactsCreateOptions option:selected');
+            var om = $('#contactsCreateMValOptions option:selected');
+            var oe = $('#contactsCreateExtraOptions option:selected');
+            var v = $('#contactsCreateValue').val();
+            var id = 'createOpt' + o.val() + (om.length > 0 ? om.val() : '') + (oe.length > 0 ? oe.val() : '');
+            
+            if(o.length > 0 && v.length > 0) {
+                if($('.createOption#'+id).length > 0) {
+                    if(!o.attr('data-isarray') || o.attr('data-ismultival')) {
+                        $('.createOption#'+id).remove();
+                    }
+                }
+                
+                $('#contactsCreateData').append('<tr class="createOption" style="background-color:#FFF" id="'+id+'" data-key="'+o.val()+'" ' 
+                    + ((o.attr('data-isobject')) ? 'data-isobject="true" ' : '') 
+                    + ((o.attr('data-isarray')) ? 'data-isarray="true" ' : '') 
+                    + ((o.attr('data-ismultival')) ? 'data-ismultival="true" ' : '') 
+                    + ((oe.val()) ? ('data-label="' + oe.val() + '"') : '') 
+                    + ((om.val()) ? ('data-mvlabel="' + om.val() + '"') : '') 
+                    + '>'
+                    + '<td>'+o.val() + (om.val() ? ('<br />&nbsp&nbsp[' + om.val() + ']'): '') + ((oe.val()) ? ('<br />&nbsp&nbsp' + oe.val()) : '') + '</td>'
+                    + '<td style="max-width:100px;overflow:hidden;word-wrap:break-word;">'+v+'</td>'
+                    + '<td style="text-align:center"><input type="button" class="contactsCreateAction" value="-"></td>'
+                    + '</tr>');
+            }
+            
+            $('#contactsCreateValue').val('');
+        });
+        
+        $('#contactsCreateData').on('click', '.contactsCreateAction', function() {
+            var p = $(this).parents('tr');
+            p.remove();
+        });  
+    });
+    
+    
+    /*
+     * Bluetooth
+     *
+     *
+     */
+    var disconnectedPeer;
+    
+    function btDiscover() {
+        disconnectedPeer = null ;
+        
+	if (isWindows)
+        {
+          var btPeerList = $('#btPeerList');
+          btPeerList.html('<div id="noPeersText" style="padding:3px;">Looking for peers...</div>');
+        }
+
+        Bluetooth.discover();
+        btShowModal();
+    }
+        
+    Bluetooth.onStateChanged = (function(deviceName, id, state) {
+        var orig = Bluetooth.onStateChanged;
+        return function(deviceName, id, state) {
+            orig(deviceName, id, state);
+                                
+            var btPeerList = $('#btPeerList');
+            var btModal = $('#btModal');
+            var rowId = id.replace(/:/g,"");
+        
+            $('#btPeerList #btPeer' + rowId).remove();
+            var rowHtml = '';
+            if(state == Bluetooth.STATE_AVAILABLE) {
+                if(btModal.is(':hidden') && id != disconnectedPeer) {
+                    btShowModal();
+                }
+                
+                rowHtml = '<div id="btPeer'+rowId+'" style="" onclick="Bluetooth.connect({id:\''+id+'\',deviceName:\''+deviceName+'\',state:'+state+'}, btConnectSuccess, btConnectError)">'+deviceName+'('+id+')'+'</div>';
+            } else if(state == Bluetooth.STATE_CONNECTING) {
+                rowHtml = '<div id="btPeer'+rowId+'" style="background-color:gray;color:lightgray">Attempting connection to '+deviceName+'('+id+')'+'</div>';
+            } else if(state == Bluetooth.STATE_CONNECTED) {
+                rowHtml = '<div id="btPeer'+rowId+'" style="background-color:gray;">'+deviceName+'('+id+')'+'</div>';
+                if(btModal.is(':visible')) {
+                    btHideModal();
+                }
+            } else if(state == Bluetooth.STATE_DISCONNECTED) {
+                disconnectedPeer = id;
+            }
+            btPeerList.append(rowHtml);
+            
+            if(Bluetooth.peerList.length == 0 || btPeerList.children(':not(#noPeersText)').length == 0) {
+                btPeerList.html('<div id="noPeersText" style="padding:3px;">Looking for peers...</div>');
+            } else {
+                $('#noPeersText').remove();
+            }
+            
+            btUpdatePeerList();
+        }
+    })();
+    
+    function btConnectSuccess() {
+        alert('Successfully connected to peer.');
+    }
+    
+    function btConnectError() {
+        alert('Error connecting to peer.');
+    }
+    
+    function btUpdatePeerList() {
+        $('#btTestPeerList tr:not(.peerListHeader)').remove();
+        
+        for(var i=0; i<Bluetooth.peerList.length; i++) {
+            var state = Bluetooth.peerList[i].state;
+            var peerListHtml = 
+                '<tr class="peerItem">' +
+                    '<td style="word-wrap:break-word">' + Bluetooth.peerList[i].id + '</td>' +
+                    '<td style="word-wrap:break-word">' + Bluetooth.peerList[i].deviceName + '</td>' +
+                    '<td>' + state + '</td>';
+            
+            if(state == Bluetooth.STATE_AVAILABLE) {
+                peerListHtml += '<td><input type="button" value="Connect"/></td>';
+            } else if(state == Bluetooth.STATE_CONNECTED) {
+                peerListHtml += '<td style="text-align:left">'
+                                + '<input type="button" value="Disconnect"/><br />' 
+                                + '<input type="button" value="Send" style="margin-top:5px;"/><br />' 
+                                + '<input type="button" value="Send Image" style="margin-top:5px;"/></td>';
+            } else {
+                peerListHtml += '<td>&nbsp;</td>';
+            }
+                                    
+            peerListHtml += '</tr>';
+
+            if (isWindows)
+            {
+              if (state != Bluetooth.STATE_AVAILABLE && state != Bluetooth.STATE_CONNECTING)
+              {
+                $('#btTestPeerList').append(peerListHtml);
+              }
+            }
+            else 
+            {
+              $('#btTestPeerList').append(peerListHtml);
+            }
+        }
+    }
+    
+    var btImage, btText;
+    $(function() {
+        $('#btTestPeerList').on('click', 'input', function(){
+            var td = $(this).parent().siblings('td');
+            var inputVal = $(this).val();
+            
+            var peerData = {id: $(td[0]).html(), deviceName: $(td[1]).html(), state: $(td[2]).html()};
+            if(inputVal == 'Connect') {
+                Bluetooth.connect(
+                    peerData,
+                    function() {
+                        alert('Successfully connected to peer.');
+                        btUpdatePeerList();
+                    },
+                    function() {
+                        alert('Error connecting to peer');
+                    }
+                );
+            } else if(inputVal == 'Disconnect') {
+                Bluetooth.disconnect(
+                    peerData,
+                    function() {
+                        alert('Successfully disconnected from peer.');
+                    },
+                    function() {
+                        alert('Error disconnected from peer');
+                    }
+                );
+            } else if(inputVal == 'Send') {
+               Bluetooth.send(
+                   peerData, 
+                   $('#btMessage').val(),
+                   function() {
+                       alert('Successfully sent message.');
+                   },
+                   function() {
+                       alert('Error sending message.');
+                   }
+                );
+            } else if(inputVal == 'Send Image') {
+                var successCallback = function(data) {
+                    Bluetooth.send(
+                        peerData, 
+                        data,
+                        function() {
+                            alert('Successfully sent image data.');
+                        },
+                        function() {
+                            alert('Error sending image.');
+                        }
+                    );
+                };
+                var errorCallback = function(error) {
+                    alert(error);
+                };
+                var options = {
+                    quality: 30, 
+                    destinationType: Camera.DestinationType.DATA_URL, 
+                    sourceType :  Camera.PictureSourceType.CAMERA, 
+                    encodingType: Camera.EncodingType.JPEG
+                };
+                
+                Camera.getPicture(successCallback, errorCallback, options);
+            }
+        });
+            
+        $('#btImage')
+            .load(function() {
+                $(this).show();
+            })
+            .error(function(){
+                $(this).hide();
+            });
+    });
+    
+    function btShowModal() {
+      $('#btModal').dialog({
+        modal: true,
+        dialogClass: 'noTitleDialog',
+        resizable: false
+      });
+    }
+    
+    function btHideModal() {
+      $('#btModal').dialog("close");
+    }
+    
+    Bluetooth.onRecvCallback = function(peerData, receiveData) {
+        $('#btMessage').val('');
+        $('#btImage').attr('src', '');
+        $('#btMessage').val('Message from ' + peerData.deviceName + '(' + peerData.id + '):\n' + receiveData);
+        $('#btImage').attr('src', receiveData);
+    }
+    
+    
+    /*
+     * Bluetooth 4 LE
+     *
+     *
+     */
+    var bt4LEdisconnectedPeer;
+    function bt4LEScanDevices() {
+        bt4LEdisconnectedPeer = null;
+        
+        var selectedServices = $('#serviceMultiList option:selected');
+        var services = new Array();
+        for(var i=0; i<selectedServices.length; i++) {
+            services[i] = selectedServices[i].value;
+        }
+        
+        Bluetooth4LE.scanDevices(services);
+        
+        bt4LEShowModal();
+    }
+    
+    Bluetooth4LE.onStateChanged = (function(deviceName, id, state) {
+        var orig = Bluetooth4LE.onStateChanged;
+        return function(deviceName, id, state) {
+            orig(deviceName, id, state);
+            
+            var bt4LEPeripheralList = $('#bt4LEPeripheralList');
+            var bt4LEModal = $('#bt4LEModal');
+            var rowId = id.replace(/:/g,"");
+            
+            $('#bt4LEPeripheralList #bt4LEPeripheral' + rowId).remove();
+            var rowHtml = '';
+            if(state == Bluetooth4LE.STATE_AVAILABLE || state == Bluetooth4LE.STATE_CONNECTING) {
+                if(bt4LEModal.is(':hidden') && id != disconnectedPeer) {
+                    bt4LEShowModal();
+                }
+                rowHtml = '<div id="bt4LEPeripheral'+rowId+'" style="" onclick="Bluetooth4LE.connect({id:\''+id+'\',deviceName:\''+deviceName+'\',state:'+state+'}, bt4LEConnectSuccess, bt4LEConnectError)">'+deviceName+'('+id+')'+'</div>';
+            } else if(state == Bluetooth4LE.STATE_CONNECTED) {
+                rowHtml = '<div id="bt4LEPeripheral'+rowId+'" style="background-color:gray;">'+deviceName+'('+id+')'+'</div>';
+                if(bt4LEModal.is(':visible')) {
+                    bt4LEHideModal();
+                }
+            } else if(state == Bluetooth4LE.STATE_DISCONNECTED) {
+                bt4LEdisconnectedPeer = id;
+            }
+            bt4LEPeripheralList.append(rowHtml);
+                                
+            if(Bluetooth4LE.peripheralList.length == 0 || bt4LEPeripheralList.children(':not(#noPeripheralsText)').length == 0) {
+                bt4LEPeripheralList.html('<div id="noPeripheralsText" style="padding:3px;">Looking for peripherals...</div>');
+            } else {
+                $('#noPeripheralsText').remove();
+            }
+            
+            bt4LEUpdatePeripheralList();
+        }
+    })();
+    
+    function bt4LEConnectSuccess() {
+        alert('Successfully connected to peripheral.');
+    }
+    
+    function bt4LEConnectError() {
+        $('#bt4LEPeripheralList [id^="bt4LEPeripheral"]').remove();
+        bt4LEHideModal();
+        alert('Error connecting to peripheral.');
+    }
+    
+    function bt4LEUpdatePeripheralList() {
+        $('#bt4LETestPeripheralList tr:not(.peripheralListHeader)').remove();
+        
+        for(var i=0; i<Bluetooth4LE.peripheralList.length; i++) {
+            var state = Bluetooth4LE.peripheralList[i].state;
+            var peripheralListHtml = 
+            '<tr class="peripheralItem">' +
+            '<td>' + Bluetooth4LE.peripheralList[i].id + '</td>' +
+            '<td>' + Bluetooth4LE.peripheralList[i].deviceName + '</td>' +
+            '<td>' + state + '</td>';
+            
+            if(state == Bluetooth.STATE_AVAILABLE) {
+                peripheralListHtml += '<td><input type="button" value="Connect"/></td>';
+            } else if(state == Bluetooth.STATE_CONNECTED) {
+                peripheralListHtml += '<td style="text-align:left">'
+                    + 'Characteristic: <br />'
+                    + '<input type="button" value="Write" style="margin-top:5px;" class="characteristic"/>' 
+                    + '<input type="button" value="Read" style="margin-top:5px;" class="characteristic"/><br />' 
+                    + 'Descriptor: <br />'
+                    + '<input type="button" value="Write" style="margin-top:5px;" class="descriptor"/>' 
+                    + '<input type="button" value="Read" style="margin-top:5px;" class="descriptor"/><br />'
+                    + '<input type="button" value="Disconnect" style="margin-top:5px;"/></td>';
+            } else {
+                peripheralListHtml += '<td>&nbsp;</td>';
+            }
+            
+            peripheralListHtml += '</tr>';
+            
+            $('#bt4LETestPeripheralList').append(peripheralListHtml);
+        }
+    }
+    
+    $(function() {
+        $('#bt4LETestPeripheralList').on('click', 'input', function(){
+            var td = $(this).parent().siblings('td');
+            var inputVal = $(this).val();
+
+            var peipheralData = {id: $(td[0]).html(), deviceName: $(td[1]).html(), state: $(td[2]).html()};
+            if(inputVal == 'Connect') {
+                Bluetooth4LE.connect(
+                    peipheralData,
+                    function() {
+                        alert('Successfully connected to peer.');
+                        bt4LEUpdatePeripheralList();
+                    },
+                    function() {
+                        alert('Error connecting to peer');
+                    }
+                );
+            } else if(inputVal == 'Disconnect') {
+                Bluetooth4LE.disconnect(
+                    peipheralData,
+                    function() {
+                        alert('Successfully disconnected from peer.');
+                    },
+                    function() {
+                        alert('Error disconnected from peer');
+                    }
+                );
+            } else {
+                var peripheral = new Peripheral(peipheralData.deviceName, peipheralData.id);
+                var inputClass = $(this).attr('class');
+                                         
+                if(inputClass == 'characteristic') {
+                    if(inputVal == 'Read') {
+                        peripheral.readValueForCharacteristic(
+                            $('#serviceList option:selected').val(),
+                            $('#characteristicList option:selected').val(),
+							$('#characteristicVTypeList option:selected').val(),
+                            function(value) {
+                                alert('Successfully read characteristic value: ' + value);
+                            },
+                            function() {
+                                alert('Error reading characteristic value.');
+                            }
+                        );
+                    } else if(inputVal == 'Write') {
+                        peripheral.writeValueForCharacteristic(
+                            $('#characteristicValue').val(),
+                            $('#characteristicVTypeList option:selected').val(),
+                            $('#serviceList option:selected').val(),
+                            $('#characteristicList option:selected').val(),
+                            $('#characteristicWriteType input:radio:checked').val(),
+                            function() {
+                                alert('Successfully written value to characteristic');
+                            },
+                            function() {
+                                alert('Error writing value to characteristic');
+                            }
+                        );
+                    }
+                } else if(inputClass == 'descriptor') {
+                    if(inputVal == 'Read') {
+                        peripheral.readValueForDescriptor(
+                            $('#serviceList option:selected').val(),
+                            $('#characteristicList option:selected').val(),
+                            $('#descriptorList option:selected').val(),
+							$('#descriptorVTypeList option:selected').val(),
+                            function(value) {
+                                alert('Successfully read descriptor value: ' + value);
+                            },
+                            function() {
+                                alert('Error reading descriptor value.');
+                            }
+                        );
+                    } else if(inputVal == 'Write') {
+                        peripheral.writeValueForDescriptor(
+                            $('#descriptorValue').val(),
+                            $('#descriptorVTypeList option:selected').val(),
+                            $('#serviceList option:selected').val(),
+                            $('#characteristicList option:selected').val(),
+                            $('#descriptorList option:selected').val(),
+                            function() {
+                                alert('Successfully written value to descriptor');
+                            },
+                            function() {
+                                alert('Error writing value to descriptor');
+                            }
+                        );
+                    }
+                }
+            }
+        });
+      
+        var services = [
+            {label: "SERVICE_BATTERY_SERVICE", value: Bluetooth4LE.SERVICE_BATTERY_SERVICE},
+            {label: "SERVICE_IMMEDIATE_ALERT", value: Bluetooth4LE.SERVICE_IMMEDIATE_ALERT}
+        ];
+
+        var characteristics = [
+            {label: "ALERT_LEVEL", value: Bluetooth4LE.CHARACTERISTICS_ALERT_LEVEL, parent: Bluetooth4LE.SERVICE_IMMEDIATE_ALERT},
+            {label: "BATTERY_LEVEL", value: Bluetooth4LE.CHARACTERISTICS_BATTERY_LEVEL, parent: Bluetooth4LE.SERVICE_BATTERY_SERVICE}
+        ];
+      
+        var characteristicValueTypes = [
+            {label: "VALUE_TYPE_UINT8", value: Bluetooth4LE.VALUE_TYPE_UINT8, parent: Bluetooth4LE.CHARACTERISTICS_ALERT_LEVEL},
+            {label: "VALUE_TYPE_UINT8", value: Bluetooth4LE.VALUE_TYPE_UINT8, parent: Bluetooth4LE.CHARACTERISTICS_BATTERY_LEVEL}
+        ];
+
+        var descriptors = [
+            {label: "CHARACTERISTIC_PRESENTATION_FORMAT", value: Bluetooth4LE.DESCRIPTORS_CHARACTERISTIC_PRESENTATION_FORMAT, parent: Bluetooth4LE.CHARACTERISTICS_BATTERY_LEVEL},
+            {label: "CLIENT_CHARACTERISTIC_CONFIGURATION", value: Bluetooth4LE.DESCRIPTORS_CLIENT_CHARACTERISTIC_CONFIGURATION, parent: Bluetooth4LE.CHARACTERISTICS_BATTERY_LEVEL}
+        ];
+
+        var descriptorValueTypes = [
+            {label: "VALUE_TYPE_8BIT", value: Bluetooth4LE.VALUE_TYPE_8BIT, parent: Bluetooth4LE.DESCRIPTORS_CHARACTERISTIC_PRESENTATION_FORMAT},
+            {label: "VALUE_TYPE_SINT8", value: Bluetooth4LE.VALUE_TYPE_UINT8, parent: Bluetooth4LE.DESCRIPTORS_CHARACTERISTIC_PRESENTATION_FORMAT},
+            {label: "VALUE_TYPE_UINT16", value: Bluetooth4LE.VALUE_TYPE_UINT16, parent: Bluetooth4LE.DESCRIPTORS_CHARACTERISTIC_PRESENTATION_FORMAT},
+            {label: "VALUE_TYPE_16BIT", value: Bluetooth4LE.VALUE_TYPE_16BIT, parent: Bluetooth4LE.DESCRIPTORS_CHARACTERISTIC_PRESENTATION_FORMAT},
+            {label: "VALUE_TYPE_16BIT", value: Bluetooth4LE.VALUE_TYPE_16BIT, parent: Bluetooth4LE.DESCRIPTORS_CLIENT_CHARACTERISTIC_CONFIGURATION}
+        ];
+      
+        var sMultiList = $('#serviceMultiList');
+        for(var service in services) {
+            var s = services[service];
+            sMultiList.append('<option value="'+s.value+'" selected="selected">'+s.label+'</option>');
+        }
+      
+        var sList = $('#serviceList');
+        for(var service in services) {
+            var s = services[service];
+            sList.append('<option value="'+s.value+'" selected="selected" class="sub_'+s.value+'">'+s.label+'</option>');
+        }
+
+        var cList = $('#characteristicList');
+        for(var characteristic in characteristics) {
+            var c = characteristics[characteristic];
+            cList.append('<option value="'+c.value+'" class="sub_'+c.parent+'">'+c.label+'</option>');
+        }
+      
+        var cVList = $('#characteristicVTypeList');
+        for(var characteristicValueType in characteristicValueTypes) {
+            var v = characteristicValueTypes[characteristicValueType];
+            cVList.append('<option value="'+v.value+'" class="sub_'+v.parent+'">'+v.label+'</option>');
+        }
+
+        var dList = $('#descriptorList');
+        for(var descriptor in descriptors) {
+            var d = descriptors[descriptor];
+            dList.append('<option value="'+d.value+'" class="sub_'+d.parent+'">'+d.label+'</option>');
+        }
+      
+        var dVList = $('#descriptorVTypeList');
+        for(var descriptorValueType in descriptorValueTypes) {
+            var v = descriptorValueTypes[descriptorValueType];
+            dVList.append('<option value="'+v.value+'" class="sub_'+v.parent+'">'+v.label+'</option>');
+        }
+        
+        cascadeSelect(sMultiList, sList, true);
+        cascadeSelect(sList, cList);
+        cascadeSelect(cList, cVList);
+        cascadeSelect(cList, dList);
+        cascadeSelect(dList, dVList);
+        sMultiList.change();
+    });
+    
+    function cascadeSelect(parent, child, isMulti){
+        var childOptions = child.find('option:not(.static)');
+        child.data('options',childOptions);
+ 
+        parent.change(function(){
+            childOptions.remove();
+            if(isMulti) {
+                parent.children('option:selected').each(function(){
+                    child
+                        .append(child.data('options').filter('.sub_' + this.value))
+                        .change();
+                });
+            } else {
+                child
+                    .append(child.data('options').filter('.sub_' + this.value))
+                    .change();
+            }
+        });
+ 
+        childOptions.not('.static, .sub_' + parent.val()).remove();
+    }
+    
+    function bt4LEShowModal() {
+      $('#bt4LEModal').dialog({
+        modal: true,
+        dialogClass: 'noTitleDialog',
+        resizable: false
+      });
+    }
+    
+    function bt4LEHideModal() {
+      $('#bt4LEModal').dialog("close");
+    }
+    
+    /*
+     * Felica
+     * 
+     */
+    function felicaGetIdM() {
+        var successCallback = function(idM) {
+            alert('Manufacturer Id: ' + idM);
+        };
+        var errorCallback = function() {
+            alert('Error retreiving manufacturer id.');
+        };
+        
+        Felica.getIdM(successCallback, errorCallback);
+    }
+    
+    function felicaGetPMm() {
+        var successCallback = function(pMm) {
+            alert('Manufacturer: ' + pMm);
+        };
+        var errorCallback = function() {
+            alert('Error retreiving manufacturer.');
+        };
+        
+        Felica.getPMm(successCallback, errorCallback);
+    }
+    
+    function felicaSystemCode() {
+        var successCallback = function(systemCodes) {
+            alert('System codes: ' + systemCodes);
+        };
+        var errorCallback = function() {
+            alert('Error retreiving system codes.');
+        };
+        
+        Felica.requestSystemCode(successCallback, errorCallback);
+    }
+    
+    function felicaServiceCode() {
+        var successCallback = function(serviceCodes) {
+            alert('Service codes: ' + serviceCodes);
+            var options = '';
+            for(var i=0; i<serviceCodes.length; i++) {
+                options += '<option>' + serviceCodes[i] + '</option>';
+            }
+            $('#felicaServiceCodes').html(options);
+            
+            options = '';
+            for(var i=0; i<10; i++) {
+                options += '<option>' + i + '</option>';
+            }
+            $('#felicaAddress').html(options);
+        };
+        var errorCallback = function() {
+            alert('Error retreiving service codes.');
+        };
+        
+        Felica.requestServiceCode(successCallback, errorCallback);
+    }
+    
+    function felicaResponse() {
+        var successCallback = function(response) {
+            alert('Response: ' + response);
+        };
+        var errorCallback = function() {
+            alert('Error retreiving response.');
+        };
+        
+        Felica.requestResponse(successCallback, errorCallback);
+    }
+    
+    function felicaRead() {
+        var successCallback = function(blockData) {
+            $('#felicaData').val(blockData);
+        };
+        var errorCallback = function() {
+            alert('Error retreiving response.');
+        };
+
+        Felica.readWithoutEncryption(
+            $('#felicaServiceCodes').children('option:selected').html(),
+            $('#felicaAddress').children('option:selected').html(),
+            successCallback, 
+            errorCallback);
+    }
+    
+    function felicaWrite() {
+        var successCallback = function() {
+            alert('Successfully written data to card.');
+        };
+        var errorCallback = function() {
+            alert('Error writing data to card.');
+        };
+
+        Felica.writeWithoutEncryption(
+            $('#felicaServiceCodes').children('option:selected').html(),
+            $('#felicaAddress').children('option:selected').html(),
+            $('#felicaData').val(),
+            successCallback, 
+            errorCallback);
+    }
+    
+    
+    /*
+     * PDFViewer
+     * 
+     */
+    function pdfShow() {
+        var path = $('#pdfPath').val();
+        alert(path + ' ' + path.length + $('.pdfViewerType:checked').val());
+        if(path.length > 0) {
+            switch(parseInt($('.pdfViewerType:checked').val())) {
+                case 1: // file object
+                    var f;
+                    var _s = function(s) {
+                        alert(f.fullPath);
+                        PDFViewer.showWithFileObject(f);
+                    };
+                    
+                    var _e = function(e) {
+                        alert('Error showing pdf file');
+                    };
+                    
+                    var _f = path.split('/').reverse()[0];
+                    var _p = path.replace(_f, '').replace(/\/$/,'');
+                    //_p = 'media_resources';
+                    //_p = '';
+                    //alert(_p.replace('/', ''));
+                    var f = new File(_p, _f, _s, _e);
+                
+                    break;
+                case 2: // file path
+                    PDFViewer.showWithFilePath(path);
+                    break;
+                case 3: // url
+                    PDFViewer.showWithURL(path);
+                    break;
+            }
+        }
+    }
+    
+    $(function() {
+        $('.pdfViewerType').change(function() {
+            switch(parseInt($('.pdfViewerType:checked').val())) {
+                case 1:
+                    $('#pdfPath').val('media_resources/sample.pdf');
+                    break;
+                case 2:
+                    $('#pdfPath').val('sample2.pdf');
+                    break;
+                case 3:
+                    $('#pdfPath').val('http://partners.adobe.com/public/developer/en/xml/AdobeXMLFormsSamples.pdf');
+                    break;
+            }
+        });
+        
+        $('.pdfViewerType:first').prop('checked', true);
+    });
+    
+	$(document).ready(function(){
+	     $("#secmain").height(screen.height);
+	});
+    
+    /*
+     * Ads
+     * 
+     */
+    var adButton, adStatus, adStatusLbl;
+    var AD_STATUS_HIDDEN = 0, AD_STATUS_VISIBLE = 1;
+    $(function () {
+        adButton = $('#adButton');
+        adStatus = -1;
+        adStatusLbl = $('#adStatus');
+        
+        adStatusLbl.html();
+        
+        adButton.click(function(event) {
+            var action = $(this).val();
+            
+            if (action == 'show') {                   
+                showAd();
+            } else if(action == 'hide') {
+                hideAd();
+            } else if(action == 'create') {
+                createAd();
+            }
+        });
+    });
+     
+    function createAd() {
+        var successCallback = function() {
+            if(adStatus == -1) {
+                $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+                adStatus = AD_STATUS_VISIBLE;
+                adStatusLbl.html('Ad is created.');
+                
+                adButton.val('hide');
+                adButton.removeAttr('disabled');
+            }
+            
+            showAd();
+        };
+        var errorCallback = function() {
+            if(adStatus == -1) {
+                adStatusLbl.html('Failed to create and load ad.');
+                
+                adButton.val('create');
+                adButton.removeAttr('disabled');
+                
+                return;
+            }
+            
+            hideAd();
+        };
+        
+        var options = {id: "", appId: ""};
+        
+        adStatusLbl.html('Creating ad banner.');
+        adButton.attr('disabled', 'disabled');
+        //Ad.create(Ad.POSITION_TOP,  successCallback, errorCallback, options);
+        Ad.create(Ad.POSITION_BOTTOM,  successCallback, errorCallback, options);
+     }
+     
+     function showAd() {
+        if(adStatus == AD_STATUS_HIDDEN) {
+            var successCallback = function() {
+                $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+                adStatus = AD_STATUS_VISIBLE;
+                adStatusLbl.html('Ad is shown.');
+                adButton.val('hide');
+            };
+            var errorCallback = function() {
+                adStatusLbl.html('Failed to show Ad.');
+                adButton.val('show');
+            };
+            
+            Ad.show(successCallback, errorCallback);
+        }
+     }
+     
+     function hideAd() {
+        if(adStatus == AD_STATUS_VISIBLE) {
+            var successCallback = function() {
+                adStatus = AD_STATUS_HIDDEN;
+                adStatusLbl.html('Ad is hidden.');
+                adButton.val('show');
+            };
+            var errorCallback = function() {
+                adStatusLbl.html('Failed to hide Ad.');
+                adButton.val('hide');
+            };
+             
+            Ad.hide(successCallback, errorCallback);
+        }
+     }
+    
+// -->
+</script>
+</head>
+<body>
+    <section id="secmain" data-role="page">
+        <header id="mainHeader" data-role="header" data-position="inline">
+        </header>
+        <textarea id="request" rows="10" cols="46" wrap="soft" style="display:none"></textarea>
+        <div id="accordion" style="font-size:10px !important;">
+            <h3><a href="#">Application Version</a></h3>
+            <div>
+                <span id="lblAppVersion" style="">Version 1.0</span>
+                <br /><br />
+            </div>
+            
+            <h3><a href="#">Image Decryption</a></h3>
+            <div>
+                &lt;img src="images/gbb.jpg.pkg"&gt; :<br />
+                <div style="border: 1px solid;height:80px;width:80px;">
+                    <img src="images/gbb.jpg.pkg" style="height:80px;width:80px;"/>
+                </div><br />
+            
+                &lt;img src="images/purpurea.jpg.pkg"&gt; :<br />
+                <div style="border: 1px solid;height:80px;width:80px;">
+                    <img src="images/purpurea.jpg.pkg" style="height:80px;width:80px;"/>
+                </div><br />
+                
+                &lt;img src="images/avic.jpg.pkg"&gt; :<br />
+                <div style="border: 1px solid;height:80px;width:80px;">
+                    <img src="images/avic.jpg.pkg" style="height:80px;width:80px;"/>
+                </div><br /><br />
+            </div>
+            
+            <h3><a href="#">Camera</a></h3>
+            <div class="contentDiv" width="100%" height="100%">
+                <div id="wrapper">
+                    <div id="imgDiv"></div>
+                </div>
+                <div style="text-align:center;padding-top:5px">
+                    <input type="button" id="camera" value="photo" width="80px"/>
+                    <input type="button" id="record" value="video" onclick="record();"/>
+                </div>
+                
+                <div id="recordMovieDiv" style="display:none;font-size:10px !important;font-family: Verdana,Arial,sans-serif;">
+                    <div id="mainContentVideoFrame" data-role="content" style="border: 1px solid #BBB;padding:0;margin:0 auto;height:200px;width:98%;"> 
+                    </div>
+                    <table width="100%" style="text-align:center">
+                        <tr>
+                            <td style="height:20px" colspan="2"><div id="videoSlider"></div></td>
+                        </tr>
+                        <tr>
+                            <td width="50%"><input type="button" value="play" id="playvideo"/></td>
+                            <td><input type="button" value="stop / close" id="stopvideo" disabled="disabled"/></td>
+                        </tr>
+                    </table>
+                    <div id="mainContentVideo" data-role="content" style="padding:0;margin-top: 5px;">
+                        &nbsp;&nbsp;Position: <span id="position"></span><br />
+                        &nbsp;&nbsp;Duration: <span id="duration"></span>
+                    </div>
+                    <img id="thumb"/>
+                    
+                </div>
+            </div>
+			
+            
+            <h3><a href="#">Sound</a></h3>
+            <div>
+                <table width="100%" height="100"style="padding-top:5px;">
+                    <tr>
+                        <td style="padding:5px" colspan="5"><div id="soundSlider"></div></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" value="|<<" id="sPrevious"/></td>
+                        <td><input type="button" value="play" id="sPlay"/></td>
+                        <td><input type="button" value="stop" id="sStop" disabled="disabled"/></td>
+                        <td><input type="button" value=">>|" id="sNext"/></td>
+                    </tr>
+                </table>
+                <div id="mainContentSound" data-role="content" style="padding-bottom:5px;margin:0;">
+                    &nbsp;&nbsp;Position: <span id="position"></span><br />
+                    &nbsp;&nbsp;Duration: <span id="duration"></span>
+                </div>
+            </div>
+            
+            <h3><a href="#">Movie</a></h3>
+            <div class="contentDiv">
+                <div id="mainContentMovieFrame" data-role="content" style="padding:0;margin:0 auto;height:200px;width:98%;"> 
+                </div>
+                <table width="100%" style="text-align:center">
+                    <tr>
+                        <td style="height:20px" colspan="5"><div id="movieSlider"></div></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" value="|<<" id="previous"/></td>
+                        <td><input type="button" value="play" id="play"/></td>
+                        <td><input type="button" value="stop" id="stop" disabled="disabled"/></td>
+                        <td><input type="button" value=">>|" id="next"/></td>
+                    </tr>
+                </table>
+                <div id="mainContentMovie" data-role="content" style="padding:0;margin:0;">
+                    &nbsp;&nbsp;Position: <span id="position"></span><br />
+                    &nbsp;&nbsp;Duration: <span id="duration"></span>
+                </div>
+                <img id="thumb" />
+            </div>
+            
+            <h3><a href="#">File, FileReader, FileWriter</a></h3>
+            <div id="fileTest" style="padding-right:0px !important;">
+                Directory: <input type="text" value="/this/is/not/an/existing/directory" id="fileDir" size="30"/><br />
+                Filename: <input type="text" value="testFile.txt" id="filename" size="30"/><br />
+                <input type="button" value="INIT" onclick="initFile();" class="initButton initNotRequired" />
+                <input type="button" value="IsFile" onclick="onclickFileIsFile();" />
+                <input type="button" value="IsDir" onclick="onclickFileIsDirectory();" /><br />
+                Copy/Move Dir: <input type="text" value="" id="copyMoveDir" size="25"/><br />
+                New Filename: <input type="text" value="" id="newFilename" size="25"/><br />
+                <input type="button" value="Copy" onclick="onclickFileCopy();" />
+                <input type="button" value="Move" onclick="onclickFileMove();" />
+                <input type="button" value="Delete" onclick="onclickFileDelete();" />                
+                <br />
+                
+                File data:<br />
+                <textarea id="readData" rows="3" cols="40" wrap="soft" disabled="disabled"></textarea><br />
+                FileReader:&nbsp;&nbsp;
+                <input type="button" value="Read" onclick="onclickFileReaderRead();" />
+                <br />
+                
+                Input data:<br />
+                <textarea id="fileInputData" rows="5" cols="40" wrap="soft">熟語</textarea><br />
+                FileWriter:&nbsp;&nbsp;
+                <input type="button" value="Write" onclick="onclickFileWriterWrite();" />
+                <input type="button" value="Seek" onclick="onclickFileWriterSeek();" />
+                <input type="text" value="" id="seekData" size="3"/>
+            </div>
+            
+            <h3><a href="#">Encryption</a></h3>
+            <div>
+                Input data:<br />
+                <textarea id="encInputData" rows="3" cols="40" wrap="soft">熟語</textarea><br />
+                <a href="#" onclick="$('#encInputData').val('');" style="align:right;">clear</a><br /><br />
+                Result data:<br />
+                <textarea id="encOutputData" rows="3" cols="40" wrap="soft" disabled="disabled"></textarea><br />
+                <a href="#" onclick="$('#encOutputData').val('');" style="align:right;">clear</a><br /><br />
+                <input type="button" value="Encrypt" onclick="encrypt();" />
+                <input type="button" value="Decrypt" onclick="decrypt();" />
+                <input type="button" value="Swap" onclick="swap();" />
+            </div>
+            
+            <h3><a href="#">Notifications</a></h3>
+            <div id="notificationTest">                
+                Time: <input type="text" value="" id="notificationTime" readonly="readonly"/><br />
+                Message:<br />
+                <textarea id="notificationMsg" rows="3" cols="40" wrap="soft">This is the message shown in the notification.</textarea><br />
+                Badge#: <input type="text" value="1" id="notificationBadge" size="3"/><br />
+                Action: <input type="checkbox" checked="yes" id="hasAction" />
+                &nbsp;<input type="text" value="View" id="action"/><br /><br />
+                <input type="button" value="Notify" onclick="setNotification();" />
+                <input type="button" value="Cancel" onclick="cancelNotification();" />
+            </div>
+            
+            <h3><a href="#">Loading Screen</a></h3>
+            <div> 
+                Loading text: <input type="text" id="loadingText" size="25"/><br /><br />
+                Style: <select id="style">
+                    <option value="0">White Large</option>
+                    <option value="1">White</option>
+                    <option value="2">Gray</option>
+                </select><br /><br />
+                Frame: <br />
+                X: <input type="text" id="frameX" size="3"/> Y: <input type="text" id="frameY" size="3"/>
+                width: <input type="text" id="frameWidth" size="3"/> height: <input type="text" id="frameHeight" size="3"/><br />
+                Black BGColor: <input type="checkbox" checked="yes" id="isBlackBackground" />
+                <br /><br />
+                
+                <input type="text" id="stopAfter" value="5" size="3"/>sec&nbsp;<input type="button" value="Start" onclick="showLoadingScreen();" />
+                <input type="button" value="Stop" onclick="showLoadingScreen(false);" style="display:none" />
+            </div>
+            
+            <h3><a href="#">Cache</a></h3>
+            <div> 
+                <div id="wrapperCache1" style="-webkit-border-radius:0px;height:145px !important;width:250px !important;float:left !important;">
+                    <div id="cacheDiv"></div>
+                </div>
+                
+                <br style="clear:both" />Data:<br />
+                <textarea id="cacheDataInput" rows="3" cols="40" wrap="soft"></textarea><br />
+                Expire Date: <input type="text" id="expireDate" readonly="readonly"/><br />
+                <!--Seconds: <input type="text" id="expireSeconds" size="5"/--><br /><br />
+                <input type="button" value="Save" onclick="saveCacheData()" />
+                <input type="button" value="Reset" onclick="resetDataCache()"/><br />
+                <a href="#" onclick="refreshCacheList();return false;">Show data cache list</a><br /><br />
+                
+                Resource Cache:<br />
+                <div id="wrapperCache2" style="-webkit-border-radius:0px;height:145px !important;width:250px !important;float:left !important;">
+                    <div id="cacheResourceDiv" style="width:1000px !important;"></div>
+                </div>
+                
+                <br style="clear:both" />URL: <input type="text" value="http://www.android.com/images/whatsnew/jb-new-logo.png" id="resourceURL" size="25" style="margin-top:10px"/><br />
+                Expire Date: <input type="text" id="resourceExpireDate" readonly="readonly"/><br /><br />
+                <input type="button" value="Save resource" onclick="addResource()" />
+                <input type="button" value="Reset" onclick="resetResourceCache()" /><br />
+                <a href="#" onclick="showResourceCache();return false;">Show resource cache list</a>
+            </div>
+            
+            <h3><a href="#">QR Code Reader</a></h3>
+            <div>
+                <textarea id="qrReaderResult" rows="3" cols="40" wrap="soft" disabled="disabled"></textarea><br />
+                <input type="button" value="Scan QR Code from Camera" onclick="qrReaderScan(0)" /><br />
+                <input type="button" value="Scan QR Code from Library" onclick="qrReaderScan(1)" style="padding-top:10px"/><br />
+            </div>
+            
+            <h3 class="database"><a href="#">Database</a></h3>
+            <div class="database">
+                <input type="text" value="mySqlite" id="dbName" size="30"/>
+                <input type="button" value="Init" onclick="initDb()"/><br />
+                <textarea id="dbSQL" rows="3" cols="40" wrap="soft"></textarea><br />
+                <a href="#" onclick="$('#dbSQL').val($('#create').html());return false;" style="align:right;">create table</a>&nbsp;
+                <a href="#" onclick="$('#dbSQL').val($('#insert').html());return false;" style="align:right;">insert query</a>&nbsp;
+                <a href="#" onclick="$('#dbSQL').val($('#select').html());return false;" style="align:right;">select query</a><br /><br />
+                <input type="button" value="Execute Query" onclick="dbExecuteQuery()"/><br /><br />
+                <input type="button" value="Begin Transaction" onclick="dbBeginTrans()"/>
+                <input type="button" value="Commit" onclick="dbCommit()"/>
+                <input type="button" value="Rollback" onclick="dbRollback()"/>
+                <span id="create" style="display:none">CREATE TABLE IF NOT EXISTS DynamicApp (ID INTEGER PRIMARY KEY AUTOINCREMENT, DATA TEXT, DATE DATE)</span>
+                <span id="insert" style="display:none">INSERT INTO DynamicApp (DATA, DATE) VALUES ("熟語TESTDATA", "2012-01-01")</span>
+                <span id="select" style="display:none">SELECT * FROM DynamicApp WHERE DATA LIKE "%DATA"</span>
+            </div>
+            
+            <h3 class="addressbook"><a href="#">AddressBook</a></h3>
+            <div class="addressbook">
+                <input type="button" value="Show" onclick="showAddressBook(false)"/>&nbsp;&nbsp;
+                <input type="button" value="Show (Select)" onclick="showAddressBook(true)"/><br /><br />
+                Output of Select:<br />
+                <textarea rows="5" cols="40" id="addressBookData" disabled="disabled"></textarea><br>
+                <a href="#" onclick="$('#addressBookData').val('');" style="align:right;">clear</a><br />
+            </div>
+            
+            <h3><a href="#">Contacts</a></h3>
+            <div>
+                <input type="button" value="Create" onclick="contactsCreate()" /><br />
+                <table>
+                    <tr>
+                        <td>key:</td>
+                        <td>
+                            <select id="contactsCreateOptions" class="contactsCreate" style="width:90px"></select>
+                            <input id="contactsCreatePicOpt" class="contactsCreate" type="button" value="Image" style="display:none"/>
+                        </td>
+                    </tr>
+                    <tr class="mValForm">
+                        <td>label:</td>
+                        <td><select id="contactsCreateMValOptions" class="contactsCreate" style="width:90px"></select></td>
+                    </tr>
+                    <tr>
+                        <td>label:</td>
+                        <td><select id="contactsCreateExtraOptions" class="contactsCreate" style="width:90px"></select></td>
+                    </tr>
+                    <tr>
+                        <td>value:</td>
+                        <td>
+                            <input id="contactsCreateValue" class="contactsCreate" type="text" style="width:100px"/> &nbsp;
+                            <input id="contactsAddCreateOpt" class="contactsCreate" type="button" value="+" />
+                        </td>
+                    </tr>
+                </table>
+                <table id="contactsCreateData" style="background-color: #AAAAAA;margin-top:5px" cellspacing="1">
+                    <tr style="background-color: #FFF;">
+                        <th width="85">option</th>
+                        <th width="100">value</th>
+                        <th>action</th>
+                    </tr>
+                </table><br />
+                <input type="button" class="contactsCreate" value="Save" onclick="contactSave()" /><br /><br />
+
+                Search:<br />
+                <table>
+                    <tr>
+                        <td>key:</td>
+                        <td><select id="contactsSearchOptions" style="width:90px"></select></td>
+                    </tr>
+                    <tr>
+                        <td>label:</td>
+                        <td>
+                            <select id="contactsSearchExtraOptions" style="width:90px"></select>
+                            <select id="contactsSearchCond" style="width:50px">
+                                <option value="=">=</option>
+                                <option value="!=">!=</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>value:</td>
+                        <td>
+                            <input id="contactsSearchValue" type="text" style="width:100px"/> &nbsp;
+                            <input id="contactsAddCondition" type="button" value="+"/>
+                        </td>
+                    </tr>
+                </table>
+                <table id="contactsSearchConditions" style="background-color: #AAAAAA;margin-top:5px" cellspacing="1">
+                    <tr style="background-color: #FFF;">
+                        <th width="185">condition</th>
+                        <th>action</th>
+                    </tr>
+                </table><br />
+                <input type="button" value="Search" onclick="contactsSearch()" /><br />
+                <table id="contactsSearchResult" style="background-color: #AAAAAA;margin-top:5px" cellspacing="1">
+                    <tr style="background-color: #FFF;">
+                        <th width="225">Search Result</th>
+                    </tr>
+                </table><br /><br />
+                
+                Remove id: <input id="contactsRemoveId" type="input" style="width:100px"/>&nbsp;
+                <input type="button" value="Remove" onclick="contactRemove()" />
+            </div>
+            
+            
+            <h3><a href="#">Bluetooth</a></h3>
+            <div>
+                <input type="button" value="Discover" onclick="btDiscover();"/><br />
+                Message:<br />
+                <textarea rows="6" cols="22" id="btMessage" style="float:left;height:95px">熟語</textarea>
+                <div style="margin-left:10px;height:100px;width:100px;float:left;border:1px solid;">
+                    <img id="btImage" width="100" height="100" src="" style="height:100px"/>
+                </div>
+                <div id="btModal" class="btFloatingDiv">
+                    <div style="border-bottom:2px solid;font-weight:bold;padding:5px 0">
+                        Available Devices
+                    </div>
+                    <div id="btPeerList" style="height:150px;overflow-y:auto;overflow-x:hidden">
+                        <div id="noPeersText">Looking for peers...</div>
+                    </div>
+                    <div style="padding:5px 0">
+                        <input type="button" onclick="btHideModal();" value="Cancel" />
+                    </div>
+                </div>
+                <div id="btOverlay" style="background-color:black;filter:alpha(opacity=70);opacity:0.7;width:100%;height:100%;z-index:400;position:fixed;top:0;left:0;display:none">
+                </div>
+                <div style="clear:both;padding-top:10px;padding:bottom:20px">
+                    <table id="btTestPeerList" style="background-color: #AAAAAA;" cellspacing="1">
+                        <tr class="peerListHeader">
+                            <th width="80">id</th>
+                            <th width="80">name</th>
+                            <th width="50">state</th>
+                            <th width="80">action</th>
+                        </tr>
+                    </table>
+                </div><br /><br />
+            </div>
+            <h3 class="bluetoothLE"><a href="#">Bluetooth 4 LE</a></h3>
+            <div class="bluetoothLE">
+                Services:<br />
+                <select id="serviceMultiList" style="width:245px" multiple="multiple" size="5">
+                </select><br />
+                <input type="button" value="Scan Devices" onclick="bt4LEScanDevices();" style="margin:10px 0"/><br />
+                Services:<br />
+                <select id="serviceList" style="width:245px">
+                </select><br />
+                Characteristic:<br />
+                <select id="characteristicList" style="width:245px">
+                </select><br />
+                Value Type:<br />
+                <select id="characteristicVTypeList" style="width:245px">
+                </select><br />
+                <input id="characteristicValue" type="text" style="width:250px;" value="1"/><br />
+                <div id="characteristicWriteType">
+                    &nbsp;&nbsp;Write type:<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;With Response<input type="radio" name="writeType" value="0"/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Without Response<input type="radio" name="writeType" value="1" style="margin-bottom:10px"/><br />
+                </div>
+                Descriptor:<br />
+                <select id="descriptorList" style="width:245px">
+                </select><br />
+                Value Type:<br />
+                <select id="descriptorVTypeList" style="width:245px">
+                </select><br />
+                <input id="descriptorValue" type="text" style="width:250px" value="1"/><br />
+                <div id="bt4LEModal" class="btFloatingDiv">
+                    <div style="border-bottom:2px solid;font-weight:bold;padding:5px 0">
+                        Available Bluetooth LE Devices
+                    </div>
+                    <div id="bt4LEPeripheralList" style="height:150px;overflow-y:auto;overflow-x:hidden">
+                        <div id="noPeripheralsText">Looking for peripherals...</div>
+                    </div>
+                    <div style="padding:5px 0">
+                        <input type="button" onclick="bt4LEHideModal();" value="Cancel" />
+                    </div>
+                </div>
+                <div id="bt4LEOverlay" style="background-color:black;filter:alpha(opacity=70);opacity:0.7;width:100%;height:100%;z-index:400;position:fixed;top:0;left:0;display:none">
+                </div>
+                <div style="clear:both;padding-top:10px;padding:bottom:20px">
+                    <table id="bt4LETestPeripheralList" style="background-color: #AAAAAA;" cellspacing="1">
+                        <tr class="peripheralListHeader">
+                            <th width="80">id</th>
+                            <th width="80">name</th>
+                            <th width="50">state</th>
+                            <th width="80">action</th>
+                        </tr>
+                    </table>
+                </div><br /><br />
+            </div>
+            
+            <h3 class="felica"><a href="#">Felica</a></h3>
+            <div class="felica">
+                <input type="button" value="Get Manufacturer Id" onclick="felicaGetIdM();" style="margin:5px 0 5px 0;width: 125px;"/>
+                <input type="button" value="Get Manufacturer" onclick="felicaGetPMm();" style="margin:5px 0;width: 125px;"/><br />
+                <input type="button" value="Request System Codes" onclick="felicaSystemCode();" style="margin:5px 0 5px 0;width: 125px;"/>
+                <input type="button" value="Request Service Codes" onclick="felicaServiceCode();" style="margin:5px 0;width: 125px;"/><br />
+                <input type="button" value="Request Response" onclick="felicaResponse();" style="margin:5px 0 5px 0;width: 125px;"/><br />
+                <table>
+                    <tr><td>Service Code:</td><td><select id="felicaServiceCodes"></select></td></tr>
+                    <tr><td>Address:</td><td><select id="felicaAddress"></select></td></tr>
+                    <tr><td>Data:</td><td><input id="felicaData" type="text" maxlength="32" size="32"/></td></tr>
+                </table>
+                <input type="button" value="Read Without Encryption" onclick="felicaRead();" style="margin:5px 0;width: 140px;"/>
+                <input type="button" value="Write Without Encryption" onclick="felicaWrite();" style="margin:5px 0;width: 140px;"/><br />
+            </div>
+            
+            <h3 class="pdf"><a href="#">PDF Viewer</a></h3>
+            <div class="pdf">
+                <input type="radio" class="pdfViewerType" name="pdfViewerType" value="1" checked> File Object<br />
+                <input type="radio" class="pdfViewerType" name="pdfViewerType" value="2"> File Path<br />
+                <input type="radio" class="pdfViewerType" name="pdfViewerType" value="3"> URL<br />
+                <input type="text" id="pdfPath" value="media_resources/sample.pdf"/><br />
+                <input type="button" value="View PDF" onclick="pdfShow();" style="margin:5px 0 5px 0;"/>
+            </div>
+			
+            <h3><a href="#">Ads</a></h3>
+            <div>
+            	<span id="adStatus"></span><br />
+            	<input type="button" value="create" id="adButton" style="margin:5px 0;"/>
+            </div>
+        </div>
+    </section>
+    
+</body>
+</html>
