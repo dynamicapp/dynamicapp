@@ -1,0 +1,790 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1903FB2015B004F00045B884 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1903FB1F15B004F00045B884 /* AssetsLibrary.framework */; };
+		1934DAF8158B3734002223C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1934DAFA158B3734002223C8 /* Localizable.strings */; };
+		1959E33C16649BF100B87DB0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1959E33B16649BF100B87DB0 /* iAd.framework */; };
+		196A94571585F0B800A5037E /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196A94561585F0B800A5037E /* AddressBookUI.framework */; };
+		196A945A1585F0C000A5037E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196A94591585F0C000A5037E /* AddressBook.framework */; };
+		196A945C1585F0D200A5037E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196A945B1585F0D200A5037E /* CoreMedia.framework */; };
+		196A945E1585F0E500A5037E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196A945D1585F0E500A5037E /* CoreVideo.framework */; };
+		196A94601585F0F800A5037E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196A945F1585F0F800A5037E /* AudioToolbox.framework */; };
+		196A94621585F11600A5037E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 196A94611585F11600A5037E /* libiconv.dylib */; };
+		199B521E14E8D43F008E8599 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199B521D14E8D43F008E8599 /* QuartzCore.framework */; };
+		19C69EE714E3966800B77B01 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C69EE614E3966800B77B01 /* MobileCoreServices.framework */; };
+		19E22A3F14DA8E9A0039A8CE /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E22A3314DA6EBA0039A8CE /* MediaPlayer.framework */; };
+		19E4E14615E4C53500C6F6E5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E4E14515E4C53500C6F6E5 /* CoreBluetooth.framework */; };
+		19E4E14E15E4CFD500C6F6E5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E4E14D15E4CFD400C6F6E5 /* GameKit.framework */; };
+		19E6070E1654C991002CFEF9 /* ZXUtilities.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F12165242B700C059F6 /* ZXUtilities.strings */; };
+		19E6070F1654C991002CFEF9 /* ZXCanvasDrawSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F15165242B700C059F6 /* ZXCanvasDrawSettingViewController.xib */; };
+		19E607101654C991002CFEF9 /* ZXCanvasEraseSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F16165242B700C059F6 /* ZXCanvasEraseSettingViewController.xib */; };
+		19E607111654C991002CFEF9 /* ZXCanvasLineWidthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F17165242B700C059F6 /* ZXCanvasLineWidthViewController.xib */; };
+		19E607121654C991002CFEF9 /* ZXPDFViewer.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F24165242B700C059F6 /* ZXPDFViewer.strings */; };
+		19EC2F33165242D800C059F6 /* ZXPDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F32165242B700C059F6 /* ZXPDFViewController.xib */; };
+		19EC2F34165244D200C059F6 /* ZXPDFPageIndicatorDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F27165242B700C059F6 /* ZXPDFPageIndicatorDetailViewController.xib */; };
+		19EC2F35165244D200C059F6 /* ZXPDFPageIndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F28165242B700C059F6 /* ZXPDFPageIndicatorViewController.xib */; };
+		19EC2F36165244D200C059F6 /* ZXPDFPageListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F29165242B700C059F6 /* ZXPDFPageListViewCell.xib */; };
+		19EC2F37165244D200C059F6 /* ZXPDFSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F2A165242B700C059F6 /* ZXPDFSearchViewController.xib */; };
+		19EC2F38165244D200C059F6 /* ZXPDFSearchViewControllerResultViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F2B165242B700C059F6 /* ZXPDFSearchViewControllerResultViewCell.xib */; };
+		19EC2F391652541B00C059F6 /* ZXPDFViewController-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F2C165242B700C059F6 /* ZXPDFViewController-left.png */; };
+		19EC2F3A1652541B00C059F6 /* ZXPDFViewController-link_button_highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F2D165242B700C059F6 /* ZXPDFViewController-link_button_highlighted.png */; };
+		19EC2F3B1652541B00C059F6 /* ZXPDFViewController-link_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F2E165242B700C059F6 /* ZXPDFViewController-link_button_normal.png */; };
+		19EC2F3C1652541B00C059F6 /* ZXPDFViewController-list_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F2F165242B700C059F6 /* ZXPDFViewController-list_bg.png */; };
+		19EC2F3D1652541B00C059F6 /* ZXPDFViewController-mokuji.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F30165242B700C059F6 /* ZXPDFViewController-mokuji.png */; };
+		19EC2F3E1652541B00C059F6 /* ZXPDFViewController-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F31165242B700C059F6 /* ZXPDFViewController-right.png */; };
+		19EC2F3F1652542800C059F6 /* ZXCanvasViewController-clear-button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F18165242B700C059F6 /* ZXCanvasViewController-clear-button-bg.png */; };
+		19EC2F401652542800C059F6 /* ZXCanvasViewController-eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F19165242B700C059F6 /* ZXCanvasViewController-eraser.png */; };
+		19EC2F411652542800C059F6 /* ZXCanvasViewController-pen.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F1A165242B700C059F6 /* ZXCanvasViewController-pen.png */; };
+		19EC2F421652542800C059F6 /* ZXCanvasViewController-redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F1B165242B700C059F6 /* ZXCanvasViewController-redo.png */; };
+		19EC2F431652542800C059F6 /* ZXCanvasViewController-sliderL.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F1C165242B700C059F6 /* ZXCanvasViewController-sliderL.png */; };
+		19EC2F441652542800C059F6 /* ZXCanvasViewController-sliderS.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F1D165242B700C059F6 /* ZXCanvasViewController-sliderS.png */; };
+		19EC2F451652542800C059F6 /* ZXCanvasViewController-undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F1E165242B700C059F6 /* ZXCanvasViewController-undo.png */; };
+		19EC2F461652542800C059F6 /* ZXCanvasViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F1F165242B700C059F6 /* ZXCanvasViewController.xib */; };
+		19EC2F471652542800C059F6 /* ZXExternalDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F20165242B700C059F6 /* ZXExternalDisplayViewController.xib */; };
+		19EC2F481652542800C059F6 /* ZXExternalDisplayViewPointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F21165242B700C059F6 /* ZXExternalDisplayViewPointer.png */; };
+		19EC2F491652542800C059F6 /* ZXSliderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19EC2F22165242B700C059F6 /* ZXSliderViewController.xib */; };
+		19F0CEB915919A2900B1BCE2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F0CEB815919A2900B1BCE2 /* libsqlite3.dylib */; };
+		19F6719E1650ECA6005A0FE0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6719D1650ECA6005A0FE0 /* CoreData.framework */; };
+		F105045218B59DCB0071C829 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F105045118B59DCB0071C829 /* Security.framework */; };
+		F10973B916A407E700BF1E98 /* ZXPDFViewerData.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F10973B816A407E700BF1E98 /* ZXPDFViewerData.bundle */; };
+		F10D5B9114CEC3CC00418C4C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10D5B9014CEC3CC00418C4C /* AVFoundation.framework */; };
+		F11CA82214E8A11200A87464 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F11CA82114E8A11200A87464 /* libz.1.2.5.dylib */; };
+		F127B31E18B4453B0076E4B5 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F127B31D18B4453B0076E4B5 /* MultipeerConnectivity.framework */; };
+		F16582DC16E720B100384D18 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F16582DB16E720B100384D18 /* Default-568h@2x.png */; };
+		F169260914C834D000E1B020 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F169260814C834D000E1B020 /* UIKit.framework */; };
+		F169260B14C834D000E1B020 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F169260A14C834D000E1B020 /* Foundation.framework */; };
+		F169260D14C834D000E1B020 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F169260C14C834D000E1B020 /* CoreGraphics.framework */; };
+		F169261314C834D000E1B020 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F169261114C834D000E1B020 /* InfoPlist.strings */; };
+		F169261514C834D000E1B020 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F169261414C834D000E1B020 /* main.m */; };
+		F169261914C834D100E1B020 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F169261814C834D100E1B020 /* AppDelegate.m */; };
+		F169261C14C834D100E1B020 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F169261B14C834D100E1B020 /* ViewController.m */; };
+		F169261F14C834D100E1B020 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = F169261D14C834D100E1B020 /* ViewController_iPhone.xib */; };
+		F169262214C834D100E1B020 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F169262014C834D100E1B020 /* ViewController_iPad.xib */; };
+		F169262A14C834D100E1B020 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F169262914C834D100E1B020 /* SenTestingKit.framework */; };
+		F169262B14C834D100E1B020 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F169260814C834D000E1B020 /* UIKit.framework */; };
+		F169262C14C834D100E1B020 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F169260A14C834D000E1B020 /* Foundation.framework */; };
+		F169263414C834D100E1B020 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F169263214C834D100E1B020 /* InfoPlist.strings */; };
+		F169263714C834D100E1B020 /* DynamicAppTestAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F169263614C834D100E1B020 /* DynamicAppTestAppTests.m */; };
+		F1D802D116A63F7F00D42810 /* DynamicAppSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = F1D802D016A63F7F00D42810 /* DynamicAppSettings.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F169262D14C834D100E1B020 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F16925FB14C834D000E1B020 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F169260314C834D000E1B020;
+			remoteInfo = DynamicAppTestApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1903FB1F15B004F00045B884 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		1934DAF9158B3734002223C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1934DAFB158B3739002223C8 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1959E33B16649BF100B87DB0 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		196A94561585F0B800A5037E /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		196A94591585F0C000A5037E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		196A945B1585F0D200A5037E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		196A945D1585F0E500A5037E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		196A945F1585F0F800A5037E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		196A94611585F11600A5037E /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		199B521D14E8D43F008E8599 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		19C52398158EC5F300F7BB26 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		19C5239A158EC88400F7BB26 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		19C69EE614E3966800B77B01 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		19E22A3314DA6EBA0039A8CE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		19E4E14515E4C53500C6F6E5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		19E4E14D15E4CFD400C6F6E5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		19EC2F13165242B700C059F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ZXUtilities.strings; sourceTree = "<group>"; };
+		19EC2F14165242B700C059F6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ZXUtilities.strings; sourceTree = "<group>"; };
+		19EC2F15165242B700C059F6 /* ZXCanvasDrawSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXCanvasDrawSettingViewController.xib; sourceTree = "<group>"; };
+		19EC2F16165242B700C059F6 /* ZXCanvasEraseSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXCanvasEraseSettingViewController.xib; sourceTree = "<group>"; };
+		19EC2F17165242B700C059F6 /* ZXCanvasLineWidthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXCanvasLineWidthViewController.xib; sourceTree = "<group>"; };
+		19EC2F18165242B700C059F6 /* ZXCanvasViewController-clear-button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-clear-button-bg.png"; sourceTree = "<group>"; };
+		19EC2F19165242B700C059F6 /* ZXCanvasViewController-eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-eraser.png"; sourceTree = "<group>"; };
+		19EC2F1A165242B700C059F6 /* ZXCanvasViewController-pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-pen.png"; sourceTree = "<group>"; };
+		19EC2F1B165242B700C059F6 /* ZXCanvasViewController-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-redo.png"; sourceTree = "<group>"; };
+		19EC2F1C165242B700C059F6 /* ZXCanvasViewController-sliderL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-sliderL.png"; sourceTree = "<group>"; };
+		19EC2F1D165242B700C059F6 /* ZXCanvasViewController-sliderS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-sliderS.png"; sourceTree = "<group>"; };
+		19EC2F1E165242B700C059F6 /* ZXCanvasViewController-undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-undo.png"; sourceTree = "<group>"; };
+		19EC2F1F165242B700C059F6 /* ZXCanvasViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXCanvasViewController.xib; sourceTree = "<group>"; };
+		19EC2F20165242B700C059F6 /* ZXExternalDisplayViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXExternalDisplayViewController.xib; sourceTree = "<group>"; };
+		19EC2F21165242B700C059F6 /* ZXExternalDisplayViewPointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZXExternalDisplayViewPointer.png; sourceTree = "<group>"; };
+		19EC2F22165242B700C059F6 /* ZXSliderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXSliderViewController.xib; sourceTree = "<group>"; };
+		19EC2F25165242B700C059F6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ZXPDFViewer.strings; sourceTree = "<group>"; };
+		19EC2F26165242B700C059F6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ZXPDFViewer.strings; sourceTree = "<group>"; };
+		19EC2F27165242B700C059F6 /* ZXPDFPageIndicatorDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXPDFPageIndicatorDetailViewController.xib; sourceTree = "<group>"; };
+		19EC2F28165242B700C059F6 /* ZXPDFPageIndicatorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXPDFPageIndicatorViewController.xib; sourceTree = "<group>"; };
+		19EC2F29165242B700C059F6 /* ZXPDFPageListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXPDFPageListViewCell.xib; sourceTree = "<group>"; };
+		19EC2F2A165242B700C059F6 /* ZXPDFSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXPDFSearchViewController.xib; sourceTree = "<group>"; };
+		19EC2F2B165242B700C059F6 /* ZXPDFSearchViewControllerResultViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXPDFSearchViewControllerResultViewCell.xib; sourceTree = "<group>"; };
+		19EC2F2C165242B700C059F6 /* ZXPDFViewController-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-left.png"; sourceTree = "<group>"; };
+		19EC2F2D165242B700C059F6 /* ZXPDFViewController-link_button_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-link_button_highlighted.png"; sourceTree = "<group>"; };
+		19EC2F2E165242B700C059F6 /* ZXPDFViewController-link_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-link_button_normal.png"; sourceTree = "<group>"; };
+		19EC2F2F165242B700C059F6 /* ZXPDFViewController-list_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-list_bg.png"; sourceTree = "<group>"; };
+		19EC2F30165242B700C059F6 /* ZXPDFViewController-mokuji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-mokuji.png"; sourceTree = "<group>"; };
+		19EC2F31165242B700C059F6 /* ZXPDFViewController-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-right.png"; sourceTree = "<group>"; };
+		19EC2F32165242B700C059F6 /* ZXPDFViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZXPDFViewController.xib; sourceTree = "<group>"; };
+		19F0CEB815919A2900B1BCE2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		19F6719D1650ECA6005A0FE0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F105045118B59DCB0071C829 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F10973B816A407E700BF1E98 /* ZXPDFViewerData.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZXPDFViewerData.bundle; path = ../../dependencies/libZXPDFViewer/ZXPDFViewerData.bundle; sourceTree = "<group>"; };
+		F10D5B9014CEC3CC00418C4C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F11CA82114E8A11200A87464 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		F127B31D18B4453B0076E4B5 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		F16582DB16E720B100384D18 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F169260414C834D000E1B020 /* DynamicAppTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DynamicAppTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F169260814C834D000E1B020 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F169260A14C834D000E1B020 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F169260C14C834D000E1B020 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F169261014C834D000E1B020 /* DynamicAppTestApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DynamicAppTestApp-Info.plist"; sourceTree = "<group>"; };
+		F169261214C834D000E1B020 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F169261414C834D000E1B020 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F169261614C834D000E1B020 /* DynamicAppTestApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DynamicAppTestApp-Prefix.pch"; sourceTree = "<group>"; };
+		F169261714C834D000E1B020 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F169261814C834D100E1B020 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F169261A14C834D100E1B020 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F169261B14C834D100E1B020 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F169261E14C834D100E1B020 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
+		F169262114C834D100E1B020 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		F169262814C834D100E1B020 /* DynamicAppTestAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicAppTestAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F169262914C834D100E1B020 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F169263114C834D100E1B020 /* DynamicAppTestAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DynamicAppTestAppTests-Info.plist"; sourceTree = "<group>"; };
+		F169263314C834D100E1B020 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F169263514C834D100E1B020 /* DynamicAppTestAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicAppTestAppTests.h; sourceTree = "<group>"; };
+		F169263614C834D100E1B020 /* DynamicAppTestAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicAppTestAppTests.m; sourceTree = "<group>"; };
+		F1D802D016A63F7F00D42810 /* DynamicAppSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DynamicAppSettings.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F169260114C834D000E1B020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F105045218B59DCB0071C829 /* Security.framework in Frameworks */,
+				F127B31E18B4453B0076E4B5 /* MultipeerConnectivity.framework in Frameworks */,
+				1959E33C16649BF100B87DB0 /* iAd.framework in Frameworks */,
+				19F6719E1650ECA6005A0FE0 /* CoreData.framework in Frameworks */,
+				19E4E14E15E4CFD500C6F6E5 /* GameKit.framework in Frameworks */,
+				19E4E14615E4C53500C6F6E5 /* CoreBluetooth.framework in Frameworks */,
+				1903FB2015B004F00045B884 /* AssetsLibrary.framework in Frameworks */,
+				19F0CEB915919A2900B1BCE2 /* libsqlite3.dylib in Frameworks */,
+				196A945A1585F0C000A5037E /* AddressBook.framework in Frameworks */,
+				196A94571585F0B800A5037E /* AddressBookUI.framework in Frameworks */,
+				196A94601585F0F800A5037E /* AudioToolbox.framework in Frameworks */,
+				F10D5B9114CEC3CC00418C4C /* AVFoundation.framework in Frameworks */,
+				F169260D14C834D000E1B020 /* CoreGraphics.framework in Frameworks */,
+				196A945C1585F0D200A5037E /* CoreMedia.framework in Frameworks */,
+				196A945E1585F0E500A5037E /* CoreVideo.framework in Frameworks */,
+				F169260B14C834D000E1B020 /* Foundation.framework in Frameworks */,
+				196A94621585F11600A5037E /* libiconv.dylib in Frameworks */,
+				F11CA82214E8A11200A87464 /* libz.1.2.5.dylib in Frameworks */,
+				19C69EE714E3966800B77B01 /* MobileCoreServices.framework in Frameworks */,
+				19E22A3F14DA8E9A0039A8CE /* MediaPlayer.framework in Frameworks */,
+				199B521E14E8D43F008E8599 /* QuartzCore.framework in Frameworks */,
+				F169260914C834D000E1B020 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F169262414C834D100E1B020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F169262A14C834D100E1B020 /* SenTestingKit.framework in Frameworks */,
+				F169262B14C834D100E1B020 /* UIKit.framework in Frameworks */,
+				F169262C14C834D100E1B020 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		19EC2F11165242B700C059F6 /* ZXUtilitiesResources */ = {
+			isa = PBXGroup;
+			children = (
+				19EC2F12165242B700C059F6 /* ZXUtilities.strings */,
+				19EC2F15165242B700C059F6 /* ZXCanvasDrawSettingViewController.xib */,
+				19EC2F16165242B700C059F6 /* ZXCanvasEraseSettingViewController.xib */,
+				19EC2F17165242B700C059F6 /* ZXCanvasLineWidthViewController.xib */,
+				19EC2F18165242B700C059F6 /* ZXCanvasViewController-clear-button-bg.png */,
+				19EC2F19165242B700C059F6 /* ZXCanvasViewController-eraser.png */,
+				19EC2F1A165242B700C059F6 /* ZXCanvasViewController-pen.png */,
+				19EC2F1B165242B700C059F6 /* ZXCanvasViewController-redo.png */,
+				19EC2F1C165242B700C059F6 /* ZXCanvasViewController-sliderL.png */,
+				19EC2F1D165242B700C059F6 /* ZXCanvasViewController-sliderS.png */,
+				19EC2F1E165242B700C059F6 /* ZXCanvasViewController-undo.png */,
+				19EC2F1F165242B700C059F6 /* ZXCanvasViewController.xib */,
+				19EC2F20165242B700C059F6 /* ZXExternalDisplayViewController.xib */,
+				19EC2F21165242B700C059F6 /* ZXExternalDisplayViewPointer.png */,
+				19EC2F22165242B700C059F6 /* ZXSliderViewController.xib */,
+			);
+			name = ZXUtilitiesResources;
+			path = ../../dependencies/libZXPDFViewer/ZXUtilitiesResources;
+			sourceTree = "<group>";
+		};
+		19EC2F23165242B700C059F6 /* ZXPDFViewerResources */ = {
+			isa = PBXGroup;
+			children = (
+				19EC2F24165242B700C059F6 /* ZXPDFViewer.strings */,
+				19EC2F27165242B700C059F6 /* ZXPDFPageIndicatorDetailViewController.xib */,
+				19EC2F28165242B700C059F6 /* ZXPDFPageIndicatorViewController.xib */,
+				19EC2F29165242B700C059F6 /* ZXPDFPageListViewCell.xib */,
+				19EC2F2A165242B700C059F6 /* ZXPDFSearchViewController.xib */,
+				19EC2F2B165242B700C059F6 /* ZXPDFSearchViewControllerResultViewCell.xib */,
+				19EC2F2C165242B700C059F6 /* ZXPDFViewController-left.png */,
+				19EC2F2D165242B700C059F6 /* ZXPDFViewController-link_button_highlighted.png */,
+				19EC2F2E165242B700C059F6 /* ZXPDFViewController-link_button_normal.png */,
+				19EC2F2F165242B700C059F6 /* ZXPDFViewController-list_bg.png */,
+				19EC2F30165242B700C059F6 /* ZXPDFViewController-mokuji.png */,
+				19EC2F31165242B700C059F6 /* ZXPDFViewController-right.png */,
+				19EC2F32165242B700C059F6 /* ZXPDFViewController.xib */,
+			);
+			name = ZXPDFViewerResources;
+			path = ../../dependencies/libZXPDFViewer/ZXPDFViewerResources;
+			sourceTree = "<group>";
+		};
+		F117921214F7792E0094CDAA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1934DAFA158B3734002223C8 /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F16925F914C834D000E1B020 = {
+			isa = PBXGroup;
+			children = (
+				F16582DB16E720B100384D18 /* Default-568h@2x.png */,
+				F169260E14C834D000E1B020 /* DynamicAppTestApp */,
+				F169262F14C834D100E1B020 /* DynamicAppTestAppTests */,
+				F169260714C834D000E1B020 /* Frameworks */,
+				F169260514C834D000E1B020 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F169260514C834D000E1B020 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F169260414C834D000E1B020 /* DynamicAppTestApp.app */,
+				F169262814C834D100E1B020 /* DynamicAppTestAppTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F169260714C834D000E1B020 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F105045118B59DCB0071C829 /* Security.framework */,
+				F127B31D18B4453B0076E4B5 /* MultipeerConnectivity.framework */,
+				196A94591585F0C000A5037E /* AddressBook.framework */,
+				196A94561585F0B800A5037E /* AddressBookUI.framework */,
+				1903FB1F15B004F00045B884 /* AssetsLibrary.framework */,
+				196A945F1585F0F800A5037E /* AudioToolbox.framework */,
+				F10D5B9014CEC3CC00418C4C /* AVFoundation.framework */,
+				19E4E14515E4C53500C6F6E5 /* CoreBluetooth.framework */,
+				19F6719D1650ECA6005A0FE0 /* CoreData.framework */,
+				F169260C14C834D000E1B020 /* CoreGraphics.framework */,
+				196A945B1585F0D200A5037E /* CoreMedia.framework */,
+				196A945D1585F0E500A5037E /* CoreVideo.framework */,
+				F169260A14C834D000E1B020 /* Foundation.framework */,
+				19E4E14D15E4CFD400C6F6E5 /* GameKit.framework */,
+				1959E33B16649BF100B87DB0 /* iAd.framework */,
+				196A94611585F11600A5037E /* libiconv.dylib */,
+				19F0CEB815919A2900B1BCE2 /* libsqlite3.dylib */,
+				F11CA82114E8A11200A87464 /* libz.1.2.5.dylib */,
+				19E22A3314DA6EBA0039A8CE /* MediaPlayer.framework */,
+				19C69EE614E3966800B77B01 /* MobileCoreServices.framework */,
+				199B521D14E8D43F008E8599 /* QuartzCore.framework */,
+				F169262914C834D100E1B020 /* SenTestingKit.framework */,
+				F169260814C834D000E1B020 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F169260E14C834D000E1B020 /* DynamicAppTestApp */ = {
+			isa = PBXGroup;
+			children = (
+				F117921214F7792E0094CDAA /* Resources */,
+				F169261714C834D000E1B020 /* AppDelegate.h */,
+				F169261814C834D100E1B020 /* AppDelegate.m */,
+				F169261A14C834D100E1B020 /* ViewController.h */,
+				F169261B14C834D100E1B020 /* ViewController.m */,
+				F169261D14C834D100E1B020 /* ViewController_iPhone.xib */,
+				F169262014C834D100E1B020 /* ViewController_iPad.xib */,
+				F169260F14C834D000E1B020 /* Supporting Files */,
+			);
+			path = DynamicAppTestApp;
+			sourceTree = "<group>";
+		};
+		F169260F14C834D000E1B020 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1D802D016A63F7F00D42810 /* DynamicAppSettings.plist */,
+				F10973B816A407E700BF1E98 /* ZXPDFViewerData.bundle */,
+				19EC2F11165242B700C059F6 /* ZXUtilitiesResources */,
+				19EC2F23165242B700C059F6 /* ZXPDFViewerResources */,
+				F169261014C834D000E1B020 /* DynamicAppTestApp-Info.plist */,
+				F169261114C834D000E1B020 /* InfoPlist.strings */,
+				F169261414C834D000E1B020 /* main.m */,
+				F169261614C834D000E1B020 /* DynamicAppTestApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F169262F14C834D100E1B020 /* DynamicAppTestAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				F169263514C834D100E1B020 /* DynamicAppTestAppTests.h */,
+				F169263614C834D100E1B020 /* DynamicAppTestAppTests.m */,
+				F169263014C834D100E1B020 /* Supporting Files */,
+			);
+			path = DynamicAppTestAppTests;
+			sourceTree = "<group>";
+		};
+		F169263014C834D100E1B020 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F169263114C834D100E1B020 /* DynamicAppTestAppTests-Info.plist */,
+				F169263214C834D100E1B020 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F169260314C834D000E1B020 /* DynamicAppTestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F169263A14C834D100E1B020 /* Build configuration list for PBXNativeTarget "DynamicAppTestApp" */;
+			buildPhases = (
+				F169260014C834D000E1B020 /* Sources */,
+				F169260114C834D000E1B020 /* Frameworks */,
+				F169260214C834D000E1B020 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DynamicAppTestApp;
+			productName = DynamicAppTestApp;
+			productReference = F169260414C834D000E1B020 /* DynamicAppTestApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F169262714C834D100E1B020 /* DynamicAppTestAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F169263D14C834D100E1B020 /* Build configuration list for PBXNativeTarget "DynamicAppTestAppTests" */;
+			buildPhases = (
+				F169262314C834D100E1B020 /* Sources */,
+				F169262414C834D100E1B020 /* Frameworks */,
+				F169262514C834D100E1B020 /* Resources */,
+				F169262614C834D100E1B020 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F169262E14C834D100E1B020 /* PBXTargetDependency */,
+			);
+			name = DynamicAppTestAppTests;
+			productName = DynamicAppTestAppTests;
+			productReference = F169262814C834D100E1B020 /* DynamicAppTestAppTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F16925FB14C834D000E1B020 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = F16925FE14C834D000E1B020 /* Build configuration list for PBXProject "DynamicAppTestApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				ja,
+			);
+			mainGroup = F16925F914C834D000E1B020;
+			productRefGroup = F169260514C834D000E1B020 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F169260314C834D000E1B020 /* DynamicAppTestApp */,
+				F169262714C834D100E1B020 /* DynamicAppTestAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F169260214C834D000E1B020 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19E6070E1654C991002CFEF9 /* ZXUtilities.strings in Resources */,
+				19E6070F1654C991002CFEF9 /* ZXCanvasDrawSettingViewController.xib in Resources */,
+				19E607101654C991002CFEF9 /* ZXCanvasEraseSettingViewController.xib in Resources */,
+				19E607111654C991002CFEF9 /* ZXCanvasLineWidthViewController.xib in Resources */,
+				19E607121654C991002CFEF9 /* ZXPDFViewer.strings in Resources */,
+				19EC2F3F1652542800C059F6 /* ZXCanvasViewController-clear-button-bg.png in Resources */,
+				19EC2F401652542800C059F6 /* ZXCanvasViewController-eraser.png in Resources */,
+				19EC2F411652542800C059F6 /* ZXCanvasViewController-pen.png in Resources */,
+				19EC2F421652542800C059F6 /* ZXCanvasViewController-redo.png in Resources */,
+				19EC2F431652542800C059F6 /* ZXCanvasViewController-sliderL.png in Resources */,
+				19EC2F441652542800C059F6 /* ZXCanvasViewController-sliderS.png in Resources */,
+				19EC2F451652542800C059F6 /* ZXCanvasViewController-undo.png in Resources */,
+				19EC2F461652542800C059F6 /* ZXCanvasViewController.xib in Resources */,
+				19EC2F471652542800C059F6 /* ZXExternalDisplayViewController.xib in Resources */,
+				19EC2F481652542800C059F6 /* ZXExternalDisplayViewPointer.png in Resources */,
+				19EC2F491652542800C059F6 /* ZXSliderViewController.xib in Resources */,
+				19EC2F391652541B00C059F6 /* ZXPDFViewController-left.png in Resources */,
+				19EC2F3A1652541B00C059F6 /* ZXPDFViewController-link_button_highlighted.png in Resources */,
+				19EC2F3B1652541B00C059F6 /* ZXPDFViewController-link_button_normal.png in Resources */,
+				19EC2F3C1652541B00C059F6 /* ZXPDFViewController-list_bg.png in Resources */,
+				19EC2F3D1652541B00C059F6 /* ZXPDFViewController-mokuji.png in Resources */,
+				19EC2F3E1652541B00C059F6 /* ZXPDFViewController-right.png in Resources */,
+				19EC2F34165244D200C059F6 /* ZXPDFPageIndicatorDetailViewController.xib in Resources */,
+				19EC2F35165244D200C059F6 /* ZXPDFPageIndicatorViewController.xib in Resources */,
+				19EC2F36165244D200C059F6 /* ZXPDFPageListViewCell.xib in Resources */,
+				19EC2F37165244D200C059F6 /* ZXPDFSearchViewController.xib in Resources */,
+				19EC2F38165244D200C059F6 /* ZXPDFSearchViewControllerResultViewCell.xib in Resources */,
+				19EC2F33165242D800C059F6 /* ZXPDFViewController.xib in Resources */,
+				F169261314C834D000E1B020 /* InfoPlist.strings in Resources */,
+				F169261F14C834D100E1B020 /* ViewController_iPhone.xib in Resources */,
+				F169262214C834D100E1B020 /* ViewController_iPad.xib in Resources */,
+				1934DAF8158B3734002223C8 /* Localizable.strings in Resources */,
+				F10973B916A407E700BF1E98 /* ZXPDFViewerData.bundle in Resources */,
+				F1D802D116A63F7F00D42810 /* DynamicAppSettings.plist in Resources */,
+				F16582DC16E720B100384D18 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F169262514C834D100E1B020 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F169263414C834D100E1B020 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F169262614C834D100E1B020 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F169260014C834D000E1B020 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F169261514C834D000E1B020 /* main.m in Sources */,
+				F169261914C834D100E1B020 /* AppDelegate.m in Sources */,
+				F169261C14C834D100E1B020 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F169262314C834D100E1B020 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F169263714C834D100E1B020 /* DynamicAppTestAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F169262E14C834D100E1B020 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F169260314C834D000E1B020 /* DynamicAppTestApp */;
+			targetProxy = F169262D14C834D100E1B020 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1934DAFA158B3734002223C8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1934DAF9158B3734002223C8 /* en */,
+				1934DAFB158B3739002223C8 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		19EC2F12165242B700C059F6 /* ZXUtilities.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19EC2F13165242B700C059F6 /* en */,
+				19EC2F14165242B700C059F6 /* ja */,
+			);
+			name = ZXUtilities.strings;
+			sourceTree = "<group>";
+		};
+		19EC2F24165242B700C059F6 /* ZXPDFViewer.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19EC2F25165242B700C059F6 /* en */,
+				19EC2F26165242B700C059F6 /* ja */,
+			);
+			name = ZXPDFViewer.strings;
+			sourceTree = "<group>";
+		};
+		F169261114C834D000E1B020 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F169261214C834D000E1B020 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F169261D14C834D100E1B020 /* ViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F169261E14C834D100E1B020 /* en */,
+				19C52398158EC5F300F7BB26 /* ja */,
+			);
+			name = ViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		F169262014C834D100E1B020 /* ViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F169262114C834D100E1B020 /* en */,
+				19C5239A158EC88400F7BB26 /* ja */,
+			);
+			name = ViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		F169263214C834D100E1B020 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F169263314C834D100E1B020 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F169263814C834D100E1B020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZYYX Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZYYX Inc.";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "FC1E95AA-C756-4535-A7A3-710C345173E9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC1E95AA-C756-4535-A7A3-710C345173E9";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_LDFLAGS = "";
+			};
+			name = Debug;
+		};
+		F169263914C834D100E1B020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
+				BUNDLE_LOADER = "";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZYYX Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZYYX Inc.";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "";
+				PROVISIONING_PROFILE = "FC1E95AA-C756-4535-A7A3-710C345173E9";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FC1E95AA-C756-4535-A7A3-710C345173E9";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = YES;
+				WARNING_LDFLAGS = "";
+			};
+			name = Release;
+		};
+		F169263B14C834D100E1B020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../build/Debug-framework\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"/**",
+					"\"$(SRCROOT)/../build/Release-framework\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DynamicAppTestApp/DynamicAppTestApp-Prefix.pch";
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "DynamicAppTestApp/DynamicAppTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies/libZXPDFViewer\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"-ObjC",
+				);
+				PRODUCT_NAME = DynamicAppTestApp;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F169263C14C834D100E1B020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"/**",
+					"\"$(SRCROOT)/../build/Release-framework\"",
+					"\"$(SRCROOT)/../build/Debug-framework\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DynamicAppTestApp/DynamicAppTestApp-Prefix.pch";
+				GCC_VERSION = "";
+				INFOPLIST_FILE = "DynamicAppTestApp/DynamicAppTestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies/libZXPDFViewer\"",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lstdc++",
+					"-ObjC",
+				);
+				PRODUCT_NAME = DynamicAppTestApp;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F169263E14C834D100E1B020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DynamicAppTestApp.app/DynamicAppTestApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DynamicAppTestApp/DynamicAppTestApp-Prefix.pch";
+				INFOPLIST_FILE = "DynamicAppTestAppTests/DynamicAppTestAppTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = DynamicAppTestAppTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F169263F14C834D100E1B020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/DynamicAppTestApp.app/DynamicAppTestApp";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DynamicAppTestApp/DynamicAppTestApp-Prefix.pch";
+				INFOPLIST_FILE = "DynamicAppTestAppTests/DynamicAppTestAppTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = DynamicAppTestAppTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F16925FE14C834D000E1B020 /* Build configuration list for PBXProject "DynamicAppTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F169263814C834D100E1B020 /* Debug */,
+				F169263914C834D100E1B020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F169263A14C834D100E1B020 /* Build configuration list for PBXNativeTarget "DynamicAppTestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F169263B14C834D100E1B020 /* Debug */,
+				F169263C14C834D100E1B020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F169263D14C834D100E1B020 /* Build configuration list for PBXNativeTarget "DynamicAppTestAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F169263E14C834D100E1B020 /* Debug */,
+				F169263F14C834D100E1B020 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F16925FB14C834D000E1B020 /* Project object */;
+}

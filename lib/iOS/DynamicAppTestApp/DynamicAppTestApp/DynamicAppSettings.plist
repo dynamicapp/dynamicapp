@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Plugins</key>
+	<dict>
+		<key>AppVersion</key>
+		<true/>
+		<key>File</key>
+		<true/>
+		<key>FileReader</key>
+		<true/>
+		<key>FileWriter</key>
+		<true/>
+		<key>Encryptor</key>
+		<true/>
+		<key>ImageDecrypt</key>
+		<true/>
+		<key>ResourceCache</key>
+		<true/>
+		<key>Notification</key>
+		<true/>
+		<key>Camera</key>
+		<true/>
+		<key>Sound</key>
+		<true/>
+		<key>Movie</key>
+		<true/>
+		<key>QRReader</key>
+		<true/>
+		<key>LoadingScreen</key>
+		<true/>
+		<key>Database</key>
+		<true/>
+		<key>AddressBook</key>
+		<true/>
+		<key>Bluetooth</key>
+		<true/>
+		<key>Bluetooth4LE</key>
+		<true/>
+		<key>Contacts</key>
+		<true/>
+		<key>PDFViewer</key>
+		<true/>
+		<key>Ad</key>
+		<false/>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,36 @@
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := md5
+LOCAL_SRC_FILES := md5.c
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := random
+LOCAL_SRC_FILES := random.c
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := vfile
+LOCAL_SRC_FILES := vFile.cpp
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := fileencryptor
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
+LOCAL_STATIC_LIBRARIES :=	md5 \
+							vfile \
+							random
+LOCAL_SRC_FILES := FileEncryptor.cpp
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := imagedecrypt
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
+LOCAL_STATIC_LIBRARIES := fileencryptor
+LOCAL_SRC_FILES := ImageDecrypt.cpp
+include $(BUILD_SHARED_LIBRARY)
+

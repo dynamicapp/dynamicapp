@@ -1,0 +1,2 @@
+int xml defaults 0x7f020000
+int xml dynamicappsettings 0x7f020001

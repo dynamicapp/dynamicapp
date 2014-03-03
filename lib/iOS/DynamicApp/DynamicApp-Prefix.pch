@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'FlyApp' target in the 'FlyApp' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

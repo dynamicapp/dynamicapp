@@ -1,0 +1,60 @@
+** libZXPDFViewer.a
+スタティックライブラリ
+Build Settings で Other Linker Flags に -ObjC を追加
+リンクするターゲットが非 ARC 設定でさらに Deployment Target が iOS 4.x
+以前に設定されている場合は -fobjc-arc を併せて追加
+
+ファイルをプロジェクトに追加し Linked Frameworks and Libraries に設定する
+Linked Frameworks and Libraries に以下を追加
+- %%libmecab_em.dylib%% (不要。SDK6.0にて非公開APIとなったため機能をカット)
+- CoreData.framework
+- QuartzCore.framework
+
+
+** ZXPDFViewerData.bundle
+CoreData 設定データ
+プロジェクトに追加しコピーする設定 (通常、追加した時点でそのように設定される)
+
+
+** ZXPDFViewerHeaders, ZXUtilitiesHeaders, ZXMecabRepresentationHeaders
+ヘッダファイル
+プロジェクトに追加するかインクルードパスを通し、必要に応じてimport
+
+
+** ZXPDFViewerResources, ZXUtilitiesResources
+リソース (画像、nib)
+プロジェクトに追加
+必要に応じて修正、あるいは同じ名前で別のものに差し替える
+
+
+* サンプルコード
+{code}
+    ZXPDFViewController *aController = [[ZXPDFViewController alloc] initWithNibName:[[ZXPDFViewController class] description]
+                                                                             bundle:nil];
+    //    ZXPDFDocumentViewSimplePageAnimator (default)
+    // or ZXPDFDocumentViewLinearPageAnimator
+    // or ZXPDFDocumentViewHardPageFlipAnimator
+    NSString *aClassOfAnimator = @"ZXPDFDocumentViewSimplePageAnimator";
+
+    // ZXPDFDocumentViewLeftToRight (default) or ZXPDFDocumentViewRightToLeft
+    ZXPDFDocumentViewPageOrder pageOrder = ZXPDFDocumentViewLeftToRight;
+
+    NSString *aFilePath = @"/full/path/to/pdf/file";
+    NSString *aCachePath = @"/cache/directory/path";
+
+    aController.configurations = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                  aFilePath, ZXPDFViewControllerFilePathKey,
+                                  self.title, ZXPDFViewControllerBackButtonTitleKey,
+                                  self, ZXPDFViewControllerBackButtonTargetKey,
+                                  NSStringFromSelector(@selector(actionForBackButton)), ZXPDFViewControllerBackButtonActionKey,
+                                  [NSNumber numberWithInt:pageOrder], ZXPDFViewControllerPageOrderKey,
+                                  [NSNumber numberWithBool:NO], ZXPDFViewControllerDocumentIsDoubleTruckKey,
+                                  [NSNumber numberWithBool:YES], ZXPDFViewControllerMemoEnableKey,
+                                  [NSNumber numberWithBool:YES], ZXPDFViewControllerBackgroundLoadingEnableKey,
+                                  [NSNumber numberWithBool:YES], ZXPDFViewControllerPageCacheEnableKey,
+                                  aCachePath, ZXPDFViewControllerCacheStorePathKey,
+                                  [NSNumber numberWithBool:YES], ZXPDFViewControllerSearchIndexingAutoStartKey,
+                                  aClassOfAnimator, ZXPDFViewControllerPageAnimatorClassNameKey,
+                                  nil];
+    [self presentModalViewController:aController animated:YES];
+{/code}

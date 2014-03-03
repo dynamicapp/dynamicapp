@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSManagedObjectModel_CurrentVersionName</key>
+	<string>ZXPDFSearchResult 2</string>
+	<key>NSManagedObjectModel_VersionHashes</key>
+	<dict>
+		<key>ZXPDFSearchResult</key>
+		<dict>
+			<key>ZXPDFSearchResultDocument</key>
+			<data>
+			hRMQ2gTuHEMNc5LICiK6A3KhNWofECRfFfvooY/5zHg=
+			</data>
+			<key>ZXPDFSearchResultPage</key>
+			<data>
+			hBby14SgYZ5mobqVxLjV2sfVF48S0p1VlxXBaaAebsg=
+			</data>
+			<key>ZXPDFSearchWord</key>
+			<data>
+			0vu27aTsSr/krvZ9om/3mW7sNeHkZh0SWI/BicnU/UA=
+			</data>
+		</dict>
+		<key>ZXPDFSearchResult 2</key>
+		<dict>
+			<key>ZXPDFSearchResultDocument</key>
+			<data>
+			ArEEeaNy9vQ54ygccaw9JDlB+a2cmjD29WsVvjMl7TM=
+			</data>
+			<key>ZXPDFSearchResultPage</key>
+			<data>
+			4I74y1KJtM+LW3oIHiNTyQCxvIwCsLDG7eVhpfCuL08=
+			</data>
+			<key>ZXPDFSearchWord</key>
+			<data>
+			riyV6hEYiOiSGkLWJPJ0y3Y+Ol7+myNj3kBoiPCoLlI=
+			</data>
+		</dict>
+	</dict>
+</dict>
+</plist>

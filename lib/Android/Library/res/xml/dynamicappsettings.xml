@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugins>
+	<plugin name="Notification" value="true"/>
+	<plugin name="Encryptor" value="true"/>
+	<plugin name="Camera" value="true"/>
+	<plugin name="Sound" value="true"/>
+	<plugin name="Movie" value="true"/>
+	<plugin name="File" value="true"/>
+	<plugin name="FileReader" value="true"/>
+	<plugin name="FileWriter" value="true"/>
+	<plugin name="ImageDecrypt" value="true"/>
+	<plugin name="QRReader" value="true"/>
+	<plugin name="LoadingScreen" value="true"/>
+	<plugin name="ResourceCache" value="true"/>
+	<plugin name="Database" value="true"/>
+	<plugin name="AddressBook" value="true"/>
+	<plugin name="Bluetooth" value="true"/>
+	<plugin name="Felica" value="true"/>
+	<plugin name="AppVersion" value="true"/>
+	<plugin name="PDFViewer" value="true"/>
+	<plugin name="Contacts" value="true"/>
+	<plugin name="Ad" value="true"/>
+</plugins>
+
