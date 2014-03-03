@@ -398,8 +398,8 @@ public class DynamicAppActivity extends Activity {
     public boolean dispatchKeyEvent(KeyEvent event) {
 		if (event.getAction() == KeyEvent.ACTION_DOWN) {
 			if(event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-				DynamicAppUtils.log_i("BackButton pressed.");
-				this.mWebView.loadUrl("Events.fireEvent(Events.TYPE_BACK_PRESS);");
+				DebugLog.i(TAG,"BackButton pressed.");
+				this.webView.loadUrl("Events.fireEvent(Events.TYPE_BACK_PRESS);");
 				return true;
 			}
 		}
