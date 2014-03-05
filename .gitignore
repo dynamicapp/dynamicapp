@@ -11,8 +11,10 @@
 *.class
 
 # Generated files
-bin/
-gen/
+lib/Android/Library/bin/
+lib/Android/DynamicAppTestApp/bin/
+lib/Android/Library/gen/
+lib/Android/DynamicAppTestApp/gen/
 
 # Gradle files
 .gradle/
@@ -20,7 +22,7 @@ build/
 
 # Local configuration file (sdk path, etc)
 local.properties
-.classpath
+**.classpath
 .project
 .settings/
 
