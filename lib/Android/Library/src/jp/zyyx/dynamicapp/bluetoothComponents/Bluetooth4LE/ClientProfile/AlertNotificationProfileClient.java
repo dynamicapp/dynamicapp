@@ -1,6 +1,3 @@
-/**
- * 
- */
 package jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.ClientProfile;
 
 import java.util.ArrayList;
@@ -15,11 +12,20 @@ import android.content.Intent;
 import com.broadcom.bt.le.api.BleGattID;
 import com.broadcom.bt.le.api.BleClientService;
 
-/**
- * @author Zyyx
- * @version %I%, %G%
- * @since 1.0
- * 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 public class AlertNotificationProfileClient extends BaseClientProfile {
 	private static final String TAG = "AlertNotificationProfileClient";
@@ -48,7 +54,7 @@ public class AlertNotificationProfileClient extends BaseClientProfile {
 		super(context, myUuid);
 		mContext = context;
 
-		DebugLog.i(TAG, "AlertNotificationProfileClient");
+		DebugLog.w(TAG, "AlertNotificationProfileClient");
 
 		ArrayList<BleClientService> services = new ArrayList<BleClientService>();
 		services.add(mAlertService);
@@ -88,14 +94,14 @@ public class AlertNotificationProfileClient extends BaseClientProfile {
 	}
 
 	public void onInitialized(boolean success) {
-		DebugLog.i(TAG, "onInitialized");
+		DebugLog.w(TAG, "onInitialized");
 		if (success) {
 			registerProfile();
 		}
 	}
 
 	public void onDeviceConnected(BluetoothDevice device) {
-		DebugLog.i(TAG, "onDeviceConnected");
+		DebugLog.w(TAG, "onDeviceConnected");
 		refresh(device);
 		
 //		String deviceName = device.getName();
@@ -104,7 +110,7 @@ public class AlertNotificationProfileClient extends BaseClientProfile {
 	}
 
 	public void onDeviceDisconnected(BluetoothDevice device) {
-		DebugLog.i(TAG, "onDeviceDisconnected");
+		DebugLog.w(TAG, "onDeviceDisconnected");
 
 		Intent intent = new Intent();
 		intent.setAction(FINDME_DISCONNECTED);
@@ -115,7 +121,7 @@ public class AlertNotificationProfileClient extends BaseClientProfile {
 	}
 
 	public void onRefreshed(BluetoothDevice device) {
-		DebugLog.i(TAG, "onRefreshed");
+		DebugLog.w(TAG, "onRefreshed");
 
 		Intent intent = new Intent();
 		intent.setAction(FINDME_CONNECTED);
@@ -124,11 +130,11 @@ public class AlertNotificationProfileClient extends BaseClientProfile {
 	}
 
 	public void onProfileRegistered() {
-		DebugLog.i(TAG, "onProfileRegistered");
+		DebugLog.w(TAG, "onProfileRegistered");
 	}
 
 	public void onProfileDeregistered() {
-		DebugLog.i(TAG, "onProfileDeregistered");
+		DebugLog.w(TAG, "onProfileDeregistered");
 		notifyAll();
 	}
 

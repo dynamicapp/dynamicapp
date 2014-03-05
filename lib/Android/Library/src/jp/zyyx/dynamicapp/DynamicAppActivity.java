@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-import jp.zyyx.dynamicapp.plugins.Ad;
+import jp.zyyx.dynamicapp.core.PluginsFactory;
+import jp.zyyx.dynamicapp.plugins.Ads;
 import jp.zyyx.dynamicapp.plugins.CustomNotification;
 import jp.zyyx.dynamicapp.plugins.DynamicAppBluetooth;
 import jp.zyyx.dynamicapp.plugins.DynamicAppBluetooth4LE;
@@ -12,7 +13,9 @@ import jp.zyyx.dynamicapp.plugins.Felica;
 import jp.zyyx.dynamicapp.plugins.view.DynamicAppVideoView;
 import jp.zyyx.dynamicapp.utilities.Constant;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
+import jp.zyyx.dynamicapp.wrappers.WebViewClientWrapper;
 
 import org.json.JSONException;
 import org.xmlpull.v1.XmlPullParserException;
@@ -66,8 +69,8 @@ public class DynamicAppActivity extends Activity {
 	private static final int ACTIVITY_REQUEST_CD_NOTIFICATION = 4;
 	public static final String KEY_RESOURCE_ID = "resourceID";
 
-	public static RelativeLayout layoutWithAd = null;
-	public static Handler mMainThreadHandler = null;
+	public static RelativeLayout mainLayout;
+	public static Handler handler = null;
 	private int splashResourceID = 0;
 	private WebView webView = null;
 	private DynamicAppVideoView videoView = null;
@@ -79,7 +82,6 @@ public class DynamicAppActivity extends Activity {
 	private HashMap<String, Boolean> plugins = null;
 	private boolean isMissing = false;
 
-	private Handler handler = new Handler();
 	public static JSONObjectWrapper strings = null;
 
 	static {
@@ -102,12 +104,12 @@ public class DynamicAppActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		DebugLog.i(TAG, "onResume");
+		DebugLog.w(TAG, "onResume");
 		/**
 		 * Call onResume on plugins that are recently paused
 		 */
-		if (DynamicAppUtils.currentCommandRef != null) {
-			DynamicAppUtils.currentCommandRef.onResume();
+		if (Utilities.currentCommand != null) {
+			Utilities.currentCommand.onResume();
 		}
 		if (bluetoothPlugin != null) {
 			bluetoothPlugin.registerReceiver();
@@ -127,8 +129,8 @@ public class DynamicAppActivity extends Activity {
 		/**
 		 * Call onPause on plugins that are active or playing
 		 */
-		if (DynamicAppUtils.currentCommandRef != null) {
-			DynamicAppUtils.currentCommandRef.onPause();
+		if (Utilities.currentCommand != null) {
+			Utilities.currentCommand.onPause();
 		}
 		if (bluetoothPlugin != null) {
 			bluetoothPlugin.unregisterReceiver();
@@ -140,13 +142,13 @@ public class DynamicAppActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-	   super.onDestroy();
-	   if (DynamicAppUtils.currentCommandRef != null) {
-	  		DynamicAppUtils.currentCommandRef.onDestroy();
-	   }
-	   if (bluetooth4LEPlugin != null) {
+		super.onDestroy();
+		if (Utilities.currentCommand != null) {
+			Utilities.currentCommand.onDestroy();
+		}
+		if (bluetooth4LEPlugin != null) {
 			bluetooth4LEPlugin.onDestroy();
-	   }
+		}
 
 		File cache = getCacheDir();
 		File appDir = new File(cache.getParent());
@@ -154,20 +156,20 @@ public class DynamicAppActivity extends Activity {
 			String[] children = appDir.list();
 			for (String s : children) {
 				if (!s.equals("libs") && !s.equals("databases")) {
-					DynamicAppUtils.deletefile(new File(appDir, s));
-					DebugLog.i(TAG, "File /data/data/APP_PACKAGE/" + s + " DELETED");
+					Utilities.deletefile(new File(appDir, s));
+					DebugLog.w(TAG, "File /data/data/APP_PACKAGE/" + s + " DELETED");
 				}
 			}
 		}
-	   webView.destroy();
-	   webView = null;
+		webView.destroy();
+		webView = null;
 	}
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (DynamicAppUtils.currentCommandRef != null) {
-				DynamicAppUtils.currentCommandRef.onBackKeyDown();
+			if (Utilities.currentCommand != null) {
+				Utilities.currentCommand.onBackKeyDown();
 			}
 			if (bluetooth4LEPlugin != null) {
 				bluetooth4LEPlugin.onBackKeyDown();
@@ -178,7 +180,7 @@ public class DynamicAppActivity extends Activity {
 				return true;
 			}*/
 		} else if (keyCode == KeyEvent.KEYCODE_FOCUS || keyCode == KeyEvent.KEYCODE_CAMERA) {
-			DebugLog.i(TAG, "KEYCODE_CAMERA");
+			DebugLog.w(TAG, "KEYCODE_CAMERA");
 			// Handle these events so they don't launch the Camera app
 			return true;
 		} 
@@ -188,15 +190,15 @@ public class DynamicAppActivity extends Activity {
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		if (isPluginEnabled(Constant.PLUGIN_AD)) {
-			Ad.getInstance().onConfigurationChanged(newConfig); // changes plug-in layout on config change 
+		if (isPluginEnabled(PluginsFactory.PLUGIN_AD)) {
+			Ads.getInstance().onConfigurationChanged(newConfig); // changes plug-in layout on config change 
 		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		if (DynamicAppUtils.download_flg) {
+		if (Utilities.download_flg) {
 			menu.add(0 , MENU_ID_MENU1 , Menu.NONE , "Server Settings");
 		}
 		return true;
@@ -209,10 +211,10 @@ public class DynamicAppActivity extends Activity {
 			super.onOptionsItemSelected(item);
 			break;
 		case MENU_ID_MENU1:
-			if (DynamicAppUtils.download_flg) {
+			if (Utilities.download_flg) {
 				Intent i = new Intent(getApplicationContext(), jp.zyyx.dynamicapp.Preferences.class);
 				startActivity(i);
-		   	}
+			}
 			break;
 		}
 		return true;
@@ -227,8 +229,8 @@ public class DynamicAppActivity extends Activity {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		// Relays intent results to the plug-in
-		if (DynamicAppUtils.currentCommandRef != null) {
-			DynamicAppUtils.currentCommandRef.onActivityResult(requestCode, resultCode, intent);
+		if (Utilities.currentCommand != null) {
+			Utilities.currentCommand.onActivityResult(requestCode, resultCode, intent);
 		}
 
 		if (requestCode == REQUEST_CODE_SPLASH) {
@@ -244,14 +246,16 @@ public class DynamicAppActivity extends Activity {
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-			layoutWithAd = new RelativeLayout(this);
+			mainLayout = (RelativeLayout) View.inflate(this, R.layout.main, null);
+			webView = (WebView) mainLayout.findViewById(R.id.mainWebView);
 			videoView = new DynamicAppVideoView(this);
-			DynamicAppUtils.VideoViewRef = videoView;
 			videoView.setBackgroundColor(Color.TRANSPARENT);
+			LinearLayout linearLayout = new LinearLayout(this);
+			linearLayout.addView(videoView);
+			webView.addView(linearLayout);
+			setContentView(mainLayout);
 
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 1500);
-			webView = new WebView(this);
-			webView.setLayoutParams(params);
+			Utilities.VideoViewRef = videoView;
 			webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
 			webView.getLayoutParams().height = WindowManager.LayoutParams.MATCH_PARENT;
 			webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
@@ -262,10 +266,9 @@ public class DynamicAppActivity extends Activity {
 			webView.getSettings().setDomStorageEnabled(true);
 			webView.getSettings().setSupportZoom(false);
 			webView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
-			// mWebView.getSettings().setDatabaseEnabled(true);
-			File databasePath = new File(getCacheDir(), "webstorage.db");
+			File databasePath = new File(getCacheDir(), Constant.DATABASE_FILE);
 			webView.getSettings().setDatabasePath(databasePath.toString());
-			webView.setWebViewClient(new CustomWebViewClient());
+			webView.setWebViewClient(new WebViewClientWrapper());
 			webView.setWebChromeClient(new WebChromeClient() {
 				@Override
 				public void onExceededDatabaseQuota(String url, String databaseIdentifier, long currentQuota,
@@ -274,19 +277,13 @@ public class DynamicAppActivity extends Activity {
 				}
 				@Override
 				public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-					DebugLog.i(TAG, "From: "+ consoleMessage.sourceId());
-					DebugLog.i(TAG, "line: "+ consoleMessage.lineNumber());
-					DebugLog.i(TAG, "msg: "+ consoleMessage.message());
+					DebugLog.w(TAG, "onConsoleMessage sourceId:"+ consoleMessage.sourceId() + "|lineNumber:"+ consoleMessage.lineNumber() +
+							"|message: "+ consoleMessage.message() + "***");
 					return true;
 				}
 			});
-			LinearLayout linearLayout = new LinearLayout(this);
-			linearLayout.addView(videoView);
-			webView.addView(linearLayout);
-			layoutWithAd.addView(webView);
-			setContentView(layoutWithAd);			
 
-			String path = "file://" + DynamicAppUtils.makePath("www/index.html");
+			String path = "file://" + Utilities.makePath("www/index.html");
 			webView.loadUrl(path);
 		} else if (requestCode == ACTIVITY_REQUEST_CD_NOTIFICATION) {
 			CustomNotification.hideStatusBar();
@@ -301,7 +298,7 @@ public class DynamicAppActivity extends Activity {
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		String action = intent.getAction();
-		if ((felicaPlugin != null) && NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
+		if (felicaPlugin != null && NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)) {
 			felicaPlugin.initTech(intent);
 		}
 	}
@@ -309,11 +306,11 @@ public class DynamicAppActivity extends Activity {
 
 	/** Private Methods */
 	private void init() {
-		DynamicAppUtils.dynamicAppActivityRef = this;
-		mMainThreadHandler = new Handler();
+		Utilities.dynamicAppActivityRef = this;
+		handler = new Handler();
 		loadPlugins();
 
-		if (isPluginEnabled(Constant.PLUGIN_BLUETOOTH)) {
+		if (isPluginEnabled(PluginsFactory.PLUGIN_BLUETOOTH)) {
 			bluetoothPlugin = DynamicAppBluetooth.getInstance();
 			bluetoothPlugin.setupServer();
 		} 
@@ -322,7 +319,7 @@ public class DynamicAppActivity extends Activity {
 		bluetooth4LEPlugin = DynamicAppBluetooth4LE.getInstance();
 		*/
 
-		if (isPluginEnabled(Constant.PLUGIN_FELICA)) {
+		if (isPluginEnabled(PluginsFactory.PLUGIN_FELICA)) {
 			felicaPlugin = Felica.getInstance();
 		}
 	}
@@ -336,22 +333,22 @@ public class DynamicAppActivity extends Activity {
 			DebugLog.e(TAG, "ERROR: dynamicappsettings.xml is not found in res/xml folder.");
 		} else {
 			this.isMissing = false;
-			DebugLog.i(TAG, "dynamicappsettings.xml is found.");
+			DebugLog.w(TAG, "dynamicappsettings.xml is found.");
 			XmlResourceParser xml = this.getResources().getXml(resId);
+
 			int eventType = -1;
 			String pluginLoadable = "false";
 			String pluginName = "";
-
 			while (eventType != XmlResourceParser.END_DOCUMENT) {
 				if (eventType == XmlResourceParser.START_TAG) {
 					String strNode = xml.getName();
-					DebugLog.i(TAG, "strNode: " + strNode);
+					DebugLog.w(TAG, "strNode: " + strNode);
 					if (strNode.equals("plugin")) {
 						pluginLoadable = xml.getAttributeValue(null, "value");
 						pluginName = xml.getAttributeValue(null, "name");
 						boolean loadable = (pluginLoadable != null && pluginLoadable.equalsIgnoreCase("true"));
 						this.plugins.put(pluginName, loadable);
-						DebugLog.i(TAG, "Plugin: "+pluginName+" => " + loadable);
+						DebugLog.w(TAG, "Plugin: "+pluginName+" => " + loadable);
 					}
 				}
 				try {
@@ -372,13 +369,13 @@ public class DynamicAppActivity extends Activity {
 	/**
 	 * @param query  javascript code to be executed
 	 */
-	public void callJsEvent(String query) {
-		DebugLog.e(TAG, "callJsEvent query:" + query + "***");
-		final String string = "javascript:" + query;
-		handler.post(new Runnable() {
+	private Handler localHandler = new Handler();
+	public void callJsEvent(final String query) {
+		DebugLog.w(TAG, "callJsEvent query:" + query + "***");
+		localHandler.post(new Runnable() {
 			@Override
 			public void run() {
-				webView.loadUrl(string);
+				webView.loadUrl("javascript:" + query);
 			}
 		});
 	}
@@ -390,12 +387,12 @@ public class DynamicAppActivity extends Activity {
 	public boolean isPluginEnabled(String pluginName) {	
 		PackageManager packageManager = getPackageManager();
 		boolean enabled = (this.plugins.containsKey(pluginName) && this.plugins.get(pluginName));
-		DebugLog.i(TAG, "isEmulator:" + DynamicAppUtils.isEmulator());
-		if (pluginName.equalsIgnoreCase("Bluetooth") && (DynamicAppUtils.isEmulator() || !packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH))) {
+		DebugLog.w(TAG, "isEmulator:" + Utilities.isEmulator());
+		if (pluginName.equalsIgnoreCase("Bluetooth") && (Utilities.isEmulator() || !packageManager.hasSystemFeature(PackageManager.FEATURE_BLUETOOTH))) {
 			enabled = false;
-		} else if (pluginName.equalsIgnoreCase("Felica") && (DynamicAppUtils.isEmulator() || !packageManager.hasSystemFeature(PackageManager.FEATURE_NFC))){
+		} else if (pluginName.equalsIgnoreCase("Felica") && (Utilities.isEmulator() || !packageManager.hasSystemFeature(PackageManager.FEATURE_NFC))){
 			enabled = false;
-		} else if (pluginName.equalsIgnoreCase("Camera") && (DynamicAppUtils.isEmulator() || !packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA))){
+		} else if (pluginName.equalsIgnoreCase("Camera") && (Utilities.isEmulator() || !packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA))){
 			enabled = false;
 		}
 		return enabled;

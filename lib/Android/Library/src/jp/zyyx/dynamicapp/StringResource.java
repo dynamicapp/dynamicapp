@@ -12,6 +12,21 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.content.Context;
 import android.content.res.XmlResourceParser;
 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 public class StringResource {
 	private static final String TAG = "StringResource";
 
@@ -25,16 +40,16 @@ public class StringResource {
 		JSONObject tempResource = new JSONObject();
 
 		if (id == 0) {
-			DebugLog.i(TAG, "missing dynamicapp resource");
+			DebugLog.w(TAG, "missing dynamicapp resource");
 		} else {
-			DebugLog.i(TAG, "dynamicapp resource is found.");
+			DebugLog.w(TAG, "dynamicapp resource is found.");
 			XmlResourceParser xml = context.getResources().getXml(id);
 			int eventType = -1;
 			String stringValue = "", stringName = "";
 			while (eventType != XmlResourceParser.END_DOCUMENT) {
 				if (eventType == XmlResourceParser.START_TAG) {
 					String strNode = xml.getName();
-					DebugLog.i(TAG, "xml tag: " + strNode);
+					DebugLog.w(TAG, "xml tag: " + strNode);
 					if (strNode.equals(TYPE_STRING)) {
 						stringValue = xml.getAttributeValue(null, KEY_VALUE);
 						stringName = xml.getAttributeValue(null, KEY_NAME);
@@ -43,7 +58,7 @@ public class StringResource {
 						} catch (JSONException e) {
 							tempResource = new JSONObject();
 						}
-						DebugLog.i(TAG, "String: " + stringName + " => " + stringValue);
+						DebugLog.w(TAG, "String: " + stringName + " => " + stringValue);
 					}
 				}
 				try {

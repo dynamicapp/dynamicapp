@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.HashMap;
 
 import jp.zyyx.dynamicapp.DynamicAppActivity;
-import jp.zyyx.dynamicapp.JSONObjectWrapper;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.services.AlarmService;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
 
 import org.json.JSONException;
 
@@ -26,35 +26,22 @@ import android.os.Build;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
-/**
- * <p>
- * Class for handling android notifications
- * </p>
- * 
- * <p>
- * Public Methods:
- * <ul>
- * <li>notify
- * <li>cancelNotification
- * </ul>
- * </p>
- * 
- * <p>
- * For example:
- * 
- * <pre>
- * CustomNotification.notify(mContext, getApplicationContext(), date, message,
- * 		notificationCtr++, hasAction, actionTitle, icon);
- * CustomNotification.cancelNotification();
- * </pre>
- * 
- * </p>
- * 
- * @author Zyyx
- * @version 1.0
- * @since 1.0
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class CustomNotification extends DynamicAppPlugin {
+public class CustomNotification extends Plugin {
 	private static final String TAG = "CustomNotification";
 
 	private static int icon;
@@ -75,6 +62,7 @@ public class CustomNotification extends DynamicAppPlugin {
 	private Map<Integer, PendingIntent> alarms = null;
 
 	private CustomNotification() {
+		super();
 	}
 
 	/**
@@ -107,16 +95,15 @@ public class CustomNotification extends DynamicAppPlugin {
 			CustomNotification.icon = android.R.drawable.ic_dialog_info;
 		}
 
-		context = dynamicApp.getApplicationContext();
+		context = mainActivity.getApplicationContext();
 		
 		if(alarms == null) {
 			alarms = new HashMap<Integer, PendingIntent>();
 		}
 	}
 
-	public CustomNotification(String date, String message, int badge,
-			boolean hasAction, String action, int icon) {
-
+	public CustomNotification(String date, String message, int badge, boolean hasAction, String action, int icon) {
+		super();
 		CustomNotification.date = date;
 		CustomNotification.message = message;
 		CustomNotification.badge = badge;
@@ -124,8 +111,8 @@ public class CustomNotification extends DynamicAppPlugin {
 		CustomNotification.action = action;
 		CustomNotification.icon = android.R.drawable.ic_dialog_info;
 
-		this.setContext((DynamicAppActivity) DynamicAppUtils.dynamicAppActivityRef);
-		context = dynamicApp.getApplicationContext();
+		this.setContext((DynamicAppActivity) Utilities.dynamicAppActivityRef);
+		context = mainActivity.getApplicationContext();
 	}
 
 	/**
@@ -286,10 +273,10 @@ public class CustomNotification extends DynamicAppPlugin {
 			new Thread(new Runnable() {
 				public void run() {
 					if(!statusBarIsShown) {
-						dynamicApp.runOnUiThread(new Runnable() {
+						mainActivity.runOnUiThread(new Runnable() {
 							public void run() {
 								statusBarIsShown = true;
-								dynamicApp.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+								mainActivity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 							}
 						});
 					}
@@ -309,11 +296,11 @@ public class CustomNotification extends DynamicAppPlugin {
 				@Override
 				public void run() {
 					if(statusBarIsShown) {
-						dynamicApp.runOnUiThread(new Runnable() {
+						mainActivity.runOnUiThread(new Runnable() {
 							public void run() {
 								statusBarIsShown = false;
-								dynamicApp.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-								dynamicApp.getWebView().getLayoutParams().height = RelativeLayout.LayoutParams.MATCH_PARENT;
+								mainActivity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+								mainActivity.getWebView().getLayoutParams().height = RelativeLayout.LayoutParams.MATCH_PARENT;
 							}
 						});
 					}
@@ -326,13 +313,13 @@ public class CustomNotification extends DynamicAppPlugin {
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "parameters are: " + params);
 
 		if (methodName.equalsIgnoreCase("notify")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.customNotify();
 		} else {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.cancelNotification();
 		}
 		
@@ -342,7 +329,7 @@ public class CustomNotification extends DynamicAppPlugin {
 	@Override
 	public void onBackKeyDown() {
 		statusBarIsShown = false;
-		DynamicAppUtils.currentCommandRef = null;
+		Utilities.currentCommand = null;
 		instance = null;
 	}
 }

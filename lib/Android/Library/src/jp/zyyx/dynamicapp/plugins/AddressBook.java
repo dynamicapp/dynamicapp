@@ -16,13 +16,28 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 import android.provider.ContactsContract.CommonDataKinds.Website;
 import android.util.Base64;
 
-public class AddressBook extends DynamicAppPlugin {
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+public class AddressBook extends Plugin {
 	private static final String TAG = "AddressBook";
 
 	private static AddressBook instance = null;
@@ -81,11 +96,13 @@ public class AddressBook extends DynamicAppPlugin {
 	private static final String DEFAULT_STRING_TYPE = "HOME";
 	private static final int DEFAULT_INT_TYPE = 1;
 
-	private ContentResolver cr = dynamicApp.getContentResolver();
+	private ContentResolver cr = mainActivity.getContentResolver();
 
 	private boolean isSelect = false;
 	private static final int ERROR_NO_DATA = 1;
+
 	private AddressBook() {
+		super();
 	}
 
 	public static synchronized AddressBook getInstance() {
@@ -98,12 +115,12 @@ public class AddressBook extends DynamicAppPlugin {
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is called.");
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "method " + methodName + " is called.");
+		DebugLog.w(TAG, "parameters are: " + params);
 
 		isSelect = param.get("isSelect", false);
 		
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if (methodName.equalsIgnoreCase(METHOD_SHOW)){
 			this.showOrSelectContacts();	
 		}
@@ -116,13 +133,13 @@ public class AddressBook extends DynamicAppPlugin {
 		try {
 			int requestCode = (isSelect)? ACTIVITY_REQUEST_CD_PICK_CONTACT : ACTIVITY_REQUEST_CD_SHOW_CONTACTS;			
 			Intent intent = (isSelect)?  getSelectIntent() : getShowIntent();
-			dynamicApp.startActivityForResult(intent, requestCode);
+			mainActivity.startActivityForResult(intent, requestCode);
 		} catch(Exception e) {
 			e.printStackTrace();
 			ok = false;
 		} finally {
 			if(!ok) {
-				DebugLog.i(TAG, "result: = " + -1);
+				DebugLog.w(TAG, "result: = " + -1);
 				AddressBook.onError("" + ERROR_NO_DATA, callbackId);
 			}	
 		}
@@ -225,7 +242,7 @@ public class AddressBook extends DynamicAppPlugin {
 	        return "";
 	    }
         
-        bMap = DynamicAppUtils.decodeBitmap(cr, uri, 100, 100);
+        bMap = Utilities.decodeBitmap(cr, uri, 100, 100);
         bos = new ByteArrayOutputStream();
 	    bMap.compress(CompressFormat.JPEG, 100, bos);
 		byte[] _bArray = bos.toByteArray();
@@ -401,7 +418,7 @@ public class AddressBook extends DynamicAppPlugin {
 			
 			String formatted = prefix + " " + givenName + " " + middleName + " " + familyName + " " + suffix;
 			
-			DebugLog.i(TAG, "given name length:" + givenName.length());
+			DebugLog.w(TAG, "given name length:" + givenName.length());
 
 			try {
 				name.put(JSON_KEY_CONTACT_FORMATTED_NAME, formatted);
@@ -470,7 +487,7 @@ public class AddressBook extends DynamicAppPlugin {
 				String customLabel = this.getStringData(pCur,
 						ContactsContract.CommonDataKinds.Phone.LABEL, DEFAULT_STRING_TYPE);
 				CharSequence numberType = ContactsContract.CommonDataKinds.Phone
-						.getTypeLabel(dynamicApp.getResources(), type,
+						.getTypeLabel(mainActivity.getResources(), type,
 								customLabel);
 
 				try {
@@ -503,7 +520,7 @@ public class AddressBook extends DynamicAppPlugin {
 			String customLabel = this.getStringData(emailCur,
 					ContactsContract.CommonDataKinds.Email.LABEL, DEFAULT_STRING_TYPE);
 			CharSequence emailType = ContactsContract.CommonDataKinds.Email
-					.getTypeLabel(dynamicApp.getResources(), type, customLabel);
+					.getTypeLabel(mainActivity.getResources(), type, customLabel);
 
 			try {
 				email = new JSONObject();
@@ -553,7 +570,7 @@ public class AddressBook extends DynamicAppPlugin {
 					ContactsContract.CommonDataKinds.StructuredPostal.LABEL,
 					"HOME");
 			CharSequence addtype = ContactsContract.CommonDataKinds.StructuredPostal
-					.getTypeLabel(dynamicApp.getResources(), type, customLabel);
+					.getTypeLabel(mainActivity.getResources(), type, customLabel);
 
 			// String poBox = addrCur.getString(
 			// addrCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.POBOX));
@@ -612,7 +629,7 @@ public class AddressBook extends DynamicAppPlugin {
 			String customLabel = this.getStringData(imCur,
 					ContactsContract.CommonDataKinds.Im.LABEL, "HOME");
 			CharSequence imType = ContactsContract.CommonDataKinds.Im
-					.getTypeLabel(dynamicApp.getResources(), type, customLabel);
+					.getTypeLabel(mainActivity.getResources(), type, customLabel);
 			String imName = this.getStringData(imCur,
 					ContactsContract.CommonDataKinds.Im.DATA, "");
 
@@ -648,7 +665,7 @@ public class AddressBook extends DynamicAppPlugin {
 							ContactsContract.CommonDataKinds.Organization.LABEL,
 							"HOME");
 			CharSequence orgType = ContactsContract.CommonDataKinds.Organization
-					.getTypeLabel(dynamicApp.getResources(), type, customLabel);
+					.getTypeLabel(mainActivity.getResources(), type, customLabel);
 
 			String orgName = this.getStringData(orgCur,
 					ContactsContract.CommonDataKinds.Organization.COMPANY, "");
@@ -707,7 +724,7 @@ public class AddressBook extends DynamicAppPlugin {
 						nickName, name, number);
 				AddressBook.onSuccess(retObject, callbackId, false);
 			} else {
-				DebugLog.i(TAG, "result: = " + -1);
+				DebugLog.w(TAG, "result: = " + -1);
 				AddressBook.onError("" + ERROR_NO_DATA, callbackId);
 			}
 		}
@@ -715,7 +732,7 @@ public class AddressBook extends DynamicAppPlugin {
 
 	@Override
 	public void onBackKeyDown() {
-		DynamicAppUtils.currentCommandRef = null;
+		Utilities.currentCommand = null;
 		instance = null;
 	}
 }

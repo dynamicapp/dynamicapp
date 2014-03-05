@@ -18,23 +18,27 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import jp.zyyx.dynamicapp.JSONObjectWrapper;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
 
-/**
- * Methods:
- * <ul>
- * <li>startLoad
- * <li>stopLoad
- * </ul>
- * 
- * @author Zyyx
- * @version %I%, %G%
- * @since 1.0
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class LoadingScreen extends DynamicAppPlugin {
+public class LoadingScreen extends Plugin {
 	private static final String TAG = "LoadingScreen";
 
 	private static final int ERROR_DIALOG_NOT_SHOWN = 1;
@@ -58,7 +62,9 @@ public class LoadingScreen extends DynamicAppPlugin {
 	LinearLayout content = null;
 	ProgressBar loaderIcon = null;
 	
-	private LoadingScreen() {}
+	private LoadingScreen() {
+		super();
+	}
 
 	/**
 	 * @return LoadingScreen instance
@@ -72,14 +78,14 @@ public class LoadingScreen extends DynamicAppPlugin {
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is executed.");
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "method " + methodName + " is executed.");
+		DebugLog.w(TAG, "parameters are: " + params);
 
 		if (methodName.equalsIgnoreCase("startLoad")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.startLoad();
 		} else if (methodName.equalsIgnoreCase("stopLoad")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.stopLoad();
 		}
 	}
@@ -87,14 +93,18 @@ public class LoadingScreen extends DynamicAppPlugin {
 	/**
 	 * show the progress dialog with custom label
 	 */
+	@SuppressLint("InlinedApi")
 	public void startLoad() {
-		progressDialog = new Dialog(dynamicApp, android.R.style.Theme_Translucent_NoTitleBar);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			progressDialog = new Dialog(mainActivity, android.R.style.Theme_Holo_Light_Panel);
+		} else {
+			progressDialog = new Dialog(mainActivity, android.R.style.Theme_Translucent_NoTitleBar);
+		}
 		msg = param.get("label", "Loading...");
 		bgColor = param.get("bgColor", "black");
 		iconStyle = param.get("style", 0);
-		
+
 		String frameParam = param.get("frame", "");
-				
 		JSONObjectWrapper frameParams = null;
 
 		try {
@@ -106,10 +116,10 @@ public class LoadingScreen extends DynamicAppPlugin {
 			if(frameParams!= null) {
 				WindowManager.LayoutParams layoutParams = progressDialog.getWindow().getAttributes();
 				
-				int x = DynamicAppUtils.getDPI(frameParams.get("x", 0));
-				int y = DynamicAppUtils.getDPI(frameParams.get("y", 0));
-				frameWidth = DynamicAppUtils.getDPI(frameParams.get("width", 220));
-				frameHeight = DynamicAppUtils.getDPI(frameParams.get("height", 100));
+				int x = Utilities.getDPI(frameParams.get("x", 0));
+				int y = Utilities.getDPI(frameParams.get("y", 0));
+				frameWidth = Utilities.getDPI(frameParams.get("width", 220));
+				frameHeight = Utilities.getDPI(frameParams.get("height", 100));
 				layoutParams.x = x;
 				layoutParams.y = y;
 				layoutParams.gravity = Gravity.TOP | Gravity.LEFT;
@@ -119,7 +129,7 @@ public class LoadingScreen extends DynamicAppPlugin {
 				WindowManager.LayoutParams layoutParams = progressDialog.getWindow().getAttributes();
 				layoutParams.gravity = Gravity.CENTER;
 				progressDialog.getWindow().setAttributes(layoutParams);
-				progressDialog.addContentView(this.getCustomView(DynamicAppUtils.getDPI(220), DynamicAppUtils.getDPI(100)), new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+				progressDialog.addContentView(this.getCustomView(Utilities.getDPI(220), Utilities.getDPI(100)), new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			}
 		
 			progressDialog.setCancelable(true);
@@ -128,7 +138,7 @@ public class LoadingScreen extends DynamicAppPlugin {
 			if(frameWidth != -1 && frameHeight != -1) {
 				progressDialog.getWindow().setLayout(frameWidth, frameHeight);
 			}else {
-				progressDialog.getWindow().setLayout(DynamicAppUtils.getDPI(220), DynamicAppUtils.getDPI(100));
+				progressDialog.getWindow().setLayout(Utilities.getDPI(220), Utilities.getDPI(100));
 			}
 			
 			if (progressDialog.isShowing()) {
@@ -142,9 +152,9 @@ public class LoadingScreen extends DynamicAppPlugin {
 	@SuppressWarnings("deprecation")
 	@SuppressLint("NewApi")
 	public RelativeLayout getCustomView(int width, int height){
-        RelativeLayout backLayout = new RelativeLayout(dynamicApp);
-        RelativeLayout frontLayout = new RelativeLayout(dynamicApp);
-        content = new LinearLayout(dynamicApp);
+        RelativeLayout backLayout = new RelativeLayout(mainActivity);
+        RelativeLayout frontLayout = new RelativeLayout(mainActivity);
+        content = new LinearLayout(mainActivity);
         
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -152,18 +162,18 @@ public class LoadingScreen extends DynamicAppPlugin {
                 RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         lp.addRule(RelativeLayout.CENTER_IN_PARENT);
         
-        TextView message = new TextView(dynamicApp);
+        TextView message = new TextView(mainActivity);
         message.setTextColor(Color.GRAY);
         message.setText(msg);
         message.setId(1);
       
-        loaderIcon  = new ProgressBar(dynamicApp);
+        loaderIcon  = new ProgressBar(mainActivity);
         int color = -1;
-        int pad2 = DynamicAppUtils.getDPI(2);
-        int pad5 = DynamicAppUtils.getDPI(5);
-        int pad10 = DynamicAppUtils.getDPI(10);
-        width = DynamicAppUtils.getDPI(width);
-        height = DynamicAppUtils.getDPI(height);
+        int pad2 = Utilities.getDPI(2);
+        int pad5 = Utilities.getDPI(5);
+        int pad10 = Utilities.getDPI(10);
+        width = Utilities.getDPI(width);
+        height = Utilities.getDPI(height);
         
         switch(iconStyle) {
         	case STYLEWHITELARGE: 
@@ -245,10 +255,10 @@ public class LoadingScreen extends DynamicAppPlugin {
 	private LinearLayout.LayoutParams setScale(int scaleType, int fWidth, int fHeight) {
 		LinearLayout.LayoutParams scaled_param = null;
 		
-		int  mediumSize = DynamicAppUtils.getDPI(30);
-		int largeSize = DynamicAppUtils.getDPI(50);		
-		int width = DynamicAppUtils.getDPI(fWidth - 10);
-		int height = DynamicAppUtils.getDPI(fHeight - 10);
+		int  mediumSize = Utilities.getDPI(30);
+		int largeSize = Utilities.getDPI(50);		
+		int width = Utilities.getDPI(fWidth - 10);
+		int height = Utilities.getDPI(fHeight - 10);
 		
 		if(width > 0 && (width < mediumSize)) {
 			mediumSize = width;

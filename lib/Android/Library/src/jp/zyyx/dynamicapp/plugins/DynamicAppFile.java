@@ -10,14 +10,30 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.URLConnection;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.DynamicAppActivity;
+import jp.zyyx.dynamicapp.core.Plugin;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 @SuppressWarnings("unused")
-public class DynamicAppFile extends DynamicAppPlugin {
+public class DynamicAppFile extends Plugin {
 	private static final int ERROR_NOT_FOUND = 1;
 	private static final int ERROR_SECURITY = 2;
 	private static final int ERROR_ABORT = 3;
@@ -33,7 +49,9 @@ public class DynamicAppFile extends DynamicAppPlugin {
 	
 	private static DynamicAppFile instance = null;
 	
-	private DynamicAppFile() {}
+	private DynamicAppFile() {
+		super();
+	}
 	
 	public static synchronized DynamicAppFile getInstance() {
         if (instance == null) {
@@ -43,7 +61,7 @@ public class DynamicAppFile extends DynamicAppPlugin {
 	}
 
 	private File getFileInstance(String path, String filename) {
-		return new File(DynamicAppUtils.makePath(path), filename);
+		return new File(Utilities.makePath(path), filename);
 	}
 	
 	@Override
@@ -70,7 +88,7 @@ public class DynamicAppFile extends DynamicAppPlugin {
 			this.read();
 			
 		} else {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 		}
 	}
 
@@ -91,10 +109,10 @@ public class DynamicAppFile extends DynamicAppPlugin {
 				e.printStackTrace();
 			}
 			
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			DynamicAppFile.onSuccess(jsonObject, callbackId, false);
 		} else {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			DynamicAppFile.onError(DynamicAppFile.ERROR_NOT_FOUND + "", callbackId);
 		}
 	}
@@ -123,18 +141,18 @@ public class DynamicAppFile extends DynamicAppPlugin {
 		if(createOk) {
 			getMetaData();
 		} else {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			DynamicAppFile.onError(DynamicAppFile.ERROR_ABORT + "", callbackId);
 		}
 	}
 	
 	private void removeRecursively() {
 		String fullPath = param.get("fullPath", "");
-		if(fullPath != DynamicAppUtils.makePath("") && _delete(fullPath)) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+		if(fullPath != Utilities.makePath("") && _delete(fullPath)) {
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			DynamicAppFile.onSuccess(null, callbackId, false);
 		} else {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			DynamicAppFile.onError(DynamicAppFile.ERROR_ABORT + "", callbackId);
 		}
 	}
@@ -171,10 +189,10 @@ public class DynamicAppFile extends DynamicAppPlugin {
 		
 		try {
 			if(_copy(fullPath, targetDirectory, newFilename, false)) {
-				dynamicApp.callJsEvent(PROCESSING_FALSE);
+				mainActivity.callJsEvent(PROCESSING_FALSE);
 				DynamicAppFile.onSuccess(null, callbackId, false);
 			} else {
-				dynamicApp.callJsEvent(PROCESSING_FALSE);
+				mainActivity.callJsEvent(PROCESSING_FALSE);
 				DynamicAppFile.onError(DynamicAppFile.ERROR_ABORT + "", callbackId);
 			}
 		} catch (IOException e) {
@@ -279,7 +297,7 @@ public class DynamicAppFile extends DynamicAppPlugin {
 			e.printStackTrace();
 		}
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(jsonObject != null) {
 			DynamicAppFile.onSuccess(jsonObject, callbackId, false);
 		} else {
@@ -328,7 +346,7 @@ public class DynamicAppFile extends DynamicAppPlugin {
 			}
 		}
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(jsonObject != null) {
 			DynamicAppFile.onSuccess(jsonObject, callbackId, false);
 		} else {
@@ -365,7 +383,7 @@ public class DynamicAppFile extends DynamicAppPlugin {
 			}
 		}
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 	    if(success) {
 			DynamicAppFile.onSuccess(contents.toString(), callbackId, false);
 		} else {

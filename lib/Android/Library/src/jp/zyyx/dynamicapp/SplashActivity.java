@@ -4,13 +4,14 @@ import java.io.File;
 
 import jp.zyyx.dynamicapp.utilities.Constant;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 import jp.zyyx.dynamicapp.wrappers.SharedPreferencesWrapper;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -19,6 +20,21 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 public class SplashActivity extends Activity {
 	private static final String TAG = "SplashActivity";
 
@@ -32,7 +48,7 @@ public class SplashActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		DynamicAppUtils.fixDisplayOrientation(this);
+		Utilities.fixDisplayOrientation(this);
 
         ImageView imageView = new ImageView(this);
 		Intent intent = getIntent();
@@ -44,7 +60,9 @@ public class SplashActivity extends Activity {
 		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 		setContentView(imageView);
 
-		DynamicAppUtils.setBasePath(getFilesDir() + "");
+		boolean debuggable = (this.getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+		Utilities.setDebugMode(debuggable);
+		Utilities.setBasePath(getFilesDir() + "");
 		new CopyAssetsTask(this).execute();
 	}
 
@@ -87,12 +105,12 @@ public class SplashActivity extends Activity {
 			String updatedVersion = "0";
 			boolean copy_flag = false;
 
-			int versionFlag = DynamicAppUtils.isNewerVersion(currentAppVersion, savedAppVersion);
-			DebugLog.i(TAG, "versionFlag : "+versionFlag);
+			int versionFlag = Utilities.isNewerVersion(currentAppVersion, savedAppVersion);
+			DebugLog.w(TAG, "versionFlag : "+versionFlag);
 			switch(versionFlag) {
 				case DOWNGRADED :
 				case SAME:
-					File wwwFolder = new File(DynamicAppUtils.makePath(Constant.WWW_FOLDER));
+					File wwwFolder = new File(Utilities.makePath(Constant.WWW_FOLDER));
 					copy_flag = (!wwwFolder.exists())? true : false;
 					updatedVersion = savedAppVersion;
 					break;
@@ -102,22 +120,22 @@ public class SplashActivity extends Activity {
 					break;
 			}
 
-			DebugLog.i(TAG, "savedAppVersion : "+savedAppVersion);
-			DebugLog.i(TAG, "currentAppVersion : "+currentAppVersion);
-			DebugLog.i(TAG, "updatedVersion : "+updatedVersion);
+			DebugLog.w(TAG, "savedAppVersion : "+savedAppVersion);
+			DebugLog.w(TAG, "currentAppVersion : "+currentAppVersion);
+			DebugLog.w(TAG, "updatedVersion : "+updatedVersion);
 
 			SharedPreferencesWrapper.setVersion(context, updatedVersion);
 
 			if (copy_flag) {
-				DebugLog.i(TAG, "www folder is copied.");
-				DynamicAppUtils.copyAsset(getApplicationContext(), Constant.WWW_FOLDER, Constant.WWW_FOLDER);
+				DebugLog.w(TAG, "www folder is copied.");
+				Utilities.copyAsset(getApplicationContext(), Constant.WWW_FOLDER, Constant.WWW_FOLDER);
 			} else {
-				DebugLog.i(TAG, "www folder is not copied.");
+				DebugLog.w(TAG, "www folder is not copied.");
 			}
 
-			DynamicAppUtils.copyAsset(getApplicationContext(), Constant.MEDIA_FOLDER);
-			DynamicAppUtils.setBasePath(getFilesDir() + "");
-			if (DynamicAppUtils.download_flg) {
+			Utilities.copyAsset(getApplicationContext(), Constant.MEDIA_FOLDER);
+			Utilities.setBasePath(getFilesDir() + "");
+			if (Utilities.download_flg) {
 				String serverAddress = SharedPreferencesWrapper.getServerAddress(context);
 				String userId = SharedPreferencesWrapper.getUserId(context);;
 				String password = SharedPreferencesWrapper.getPassword(context);
@@ -125,7 +143,7 @@ public class SplashActivity extends Activity {
 				DebugLog.e(TAG, "userId : "+userId);
 				DebugLog.e(TAG, "password : "+password);
 				if (serverAddress.compareTo("") != 0 && userId.compareTo("") != 0) {
-					DynamicAppUtils.httpDownload("http://" + serverAddress + "/~" + userId + "/www.zip", "", userId, password);
+					Utilities.httpDownload("http://" + serverAddress + "/~" + userId + "/www.zip", "", userId, password);
 				}
 			}
 			return true;

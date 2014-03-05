@@ -4,11 +4,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import jp.zyyx.dynamicapp.DynamicAppActivity;
-import jp.zyyx.dynamicapp.JSONObjectWrapper;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.plugins.view.DynamicAppVideoView;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
 
 import org.json.JSONException;
 
@@ -31,11 +31,22 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.MediaController;
 
-/**
- * @author Zyyx
- * 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class Movie extends DynamicAppPlugin {
+public class Movie extends Plugin {
 	private static final String TAG = "Movie";
 
 	// Movie messages
@@ -77,9 +88,10 @@ public class Movie extends DynamicAppPlugin {
 	public static int frameY = -1;
 
 	final SharedPreferences sharedPreferences = PreferenceManager
-			.getDefaultSharedPreferences(dynamicApp);
+			.getDefaultSharedPreferences(mainActivity);
 
 	private Movie() {
+		super();
 	}
 
 	public static synchronized Movie getInstance() {
@@ -92,11 +104,11 @@ public class Movie extends DynamicAppPlugin {
 	public void init(String methodName, String params, String callbackId) {
 		super.init(methodName, params, callbackId);
 		if(mVideoView == null) {
-			mVideoView = DynamicAppUtils.VideoViewRef;
+			mVideoView = Utilities.VideoViewRef;
 			mVideoView.setOnErrorListener(new OnErrorListener() {
 				@Override
 				public boolean onError(MediaPlayer mp, int what, int extra) {
-					dynamicApp.callJsEvent(PROCESSING_FALSE);
+					mainActivity.callJsEvent(PROCESSING_FALSE);
 					DebugLog.e(TAG, "Error: " + what + "," + extra);
 					int error = 8;
 				
@@ -120,10 +132,10 @@ public class Movie extends DynamicAppPlugin {
 							error = ERROR_NETWORK;
 						break;
 					}
-					if (dynamicApp.getWindow() != null) {
+					if (mainActivity.getWindow() != null) {
 						String script = "DynamicApp.Movie.onStatus(\"" + mediaId + "\","
 								+ Movie.MOVIE_ERROR + ",\"" + error + "\");";
-						dynamicApp.callJsEvent(script);
+						mainActivity.callJsEvent(script);
 					}
 					
 					return true;
@@ -138,7 +150,7 @@ public class Movie extends DynamicAppPlugin {
 					String script = "DynamicApp.Movie.onStatus(\"" + mediaId
 							+ "\"," + Movie.MOVIE_DURATION + ","
 							+ getVideoDuration() + ");";
-					dynamicApp.callJsEvent(script);
+					mainActivity.callJsEvent(script);
 					startVideo();
 				}
 			});
@@ -146,7 +158,7 @@ public class Movie extends DynamicAppPlugin {
 			mVideoView.setOnCompletionListener(new OnCompletionListener() {
 				public void onCompletion(MediaPlayer mediaPlayer) {
 					
-					dynamicApp.callJsEvent(PROCESSING_FALSE);
+					mainActivity.callJsEvent(PROCESSING_FALSE);
 					mVideoView.setVisibility(DynamicAppVideoView.GONE);
 					/*String script = "DynamicApp.Movie.onStatus(\"" + mediaId
 							+ "\"," + Movie.MOVIE_POSITION + "," + 0 + ");";
@@ -154,8 +166,8 @@ public class Movie extends DynamicAppPlugin {
 	
 					String script = "DynamicApp.Movie.onStatus(\"" + mediaId + "\","
 							+ Movie.MOVIE_STATE + "," + Movie.MOVIE_STOPPED + ");";
-					dynamicApp.callJsEvent(script);
-					DebugLog.i(TAG, "video player onCompletion");
+					mainActivity.callJsEvent(script);
+					DebugLog.w(TAG, "video player onCompletion");
 				}
 			});
 		}
@@ -165,13 +177,13 @@ public class Movie extends DynamicAppPlugin {
 	public void execute() {
 		mVideoView.setKeepScreenOn(keepScreenOn);
 
-		DebugLog.i(TAG, "method " + methodName + " is executed.");
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "method " + methodName + " is executed.");
+		DebugLog.w(TAG, "parameters are: " + params);
 		this.mediaId = param.get("mediaId", "");
 
 		if (methodName.equalsIgnoreCase("getThumbnail")) {
 			this.movieFile = param.get("movieFile", "");
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.getThumbnail();
 
 		} else if (methodName.equalsIgnoreCase("play")) {
@@ -180,17 +192,17 @@ public class Movie extends DynamicAppPlugin {
 			//this.scalingMode = param.get("scalingMode", 1);
 			this.controlStyle = param.get("controlStyle", 0);
 		
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			isSettingVideo = false;
 			
 			if (!isPaused)
 				this.playVideo();
 			else {
-				dynamicApp.callJsEvent(PROCESSING_FALSE);
+				mainActivity.callJsEvent(PROCESSING_FALSE);
 				String script = "DynamicApp.Movie.onStatus(\"" + mediaId
 						+ "\"," + Movie.MOVIE_DURATION + ","
 						+ getVideoDuration() + ");";
-				dynamicApp.callJsEvent(script);
+				mainActivity.callJsEvent(script);
 				this.startVideo();
 			}
 		} else if (methodName.equalsIgnoreCase("getCurrentPosition")) {
@@ -211,8 +223,8 @@ public class Movie extends DynamicAppPlugin {
 
 	public void getThumbnail() {
 		mVideoView.setVisibility(DynamicAppVideoView.GONE);
-
 		new Thread() {
+			@Override
 			public void run() {
 				Bitmap thumb = null;
 				String filename = null;
@@ -237,7 +249,7 @@ public class Movie extends DynamicAppPlugin {
 					thumb = getContentThumbnail(videoID);
 				} else {
 					isSourceURL = false;
-					String path = DynamicAppUtils.makePath(movieFile);
+					String path = Utilities.makePath(movieFile);
 					DebugLog.e(TAG, "[video] try:" + path);
 					if (new File(path).exists()) {
 						filename = path;
@@ -290,7 +302,7 @@ public class Movie extends DynamicAppPlugin {
 
 	private Bitmap getContentThumbnail(String videoID) {
 		long id = Long.parseLong(videoID);
-		ContentResolver crThumb = dynamicApp.getContentResolver();
+		ContentResolver crThumb = mainActivity.getContentResolver();
 		BitmapFactory.Options options=new BitmapFactory.Options();
 		options.inSampleSize = 1;
 		Bitmap curThumb = MediaStore.Video.Thumbnails.getThumbnail(crThumb, id, MediaStore.Video.Thumbnails.MINI_KIND, options);
@@ -323,16 +335,16 @@ public class Movie extends DynamicAppPlugin {
 		
 		final ViewGroup.MarginLayoutParams layoutparam = (MarginLayoutParams) mVideoView
 				.getLayoutParams();
-		final int x = DynamicAppUtils.getDPI(param.get("posX", 0));
-		final int y = DynamicAppUtils.getDPI(param.get("posY", 0));
-		final int w = DynamicAppUtils.getDPI(param.get("width", 320));
-		final int h = DynamicAppUtils.getDPI(param.get("height", 180));
+		final int x = Utilities.getDPI(param.get("posX", 0));
+		final int y = Utilities.getDPI(param.get("posY", 0));
+		final int w = Utilities.getDPI(param.get("width", 320));
+		final int h = Utilities.getDPI(param.get("height", 180));
 		layoutparam.leftMargin = x;
 		layoutparam.topMargin = y;
 		frameX = x;
 		frameY = y;
 
-		DynamicAppActivity.mMainThreadHandler.post(new Runnable() {
+		DynamicAppActivity.handler.post(new Runnable() {
 			@Override
 			public void run() {
 				mVideoView.setLayoutParams(layoutparam);
@@ -343,7 +355,7 @@ public class Movie extends DynamicAppPlugin {
 
 				if (controlStyle > 0) {
 					MediaController mediaController = new MediaController(
-							dynamicApp);
+							mainActivity);
 					mediaController.setMediaPlayer(mVideoView);
 					mVideoView.setMediaController(mediaController);
 				}
@@ -360,11 +372,11 @@ public class Movie extends DynamicAppPlugin {
 					mVideoView.setVideoURI(Uri.parse(movieFile));
 				} else {
 					isSourceURL = false;
-					String path = DynamicAppUtils.makePath(movieFile);
+					String path = Utilities.makePath(movieFile);
 					DebugLog.e(TAG, "[video] try:" + path);
 					if (new File(path).exists()) {
 						mVideoView.setVideoPath(path);
-						DebugLog.i(TAG, "set video path");
+						DebugLog.w(TAG, "set video path");
 					} else {
 						processError(ERROR_ABORTED);
 					}
@@ -379,7 +391,7 @@ public class Movie extends DynamicAppPlugin {
 	public void playVideo() {
 		String script = "DynamicApp.Movie.onStatus(\"" + mediaId + "\","
 				+ Movie.MOVIE_STATE + "," + Movie.MOVIE_STARTING + ");";
-		dynamicApp.callJsEvent(script);
+		mainActivity.callJsEvent(script);
 		setVideo();
 	}
 
@@ -387,19 +399,19 @@ public class Movie extends DynamicAppPlugin {
 	 * Start playing the movie.
 	 */
 	public void startVideo() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		mVideoView.start();
 		isPaused = false;
 		String script = "DynamicApp.Movie.onStatus(\"" + mediaId + "\","
 				+ Movie.MOVIE_STATE + "," + Movie.MOVIE_RUNNING + ");";
-		dynamicApp.callJsEvent(script);
+		mainActivity.callJsEvent(script);
 	}
 
 	/**
 	 * Stop playing the movie.
 	 */
 	public void stopVideo() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		mVideoView.setVisibility(DynamicAppVideoView.GONE);
 		new Thread() {
 			public void run() {
@@ -411,7 +423,7 @@ public class Movie extends DynamicAppPlugin {
 				String script = "DynamicApp.Movie.onStatus(\"" + mediaId
 						+ "\"," + Movie.MOVIE_STATE + "," + Movie.MOVIE_STOPPED
 						+ ");";
-				dynamicApp.callJsEvent(script);
+				mainActivity.callJsEvent(script);
 			}
 		}.start();
 	}
@@ -420,7 +432,7 @@ public class Movie extends DynamicAppPlugin {
 	 * Pause the movie.
 	 */
 	public void pauseVideo() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		mVideoView.pause();
 		try {
 			jsonObject.put("message", Movie.MOVIE_PAUSED);
@@ -432,18 +444,18 @@ public class Movie extends DynamicAppPlugin {
 	}
 
 	public void release() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		mBGMPlayer.release();
 		String script = "DynamicApp.Movie.onStatus(\"" + mediaId + "\","
 				+ Movie.MOVIE_STATE + "," + Movie.MOVIE_NONE + ");";
-		dynamicApp.callJsEvent(script);
+		mainActivity.callJsEvent(script);
 	}
 
 	/**
 	 * Seek the movie.
 	 */
 	public void seekVideo(final int time) {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		new Thread() {
 			public void run() {
 				mVideoView.seekTo(time * 1000);
@@ -461,7 +473,7 @@ public class Movie extends DynamicAppPlugin {
 	 * Duration of the movie.
 	 */
 	public int getVideoDuration() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		duration = mVideoView.getDuration() / 1000;
 		DebugLog.e(TAG, duration + "");
 		return duration;
@@ -471,7 +483,7 @@ public class Movie extends DynamicAppPlugin {
 	 * Position of the movie.
 	 */
 	public void getVideoPosition() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		position = mVideoView.getCurrentPosition() / 1000;
 		try {
 			jsonObject.put("message", position);
@@ -486,12 +498,12 @@ public class Movie extends DynamicAppPlugin {
 		case ERROR_ABORTED:
 			String script = "DynamicApp.Movie.onStatus(\"" + mediaId + "\","
 					+ Movie.MOVIE_ERROR + ",\"" + ERROR_ABORTED + "\");";
-			dynamicApp.callJsEvent(script);
+			mainActivity.callJsEvent(script);
 			break;
 		case ERROR_NONE_SUPPORTED:
 			script = "DynamicApp.Movie.onStatus(\"" + mediaId + "\","
 					+ Movie.MOVIE_ERROR + ",\"" + ERROR_NONE_SUPPORTED + "\");";
-			dynamicApp.callJsEvent(script);
+			mainActivity.callJsEvent(script);
 			break;
 		}
 	}
@@ -499,7 +511,7 @@ public class Movie extends DynamicAppPlugin {
 	@Override
 	public void onBackKeyDown() {
 		this.stopVideo();
-		DynamicAppUtils.currentCommandRef = null;
+		Utilities.currentCommand = null;
 		instance = null;
 	}
 

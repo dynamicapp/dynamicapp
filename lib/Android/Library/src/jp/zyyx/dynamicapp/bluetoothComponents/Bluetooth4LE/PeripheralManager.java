@@ -1,6 +1,3 @@
-/**
- * 
- */
 package jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE;
 
 import java.util.HashMap;
@@ -8,23 +5,32 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import jp.zyyx.dynamicapp.JSONObjectWrapper;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.Peripheral.OnReadCharacteristicListener;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.Peripheral.OnReadDescriptorListener;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.Peripheral.OnWriteCharacteristicListener;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.Peripheral.OnWriteDescriptorListener;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.plugins.DynamicAppBluetooth4LE;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
 
-/**
- * @author Zyyx
- * @version %I%, %G%
- * @since 1.0
- * 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class PeripheralManager extends DynamicAppPlugin {
+public class PeripheralManager extends Plugin {
 	private static final String TAG = "PeripheralManager";
 
 	private static PeripheralManager instance = null;
@@ -48,68 +54,50 @@ public class PeripheralManager extends DynamicAppPlugin {
 	private OnReadDescriptorListener mOnReadDescriptorListener = null;
 
 	private PeripheralManager() {
+		super();
 		peripheralList = new HashMap<String, Peripheral>();
 		mOnWriteCharacteristicListener = new OnWriteCharacteristicListener() {
-
 			@Override
 			public void onSuccess() {
-				PeripheralManager
-						.onSuccess(new JSONObject(), callbackId, false);
+				PeripheralManager.onSuccess(new JSONObject(), callbackId, false);
 			}
-
 			@Override
 			public void onError() {
 				PeripheralManager.onError("", callbackId);
 			}
-
 		};
 
 		mOnReadCharacteristicListener = new OnReadCharacteristicListener() {
-
 			@Override
 			public void onSuccess(String value) {
 				// TODO Auto-generated method stub
-
 			}
-
 			@Override
 			public void onError() {
 				// TODO Auto-generated method stub
-
 			}
-
 		};
 
 		mOnWriteDescriptorListener = new OnWriteDescriptorListener() {
-
 			@Override
 			public void onSuccess() {
 				// TODO Auto-generated method stub
-
 			}
-
 			@Override
 			public void onError() {
 				// TODO Auto-generated method stub
-
 			}
-
 		};
 
 		mOnReadDescriptorListener = new OnReadDescriptorListener() {
-
 			@Override
 			public void onSuccess(String value) {
 				// TODO Auto-generated method stub
-
 			}
-
 			@Override
 			public void onError() {
 				// TODO Auto-generated method stub
-
 			}
-
 		};
 	}
 
@@ -117,15 +105,14 @@ public class PeripheralManager extends DynamicAppPlugin {
 		if (instance == null) {
 			instance = new PeripheralManager();
 		}
-
 		return instance;
 	}
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is called.");
-		DebugLog.i(TAG, "parameters are: " + params);
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		DebugLog.w(TAG, "method " + methodName + " is called.");
+		DebugLog.w(TAG, "parameters are: " + params);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 
 		if (methodName.equalsIgnoreCase(METHOD_WRITE_CHARACTERISTIC)) {
 			String peripheralData = param.get("peripheralData", "");
@@ -135,7 +122,7 @@ public class PeripheralManager extends DynamicAppPlugin {
 				jsonPeripheralData = new JSONObjectWrapper(peripheralData);
 			} catch (JSONException e) {
 				DynamicAppBluetooth4LE.onError("", callbackId);
-				if (DynamicAppUtils.DEBUG)
+				if (Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 
@@ -160,7 +147,7 @@ public class PeripheralManager extends DynamicAppPlugin {
 				jsonPeripheralData = new JSONObjectWrapper(peripheralData);
 			} catch (JSONException e) {
 				DynamicAppBluetooth4LE.onError("", callbackId);
-				if (DynamicAppUtils.DEBUG)
+				if (Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 
@@ -180,7 +167,7 @@ public class PeripheralManager extends DynamicAppPlugin {
 				jsonPeripheralData = new JSONObjectWrapper(peripheralData);
 			} catch (JSONException e) {
 				DynamicAppBluetooth4LE.onError("", callbackId);
-				if (DynamicAppUtils.DEBUG)
+				if (Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 
@@ -202,7 +189,7 @@ public class PeripheralManager extends DynamicAppPlugin {
 				jsonPeripheralData = new JSONObjectWrapper(peripheralData);
 			} catch (JSONException e) {
 				DynamicAppBluetooth4LE.onError("", callbackId);
-				if (DynamicAppUtils.DEBUG)
+				if (Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 

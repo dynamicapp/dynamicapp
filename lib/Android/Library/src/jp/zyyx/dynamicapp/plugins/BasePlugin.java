@@ -1,27 +1,33 @@
 package jp.zyyx.dynamicapp.plugins;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
 
-/**
- * <p>
- * BasePlugin handles unimplemented classes which classes are already
- * implemented in DynamicApp.js. It logs that the class is unimplemented and
- * returns a javascript processing false.
- * </p>
- * 
- * @author Zyyx
- * @version %I%, %G%
- * @since 1.0
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public final class BasePlugin extends DynamicAppPlugin {
+public class BasePlugin extends Plugin {
 	private static final String TAG = "BasePlugin";
 	private static BasePlugin instance = null;
 
 	/**
 	 * Constructor for unimplemented plug-ins
 	 */
-	public BasePlugin() {}
+	private BasePlugin() {
+		super();
+	}
 
 	/**
 	 * @return the base plug-in instance
@@ -35,8 +41,9 @@ public final class BasePlugin extends DynamicAppPlugin {
 
 	@Override
 	public void execute() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
-		DebugLog.i(TAG, "Class not yet implemented.");
+		mainActivity.callJsEvent(PROCESSING_FALSE);
+		DebugLog.w(TAG, "Class not yet implemented.");
 		instance = null;
 	}
 }
+

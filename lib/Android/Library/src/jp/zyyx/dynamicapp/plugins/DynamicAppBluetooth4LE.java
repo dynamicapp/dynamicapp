@@ -1,11 +1,5 @@
 package jp.zyyx.dynamicapp.plugins;
 
-/**
- * @author		Zyyx
- * @version     %I%, %G%
- * @since       1.0
- *
- */
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -13,14 +7,14 @@ import org.json.JSONException;
 
 import com.broadcom.bt.le.api.BleAdapter;
 
-import jp.zyyx.dynamicapp.JSONObjectWrapper;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.Peripheral;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.PeripheralManager;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.ClientProfile.*;
 import jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE.ClientService.BtLE4ClientServices;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -34,7 +28,22 @@ import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.os.Parcelable;
 
-public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+public class DynamicAppBluetooth4LE extends Plugin {
 	private static final String TAG = "DynamicAppBluetooth4LE";
 
 	private static DynamicAppBluetooth4LE instance = null;
@@ -175,6 +184,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 
 */
 	private DynamicAppBluetooth4LE() {
+		super();
 		mBtAdapter = BluetoothAdapter.getDefaultAdapter();
 		deviceList = new ArrayList<BluetoothDevice>();
 		peripheralManager = PeripheralManager.getInstance();
@@ -192,7 +202,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		final int OK = Activity.RESULT_OK;
 		if (requestCode == ACTIVITY_REQUEST_CD_PAIR_DEVICE) {
-			DebugLog.i(TAG, "intent: "+ intent);
+			DebugLog.w(TAG, "intent: "+ intent);
 		} else if(requestCode == ACTIVITY_REQUEST_CD_ENABLE_BT) {
 			if(resultCode == OK) {
 				this.scanDevices();
@@ -204,7 +214,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 	public void onBackKeyDown() {
 		try {
 			if(isUnregistered) {
-				dynamicApp.unregisterReceiver(mReceiver);
+				mainActivity.unregisterReceiver(mReceiver);
 				isUnregistered = false;
 			}
 		} catch(Exception e) {
@@ -234,7 +244,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
 		filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
 		filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        DynamicAppUtils.dynamicAppActivityRef.registerReceiver(mReceiver, filter);
+        Utilities.dynamicAppActivityRef.registerReceiver(mReceiver, filter);
         isUnregistered = true;
         //populateList();
 	}
@@ -242,7 +252,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 	public void unregisterReceiver() {
 		try {
 			if(isUnregistered) {
-				DynamicAppUtils.dynamicAppActivityRef.unregisterReceiver(mReceiver);
+				Utilities.dynamicAppActivityRef.unregisterReceiver(mReceiver);
 				isUnregistered = false;
 			}
 		} catch(Exception e) {
@@ -252,9 +262,9 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is called.");
-		DebugLog.i(TAG, "parameters are: " + params);
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		DebugLog.w(TAG, "method " + methodName + " is called.");
+		DebugLog.w(TAG, "parameters are: " + params);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		
 		if (methodName.equalsIgnoreCase(METHOD_SCAN)) {
 			this.serviceList = new ArrayList<String>();
@@ -282,7 +292,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 				jsonPeripheralData = new JSONObjectWrapper(peripheralData);
 			} catch (JSONException e) {
 				DynamicAppBluetooth4LE.onError("", callbackId);
-				if(DynamicAppUtils.DEBUG)
+				if(Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 			
@@ -302,7 +312,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 				jsonPeripheralData = new JSONObjectWrapper(peripheralData);
 			} catch (JSONException e) {
 				DynamicAppBluetooth4LE.onError("", callbackId);
-				if(DynamicAppUtils.DEBUG)
+				if(Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 			
@@ -322,7 +332,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 				jsonPeripheralData = new JSONObjectWrapper(peripheralData);
 			} catch (JSONException e) {
 				DynamicAppBluetooth4LE.onError("", callbackId);
-				if(DynamicAppUtils.DEBUG)
+				if(Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 			
@@ -382,12 +392,12 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
             String action = intent.getAction();
            
             if (methodName != null && BluetoothDevice.ACTION_FOUND.equals(action)) {
-            	DebugLog.i(TAG, "Found device.");
+            	DebugLog.w(TAG, "Found device.");
                 byte deviceType = intent.getByteExtra(BleAdapter.EXTRA_DEVICE_TYPE, BleAdapter.DEVICE_TYPE_BREDR);
                 String type = String.valueOf(deviceType);
-                DebugLog.i(TAG, "deviceType :" + type);
+                DebugLog.w(TAG, "deviceType :" + type);
                 type = String.valueOf(BleAdapter.DEVICE_TYPE_BLE);
-                DebugLog.i(TAG, "BleAdapter.DEVICE_TYPE_BLE :" + type);
+                DebugLog.w(TAG, "BleAdapter.DEVICE_TYPE_BLE :" + type);
  //               if (deviceType == BleAdapter.DEVICE_TYPE_BLE) {
                 	BluetoothDevice device = intent
 						.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -395,7 +405,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 						.getName() : "unknown";
 //					String address = device.getAddress();
 				
-					DebugLog.i(TAG, "deviceName :" + deviceName);
+					DebugLog.w(TAG, "deviceName :" + deviceName);
 
 					if (Build.VERSION.SDK_INT >= 15) {
 						device.fetchUuidsWithSdp();
@@ -410,7 +420,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
             }
            
             if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-            	DebugLog.i(TAG, "Device scan is finished.");
+            	DebugLog.w(TAG, "Device scan is finished.");
                 // hide loading screen
                 if (deviceList.size() == 0) {
                    // no devices are found.                    
@@ -422,7 +432,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
             }
             
             if (BleAdapter.ACTION_UUID.equals(action)) {
-            	DebugLog.i(TAG, "ACTION_UUID.");
+            	DebugLog.w(TAG, "ACTION_UUID.");
                 Bundle bundle = intent.getExtras();
                 Parcelable[] uuids = bundle.getParcelableArray(BluetoothDevice.EXTRA_UUID);
                 if(uuids != null) {
@@ -431,7 +441,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 	                    
 	                    if(isSearching(uuid.toString())) {
 		                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-		                    DebugLog.i(TAG, "Device name:" +device.getName() + ", uuid: " + uuid.toString());
+		                    DebugLog.w(TAG, "Device name:" +device.getName() + ", uuid: " + uuid.toString());
 		                    
 		                    Peripheral peripheral = new Peripheral(device.getName(), device.getAddress());
 	                    	peripheral.setState(STATE_AVAILABLE, true);
@@ -445,7 +455,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
             
             if (BluetoothDevice.ACTION_ACL_CONNECTED
 					.equals(action)) {
-				DebugLog.i(TAG, "device is about to connect...");
+				DebugLog.w(TAG, "device is about to connect...");
 				BluetoothDevice device = intent
 						.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				String deviceName = (device.getName() != null) ? device
@@ -521,11 +531,11 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 	
 	private void scanDevices() {
 		if (mBtAdapter == null) {
-			DebugLog.i(TAG, "Bluetooth is unsupported.");
+			DebugLog.w(TAG, "Bluetooth is unsupported.");
 		} else {
 			if (mBtAdapter.isEnabled()) {
 				makeDeviceAlwaysDiscoverable();
-				DebugLog.i(TAG, "Bluetooth is enabled");
+				DebugLog.w(TAG, "Bluetooth is enabled");
 				mBtAdapter.startDiscovery();
 			} else {
 				this.enableBluetoothByIntent();
@@ -537,13 +547,13 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
     	Intent discoverableIntent = new
 		Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
 		discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 3600);
-		dynamicApp.startActivity(discoverableIntent);
+		mainActivity.startActivity(discoverableIntent);
     }
 	
 	private void enableBluetoothByIntent() {
 		Intent enableBtIntent = new Intent(
 				BluetoothAdapter.ACTION_REQUEST_ENABLE);
-		dynamicApp.startActivityForResult(enableBtIntent,
+		mainActivity.startActivityForResult(enableBtIntent,
 				ACTIVITY_REQUEST_CD_ENABLE_BT);
 	}
 	
@@ -552,7 +562,7 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 
 		// TODO connect to peripheral
 		String address = peripheral.getId();
-		DebugLog.i(TAG, "address:" + address);
+		DebugLog.w(TAG, "address:" + address);
 //		BluetoothDevice device = mBtAdapter.getRemoteDevice(address);
     	peripheral.setState(STATE_CONNECTED, true);
     	
@@ -606,27 +616,27 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 
 		if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_ALERT_NOTIFICATION)) 
 		{
-			profile = new AlertNotificationProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new AlertNotificationProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_BATTERY_SERVICE) || 
 				service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_HUMAN_INTERFACE_DEVICE)) 
 		{
-			profile = new HIDOVERGATTProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new HIDOVERGATTProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_BLOOD_PRESSURE) || 
 				service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_DEVICE_INFORMATION)) 
 		{
-			profile = new BloodPressureProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new BloodPressureProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_CURRENT_TIME) || 
 				service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_REFERENCE_TIME_UPDATE) || 
 				service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_NEXT_DST_CHANGE)) 
 		{
-			profile = new TimeProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new TimeProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_CYCLINGSPEED_AND_CADENCE)) 
 		{
-			profile = new CyclingSpeedAndCadenceProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new CyclingSpeedAndCadenceProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_GENERIC_ACCESS)) 
 		{
@@ -638,32 +648,32 @@ public class DynamicAppBluetooth4LE extends DynamicAppPlugin {
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_GLUCOSE)) 
 		{
-			profile = new GlucoseProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new GlucoseProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_HEALTH_THERMOMETER)) 
 		{
-			profile = new HealthThermometerProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new HealthThermometerProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_HEART_RATE)) 
 		{
-			profile = new HeartRateProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new HeartRateProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_IMMEDIATE_ALERT)) 
 		{
-			profile = new FindMeProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new FindMeProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_HUMAN_LINK_LOSS) || 
 				service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_TX_POWER)) 
 		{
-			profile = new ProximityProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new ProximityProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_PHONE_ALERT_STATUS)) 
 		{
-			profile = new PhoneAlertStatusProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new PhoneAlertStatusProfileClient(Utilities.dynamicAppActivityRef);
 		} 
 		else if(service.equalsIgnoreCase(BtLE4ClientServices.SERVICE_SCAN_PARAMETERS)) 
 		{
-			profile = new ScanParametersProfileClient(DynamicAppUtils.dynamicAppActivityRef);
+			profile = new ScanParametersProfileClient(Utilities.dynamicAppActivityRef);
 		}
 
 		return profile;
