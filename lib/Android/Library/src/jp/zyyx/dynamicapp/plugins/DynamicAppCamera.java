@@ -15,16 +15,27 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Base64;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.plugins.activity.CameraActivity;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 
-/**
- * @author Zyyx
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class DynamicAppCamera extends DynamicAppPlugin {
+public class DynamicAppCamera extends Plugin {
 	private static final String TAG = "DynamicAppCamera";
 
 	private static final int SOURCE_TYPE_PHOTOLIBRARY = 0;
@@ -43,7 +54,9 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 	public static int targetWidth = -1;
 	public static int encodingType = 0;
 	
-    private DynamicAppCamera() {}
+	private DynamicAppCamera() {
+		super();
+	}
 
     /**
      * @return	DynamicAppCamera instance
@@ -58,14 +71,14 @@ public class DynamicAppCamera extends DynamicAppPlugin {
      
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is called.");
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "method " + methodName + " is called.");
+		DebugLog.w(TAG, "parameters are: " + params);
 
 		if (methodName.equalsIgnoreCase("getPicture")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.getPicture();
 		} else if(methodName.equalsIgnoreCase("recordVideo")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.captureVideo();
 		}
 	}
@@ -81,7 +94,7 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 		encodingType = param.get("encodingType", 0);
 		int sourceType = param.get("sourceType", 1);
 		
-		DebugLog.i(TAG, "source type:" + sourceType);
+		DebugLog.w(TAG, "source type:" + sourceType);
 		
 		switch(sourceType) {
 			case SOURCE_TYPE_PHOTOLIBRARY:
@@ -89,18 +102,18 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 				Intent intent = new Intent();
 				intent.setType("image/*");
 				intent.setAction(Intent.ACTION_GET_CONTENT);
-				dynamicApp.startActivityForResult(
+				mainActivity.startActivityForResult(
 						Intent.createChooser(intent, "Select Picture"), 1);
 				break;
 			case SOURCE_TYPE_CAMERA:
-				Intent intent2 = new Intent(dynamicApp, CameraActivity.class);
+				Intent intent2 = new Intent(mainActivity, CameraActivity.class);
 				intent2.putExtra("quality", quality);
 				intent2.putExtra("destinationType", destinationType);
 				intent2.putExtra("sourceType", sourceType);
 				intent2.putExtra("targetHeight", targetHeight);
 				intent2.putExtra("targetWidth", targetWidth);
 				intent2.putExtra("encodingType", encodingType);
-				dynamicApp.startActivity(intent2);
+				mainActivity.startActivity(intent2);
 				break;
 		}
 	}
@@ -115,7 +128,7 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 	}
 	
 	public static boolean isIntentAvailable(String action) {
-	    final PackageManager packageManager = dynamicApp.getPackageManager();
+	    final PackageManager packageManager = mainActivity.getPackageManager();
 	    final Intent intent = new Intent(action);
 	    List<ResolveInfo> list =
 	        packageManager.queryIntentActivities(intent,
@@ -125,15 +138,15 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 	
 	private void dispatchTakeVideoIntent() {
 	    Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-	    dynamicApp.startActivityForResult(takeVideoIntent, ACTIVITY_REQUEST_CD_TAKE_VIDEO);
+	    mainActivity.startActivityForResult(takeVideoIntent, ACTIVITY_REQUEST_CD_TAKE_VIDEO);
 	}
 	
 	private void handleCameraVideo(Intent intent) {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 	    Uri mVideoUri = intent.getData();
-	    DebugLog.i(TAG, "video uri: " + mVideoUri);
+	    DebugLog.w(TAG, "video uri: " + mVideoUri);
 	    String videoID =  mVideoUri.getPathSegments().get(3);
-	    DebugLog.i(TAG, "videoID: " + videoID);
+	    DebugLog.w(TAG, "videoID: " + videoID);
 
 	    onSuccess(mVideoUri.toString(), callbackId, false);
 	}
@@ -144,12 +157,12 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 	 */
 	public static void onSuccessResult(String data) {
 		DynamicAppCamera.onSuccess(data, callbackId, false);
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 	}
 	
 	public static void onError(String data) {
 		DynamicAppCamera.onError(data , callbackId);
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 	
 	}
 	
@@ -157,12 +170,12 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 	 * 
 	 */
 	public static void onCancel() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 	}
 	
 	@Override
 	public void onBackKeyDown() {
-		DynamicAppUtils.currentCommandRef = null;
+		Utilities.currentCommand = null;
 		instance = null;
 	}
 	
@@ -183,7 +196,7 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 		        		selectedImage = intent.getData();
 			            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 	
-			            Cursor cursor = dynamicApp.getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+			            Cursor cursor = mainActivity.getContentResolver().query(selectedImage, filePathColumn, null, null, null);
 			            cursor.moveToFirst();
 	
 			            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
@@ -221,7 +234,7 @@ public class DynamicAppCamera extends DynamicAppPlugin {
 			if(resultCode == RESULT_OK) {
 				handleCameraVideo(intent);
 			} else {
-				dynamicApp.callJsEvent(PROCESSING_FALSE);
+				mainActivity.callJsEvent(PROCESSING_FALSE);
 			}
 		}
 	}

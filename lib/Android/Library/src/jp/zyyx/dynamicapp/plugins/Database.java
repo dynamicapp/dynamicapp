@@ -1,11 +1,12 @@
 package jp.zyyx.dynamicapp.plugins;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,22 +14,39 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 
-public class Database extends DynamicAppPlugin {
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+public class Database extends Plugin {
 	private final static int SQLITE_ERROR = 1;
-	
+
 	private SQLiteDatabase dbHandle;
 	private SQLiteHelper sqliteHelper;
 	private static Database instance = null;
 	
-	private Database() {}
+	private Database() {
+		super();
+	}
 	
 	public static synchronized Database getInstance() {
         if (instance == null) {
-	            instance = new Database();
+        	instance = new Database();
 	    }
 	    return instance;
 	}
-	
+
 	@Override
 	public void execute() {
 		if (methodName.equalsIgnoreCase("init")) {
@@ -38,10 +56,10 @@ public class Database extends DynamicAppPlugin {
 		} else if (methodName.equalsIgnoreCase("close")) {
 			this.close();
 		} else {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 		}
 	}
-	
+
 	private void open() {
 		String dbName = param.get("dbName", "");
 		/*File dbPath = new File(DynamicAppUtils.makePath("db"));
@@ -55,10 +73,10 @@ public class Database extends DynamicAppPlugin {
 			sqliteHelper = null;
 		}
 		
-		sqliteHelper = new SQLiteHelper(dynamicApp.getApplicationContext(), dbName, null, 1);
+		sqliteHelper = new SQLiteHelper(mainActivity.getApplicationContext(), dbName, null, 1);
 		dbHandle = sqliteHelper.getWritableDatabase();
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(dbHandle.isOpen()) {
 			onSuccess();
 		} else {
@@ -72,7 +90,7 @@ public class Database extends DynamicAppPlugin {
 			sqliteHelper = null;
 		}
 		
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(!dbHandle.isOpen()) {
 			onSuccess();
 		} else {
@@ -80,6 +98,7 @@ public class Database extends DynamicAppPlugin {
 		}
 	}
 	
+	@SuppressLint("NewApi")
 	private void executeSQL() {
 		String sqlQuery = param.get("sql", "");
 		boolean isSelectQuery = Boolean.valueOf(param.get("isSelectQuery","false"));
@@ -116,7 +135,7 @@ public class Database extends DynamicAppPlugin {
 						while (!cursor.isAfterLast()) {
 							JSONObject row = new JSONObject();
 							for (int i = 0; i < numResultColumns; i++) {
-								int type;
+								int type = 0;
 								if(typesFlag) {
 									String cType = typesCursor.getString(i);
 									if(cType.equalsIgnoreCase("INTEGER")) {
@@ -130,7 +149,7 @@ public class Database extends DynamicAppPlugin {
 									} else {
 										type = Cursor.FIELD_TYPE_NULL;
 									}
-								} else {
+								} else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 									type = cursor.getType(i);
 								}
 
@@ -181,7 +200,7 @@ public class Database extends DynamicAppPlugin {
 			}
 		}
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(resultSet != null) {
 			Database.onSuccess(resultSet, callbackId, false);
 		} else {

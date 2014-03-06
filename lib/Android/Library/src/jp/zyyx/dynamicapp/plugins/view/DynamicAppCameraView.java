@@ -6,7 +6,7 @@ import java.io.IOException;
 import jp.zyyx.dynamicapp.plugins.DynamicAppCamera;
 import jp.zyyx.dynamicapp.plugins.activity.CameraActivity;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -23,9 +23,20 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
-/**
- * @author Zyyx
- * 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 public class DynamicAppCameraView extends SurfaceView implements Callback, PictureCallback {
 	private static final String TAG = "DynamicAppCameraView";
@@ -68,7 +79,7 @@ public class DynamicAppCameraView extends SurfaceView implements Callback, Pictu
 			int height) {
 		Camera.Parameters p = camera.getParameters();
 		if (Build.VERSION.SDK_INT >= 8)
-			rotation = DynamicAppUtils.setCameraDisplayOrientation(activity, 0, camera);
+			rotation = Utilities.setCameraDisplayOrientation(activity, 0, camera);
 		else {
 			if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 				p.set("orientation", "portrait");
@@ -174,7 +185,7 @@ public class DynamicAppCameraView extends SurfaceView implements Callback, Pictu
 	        	case DESTINATION_TYPE_FILE_URI:
 	        		if(mCapturedImageURI != null)
 	        		{
-	        			DebugLog.i(TAG, "image uri:"+ mCapturedImageURI);
+	        			DebugLog.w(TAG, "image uri:"+ mCapturedImageURI);
 		        		DynamicAppCamera.onSuccessResult(mCapturedImageURI);
 	        		}
 	        		else

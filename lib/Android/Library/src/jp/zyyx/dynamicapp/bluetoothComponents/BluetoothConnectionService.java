@@ -1,6 +1,3 @@
-/**
- * 
- */
 package jp.zyyx.dynamicapp.bluetoothComponents;
 
 import java.io.IOException;
@@ -22,11 +19,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-/**
- * @author		Zyyx
- * @version     %I%, %G%
- * @since       1.0
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 public class BluetoothConnectionService {
 	private static final String TAG = "BluetoothConnectionService";
@@ -82,7 +88,7 @@ public class BluetoothConnectionService {
 	}
 
     private synchronized void setState(int state) {
-        DebugLog.i(TAG, "setState() " + mState + " -> " + state);
+        DebugLog.w(TAG, "setState() " + mState + " -> " + state);
         mState = state;
 
         mHandler.obtainMessage(DynamicAppBluetooth.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
@@ -93,12 +99,12 @@ public class BluetoothConnectionService {
     }
 
     public synchronized void start() {
-    	DebugLog.i(TAG, "start");
+    	DebugLog.w(TAG, "start");
 
         setState(STATE_LISTEN);
 
         if (mSecureAcceptThread == null) {
-        	DebugLog.i(TAG, "starting accept thread...");
+        	DebugLog.w(TAG, "starting accept thread...");
             mSecureAcceptThread = new AcceptThread();
             mSecureAcceptThread.start();
         }
@@ -106,7 +112,7 @@ public class BluetoothConnectionService {
     }
 
     public synchronized void connect(BluetoothDevice device) {
-    	DebugLog.i(TAG, "connect to: " + device);
+    	DebugLog.w(TAG, "connect to: " + device);
 
         mConnectThread = new ConnectThread(device);
         mConnectThread.start();
@@ -136,7 +142,7 @@ public class BluetoothConnectionService {
      * Stop all threads
      */
     public synchronized void stop() {
-    	DebugLog.i(TAG, "stop");
+    	DebugLog.w(TAG, "stop");
 
         if (mConnectThread != null) {
             mConnectThread.cancel();
@@ -181,7 +187,7 @@ public class BluetoothConnectionService {
     	btSockets.remove(addressToStop);
     	btDeviceAddresses.remove(addressToStop);
 		
-    	DebugLog.i(TAG, "stop");
+    	DebugLog.w(TAG, "stop");
     	
     	int size = connectedThreads.size();
     	
@@ -230,7 +236,7 @@ public class BluetoothConnectionService {
         if(r != null) {
         	r.write(out);
         } else {
-        	DebugLog.i(TAG, "write thread not connected");
+        	DebugLog.w(TAG, "write thread not connected");
         }
     }
 
@@ -282,7 +288,7 @@ public class BluetoothConnectionService {
 		public void run() {
 			mAdapter.cancelDiscovery();
 			try {
-				DebugLog.i(TAG, "start of AcceptThread:");
+				DebugLog.w(TAG, "start of AcceptThread:");
 				for (int i = 0; (i < MAX_CONNECTIONS) && (connections < MAX_CONNECTIONS);) {
 					
 					String uid = uuidList.get(i);
@@ -295,7 +301,7 @@ public class BluetoothConnectionService {
 							
 						if (socket != null) {
 							synchronized (BluetoothConnectionService.this) {
-								DebugLog.i(TAG, "AcceptThread:" + i);
+								DebugLog.w(TAG, "AcceptThread:" + i);
 								String address = socket.getRemoteDevice().getAddress();
 				                btSockets.put(address, socket);
 				                connections++;
@@ -319,7 +325,7 @@ public class BluetoothConnectionService {
 						i = 0;
 					}
 				}
-				DebugLog.i(TAG, "end of AcceptThread:");
+				DebugLog.w(TAG, "end of AcceptThread:");
 				connectionFullFailure();
 
 			} catch (IOException e) {
@@ -405,7 +411,7 @@ public class BluetoothConnectionService {
         public ConnectedThread(BluetoothDevice device, BluetoothSocket socket) {
         	//BluetoothSocket bSock = btSockets.get(socke);
         	mmDevice = device;
-        	DebugLog.i(TAG, "create ConnectedThread: ");
+        	DebugLog.w(TAG, "create ConnectedThread: ");
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
             // Get the BluetoothSocket input and output streams
@@ -421,7 +427,7 @@ public class BluetoothConnectionService {
         }
 
         public void run() {
-        	DebugLog.i(TAG, "BEGIN mConnectedThread");
+        	DebugLog.w(TAG, "BEGIN mConnectedThread");
         	final int MAX_SIZE = 5242880; 
             byte[] buffer = new byte[MAX_SIZE];
             int bytesRead = -1;
@@ -491,7 +497,7 @@ public class BluetoothConnectionService {
 	 */
 	public void connectionFullFailure() {
 		//this.setState(STATE_FULL);
-		DebugLog.i(TAG, "Sockets are full.");
+		DebugLog.w(TAG, "Sockets are full.");
 	}
 	
 	public void sendMessage(String destination, String message){
@@ -502,7 +508,7 @@ public class BluetoothConnectionService {
                 byte[] stringAsBytes = (message + " ").getBytes();
                 stringAsBytes[stringAsBytes.length - 1] = 0; // Add a stop marker
                 outStream.write(stringAsBytes);
-                DebugLog.i(TAG, "successful sendMessage - Dest:" + destination + ", Msg:" + message);
+                DebugLog.w(TAG, "successful sendMessage - Dest:" + destination + ", Msg:" + message);
                 Message msg = mHandler.obtainMessage(DynamicAppBluetooth.MESSAGE_WRITE);
                 Bundle bundle = new Bundle();
                 bundle.putBoolean(DynamicAppBluetooth.SEND_RESULT, true);

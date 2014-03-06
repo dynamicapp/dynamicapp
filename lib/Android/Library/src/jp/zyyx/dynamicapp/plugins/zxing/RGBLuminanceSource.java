@@ -1,5 +1,14 @@
+package jp.zyyx.dynamicapp.plugins.zxing;
+
+import com.google.zxing.LuminanceSource;
+
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.FileNotFoundException;
+
 /*
- * Copyright 2009 ZXing authors
+ * Copyright (C) 2014 ZYYX, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,22 +21,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
-
-package jp.zyyx.dynamicapp.plugins.zxing;
-
-import com.google.zxing.LuminanceSource;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-import java.io.FileNotFoundException;
-
-/**
- * This class is used to help decode images from files which arrive as RGB data from
- * Android bitmaps. It does not support cropping or rotation.
- *
- * @author dswitkin@google.com (Daniel Switkin)
  */
 public final class RGBLuminanceSource extends LuminanceSource {
 

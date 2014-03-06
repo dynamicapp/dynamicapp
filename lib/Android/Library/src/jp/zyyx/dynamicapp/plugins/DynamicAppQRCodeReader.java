@@ -17,17 +17,28 @@ import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.plugins.activity.QRScannerActivity;
 import jp.zyyx.dynamicapp.plugins.zxing.RGBLuminanceSource;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 
-/**
- * @author Zyyx
- * 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class DynamicAppQRCodeReader extends DynamicAppPlugin {
+public class DynamicAppQRCodeReader extends Plugin {
 	private static final String TAG = "DynamicAppQRCodeReader";
 
 	private static final int ERROR_NO_MATCH_FOUND = 1;
@@ -35,6 +46,7 @@ public class DynamicAppQRCodeReader extends DynamicAppPlugin {
 	private static final int  SCAN_FROM_CAMERA = 0;
 	
 	private DynamicAppQRCodeReader() {
+		super();
 	}
 
 	/**
@@ -53,33 +65,33 @@ public class DynamicAppQRCodeReader extends DynamicAppPlugin {
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is executed.");
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "method " + methodName + " is executed.");
+		DebugLog.w(TAG, "parameters are: " + params);
 		int source = param.get("source", 1);
 		
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if (methodName.equalsIgnoreCase("scan")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 
 			if (source == SCAN_FROM_CAMERA) {
-				PackageManager pm = dynamicApp.getPackageManager();
+				PackageManager pm = mainActivity.getPackageManager();
 				
-				if(!DynamicAppUtils.isEmulator() && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
-					Intent intent = new Intent(dynamicApp, QRScannerActivity.class);
-					dynamicApp.startActivity(intent);
+				if(!Utilities.isEmulator() && pm.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+					Intent intent = new Intent(mainActivity, QRScannerActivity.class);
+					mainActivity.startActivity(intent);
 				} else {
-					dynamicApp.callJsEvent(PROCESSING_FALSE);
+					mainActivity.callJsEvent(PROCESSING_FALSE);
 				}
 				
 			} else {	
 				Intent intent = new Intent();
 				intent.setType("image/*");
 				intent.setAction(Intent.ACTION_GET_CONTENT);
-				dynamicApp.startActivityForResult(
+				mainActivity.startActivityForResult(
 						Intent.createChooser(intent, "Select Picture"), 2);
 			}
 		} else if (methodName.equalsIgnoreCase("executeQRCodeResult")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 		}
 
 	}
@@ -89,7 +101,7 @@ public class DynamicAppQRCodeReader extends DynamicAppPlugin {
 	 *            zxing scan result
 	 */
 	public static void onSuccessResult(Result scanResult) {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		DynamicAppQRCodeReader.onSuccess(scanResult, callbackId, false);
 	}
 
@@ -98,7 +110,7 @@ public class DynamicAppQRCodeReader extends DynamicAppPlugin {
 	 *            string type scan result
 	 */
 	public static void onSuccessResult(String scanResult) {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		DynamicAppQRCodeReader.onSuccess(scanResult, callbackId, false);
 	}
 
@@ -106,7 +118,7 @@ public class DynamicAppQRCodeReader extends DynamicAppPlugin {
 	 * call javascript error callback
 	 */
 	public static void onErrorResult() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		DynamicAppQRCodeReader.onError(ERROR_NO_MATCH_FOUND + "", callbackId);
 	}
 
@@ -119,7 +131,7 @@ public class DynamicAppQRCodeReader extends DynamicAppPlugin {
 				Uri selectedImage = intent.getData();
 	            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-	            Cursor cursor = dynamicApp.getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+	            Cursor cursor = mainActivity.getContentResolver().query(selectedImage, filePathColumn, null, null, null);
 	            cursor.moveToFirst();
 
 	            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);

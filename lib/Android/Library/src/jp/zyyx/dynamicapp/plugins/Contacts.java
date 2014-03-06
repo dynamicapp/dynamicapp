@@ -15,11 +15,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.TargetApi;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderOperation.Builder;
 import android.content.ContentUris;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.CommonDataKinds.Im;
@@ -35,12 +37,27 @@ import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
-import jp.zyyx.dynamicapp.JSONObjectWrapper;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
 
-public class Contacts extends DynamicAppPlugin {
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+public class Contacts extends Plugin {
 	private static final String TAG = "Contacts";
 
 	private static Contacts instance = null;
@@ -144,20 +161,20 @@ public class Contacts extends DynamicAppPlugin {
 	private String id = null;
 
 	private Contacts() {
+		super();
 	}
 
 	public static synchronized Contacts getInstance() {
 		if (instance == null) {
 			instance = new Contacts();
 		}
-
 		return instance;
 	}
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "Method " + methodName + " is called.");
-		DebugLog.i(TAG, "Parameters are " + params);
+		DebugLog.w(TAG, "Method " + methodName + " is called.");
+		DebugLog.w(TAG, "Parameters are " + params);
 
 		if (methodName.equalsIgnoreCase(METHOD_SEARCH)) {
 			this.search();
@@ -168,10 +185,8 @@ public class Contacts extends DynamicAppPlugin {
 		}
 	}
 
-	private void applyBatch(ArrayList<ContentProviderOperation> ops)
-			throws Exception {
-		dynamicApp.getContentResolver().applyBatch(ContactsContract.AUTHORITY,
-				ops);
+	private void applyBatch(ArrayList<ContentProviderOperation> ops) throws Exception {
+		mainActivity.getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);
 	}
 
 	public void search() {
@@ -196,30 +211,23 @@ public class Contacts extends DynamicAppPlugin {
 			}
 
 			whereClause = populateWhereClause(conditions);
-
-			Cursor cur = dynamicApp.getContentResolver().query(
-					Data.CONTENT_URI, null, whereClause.getWhere(),
+			Cursor cur = mainActivity.getContentResolver().query(Data.CONTENT_URI, null, whereClause.getWhere(),
 					whereClause.getWhereParams(), Data.CONTACT_ID + sortOrder);
-
 			idSet = populateContactIdSet(cur);
-
 			whereClause = populateWhereIdClause(idSet);
-
-			cur = dynamicApp.getContentResolver().query(Data.CONTENT_URI, null,
-					whereClause.getWhere(), whereClause.getWhereParams(),
-					Data.CONTACT_ID + sortOrder);
-
+			cur = mainActivity.getContentResolver().query(Data.CONTENT_URI, null, whereClause.getWhere(),
+					whereClause.getWhereParams(), Data.CONTACT_ID + sortOrder);
 			contactsArr = getContacts(cur);
 			cur.close();
 		} catch (Exception e) {
 			ok = false;
 			e.printStackTrace();
 		} finally {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			if (ok) {
 				Contacts.onSuccess(contactsArr, callbackId, false);
 			} else {
-				DebugLog.i(TAG, "result: = " + -1);
+				DebugLog.w(TAG, "result: = " + -1);
 				Contacts.onError("" + ERROR_NO_DATA, callbackId);
 			}
 		}
@@ -229,11 +237,9 @@ public class Contacts extends DynamicAppPlugin {
 		JSONObjectWrapper contact = null;
 		String contactStr = param.get(JSON_KEY_CONTACT, EMPTY);
 		boolean ok = true;
-
 		try {
 			contact = new JSONObjectWrapper(contactStr);
 			id = contact.get(JSON_KEY_CONTACT_ID, EMPTY);
-
 			if (null != id && !EMPTY.equals(id)) {
 				this.update(id, contactStr);
 			} else {
@@ -243,7 +249,7 @@ public class Contacts extends DynamicAppPlugin {
 			ok = false;
 			e.printStackTrace();
 		} finally {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			if (ok) {
 				this.onSuccess();
 			} else {
@@ -261,20 +267,16 @@ public class Contacts extends DynamicAppPlugin {
 		try {
 			contact = new JSONObjectWrapper(contactStr);
 			id = contact.get(JSON_KEY_CONTACT_ID, EMPTY);
-
 			if (null != id && !EMPTY.equals(id)) {
-				ops.add(ContentProviderOperation
-						.newDelete(RawContacts.CONTENT_URI)
-						.withSelection(Data.CONTACT_ID + " = ? ",
-								new String[] { id }).build());
-
+				ops.add(ContentProviderOperation.newDelete(RawContacts.CONTENT_URI)
+						.withSelection(Data.CONTACT_ID + " = ? ", new String[] { id }).build());
 				applyBatch(ops);
 			}
 		} catch (Exception e) {
 			ok = false;
 			e.printStackTrace();
 		} finally {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			if (ok) {
 				this.onSuccess();
 			} else {
@@ -304,19 +306,14 @@ public class Contacts extends DynamicAppPlugin {
 
 			while (cur.moveToNext()) {
 				try {
-					contactId = cur.getString(cur
-							.getColumnIndex(Data.CONTACT_ID));
-					rawContactId = cur.getString(cur
-							.getColumnIndex(Data.RAW_CONTACT_ID));
+					contactId = cur.getString(cur.getColumnIndex(Data.CONTACT_ID));
+					rawContactId = cur.getString(cur.getColumnIndex(Data.RAW_CONTACT_ID));
 
 					if (!prevContactId.equalsIgnoreCase(contactId)) {
 						if (cur.getPosition() > 0) {
-							contactsArr.put(getContact(contact, phoneNumbers,
-									emails, addresses, ims, organizations,
-									photos, urls, categories, prevContactId,
-									rawContactId));
+							contactsArr.put(getContact(contact, phoneNumbers, emails, addresses, ims,
+									organizations, photos, urls, categories, prevContactId, rawContactId));
 						}
-
 						contact = new JSONObject();
 						name = new JSONObject();
 						phoneNumbers = new JSONArray();
@@ -331,7 +328,6 @@ public class Contacts extends DynamicAppPlugin {
 					}
 
 					mimetype = cur.getString(cur.getColumnIndex(Data.MIMETYPE));
-
 					if (StructuredName.CONTENT_ITEM_TYPE
 							.equalsIgnoreCase(mimetype)) {
 						name = getName(cur);
@@ -395,7 +391,6 @@ public class Contacts extends DynamicAppPlugin {
 			JSONArray organizations, JSONArray photos, JSONArray urls,
 			JSONArray categories, String contactId, String rawContactId)
 			throws JSONException {
-
 		contact.put(JSON_KEY_CONTACT_ID, contactId);
 		contact.put(JSON_KEY_RAW_CONTACT_ID, rawContactId);
 		contact.put(JSON_KEY_CONTACT_PHONE_NUMBER, phoneNumbers);
@@ -406,25 +401,18 @@ public class Contacts extends DynamicAppPlugin {
 		contact.put(JSON_KEY_CONTACT_PHOTO, photos);
 		contact.put(JSON_KEY_CONTACT_URL, urls);
 		contact.put(JSON_KEY_CONTACT_CATEGORY, categories);
-
 		return contact;
 	}
 
 	private JSONObject getName(Cursor cur) throws JSONException {
 		JSONObject name = new JSONObject();
 		StringBuffer formmattedName = new StringBuffer(EMPTY);
-		String displayName = cur.getString(cur
-				.getColumnIndex(StructuredName.DISPLAY_NAME));
-		String prefix = cur
-				.getString(cur.getColumnIndex(StructuredName.PREFIX));
-		String firstName = cur.getString(cur
-				.getColumnIndex(StructuredName.GIVEN_NAME));
-		String middleName = cur.getString(cur
-				.getColumnIndex(StructuredName.MIDDLE_NAME));
-		String lastName = cur.getString(cur
-				.getColumnIndex(StructuredName.FAMILY_NAME));
-		String suffix = cur
-				.getString(cur.getColumnIndex(StructuredName.SUFFIX));
+		String displayName = cur.getString(cur.getColumnIndex(StructuredName.DISPLAY_NAME));
+		String prefix = cur.getString(cur.getColumnIndex(StructuredName.PREFIX));
+		String firstName = cur.getString(cur.getColumnIndex(StructuredName.GIVEN_NAME));
+		String middleName = cur.getString(cur.getColumnIndex(StructuredName.MIDDLE_NAME));
+		String lastName = cur.getString(cur.getColumnIndex(StructuredName.FAMILY_NAME));
+		String suffix = cur.getString(cur.getColumnIndex(StructuredName.SUFFIX));
 
 		name.put(JSON_KEY_CONTACT_DISPLAY_NAME, displayName);
 		name.put(JSON_KEY_CONTACT_FAMILY_NAME, lastName);
@@ -436,19 +424,15 @@ public class Contacts extends DynamicAppPlugin {
 		if (null != prefix) {
 			formmattedName.append(prefix + " ");
 		}
-
 		if (null != firstName) {
 			formmattedName.append(firstName + " ");
 		}
-
 		if (null != middleName) {
 			formmattedName.append(middleName + " ");
 		}
-
 		if (null != lastName) {
 			formmattedName.append(lastName + " ");
 		}
-
 		if (null != suffix) {
 			formmattedName.append(suffix);
 		}
@@ -460,7 +444,6 @@ public class Contacts extends DynamicAppPlugin {
 		middleName = null;
 		prefix = null;
 		suffix = null;
-
 		return name;
 	}
 
@@ -468,45 +451,36 @@ public class Contacts extends DynamicAppPlugin {
 		JSONObject phoneNumber = new JSONObject();
 		String type = cur.getString(cur.getColumnIndex(Phone.TYPE));
 		String number = cur.getString(cur.getColumnIndex(Phone.NUMBER));
-
 		phoneNumber.put(JSON_KEY_PHONE_NUMBER_TYPE, type);
 		phoneNumber.put(JSON_KEY_PHONE_NUMBER, number);
-
 		type = null;
 		number = null;
-
 		return phoneNumber;
 	}
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private JSONObject getEmail(Cursor cur) throws JSONException {
 		JSONObject email = new JSONObject();
-		String type = cur.getString(cur.getColumnIndex(Email.TYPE));
-		String address = cur.getString(cur.getColumnIndex(Email.ADDRESS));
-
-		email.put(JSON_KEY_EMAIL_TYPE, type);
-		email.put(JSON_KEY_EMAIL, address);
-
-		type = null;
-		address = null;
-
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			String type = cur.getString(cur.getColumnIndex(Email.TYPE));
+			String address = cur.getString(cur.getColumnIndex(Email.ADDRESS));
+			email.put(JSON_KEY_EMAIL_TYPE, type);
+			email.put(JSON_KEY_EMAIL, address);
+			type = null;
+			address = null;
+		}
 		return email;
 	}
 
 	private JSONObject getAddress(Cursor cur) throws JSONException {
 		JSONObject address = new JSONObject();
 		String type = cur.getString(cur.getColumnIndex(StructuredPostal.TYPE));
-		String formatted = cur.getString(cur
-				.getColumnIndex(StructuredPostal.FORMATTED_ADDRESS));
-		String street = cur.getString(cur
-				.getColumnIndex(StructuredPostal.STREET));
-		String locality = cur.getString(cur
-				.getColumnIndex(StructuredPostal.CITY));
-		String region = cur.getString(cur
-				.getColumnIndex(StructuredPostal.REGION));
-		String postalCode = cur.getString(cur
-				.getColumnIndex(StructuredPostal.POSTCODE));
-		String country = cur.getString(cur
-				.getColumnIndex(StructuredPostal.COUNTRY));
+		String formatted = cur.getString(cur.getColumnIndex(StructuredPostal.FORMATTED_ADDRESS));
+		String street = cur.getString(cur.getColumnIndex(StructuredPostal.STREET));
+		String locality = cur.getString(cur.getColumnIndex(StructuredPostal.CITY));
+		String region = cur.getString(cur.getColumnIndex(StructuredPostal.REGION));
+		String postalCode = cur.getString(cur.getColumnIndex(StructuredPostal.POSTCODE));
+		String country = cur.getString(cur.getColumnIndex(StructuredPostal.COUNTRY));
 
 		address.put(JSON_KEY_CONTACT_FORMATTED_ADDRESS, formatted);
 		address.put(JSON_KEY_ADDRESS_TYPE, type);
@@ -523,7 +497,6 @@ public class Contacts extends DynamicAppPlugin {
 		region = null;
 		postalCode = null;
 		country = null;
-
 		return address;
 	}
 
@@ -531,21 +504,17 @@ public class Contacts extends DynamicAppPlugin {
 		JSONObject im = new JSONObject();
 		String type = cur.getString(cur.getColumnIndex(Im.TYPE));
 		String address = cur.getString(cur.getColumnIndex(Im.DATA));
-
 		im.put(JSON_KEY_IM_TYPE, type);
 		im.put(JSON_KEY_IM, address);
-
 		type = null;
 		address = null;
-
 		return im;
 	}
 
 	private JSONObject getOrganization(Cursor cur) throws JSONException {
 		JSONObject org = new JSONObject();
 		String type = cur.getString(cur.getColumnIndex(Organization.TYPE));
-		String department = cur.getString(cur
-				.getColumnIndex(Organization.DEPARTMENT));
+		String department = cur.getString(cur.getColumnIndex(Organization.DEPARTMENT));
 		String title = cur.getString(cur.getColumnIndex(Organization.TITLE));
 		String name = cur.getString(cur.getColumnIndex(Organization.COMPANY));
 
@@ -558,17 +527,14 @@ public class Contacts extends DynamicAppPlugin {
 		department = null;
 		title = null;
 		name = null;
-
 		return org;
 	}
 
 	private JSONObject getPhoto(Cursor cur) throws JSONException {
 		JSONObject photo = new JSONObject();
 		String id = cur.getString(cur.getColumnIndex(Photo._ID));
-		Uri person = ContentUris.withAppendedId(
-				ContactsContract.Contacts.CONTENT_URI, (Long.valueOf(id)));
-		Uri photoUri = Uri.withAppendedPath(person,
-				ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
+		Uri person = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, (Long.valueOf(id)));
+		Uri photoUri = Uri.withAppendedPath(person,ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
 
 		photo.put("type", "url");
 		photo.put("value", photoUri.toString());
@@ -576,30 +542,23 @@ public class Contacts extends DynamicAppPlugin {
 		id = null;
 		person = null;
 		photoUri = null;
-
 		return photo;
 	}
 
 	private JSONObject getUrl(Cursor cur) throws JSONException {
 		JSONObject url = new JSONObject();
 		String site = cur.getString(cur.getColumnIndex(Website.URL));
-
 		url.put(JSON_KEY_URL, site);
-
 		site = null;
-
 		return url;
 	}
 
 	private JSONObject getCategory(Cursor cur) throws JSONException {
 		JSONObject category = new JSONObject();
-		String cat = cur.getString(cur
-				.getColumnIndex(GroupMembership.GROUP_ROW_ID));
+		String cat = cur.getString(cur.getColumnIndex(GroupMembership.GROUP_ROW_ID));
 
 		category.put(JSON_KEY_CATEGORY, cat);
-
 		cat = null;
-
 		return category;
 	}
 
@@ -783,10 +742,8 @@ public class Contacts extends DynamicAppPlugin {
 
 	private void insert(String contact) throws Exception {
 		ops = new ArrayList<ContentProviderOperation>();
-		boolean isUpdate = false;
-
 		try {
-			ops = this.setRawContact(ops, isUpdate);
+			ops = this.setRawContact(ops, false);
 			ops = this.setName(ops, contact);
 			ops = this.setBirthday(ops, contact);
 			ops = this.setNote(ops, contact);
@@ -798,7 +755,6 @@ public class Contacts extends DynamicAppPlugin {
 			ops = this.setPhotos(ops, contact);
 			ops = this.setCategories(ops, contact);
 			ops = this.setUrls(ops, contact);
-
 			applyBatch(ops);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1090,6 +1046,7 @@ public class Contacts extends DynamicAppPlugin {
 		return ops;
 	}
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private ArrayList<ContentProviderOperation> setEmails(
 			ArrayList<ContentProviderOperation> ops, String contactStr)
 			throws JSONException {
@@ -1100,10 +1057,8 @@ public class Contacts extends DynamicAppPlugin {
 		String emailTypeStr = EMPTY;
 		Integer emailType = null;
 
-		if (null != emails) {
-			int index;
-			int count = emails.length();
-			for (index = 0; index < count; index++) {
+		if (null != emails && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			for (int index = 0; index < emails.length(); index++) {
 				email = emails.getJSONObject(index);
 				emailType = getEmailType(email);
 				emailTypeStr = getEmailTypeStr(email);
@@ -1119,6 +1074,7 @@ public class Contacts extends DynamicAppPlugin {
 		return ops;
 	}
 
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	private ArrayList<ContentProviderOperation> modifyEmails(
 			ArrayList<ContentProviderOperation> ops, String contactStr,
 			String contactId) throws JSONException {
@@ -1129,10 +1085,8 @@ public class Contacts extends DynamicAppPlugin {
 		String emailTypeStr = EMPTY;
 		Integer emailType = null;
 
-		if (null != emails) {
-			int index;
-			int count = emails.length();
-			for (index = 0; index < count; index++) {
+		if (null != emails && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			for (int index = 0; index < emails.length(); index++) {
 				email = emails.getJSONObject(index);
 				emailType = getEmailType(email);
 				emailTypeStr = getEmailTypeStr(email);
@@ -1573,7 +1527,7 @@ public class Contacts extends DynamicAppPlugin {
 	private InputStream getPathFromUri(String path) throws IOException {
 		if (path.startsWith("content:")) {
 			Uri uri = Uri.parse(path);
-			return dynamicApp.getContentResolver().openInputStream(uri);
+			return mainActivity.getContentResolver().openInputStream(uri);
 		} else if (path.startsWith("http:") || path.startsWith("file:")) {
 			URL url = new URL(path);
 			return url.openStream();
@@ -1904,7 +1858,7 @@ public class Contacts extends DynamicAppPlugin {
 
 	@Override
 	public void onBackKeyDown() {
-		DynamicAppUtils.currentCommandRef = null;
+		Utilities.currentCommand = null;
 		instance = null;
 	}
 

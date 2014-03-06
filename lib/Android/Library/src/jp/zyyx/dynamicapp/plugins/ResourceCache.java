@@ -10,25 +10,29 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Public Methods:
- * <ul>
- * <li>add
- * <li>remove
- * </ul>
- * 
- * @author Zyyx
- * @version %I%, %G%
- * @since 1.0
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class ResourceCache extends DynamicAppPlugin {
+public class ResourceCache extends Plugin {
 	private static final String TAG = "ResourceCache";
 
 	private static final int RESOURCE_REMOVED = 1;
@@ -49,11 +53,10 @@ public class ResourceCache extends DynamicAppPlugin {
 	private String resourceId = null;
 	private String resourceExpiryDate = null;
 	private String resourceFullPath = null;
-	private File cacheDir = dynamicApp.getCacheDir();
-
-	// private String filename = null;
+	private File cacheDir = mainActivity.getCacheDir();
 
 	private ResourceCache() {
+		super();
 	}
 
 	/**
@@ -68,17 +71,17 @@ public class ResourceCache extends DynamicAppPlugin {
 
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is called.");
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "method " + methodName + " is called.");
+		DebugLog.w(TAG, "parameters are: " + params);
 		resourceURL = param.get("resourceURL", "");
 		resourceId = param.get("id", "");
 		resourceExpiryDate = param.get("expireDate", "");
 
 		if (methodName.equalsIgnoreCase("add")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.add();
 		} else if (methodName.equalsIgnoreCase("remove")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.remove();
 		}
 		instance = null;
@@ -91,7 +94,7 @@ public class ResourceCache extends DynamicAppPlugin {
 		String testURL = "http://cache.kotaku.com/assets/images/9/2009/01/akinaigames.jpg";
 
 		resourceURL = (DEBUG) ? testURL : resourceURL;
-		DebugLog.i(TAG, "resourceURL : " + resourceURL);
+		DebugLog.w(TAG, "resourceURL : " + resourceURL);
 		downloadResource(resourceURL);
 	}
 
@@ -100,7 +103,7 @@ public class ResourceCache extends DynamicAppPlugin {
 	 */
 	public void remove() {
 		resourceFullPath = param.get("fullPath", "");
-		DebugLog.i(TAG, "resource fullpath:" + resourceFullPath);
+		DebugLog.w(TAG, "resource fullpath:" + resourceFullPath);
 
 		if (CLEAR.equalsIgnoreCase(resourceFullPath)) {
 			this.clearResourceCache();
@@ -118,13 +121,13 @@ public class ResourceCache extends DynamicAppPlugin {
 		boolean removed = false;
 		resourceFullPath = param.get("fullPath", "");
 		String encodeURL = resourceFullPath.trim().replaceAll("\\s+", "%20");
-		DebugLog.i(TAG, "encodeURL:" + encodeURL);
+		DebugLog.w(TAG, "encodeURL:" + encodeURL);
 
 		File file = new File(encodeURL);
-		DebugLog.i(TAG, "File: " + file);
+		DebugLog.w(TAG, "File: " + file);
 
 		if (file.exists()) {
-			DynamicAppUtils.deletefile(file);
+			Utilities.deletefile(file);
 			// check if file is removed
 			removed = !file.exists();
 			state = (removed) ? RESOURCE_REMOVED : ERROR_RESOURCE_NOT_REMOVED;
@@ -135,7 +138,7 @@ public class ResourceCache extends DynamicAppPlugin {
 
 		if (removed) {
 			ResourceCache.onSuccess(new JSONObject(), callbackId, false);
-			DebugLog.i(TAG, "method " + methodName + " is executed successfully.");
+			DebugLog.w(TAG, "method " + methodName + " is executed successfully.");
 		} else {
 			ResourceCache.onError(state + "", callbackId);
 			DebugLog.e(TAG, "error code: " + state);
@@ -144,14 +147,14 @@ public class ResourceCache extends DynamicAppPlugin {
 	}
 
 	private void clearResourceCache() {
-		DynamicAppUtils.deletefile(cacheDir);
+		Utilities.deletefile(cacheDir);
 		boolean cleared = !cacheDir.exists();
 
 		if (cleared) {
 			// recreate cache directory
 			cacheDir.mkdir();
 			ResourceCache.onSuccess(new JSONObject(), callbackId, false);
-			DebugLog.i(TAG, "method " + methodName + " is executed successfully.");
+			DebugLog.w(TAG, "method " + methodName + " is executed successfully.");
 		} else {
 			ResourceCache.onError(ERROR_RESOURCE_NOT_CLEARED + "", callbackId);
 			DebugLog.e(TAG, "error code: " + ERROR_RESOURCE_NOT_CLEARED);
@@ -177,17 +180,17 @@ public class ResourceCache extends DynamicAppPlugin {
 					conn.setUseCaches(false);
 					// get the filename
 
-					String filename = DynamicAppUtils.getFilenameFromURL(url);
-					DebugLog.i(TAG, "filename:" + filename);
+					String filename = Utilities.getFilenameFromURL(url);
+					DebugLog.w(TAG, "filename:" + filename);
 					String filenameParts[] =  filename.split("\\.");
 					
 					String tempfilename = filenameParts[0] + "_" + resourceId + "." + filenameParts[1];
 					filename = tempfilename;
-					DebugLog.i(TAG, "temp filename: " + tempfilename);
+					DebugLog.w(TAG, "temp filename: " + tempfilename);
 					
 					// start download
 					inStream = new BufferedInputStream(conn.getInputStream());
-					DebugLog.i(TAG, "cacheDir:" + cacheDir);
+					DebugLog.w(TAG, "cacheDir:" + cacheDir);
 					outFile = new File(cacheDir, filename);
 					fileStream = new FileOutputStream(outFile);
 					outStream = new BufferedOutputStream(fileStream,
@@ -253,7 +256,7 @@ public class ResourceCache extends DynamicAppPlugin {
 		}.start();
 	}
 
-	// TODO handle download resource if interrupted
+// TODO handle download resource if interrupted
 //	private boolean isInterrupted() {
 //		return false;
 //	}

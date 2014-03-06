@@ -3,10 +3,11 @@ package jp.zyyx.dynamicapp.plugins;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 
 import org.json.JSONArray;
 
+import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,8 +17,25 @@ import android.content.IntentFilter.MalformedMimeTypeException;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.NfcF;
+import android.os.Build;
 
-public class Felica extends DynamicAppPlugin {
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@SuppressLint("NewApi")
+public class Felica extends Plugin {
 	private static Felica instance = null;
 	private NfcF felicaTag = null;
 	private Intent nfcIntent = null;
@@ -44,21 +62,23 @@ public class Felica extends DynamicAppPlugin {
     public static final byte COMMAND_WRITE_WO_ENCRYPTION = 0x08;
     public static final byte RESPONSE_WRITE_WO_ENCRYPTION = 0x09;
 	
-	private Felica() {}
-	
+	private Felica() {
+		super();
+	}
+
 	@Override
 	public void onPause() {
 		super.onPause();
-		if(Integer.valueOf(android.os.Build.VERSION.SDK_INT) < 10 || NfcAdapter.getDefaultAdapter(dynamicApp.getApplicationContext()) == null || !NfcAdapter.getDefaultAdapter(dynamicApp.getApplicationContext()).isEnabled()) {
+		if (Integer.valueOf(Build.VERSION.SDK_INT) < 10 || NfcAdapter.getDefaultAdapter(mainActivity) == null || !NfcAdapter.getDefaultAdapter(mainActivity).isEnabled()) {
 			return;
 		}
 
-		NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(dynamicApp.getApplicationContext());
+		NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(mainActivity.getApplicationContext());
 		try {
-			nfcAdapter.disableForegroundDispatch(dynamicApp);
+			nfcAdapter.disableForegroundDispatch(mainActivity);
 		} catch(Exception e) { }
 	}
-	
+
 	public static synchronized Felica getInstance() {
         if (instance == null) {
             instance = new Felica();
@@ -67,7 +87,7 @@ public class Felica extends DynamicAppPlugin {
 	}
 	
 	public void registerReceiver(Context context) {		
-		if(Integer.valueOf(android.os.Build.VERSION.SDK_INT) < 10 || NfcAdapter.getDefaultAdapter(context) == null || !NfcAdapter.getDefaultAdapter(context).isEnabled()) {
+		if (Integer.valueOf(android.os.Build.VERSION.SDK_INT) < 10 || NfcAdapter.getDefaultAdapter(context) == null || !NfcAdapter.getDefaultAdapter(context).isEnabled()) {
 			return;
 		}
 
@@ -92,18 +112,18 @@ public class Felica extends DynamicAppPlugin {
 		String[][] techList = new String[][] { new String[] { NfcF.class.getName() } };
 
 		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context,
-                dynamicApp.getClass()).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
+                mainActivity.getClass()).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP), 0);
 		
 		NfcAdapter nfcAdapter = NfcAdapter.getDefaultAdapter(context);
 		try {
-			nfcAdapter.enableForegroundDispatch(dynamicApp, pendingIntent, intentFiltersArray, techList);
+			nfcAdapter.enableForegroundDispatch(mainActivity, pendingIntent, intentFiltersArray, techList);
 		} catch(Exception e) { }
 	}
 
 	@Override
 	public void execute() {
 		if(Integer.valueOf(android.os.Build.VERSION.SDK_INT) < 10 || this.felicaTag == null || this.idM == null) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			Felica.onError(callbackId);
 			return;
 		}
@@ -123,7 +143,7 @@ public class Felica extends DynamicAppPlugin {
 		} else if (methodName.equalsIgnoreCase("writeWithoutEncryption")) {
 			this.writeWithoutEncryption();
 		} else {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 		}
 	}
 	
@@ -136,7 +156,7 @@ public class Felica extends DynamicAppPlugin {
 	}
 
 	private void getIDM() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(this.idM != null) {
 			Felica.onSuccess(this.idM.toString(), callbackId, false);
 		} else {
@@ -147,7 +167,7 @@ public class Felica extends DynamicAppPlugin {
 	private void getPMm() {
 		PMm pMm = new PMm(this.felicaTag.getManufacturer());
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(this.felicaTag.getManufacturer().length > 0) {
 			Felica.onSuccess(pMm.toString(), callbackId, false);
 		} else {
@@ -172,7 +192,7 @@ public class Felica extends DynamicAppPlugin {
 			e.printStackTrace();
 		}
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(result.length() > 0) {
 			Felica.onSuccess(result, callbackId, false);
 		} else {
@@ -210,7 +230,7 @@ public class Felica extends DynamicAppPlugin {
 			e.printStackTrace();
 		}
         
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(result.length() > 0) {
 			Felica.onSuccess(result, callbackId, false);
 		} else {
@@ -231,7 +251,7 @@ public class Felica extends DynamicAppPlugin {
 			e.printStackTrace();
 		}
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(result != null) {
 			Felica.onSuccess(result, callbackId, false);
 		} else {
@@ -263,7 +283,7 @@ public class Felica extends DynamicAppPlugin {
 			e.printStackTrace();
 		}
 		
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(result != null) {
 			Felica.onSuccess(result, callbackId, false);
 		} else {
@@ -303,7 +323,7 @@ public class Felica extends DynamicAppPlugin {
 			e.printStackTrace();
 		}
 
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		if(result) {
 			this.onSuccess();
 		} else {
@@ -589,8 +609,7 @@ public class Felica extends DynamicAppPlugin {
             } else if (split.length < 2) {
                 target = Arrays.copyOfRange(byteArray, 0, 0 + split[0]);
             } else {
-                target = Arrays.copyOfRange(byteArray, split[0], split[0]
-                        + split[1]);
+                target = Arrays.copyOfRange(byteArray, split[0], split[0] + split[1]);
             }
 
             for (byte b : target) {

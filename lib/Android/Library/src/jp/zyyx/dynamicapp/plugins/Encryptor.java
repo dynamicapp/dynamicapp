@@ -3,29 +3,35 @@ package jp.zyyx.dynamicapp.plugins;
 import java.security.MessageDigest;
 import java.util.Random;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
 
 import org.json.JSONException;
 
-/**
- * Methods:
- * <ul>
- * <li>encrypt
- * <li>decrypt
- * </ul>	
- * 
- * @author 		Zyyx
- * @version     %I%, %G%
- * @since       1.0
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class Encryptor extends DynamicAppPlugin{
+public class Encryptor extends Plugin{
 	private static final String TAG = "Encryptor";
 
 	private static final String ENCRYPT_KEY = "cf2a20e1";
 	private static Encryptor instance = null;
 	 
-    private Encryptor() {}
+	private Encryptor() {
+		super();
+	}
 
     /**
      * return Encryptor class instance
@@ -33,12 +39,12 @@ public class Encryptor extends DynamicAppPlugin{
      * @return
      */
 	public static synchronized Encryptor getInstance() {
-            if (instance == null) {
-                    instance = new Encryptor();
-            }
-            return instance;
+		if (instance == null) {
+			instance = new Encryptor();
+		}
+		return instance;
     }
-	
+
 	/**
      * encodes a string using Base64Encode
 	 * @return 
@@ -142,7 +148,7 @@ public class Encryptor extends DynamicAppPlugin{
 	
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, this.methodName +" method is called.");
+		DebugLog.w(TAG, this.methodName +" method is called.");
 		if(this.methodName.equalsIgnoreCase("encryptText")) {
 			String encryptedText = this.encryptText();
 			
@@ -161,7 +167,7 @@ public class Encryptor extends DynamicAppPlugin{
 				}
 				this.onError();
 			}
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 		} else if(this.methodName.equalsIgnoreCase("decryptText")) {
 			String decryptedText = this.decrypt();
 			if(decryptedText != null) {
@@ -179,7 +185,7 @@ public class Encryptor extends DynamicAppPlugin{
 				}
 				this.onError();
 			}
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 		}
 	}
 }

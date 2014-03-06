@@ -1,16 +1,22 @@
-/**
- * 
- */
 package jp.zyyx.dynamicapp.bluetoothComponents.Bluetooth4LE;
 
 import jp.zyyx.dynamicapp.DynamicAppActivity;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 
-/**
- * @author Zyyx
- * @version %I%, %G%
- * @since 1.0
- * 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 public class Peripheral {
 
@@ -219,7 +225,7 @@ public class Peripheral {
 		if (notifyJS) {
 			String script = "Bluetooth4LE.onStateChanged(\"" + this.deviceName + "\","
 					+ "\"" + this.id + "\"," + this.state + ");";
-			((DynamicAppActivity)DynamicAppUtils.dynamicAppActivityRef).callJsEvent(script);
+			((DynamicAppActivity)Utilities.dynamicAppActivityRef).callJsEvent(script);
 		}
 	}
 

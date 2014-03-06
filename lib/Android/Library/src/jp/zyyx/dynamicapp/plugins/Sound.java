@@ -11,15 +11,26 @@ import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
 
-/**
- * @author Zyyx
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUpdateListener{
+public class Sound extends Plugin implements MediaPlayer.OnBufferingUpdateListener{
 	private static final String TAG = "Sound";
 
 	private static final int SOUND_STATE = 1;
@@ -52,27 +63,27 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	private boolean isCancelled = false;
 	private boolean onMediaPlayerError = false;
 
-    private Sound() {
-    	mBGMPlayer = new MediaPlayer();
-    }
+	private Sound() {
+		super();
+		mBGMPlayer = new MediaPlayer();
+	}
 
-    public static synchronized Sound getInstance() {
-            if (instance == null) {
-                    instance = new Sound();
-            }
-            
-            return instance;
-    }
-    
+	public static synchronized Sound getInstance() {
+		if (instance == null) {
+			instance = new Sound();
+		}
+		return instance;
+	}
+
     public void init(String methodName, String params, String callbackId){
     	super.init(methodName, params, callbackId);
     	
     }
-    
+
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is executed.");
-		DebugLog.i(TAG, "parameters are: " + params);
+		DebugLog.w(TAG, "method " + methodName + " is executed.");
+		DebugLog.w(TAG, "parameters are: " + params);
 		this.mediaId = param.get("mediaId", "");
 		
 		if (methodName.equalsIgnoreCase("play")) {	
@@ -87,22 +98,22 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 			} else {
 				String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 						+ Sound.SOUND_DURATION + "," + getBGMDuration() +");";
-				dynamicApp.callJsEvent(script);
+				mainActivity.callJsEvent(script);
 				this.playBGM();
 			}
 		}else if(methodName.equalsIgnoreCase("pause")) {
 			this.pauseBGM();
 		}else if(methodName.equalsIgnoreCase("stop")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.stopBGM();
 		}else if(methodName.equalsIgnoreCase("release")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.releaseBGM();
 		}else if(methodName.equalsIgnoreCase("getCurrentPosition")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.getBGMPosition();
 		}else if(methodName.equalsIgnoreCase("setCurrentPosition")) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			this.position = param.get("position", 1);
 			this.seekBGM(position);
 		}
@@ -114,7 +125,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 			@Override
 			public boolean onError(MediaPlayer mp, int what, int extra) {
 				int error = ERROR_DECODE;
-				dynamicApp.callJsEvent(PROCESSING_FALSE);
+				mainActivity.callJsEvent(PROCESSING_FALSE);
 				DebugLog.e(TAG, "Error: " + what + "," + extra);
 				onMediaPlayerError = true;
 				mBGMPlayer.reset();
@@ -130,10 +141,10 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 					break;
 				}
 				
-				if (dynamicApp.getWindow() != null) {
+				if (mainActivity.getWindow() != null) {
 					String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 							+ Sound.SOUND_ERROR + ",\"" + error + "\");";
-					dynamicApp.callJsEvent(script);
+					mainActivity.callJsEvent(script);
 				}
 				return true;
 		}});
@@ -141,9 +152,9 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 			public void onCompletion(MediaPlayer mp) {
 				String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 						+ Sound.SOUND_POSITION + "," + 0 +");";
-				dynamicApp.callJsEvent(script);
-				dynamicApp.callJsEvent(PROCESSING_FALSE);
-				DebugLog.i(TAG, "media player onCompletion");
+				mainActivity.callJsEvent(script);
+				mainActivity.callJsEvent(PROCESSING_FALSE);
+				DebugLog.w(TAG, "media player onCompletion");
 				
 				if(numberOfLoops > 1) {
 					loopCounter++;
@@ -153,30 +164,30 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 						loopCounter = 0;
 						script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 								+ Sound.SOUND_STATE + "," + Sound.SOUND_STOPPED +");";
-						dynamicApp.callJsEvent(script);
+						mainActivity.callJsEvent(script);
 						mBGMPlayer.reset();
 						isReseted = true;
 					}
 				} else {
 					script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 							+ Sound.SOUND_STATE + "," + Sound.SOUND_STOPPED +");";
-					dynamicApp.callJsEvent(script);
+					mainActivity.callJsEvent(script);
 					mBGMPlayer.reset();
 					isReseted = true;
 				}
-				dynamicApp.callJsEvent(PROCESSING_FALSE);
+				mainActivity.callJsEvent(PROCESSING_FALSE);
 			}
 		});
 		
 		mBGMPlayer.setOnPreparedListener(new OnPreparedListener()
 	    {
 			public void onPrepared(MediaPlayer mp) {
-				DebugLog.i(TAG, "[sound] @onPrepared");
+				DebugLog.w(TAG, "[sound] @onPrepared");
 				if(!isCancelled && !onMediaPlayerError) {
 					String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 							+ Sound.SOUND_DURATION + "," + getBGMDuration() +");";
-					dynamicApp.callJsEvent(script);
-					dynamicApp.callJsEvent(PROCESSING_FALSE);
+					mainActivity.callJsEvent(script);
+					mainActivity.callJsEvent(PROCESSING_FALSE);
 					playBGM();
 				}
 			}
@@ -195,7 +206,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 		createPlayer();
 		String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 				+ Sound.SOUND_STATE + "," + Sound.SOUND_STARTING +");";
-		dynamicApp.callJsEvent(script);
+		mainActivity.callJsEvent(script);
 		currentState = SOUND_STARTING;
 		new Thread() {
 			public void run() {
@@ -203,10 +214,10 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 					isReseted = false;
 					mBGMPlayer.reset();
 					if(audioFile.indexOf("http://") != -1) {
-						mBGMPlayer.setDataSource(dynamicApp, Uri.parse(audioFile));
+						mBGMPlayer.setDataSource(mainActivity, Uri.parse(audioFile));
 					} else {
 						String path = "";
-						path = DynamicAppUtils.makePath(audioFile);
+						path = Utilities.makePath(audioFile);
 						DebugLog.e(TAG, "[audio] try:" + path);
 						if (new File(path).exists()) {
 							mBGMPlayer.setDataSource(path);
@@ -228,12 +239,12 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	 * Plays or resumes the sound.
 	 */
 	public void playBGM() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		mBGMPlayer.setLooping(false);
 		mBGMPlayer.start();
 		String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 				+ Sound.SOUND_STATE + "," + Sound.SOUND_RUNNING +");";
-		dynamicApp.callJsEvent(script);
+		mainActivity.callJsEvent(script);
 		currentState = SOUND_RUNNING;
 		isPaused = false;
 	}
@@ -242,7 +253,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	 * Stops the sound.
 	 */
 	public void stopBGM() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		isCancelled = (currentState == SOUND_STARTING);
 		isPaused = false;
 		loopCounter = 0;
@@ -251,7 +262,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 			if (mBGMPlayer.isPlaying()){
 				String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 						+ Sound.SOUND_STATE + "," + Sound.SOUND_STOPPED +");";
-				dynamicApp.callJsEvent(script);
+				mainActivity.callJsEvent(script);
 				currentState = SOUND_STOPPED;
 				mBGMPlayer.stop();
 				mBGMPlayer.reset();
@@ -268,7 +279,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	 * Pause the sound.
 	 */
 	public void pauseBGM() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		try {
 			jsonObject.put("message", Sound.SOUND_PAUSED);
 		} catch (JSONException e) {
@@ -281,19 +292,19 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	}
 	
 	public void releaseBGM(){
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		mBGMPlayer.release();
 		Sound.instance = null;
 		String script = "DynamicApp.Sound.onStatus(\"" + mediaId + "\","
 				+ Sound.SOUND_STATE + "," + Sound.SOUND_NONE +");";
-		dynamicApp.callJsEvent(script);
+		mainActivity.callJsEvent(script);
 	}
 
 	/**
 	 * Seek the sound.
 	 */
 	public void seekBGM(final int time) {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		new Thread() {
 			public void run() {
 				mBGMPlayer.seekTo(time * 1000);
@@ -308,7 +319,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	}
 
 	public int getBGMDuration() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		duration = (onMediaPlayerError) ? 0 : mBGMPlayer.getDuration()/1000;
 		return duration;
 	}
@@ -317,7 +328,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	 * Position of the sound.
 	 */
 	public void getBGMPosition() {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		new Thread() {
 			public void run() {
 				if(mBGMPlayer.isPlaying() && !isReseted && !onMediaPlayerError) {
@@ -333,7 +344,7 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 	}
 
 	private void processError(int err) {
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		String script = null;
 		switch(err) {
 			case ERROR_DECODE:
@@ -350,20 +361,20 @@ public class Sound extends DynamicAppPlugin implements MediaPlayer.OnBufferingUp
 				break;
 		}
 		
-		if (dynamicApp.getWindow() != null && script != null) {
-			dynamicApp.callJsEvent(PROCESSING_FALSE);
+		if (mainActivity.getWindow() != null && script != null) {
+			mainActivity.callJsEvent(PROCESSING_FALSE);
 			onMediaPlayerError = true;
 			mBGMPlayer.reset();
 			isReseted = true;
 			isPaused = false;
-			dynamicApp.callJsEvent(script);
+			mainActivity.callJsEvent(script);
 		}
 	}
 	
 	@Override
 	public void onBackKeyDown() {
 		this.stopBGM();
-		DynamicAppUtils.currentCommandRef = null;
+		Utilities.currentCommand = null;
 		instance = null;
 	}
 

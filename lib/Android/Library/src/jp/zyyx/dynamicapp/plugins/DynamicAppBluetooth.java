@@ -5,12 +5,12 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import jp.zyyx.dynamicapp.JSONObjectWrapper;
 import jp.zyyx.dynamicapp.bluetoothComponents.BluetoothConnectionService;
 import jp.zyyx.dynamicapp.bluetoothComponents.PeerData;
-import jp.zyyx.dynamicapp.core.DynamicAppPlugin;
+import jp.zyyx.dynamicapp.core.Plugin;
 import jp.zyyx.dynamicapp.utilities.DebugLog;
-import jp.zyyx.dynamicapp.utilities.DynamicAppUtils;
+import jp.zyyx.dynamicapp.utilities.Utilities;
+import jp.zyyx.dynamicapp.wrappers.JSONObjectWrapper;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;
@@ -22,13 +22,22 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 
-/**
- * @author Zyyx
- * @version %I%, %G%
- * @since 1.0
- * 
+/*
+ * Copyright (C) 2014 ZYYX, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-public class DynamicAppBluetooth extends DynamicAppPlugin {
+public class DynamicAppBluetooth extends Plugin {
 	private static final String TAG = "DynamicAppBluetooth";
 
 	private static final String METHOD_DISCOVER = "discover";
@@ -74,6 +83,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 	private boolean isUnregistered = false;
 	
 	private DynamicAppBluetooth() {
+		super();
 		mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 		connectedDeviceList = new HashMap<String, Boolean>();
 		discoveredDeviceList = new HashMap<String, Boolean>();
@@ -94,9 +104,9 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 	
 	@Override
 	public void execute() {
-		DebugLog.i(TAG, "method " + methodName + " is called.");
-		DebugLog.i(TAG, "parameters are: " + params);
-		dynamicApp.callJsEvent(PROCESSING_FALSE);
+		DebugLog.w(TAG, "method " + methodName + " is called.");
+		DebugLog.w(TAG, "parameters are: " + params);
+		mainActivity.callJsEvent(PROCESSING_FALSE);
 		
 		if (methodName.equalsIgnoreCase(METHOD_DISCOVER)) {
 			mBluetoothAdapter.cancelDiscovery();
@@ -109,7 +119,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 				jsonPeerData = new JSONObjectWrapper(peerDataStr);
 			} catch (JSONException e) {
 				DynamicAppBluetooth.onError(STATE_UNAVAILABLE+"", callbackId);
-				if(DynamicAppUtils.DEBUG)
+				if(Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 			
@@ -122,7 +132,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 				jsonPeerData = new JSONObjectWrapper(peerDataStr);
 			} catch (JSONException e) {
 				DynamicAppBluetooth.onError(STATE_UNAVAILABLE+"", callbackId);
-				if(DynamicAppUtils.DEBUG)
+				if(Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 			this.disconnect(jsonPeerData);
@@ -136,7 +146,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 				jsonPeerData = new JSONObjectWrapper(peerDataStr);
 			} catch (JSONException e) {
 				DynamicAppBluetooth.onError(STATE_UNAVAILABLE+"", callbackId);
-				if(DynamicAppUtils.DEBUG)
+				if(Utilities.isDebuggable)
 					e.printStackTrace();
 			}
 			
@@ -150,7 +160,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		final int OK = Activity.RESULT_OK;
 		if (requestCode == ACTIVITY_REQUEST_CD_PAIR_DEVICE) {
-			DebugLog.i(TAG, "intent: "+ intent);
+			DebugLog.w(TAG, "intent: "+ intent);
 		} else if(requestCode == ACTIVITY_REQUEST_CD_ENABLE_BT) {
 			if(resultCode == OK) {
 				this.doDiscovery();
@@ -163,7 +173,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 		this.release();
 		try {
 			if(isUnregistered) {
-				dynamicApp.unregisterReceiver(mReceiver);
+				mainActivity.unregisterReceiver(mReceiver);
 				isUnregistered = false;
 			}
 		} catch(Exception e) {
@@ -186,7 +196,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 	}
 	
 	private void release() {
-		DebugLog.i(TAG, "release is executed.");
+		DebugLog.w(TAG, "release is executed.");
 		if (mDataCommService != null) 
 			mDataCommService.stop();
 		connectedDeviceList.clear();
@@ -195,11 +205,11 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 	}
 	
 	public void setupServer() {
-        DebugLog.i(TAG, "Initialize the BluetoothDataCommService");
+        DebugLog.w(TAG, "Initialize the BluetoothDataCommService");
         
         if(mBluetoothAdapter != null && mBluetoothAdapter.isEnabled()) {
 	        if (mDataCommService == null)
-	        	 mDataCommService = new BluetoothConnectionService(dynamicApp, mHandler);
+	        	 mDataCommService = new BluetoothConnectionService(mainActivity, mHandler);
 	        
 	        if (mDataCommService != null) {
 	            if (mDataCommService.getState() == BluetoothConnectionService.STATE_NONE) {
@@ -219,14 +229,14 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 		filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
 		filter.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
 
-		DynamicAppUtils.dynamicAppActivityRef.registerReceiver(mReceiver, filter);
+		Utilities.dynamicAppActivityRef.registerReceiver(mReceiver, filter);
 		isUnregistered = true;
 	}
 	
 	public void unregisterReceiver() {
 		try {
 			if(isUnregistered) {
-				DynamicAppUtils.dynamicAppActivityRef.unregisterReceiver(mReceiver);
+				Utilities.dynamicAppActivityRef.unregisterReceiver(mReceiver);
 				isUnregistered = false;
 			}
 		} catch(Exception e) {
@@ -243,7 +253,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
             DynamicAppBluetooth.onError(1+"", callbackId);
         } else {*/
         	if (message.length() > 0) {
-            	DebugLog.i(TAG, "try send:" + message);
+            	DebugLog.w(TAG, "try send:" + message);
             	if (mDataCommService != null) {
             		mDataCommService.sendMessage(address, message);
     	        } else {
@@ -263,11 +273,11 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 
 	private void doDiscovery() {
 		if (mBluetoothAdapter == null) {
-			DebugLog.i(TAG, "Bluetooth is unsupported.");
+			DebugLog.w(TAG, "Bluetooth is unsupported.");
 		} else {
 			makeDeviceAlwaysDiscoverable();
 			if (mBluetoothAdapter.isEnabled()) {
-				DebugLog.i(TAG, "Bluetooth is enabled");
+				DebugLog.w(TAG, "Bluetooth is enabled");
 				mBluetoothAdapter.startDiscovery();
 			} else {
 				this.enableBluetoothByIntent();
@@ -289,7 +299,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 //				}
 				
 				String clientDevice = mBluetoothAdapter.getName();
-				DebugLog.i(TAG, "Client Device Name:"+ clientDevice);
+				DebugLog.w(TAG, "Client Device Name:"+ clientDevice);
 				
 				if (mDataCommService != null) {
 					mDataCommService.connect(device);
@@ -357,7 +367,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 	private void enableBluetoothByIntent() {
 		Intent enableBtIntent = new Intent(
 				BluetoothAdapter.ACTION_REQUEST_ENABLE);
-		dynamicApp.startActivityForResult(enableBtIntent,
+		mainActivity.startActivityForResult(enableBtIntent,
 				ACTIVITY_REQUEST_CD_ENABLE_BT);
 	}
 	
@@ -365,7 +375,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
     	Intent discoverableIntent = new
 		Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
 		discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 3600);
-		dynamicApp.startActivity(discoverableIntent);
+		mainActivity.startActivity(discoverableIntent);
     }
 
 	private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -386,7 +396,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 				if((deviceMajorClassNo == BluetoothClass.Device.Major.PHONE) && btClassStr.equalsIgnoreCase("5a020c")) {
 					if(discoveredDeviceList.get(address) == null) {
 						discoveredDeviceList.put(address, true);
-						DebugLog.i(TAG, deviceName + " is found.");
+						DebugLog.w(TAG, deviceName + " is found.");
 						PeerData foundPeer = new PeerData(deviceName, address);
 						foundPeer.setState(STATE_AVAILABLE);
 						deviceList.put(address, foundPeer);
@@ -395,7 +405,7 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 			} else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
 				//Toast.makeText(dynamicApp, "discovery started...",
                 //        Toast.LENGTH_SHORT).show();
-				DebugLog.i(TAG, "discovery started...");
+				DebugLog.w(TAG, "discovery started...");
 			} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED
 					.equals(action)) {
 				discoveredDeviceList.clear();
@@ -403,10 +413,10 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 				
 				//Toast.makeText(dynamicApp, "discovery finished...",
                 //        Toast.LENGTH_SHORT).show();
-				DebugLog.i(TAG, "discovery finished...");
+				DebugLog.w(TAG, "discovery finished...");
 			} else if (BluetoothDevice.ACTION_ACL_CONNECTED
 					.equals(action)) {
-				DebugLog.i(TAG, "device is about to connect...");
+				DebugLog.w(TAG, "device is about to connect...");
 				BluetoothDevice device = intent
 						.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 				String deviceName = (device.getName() != null) ? device
@@ -419,12 +429,12 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 				
 			} else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED
 					.equals(action)) {
-				DebugLog.i(TAG, "device is about to disconnect...");
+				DebugLog.w(TAG, "device is about to disconnect...");
 			} else if (BluetoothDevice.ACTION_ACL_DISCONNECTED
 					.equals(action)) {
-				DebugLog.i(TAG, "device has disconnected...");
+				DebugLog.w(TAG, "device has disconnected...");
 			} else if (ACTION_PAIRING_REQUEST.equals(action)) {
-				DebugLog.i(TAG, "device pairing is done...");
+				DebugLog.w(TAG, "device pairing is done...");
 			}
 		}
 	};
@@ -434,23 +444,23 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
         public void handleMessage(Message msg) {
             switch (msg.what) {
             case MESSAGE_STATE_CHANGE:
-                DebugLog.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
+                DebugLog.w(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
                 switch (msg.arg1) {
                 case BluetoothConnectionService.STATE_CONNECTED:
-                    DebugLog.i(TAG, "connected to " + mConnectedDeviceName);
+                    DebugLog.w(TAG, "connected to " + mConnectedDeviceName);
                     PeerData newPeer = new PeerData(mConnectedDeviceName, mConnectedDeviceAdd);
                 	newPeer.setState(STATE_CONNECTED);
                 	DynamicAppBluetooth.onSuccess(new JSONObject(), callbackId, false);
                     break;
                 case BluetoothConnectionService.STATE_CONNECTING:
-                	DebugLog.i(TAG, "connecting state...");
+                	DebugLog.w(TAG, "connecting state...");
                 	if(currentPeerData != null)
                 		currentPeerData.setState(STATE_CONNECTING);
                 	//selfPeerData.setState(STATE_CONNECTING);
                     break;
                 case BluetoothConnectionService.STATE_LISTEN:
                 case BluetoothConnectionService.STATE_NONE:
-                	DebugLog.i(TAG, "initial state");
+                	DebugLog.w(TAG, "initial state");
                     break;
                 }
                 break;
@@ -475,8 +485,8 @@ public class DynamicAppBluetooth extends DynamicAppPlugin {
 					e.printStackTrace();
 				} finally {
 					String script = "Bluetooth.onRecvCallback(" + senderData + ",\"" + escapedMessage + "\");";
-					DebugLog.i(TAG, "script: " + script);
-	        		dynamicApp.callJsEvent(script);
+					DebugLog.w(TAG, "script: " + script);
+	        		mainActivity.callJsEvent(script);
 				}
                 
                 break;
