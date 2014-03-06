@@ -70,8 +70,8 @@ API 一覧
     
 21. Ad 
     - 広告機能を提供します
+    
   ------------------------------------------------------------------------
-  
 #Encryption
 ###**メソッド**  
  
@@ -82,7 +82,7 @@ API 一覧
 ---
 - 文字列を暗号化します
 ```
- Encryption.encrypt(string, successCallback, errorCallback);
+Encryption.encrypt(string, successCallback, errorCallback);
 ```
  - string  
 暗号化対象の文字列
@@ -91,16 +91,17 @@ API 一覧
  暗号化が正常終了した場合に呼び出されます
 ```javascript
 function(encryptedString) {
-		// Do something with the encryptedString.
+	// Do something with the encryptedString.
 }
 ```
   パラメータ  
-  　・encryptedString : 暗号化された文字列<br/><br/>
+  　・encryptedString : 暗号化された文字列  
+  
  - errorCallback  
  暗号化に失敗した際に呼び出されれます  
 ```javascript
 function(message) {
-		// Show a helpful message.
+	// Show a helpful message.
 }
 ```
   パラメータ  
@@ -116,25 +117,26 @@ Encryption.decrypt(encryptedString, successCallback, errorCallback);
  - encryptedString  
  暗号化されている文字列  
   
-  - successCallback  
+ - successCallback  
   復号化が正常終了した場合に呼び出されます  
 ```javascript
 function(decryptedString) {
-		// Do something with the decryptedString.
+	// Do something with the decryptedString.
 }
 ```
   パラメータ  
   　・decryptedString : 復号化された文字列
    
-  - errorCallback  
+ - errorCallback  
   復号化に失敗した場合に呼び出されます
+```javascript
+function(message) {
+	// Show a helpful message.
+}
 ```
-  function(message) {
-        // Show a helpful message.
-  }
-```
-  パラメータ<br/>
+  パラメータ  
   　・message : ネイティブ側からのエラーメッセージ
+   
   ------------------------------------------------------------------------
  #File
 ###**プロパティ**
@@ -156,7 +158,7 @@ function(decryptedString) {
 ###**コンストラクタ**
 ---
 ```javascript
-  var file = new File(parentPath, filename, successCallback, errrorCallback);
+var file = new File(parentPath, filename, successCallback, errrorCallback);
 ```
   - parentPath  
   このファイルが存在する親のパス
@@ -168,9 +170,9 @@ function(decryptedString) {
   - successCallback  
   ファイルオブジェクトが正常に作成された場合に呼び出されます
 ```javascript
-  function(metadata) {
-  		// Do something with the metadata.
-  }
+function(metadata) {
+	// Do something with the metadata.
+}
 ```
   パラメータ  
   　・metadata : ファイルメタデータ  
@@ -178,9 +180,9 @@ function(decryptedString) {
   - errorCallback  
   ファイルオブジェクト作成に失敗した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode : エラーコード
@@ -190,7 +192,7 @@ function(decryptedString) {
 
 - このファイルオブジェクトがファイルかどうかを返します
 ```javascript
-  file.isFile();
+file.isFile();
 ```
 
 ###**isDirectory**
@@ -198,7 +200,7 @@ function(decryptedString) {
 
 - このファイルオブジェクトがディレクトリかどうかを返します
 ```javascript
-  file.isDirectory();
+file.isDirectory();
 ```
 
 ###**copy** 
@@ -206,7 +208,7 @@ function(decryptedString) {
 
 - ファイルのコピーを行います
 ```javascript
-  file.copy(targetDirectory, newName, successCallback, errorCallback);
+file.copy(targetDirectory, newName, successCallback, errorCallback);
 ```
   
   - targetDirectory  
@@ -218,16 +220,16 @@ function(decryptedString) {
   - successCallback  
   ファイルコピーが正常終了した場合に呼び出されます
 ```javascript
-  function() {
-        // Do something
-  }
+function() {
+	// Do something
+}
 ```
  - errorCallback  
  ファイルコピーに失敗した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-        // Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode : エラーコード
@@ -237,7 +239,7 @@ function(decryptedString) {
 
 - ファイルの移動を行います
 ```javascript
-  file.move(targetDirectory, newName, successCallback, errorCallback);
+file.move(targetDirectory, newName, successCallback, errorCallback);
 ```    
   
    - targetDirectory  
@@ -250,14 +252,14 @@ function(decryptedString) {
   ファイル移動が正常終了した場合に呼び出されます
 ```javascript
 function() {
-        // Do something
+	// Do something
 }
 ```
  - errorCallback  
  ファイル移動に失敗した場合に呼び出されます
 ```javascript
 function(errorCode) {
-        // Do something in case of error.
+	// Do something in case of error.
 }
 ```
   パラメータ  
@@ -268,21 +270,21 @@ function(errorCode) {
 
 - ファイルを削除します
 ```javascript
-  file.remove(successCallback, errorCallback);
+file.remove(successCallback, errorCallback);
 ```
  - successCallback  
  ファイル削除が正常終了した場合に呼び出されます
 ```javascript
-  function() {
-        // Do something
-  }
+function() {
+	// Do something
+}
 ```
  - errorCallback  
  ファイル削除に失敗した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode : エラーコード
@@ -312,7 +314,7 @@ function(errorCode) {
 ###**コンストラクタ**
 ---
 ```javascript
-  var reader = new FileReader(file);
+var reader = new FileReader(file);
 ```
   - file  
   読み込み対象のファイルオブジェクト
@@ -322,7 +324,7 @@ function(errorCode) {
 
 - 読み込みを行います
 ```javascript
-  reader.read(encoding, successCallback, errorCallback);
+reader.read(encoding, successCallback, errorCallback);
 ```
  - encoding  
  ファイルで使われているエンコーディング
@@ -331,7 +333,7 @@ function(errorCode) {
  読み込みが正常終了した場合に呼び出されます
 ```javascript
 function(readData) {
-  		// Do something with the data.
+	// Do something with the data.
 }
 ```
   パラメータ  
@@ -341,7 +343,7 @@ function(readData) {
   読み込み時にエラーが発生した場合に呼び出されます
 ```javascript
 function(errorCode) {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
   パラメータ  
@@ -358,13 +360,12 @@ function(errorCode) {
 - コンストラクタ
 - write
 - seek
-
  
  ###**コンストラクタ**
  ---
  
 ```javascript
-  var writer = new FileWriter(file);
+var writer = new FileWriter(file);
 ```
  - file  
  書き込み対象のファイルオブジェクト
@@ -374,7 +375,7 @@ function(errorCode) {
 
  - 書き込みを行います
 ```javascript
-  writer.write(writeData, successCallback, errorCallback);
+writer.write(writeData, successCallback, errorCallback);
 ```
   - writeData  
   書き込みデータ
@@ -383,14 +384,14 @@ function(errorCode) {
   書き込みが正常終了した場合に呼び出されます
 ```javascript
 function() {
-		// Do something.
+	// Do something.
 }
 ```
   - errorCallback  
   読み込み時にエラーが発生した場合に呼び出されます
 ```javascript
 function(errorCode) {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
   パラメータ  
@@ -401,10 +402,11 @@ function(errorCode) {
 
 - ファイルポインタを指定された位置に移動します。（バイト単位）
 ```javascript
-  writer.seek(pos);
+writer.seek(pos);
 ```
   - pos  
   ファイルポインタを移動させる位置
+  
   ------------------------------------------------------------------------
 #Cache
 ###**メソッド**  
@@ -424,10 +426,10 @@ function(errorCode) {
 
 -  データキャッシュにデータを追加します
 ```javascript
-  Cache.addData(data, expiredDate, successCallback, errorCallback);
+Cache.addData(data, expiredDate, successCallback, errorCallback);
 ```
  - data  
- 追加するデータ<br/><br/>
+ 追加するデータ<br/>
  
  - expiredDate  
  有効期限（yyyy-MM-dd HH:mm:ss形式）
@@ -436,14 +438,14 @@ function(errorCode) {
  データのキャッシュ保存が正常終了した場合に呼び出されます
 ```javascript
 function() {
- 		// Do something.
+	// Do something.
 }
 ```
  - errorCallback  
  データ保存失敗時に呼び出されます
 ```javascript
 function() {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
 
@@ -452,7 +454,7 @@ function() {
 
 - キャッシュに保存されているデータリストを返します
 ```javascript
-  Cache.getList();
+Cache.getList();
 ```
 
 ###**removeData**
@@ -460,7 +462,7 @@ function() {
   
 - キャッシュからデータを削除します
 ```javascript
-  Cache.removeData(id, successCallback, errorCallback);
+Cache.removeData(id, successCallback, errorCallback);
 ```
  -  id   
  データID
@@ -469,14 +471,14 @@ function() {
  データ削除が正常終了した場合に呼び出されます
 ```javascript
 function() {
-		// Do something.
+	// Do something.
 }
 ```
  - errorCallback  
  データ削除失敗時に呼び出されます
 ```javascript
 function() {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
   
@@ -485,20 +487,20 @@ function() {
 
 - データキャッシュをクリアします
 ```javascript
-  Cache.resetDataCache(successCallback, errorCallback);
+Cache.resetDataCache(successCallback, errorCallback);
 ```
  - successCallback  
  クリアが正常終了した場合に呼び出されます
 ```javascript
 function() {
-		// Do something.
+	// Do something.
 }
 ```
  - errorCallback  
  クリアに失敗した際に呼び出されます
 ```javascript
 function() {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
 
@@ -508,10 +510,10 @@ function() {
 - リソース（URL）データをキャッシュに追加します。  
   追加されたデータURLからリソースのダウンロードを行います。
 ```javascript
-  Cache.addResource(remoteContentsPath, expiredDate, successCallback,errorCallback);
+Cache.addResource(remoteContentsPath, expiredDate, successCallback,errorCallback);
 ```
  - remoteContentsPath  
- リモートコンテンツパス<br/><br/>  
+ リモートコンテンツパス<br/>  
 
  - expiredDate  
  有効期限（yyyy-MM-dd HH:mm:ss形式）<br/>
@@ -520,20 +522,20 @@ function() {
  データ追加が正常終了した場合に呼び出されます
 ```javascript
 function(result) {
-		// Do something with result.
+	// Do something with result.
 }
 ```
   パラメータ  
   　・result : 結果情報  
-               result.id : ダウンロードしたデータID  
-               result.expireDate : データの有効期限  
-               result.fullpath : ダウンロードデータの保存先  
+         result.id : ダウンロードしたデータID  
+         result.expireDate : データの有効期限  
+         result.fullpath : ダウンロードデータの保存先  
   
  - errorCallback  
   データ追加失敗時に呼び出されます
 ```javascript
 function() {
-			// Do something in case of error.
+	// Do something in case of error.
 }
 ```
   
@@ -542,10 +544,10 @@ function() {
 
 - リソースデータを更新します（ダウンロードも含む）
 ```javascript
-  Cache.updateResource(id, nextexpiredDate, successCallback, errorCallback);
+Cache.updateResource(id, nextexpiredDate, successCallback, errorCallback);
 ```
  - id   
- データID<br/><br/>
+ データID<br/>
 
  - nextexpiredDate  
  次の有効期限（yyyy-MM-dd HH:mm:ss形式）<br/>
@@ -553,21 +555,21 @@ function() {
  - successCallback  
  更新が正常終了した場合に呼び出されます
 ```javascript
-  function(result) {
-  		// Do something.
-  }
+function(result) {
+	// Do something.
+}
 ```
   パラメータ  
   　・result : 結果情報  
-               result.id : ダウンロードしたデータID  
-               result.expireDate : データの有効期限  
-               result.fullpath : ダウンロードデータの保存先  
+         result.id : ダウンロードしたデータID  
+         result.expireDate : データの有効期限  
+         result.fullpath : ダウンロードデータの保存先  
   
   - errorCallback  
   更新失敗時に呼び出されます
 ```javascript
 function() {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
 
@@ -576,7 +578,7 @@ function() {
 
 - データリストを取得します
 ```javascript
-  Cache.getResourceList();
+Cache.getResourceList();
 ```
   
 ###**removeResource**
@@ -584,7 +586,7 @@ function() {
 
 - キャッシュからリソースデータを削除します
 ```javascript
-  Cache.removeResource(id, successCallback, errorCallback);
+Cache.removeResource(id, successCallback, errorCallback);
 ```
  - id  
  データID
@@ -593,16 +595,16 @@ function() {
  データ削除が正常終了した場合に呼び出されます
 ```javascript
 function() {
-		// Do something.
+	// Do something.
 }
 ```
 
  - errorCallback  
  データ削除時にエラーが発生した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
 
 ###**resetResourceCache**
@@ -610,13 +612,13 @@ function() {
 
 - リソースキャッシュをクリアします
 ```javascript
-  Cache.resetResourceCache(successCallback, errorCallback);
+Cache.resetResourceCache(successCallback, errorCallback);
 ```
   - successCallback  
   キャッシュクリアが正常終了した場合に呼び出されます
 ```javascript
 function() {
-		// Do something.
+	// Do something.
 }
 ```
 
@@ -624,7 +626,7 @@ function() {
  キャッシュクリア時にエラーが発生した場合に呼び出されます（主にファイル削除失敗）
 ```javascript
 function(errorCode) {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
   ------------------------------------------------------------------------
@@ -639,11 +641,11 @@ function(errorCode) {
   
 - 指定された時間に、指定されたメッセージを通知します（ローカル通知）
 ```javascript
-  Notification.notify( date, message, [options] );
+Notification.notify( date, message, [options] );
 ```
 
   - date  
-  通知を行う日付（yyyy-MM-dd HH:mm:ss形式）<br/><br/>
+  通知を行う日付（yyyy-MM-dd HH:mm:ss形式）<br/>
 
   - message  
   通知メッセージ 
@@ -651,7 +653,7 @@ function(errorCode) {
   - options  
   通知関係のオプションパラメータ（iOSのみ有効）  
 ```javascript
-  { badge : 1,
+{ badge : 1,
   hasAction : true,
   action : “ 起動 ” };
 ```
@@ -665,7 +667,7 @@ function(errorCode) {
 
 - 通知をキャンセルします
 ```javascript
-  Notification.cancelNotification(date, successCallback, errorCallback);
+Notification.cancelNotification(date, successCallback, errorCallback);
 ```
   - date  
   キャンセルする通知日付
@@ -674,14 +676,14 @@ function(errorCode) {
   キャンセルが正常に行われた場合に呼び出されます
 ```javascript
 function() {
-		// Do something.
+	// Do something.
 }
 ```
   - errorCallback  
   キャンセルに失敗した場合に呼び出されます
 ```javascript
 function() {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
   ------------------------------------------------------------------------
@@ -697,13 +699,13 @@ function() {
 - カメラ、もしくはライブラリから画像を取得します。  
   画像のBase64エンコード文字列か画像ファイルのURIを返します
 ```javascript
-  Camera.getPicture( successCallback, errorCallback, [ options ] );
+Camera.getPicture( successCallback, errorCallback, [ options ] );
 ```
   - successCallback  
   画像の取得が正常に行われた場合に呼び出されます
 ```javascript
 function(imageData) {
-		// Do something with the image.
+	// Do something with the image.
 }
 ```
   パラメータ  
@@ -713,7 +715,7 @@ function(imageData) {
   画像取得に失敗した場合に呼び出されます
 ```javascript
 function(message) {
-		// Show a helpful message.
+	// Show a helpful message.
 }
 ```
   パラメータ  
@@ -722,33 +724,33 @@ function(message) {
   - options  
   カスタマイズオプション
 ```javascript
-  { quality : 75,
+{ quality : 75,
   destinationType : Camera.DestinationType.DATA_URL,
   sourceType : Camera.PictureSourceType.CAMERA,
   encodingType: Camera.EncodingType.JPEG,
   targetWidth: 100,
   targetHeight: 100 };
 ```
-  オプション
-		・quality: 画質( 0~100)
-        ・destinationType: 戻り値のフォーマット
-        ・sourceType: 画像ソース
-        ・encodingType: 画像のエンコードタイプ
-        ・targetWidth: 取得画像の幅
-        ・targetHeight: 取得画像の高さ
+  オプション  
+		・quality: 画質( 0~100)  
+        ・destinationType: 戻り値のフォーマット  
+        ・sourceType: 画像ソース  
+        ・encodingType: 画像のエンコードタイプ  
+        ・targetWidth: 取得画像の幅  
+        ・targetHeight: 取得画像の高さ  
 
 ###**recordVideo**
 ---
 
 - 動画の撮影を行います。
 ```javascript
-  Camera.recordVideo(successCallback, errorCallback);
+Camera.recordVideo(successCallback, errorCallback);
 ```
   - successCallback  
   動画撮影が正常に行われた場合に呼び出されます
 ```javascript
 function(videoData) {
-		// Do something with the videoData.
+	// Do something with the videoData.
 }
 ```
   パラメータ  
@@ -758,7 +760,7 @@ function(videoData) {
  動画撮影に失敗した場合に呼び出されます
 ```javascript
 function(message) {
-		// Show a helpful message.
+	// Show a helpful message.
 }
 ```
   パラメータ  
@@ -779,7 +781,7 @@ function(message) {
 ###**コンストラクタ**
 ---
 ```javascript
-  var sound = new Sound(src, [successCallback], [errorCallback] );
+var sound = new Sound(src, [successCallback], [errorCallback] );
 ```
   - src  
   サウンドコンテンツへのURI
@@ -788,29 +790,29 @@ function(message) {
   再生、一時停止、停止など全てのアクションが正常に終了した場合に呼び出されます
 ```javascript
 function() {
-		// Do something
+	// Do something
 }
 ```
   - errorCallback  
   再生、一時停止、停止など全てのアクションに於いてエラーが発生した場合に呼び出されます
 ```javascript
 function(errorCode) {
-		// Do something in case of error.
+	// Do something in case of error.
 }
 ```
   パラメータ  
   　・errorCode: エラーコード  
-		SOUND_ERR_ABORTED = 1
-        SOUND_ERR_NETWORK = 2
-        SOUND_ERR_DECODE = 3
-        SOUND_ERR_NONE_SUPPORTED = 4
+		SOUND_ERR_ABORTED = 1  
+        SOUND_ERR_NETWORK = 2  
+        SOUND_ERR_DECODE = 3  
+        SOUND_ERR_NONE_SUPPORTED = 4  
 
 ###**play**
 ---
 
 - サウンドを再生します
 ```javascript
-  sound.play([numberOfLoops:] );
+sound.play([numberOfLoops:]);
 ```
   - numberOfLoops  
   ループ回数
@@ -820,7 +822,7 @@ function(errorCode) {
 
 - サウンドの再生を一時停止します
 ```javascript
-  sound.pause( );
+sound.pause( );
 ```
 
 ###**stop**
@@ -828,7 +830,7 @@ function(errorCode) {
 
 - サウンドの再生を停止します
 ```javascript
-  sound.stop( );
+sound.stop( );
 ```
 
 ###**release**
@@ -836,7 +838,7 @@ function(errorCode) {
 
 - このオブジェクトで使用していたサウンドリソースを解放します
 ```javascript
-  sound.release();
+sound.release();
 ```
 
 ###**getCurrentPosition**
@@ -844,7 +846,7 @@ function(errorCode) {
 
 - 現在の再生位置を取得します
 ```javascript
-  sound.getCurrentPosition();
+sound.getCurrentPosition();
 ```
   
 ###**setCurrentPosition**
@@ -852,7 +854,7 @@ function(errorCode) {
 
 - 現在の再生位置（秒）を設定します
 ```javascript
-  sound.setCurrentPosition(pos, [func]);
+sound.setCurrentPosition(pos, [func]);
 ```
  - pos  
  再生位置（秒）  
@@ -864,7 +866,7 @@ function(errorCode) {
 
 - 再生時間を取得します
 ```javascript
-  sound.getDuration();
+sound.getDuration();
 ```
   ------------------------------------------------------------------------
 #Movie
@@ -883,7 +885,7 @@ function(errorCode) {
 ###**コンストラクタ**
 ---
 ```javascript
-  var movie = new Movie(src, [successCallback], [errorCallback], [options]);
+var movie = new Movie(src, [successCallback], [errorCallback], [options]);
 ```
  - src  
  動画コンテンツへのURI
@@ -892,28 +894,28 @@ function(errorCode) {
  - successCallback   
   再生、一時停止、停止など全てのアクションが正常に終了した場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something
-  }
+function() {
+	// Do something
+}
 ```
  - errorCallback  
   再生、一時停止、停止など全てのアクションに於いてエラーが発生した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode：エラーコード   
-		MOVIE_ERR_ABORTED = 1
-    	MOVIE_ERR_NETWORK = 2
-    	MOVIE_ERR_DECODE = 3
-    	MOVIE_ERR_NONE_SUPPORTED = 4
+		MOVIE_ERR_ABORTED = 1  
+    	MOVIE_ERR_NETWORK = 2  
+    	MOVIE_ERR_DECODE = 3  
+    	MOVIE_ERR_NONE_SUPPORTED = 4  
   
 -  options  
   ムービープレーヤーオプション
 ```javascript
-  { frame : {posX : 0, posY : 0, width : 100, height : 100},
+{ frame : {posX : 0, posY : 0, width : 100, height : 100},
   scalingMode : Movie.SCALING_ASPECT_FIT,
   controlStyle : Movie.CONTROL_NONE };
 ```
@@ -927,12 +929,12 @@ function(errorCode) {
 
 - ムービーの再生開始を行います
 ```javascript
-  movie.play( [options]);
+movie.play( [options]);
 ```
   - options  
   ムービープレーヤーオプション
 ```javascript
-  { frame : {posX : 0, posY : 0, width : 100, height : 100},
+{ frame : {posX : 0, posY : 0, width : 100, height : 100},
   scalingMode : Movie.SCALING_ASPECT_FIT,
   controlStyle : Movie.CONTROL_NONE };
 ```
@@ -946,7 +948,7 @@ function(errorCode) {
 
 - ムービーの再生を一時停止します
 ```javascript
-  movie.pause( );
+movie.pause( );
 ```
 
 ###**stop**
@@ -954,7 +956,7 @@ function(errorCode) {
 
 - ムービーの再生を停止します
 ```javascript
-  movie.stop( );
+movie.stop( );
 ```
 
 ###**release**
@@ -962,7 +964,7 @@ function(errorCode) {
 
 - このオブジェクトで使用していたムービーリソースを解放します
 ```javascript
-  movie.release();
+movie.release();
 ```
 
 ###**getDuration**
@@ -970,7 +972,7 @@ function(errorCode) {
 
 - ムービーの再生時間を取得します
 ```javascript
-  movie.getDuration();
+movie.getDuration();
 ```
 
 ###**getCurrentPosition**
@@ -978,7 +980,7 @@ function(errorCode) {
 
 - 現在の再生位置（秒）を取得します
 ```javascript
-  movie.getCurrentPosition();
+movie.getCurrentPosition();
 ```
 
 ###**setCurrentPosition**
@@ -986,7 +988,7 @@ function(errorCode) {
 
 - 現在の再生位置（秒）を設定します
 ```javascript
-  movie.setCurrentPosition(pos, [func]);
+movie.setCurrentPosition(pos, [func]);
 ```
   - pos  
   再生位置（秒）  
@@ -998,14 +1000,14 @@ function(errorCode) {
 
 - ムービーのサムネイルを取得します
 ```javascript
-  movie.getThumbnail(successCallback, errorCallback, [options]);
+movie.getThumbnail(successCallback, errorCallback, [options]);
 ```
   - successCallback  
   サムネイルの取得が正常に行われた場合に呼び出されます
 ```javascript
-  function(data) {
-  		// Do something
-  }
+function(data) {
+	// Do something
+}
 ```
    	パラメータ  
   　・data: Base64 エンコーディングされたイメージデータ
@@ -1013,9 +1015,9 @@ function(errorCode) {
  - errorCallback
   サムネイル取得時にエラーが発生した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  // Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
 
    パラメータ  
@@ -1025,7 +1027,7 @@ function(errorCode) {
   - options  
   サムネイル画像取得に関するオプションを設定します
 ```javascript
-  { quality : 75
+{ quality : 75
   width : 100,
   height : 100,
   offset : 0 };
@@ -1046,14 +1048,14 @@ function(errorCode) {
 
 - QRコードを読み込みます
 ```javascript
-  QRReader.read(successCallback , errorCallback, [options]);
+QRReader.read(successCallback , errorCallback, [options]);
 ```
  - successCallback  
   QRコード読み込みが正常終了した際に呼び出されます
 ```javascript
-  function(dataString) {
-  		// Do something with the string.
-  }
+function(dataString) {
+	// Do something with the string.
+}
 ```
   パラメータ  
   　・dataString: QRコードデータ
@@ -1061,14 +1063,14 @@ function(errorCode) {
  - errorCallback  
   QRコード読み込み時に失敗した際に呼び出されます
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
  - options  
   QRコード読み込み時のオプションを設定します
 ```javascript
-  {source: QRReader.SOURCE_CAMERA};
+{source: QRReader.SOURCE_CAMERA};
 ```
   オプション  
   　・source: どこからQRコードを読み込むか
@@ -1084,26 +1086,26 @@ function(errorCode) {
 
 - ローディングビューの表示を開始します
 ```javascript
-  LoadingScreen.startLoad( successCallback, errorCallback, [ options ] );
+LoadingScreen.startLoad( successCallback, errorCallback, [ options ] );
 ```
  - successCallback  
   ローディングスクリーン表示が正常に開始された場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   ローディングスクリーン表示時にエラーが発生した場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
   - options  
   表示オプションを設定します
 ```javascript
-  {label: "Loading...",
+{label: "Loading...",
   style:LoadingScreen.STYLEWHITELARGE,
   isBlackBackground:true};
 ```
@@ -1117,21 +1119,21 @@ function(errorCode) {
 
 - ローディングスクリーンの表示を停止します
 ```javascript
-  LoadingScreen.stoptLoad(successCallback, errorCallback);
+LoadingScreen.stoptLoad(successCallback, errorCallback);
 ```
   - successCallback  
   ローディングスクリーン停止が正常に完了した際に呼び出されます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   ローディングスクリーン停止時にエラーが発生した場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
   ------------------------------------------------------------------------
 #Database
@@ -1146,7 +1148,7 @@ function(errorCode) {
 ###**コンストラクタ**
 ---
 ```javascript
-  var db = new Database(dbName, successCallback, errorCallback);
+var db = new Database(dbName, successCallback, errorCallback);
 ```
 - dbName  
   データベース名
@@ -1154,16 +1156,16 @@ function(errorCode) {
 - successCallback  
   データベースオブジェクトが正常に作成された場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
 - errorCallback  
   データベースオブジェクト作成時にエラーが発生した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode: エラーコード
@@ -1173,28 +1175,28 @@ function(errorCode) {
 
 - SQLクエリを実行します
 ```javascript
-  db.executeSQL(query, args, successCallback, errorCallback);
+db.executeSQL(query, args, successCallback, errorCallback);
 ```
   - query  
-  クエリ文字列<br/><br/>
+  クエリ文字列<br/>
   
- - args  
+  - args  
   クエリがSELECT文かどうかを指定する
   
- - successCallback  
+  - successCallback  
   クエリ実行が正常終了した場合に呼び出されます  
   ※SELECT文の場合、該当データがJSONオブジェクトで返されます
 ```javascript
-  function(result) {
-  		// Do something.
-  }
+function(result) {
+	// Do something.
+}
 ```
   - errorCallback  
   クエリー実行時に失敗した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode: エラーコード
@@ -1204,21 +1206,21 @@ function(errorCode) {
 
 - トランザクションを開始します
 ```javascript
-  db.beginTrans(successCallback, errorCallback);
+db.beginTrans(successCallback, errorCallback);
 ```
   - successCallback  
   トランザクション開始が正常終了した場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   トランザクション開始に失敗した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode: エラーコード
@@ -1228,21 +1230,21 @@ function(errorCode) {
 
 - トランザクションをコミットします
 ```javascript
-  db.commitTrans(successCallback, errorCallback);
+db.commitTrans(successCallback, errorCallback);
 ```
   - successCallback  
   コミットに成功した場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   コミットに失敗した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode: エラーコード
@@ -1252,21 +1254,21 @@ function(errorCode) {
 
 - トランザクションをロールバックします
 ```javascript
-  db.rollback(successCallback, errorCallback);
+db.rollback(successCallback, errorCallback);
 ```
   - successCallback  
   ロールバックに成功した場合に呼び出されます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   ロールバックに失敗した場合に呼び出されます
 ```javascript
-  function(errorCode) {
-  		// Do something in case of error.
-  }
+function(errorCode) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・errorCode: エラーコード
@@ -1314,21 +1316,21 @@ function(errorCode) {
 
 - 電話帳UIを表示します。
 ```javascript
-  AddressBook.show(successCallback, errorCallback);
+AddressBook.show(successCallback, errorCallback);
 ```
   - successCallback  
   電話帳UIが正常に表示された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   電話帳UI表示時にエラーが発生した場合に呼び出されます。
 ```javascript
-  function(message) {
-  		// Do something in case of error.
-  }
+function(message) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・message: ネイティブ側からのエラーメッセージ
@@ -1338,14 +1340,14 @@ function(errorCode) {
 
 - 連絡先情報取得UIを表示します。
 ```javascript
-  AddressBook.showForSelection(successCallback, errorCallback);
+AddressBook.showForSelection(successCallback, errorCallback);
 ```
   - successCallback  
   連絡先が正常に取得された場合に呼び出されます。
 ```javascript
-  function(data) {
-  		// Do something.
-  }
+function(data) {
+	// Do something.
+}
 ```
   パラメータ  
   　・data: 選択したアドレス情報
@@ -1353,9 +1355,9 @@ function(errorCode) {
   - errorCallback  
   連絡先取得時にエラーが発生した場合に呼び出されます。
 ```javascript
-  function(message) {
-  		// Do something in case of error.
-  }
+function(message) {
+	// Do something in case of error.
+}
 ```
   パラメータ  
   　・message: ネイティブ側からのエラーメッセージ
@@ -1378,7 +1380,7 @@ function(errorCode) {
 
 - デバイスの検索を開始します。
 ```javascript
-  Bluetooth.discover();
+Bluetooth.discover();
 ```
 
 ###**connect**
@@ -1386,7 +1388,7 @@ function(errorCode) {
 
 - デバイスに接続します。
 ```javascript
-  Bluetooth.connect(peerData, successCallback, errorCallback);
+Bluetooth.connect(peerData, successCallback, errorCallback);
 ```
   - peerData  
   デバイス情報
@@ -1394,16 +1396,16 @@ function(errorCode) {
  - successCallback  
   接続が正常に取得された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   接続に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
   
 ###**disconnect**
@@ -1411,7 +1413,7 @@ function(errorCode) {
 
 - デバイスの接続を解除します。
 ```javascript
-  Bluetooth.disconnect(peerData, successCallback, errorCallback);
+Bluetooth.disconnect(peerData, successCallback, errorCallback);
 ```
   - peerData  
   デバイス情報
@@ -1419,16 +1421,16 @@ function(errorCode) {
  - successCallback  
   接続解除が正常に取得された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   接続解除に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
 
 ###**send**
@@ -1436,27 +1438,27 @@ function(errorCode) {
 
 - デバイスへデータ送信を行います。
 ```javascript
-  Bluetooth.send(peerData, sendData, successCallback, errorCallback);
+Bluetooth.send(peerData, sendData, successCallback, errorCallback);
 ```
   - peerData  
-  デバイス情報<br/><br/>
+  デバイス情報<br/>
 
- - sendData  
+  - sendData  
   送信データ（String）
 
- - successCallback  
+  - successCallback  
   正常にデータ送信された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   - errorCallback  
   データ送信に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
   ------------------------------------------------------------------------
 #Bluetooth4LE
@@ -1614,7 +1616,7 @@ function(errorCode) {
 
 - デバイスのスキャンを開始します。
 ```javascript
-  Bluetooth4LE.scanDevices(services);
+Bluetooth4LE.scanDevices(services);
 ```  
  - services  
   検索対象サービス(Array)
@@ -1624,7 +1626,7 @@ function(errorCode) {
 
 - デバイスへ接続します。
 ```javascript
-  Bluetooth4LE.connect(peripheral, successCallback, errorCallback);
+Bluetooth4LE.connect(peripheral, successCallback, errorCallback);
 ```
  - peripheral  
   デバイス情報
@@ -1632,16 +1634,16 @@ function(errorCode) {
  - successCallback  
   接続が正常に取得された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
  - errorCallback
   接続に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
   
 ###**disconnect**
@@ -1649,7 +1651,7 @@ function(errorCode) {
 
 - デバイスとの接続を解除します。
 ```javascript
-  Bluetooth4LE.disconnect(peripheral, successCallback, errorCallback);
+Bluetooth4LE.disconnect(peripheral, successCallback, errorCallback);
 ```
  - peripheral  
   デバイス情報
@@ -1657,16 +1659,16 @@ function(errorCode) {
  - successCallback  
   接続解除が正常に取得された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
  - errorCallback  
   接続解除に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
   ------------------------------------------------------------------------
 #Peripheral  
@@ -1691,20 +1693,20 @@ function(errorCode) {
 
 - キャラクタリスティクに値を書き込みます。
 ```javascript
-  peripheral.writeValueForCharacteristic(value, valueType, characteristic, writeType, successCallback,errorCallback);
+peripheral.writeValueForCharacteristic(value, valueType, characteristic, writeType, successCallback,errorCallback);
 ``` 
 
  - value  
-   書き込む値<br/><br/>
+   書き込む値<br/>
 
  - valueType  
-  書き込む値のタイプ<br/><br/>
+  書き込む値のタイプ<br/>
 
  - service  
-  対象のサービス<br/><br/>
+  対象のサービス<br/>
 
  - characteristic  
-  対象のキャラクタリスティック<br/><br/>
+  対象のキャラクタリスティック<br/>
 
  - writeType  
   書き込みタイプ  
@@ -1714,16 +1716,16 @@ function(errorCode) {
  - successCallback  
   書き込みが正常終了した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ``` 
   - errorCallback  
   書き込みに失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
- 		 // Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
 
 ###**readValueForCharacteristic**
@@ -1731,13 +1733,13 @@ function(errorCode) {
 
 - キャラクタリスティクから値を読み込みます。
 ```javascript
-  peripheral.readValueForCharacteristic(service, characteristic,valueType,  successCallback, errorCallback);
+peripheral.readValueForCharacteristic(service, characteristic,valueType,  successCallback, errorCallback);
 ``` 
  - service  
-  対象のサービス<br/><br/>
+  対象のサービス<br/>
 
  - characteristic  
-  対象のキャラクタリスティック<br/><br/>
+  対象のキャラクタリスティック<br/>
 
  - valueType  
   読み込む値のタイプ
@@ -1745,9 +1747,9 @@ function(errorCode) {
  - successCallback  
   読み込みが正常に取得された場合に呼び出されます。
 ```javascript
-  function(value) {
-  		// Do something.
-  }
+function(value) {
+	// Do something.
+}
 ``` 
   パラメータ  
   　・value: 読み込んだ値
@@ -1755,9 +1757,9 @@ function(errorCode) {
  - errorCallback  
   読み込みに失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
 
 ###**writeValueForDescriptor**
@@ -1765,20 +1767,20 @@ function(errorCode) {
 
 - ディスクリプタに値を書き込みます。
 ```javascript
-  peripheral.writeValueForDescriptor(value, valueType, service, characteristic, descriptor,successCallback, errorCallback);
+peripheral.writeValueForDescriptor(value, valueType, service, characteristic, descriptor,successCallback, errorCallback);
 ``` 
  
  - value  
-  書き込む値<br/><br/>
+  書き込む値<br/>
 
  - valueType  
-  書き込む値のタイプ<br/><br/>
+  書き込む値のタイプ<br/>
 
  - service  
-  対象のサービス<br/><br/>
+  対象のサービス<br/>
 
  - characteristic  
-  対象のキャラクタリスティック<br/><br/>
+  対象のキャラクタリスティック<br/>
 
  - descriptor  
   対象のディスクリプタ
@@ -1786,16 +1788,16 @@ function(errorCode) {
  - successCallback  
   書き込みが正常に取得された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ``` 
   - errorCallback  
   書き込みに失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
 
 ###**readValueForDescriptor**
@@ -1803,13 +1805,13 @@ function(errorCode) {
 
 - ディスクリプタから値を読み込みます。
 ```javascript
-  peripheral.readValueForDescriptor(service, characteristic, descriptor, valueType, successCallback, errorCallback);
+peripheral.readValueForDescriptor(service, characteristic, descriptor, valueType, successCallback, errorCallback);
 ``` 
  - service  
-  対象のサービス<br/><br/>
+  対象のサービス<br/>
 
  - characteristic  
-  対象のキャラクタリスティック<br/><br/>
+  対象のキャラクタリスティック<br/>
 
  - descriptor  
   対象のディスクリプタ
@@ -1817,9 +1819,9 @@ function(errorCode) {
  - successCallback  
   読み込みが正常終了した場合に呼び出されます。
 ```javascript
-  function(value) {
-  		// Do something with the value.
-  }
+function(value) {
+	// Do something with the value.
+}
 ``` 
   パラメータ  
   　・value: 読み込んだ値
@@ -1827,9 +1829,9 @@ function(errorCode) {
  - errorCallback  
   読み込みに失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
   ------------------------------------------------------------------------
 #Felica
@@ -1852,14 +1854,14 @@ function(errorCode) {
 
 - IDmを取得します。
 ```javascript
-  Felica.getIDm(successCallback, errorCallback);
+Felica.getIDm(successCallback, errorCallback);
 ``` 
  - successCallback  
   IDmが正常に取得された場合に呼び出されます。
 ```javascript
-  function(IDm) {
-  		// Do something with the IDm.
-  }
+function(IDm) {
+	// Do something with the IDm.
+}
 ``` 
   パラメータ  
   　・IDm: 取得したIDm(String)
@@ -1867,9 +1869,9 @@ function(errorCode) {
  -  errorCallback  
   取得に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
 
 ###**getPMm**
@@ -1877,14 +1879,14 @@ function(errorCode) {
 
 - PMmを取得します。
 ```javascript
-  Felica.getPMm(successCallback, errorCallback);
+Felica.getPMm(successCallback, errorCallback);
 ``` 
   - successCallback  
   PMmが正常に取得された場合に呼び出されます。
 ```javascript
-  function(PMm) {
-  		// Do something with the PMm.
-  }
+function(PMm) {
+	// Do something with the PMm.
+}
 ``` 
   パラメータ  
   　・PMm: 取得したPMm(String)
@@ -1892,9 +1894,9 @@ function(errorCode) {
  - errorCallback  
   取得に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
 
 ###**requestSystemCode**
@@ -1902,14 +1904,14 @@ function(errorCode) {
 
 - システムコード取得要求を送信します。
 ```javascript
-  Felica.getPMm(successCallback, errorCallback);
+Felica.getPMm(successCallback, errorCallback);
 ``` 
  - successCallback  
   システムコードが正常に取得された場合に呼び出されます。
 ```javascript
-  function(systemcodes) {
-  		// Do something with the system codes.
-  }
+function(systemcodes) {
+	// Do something with the system codes.
+}
 ``` 
   パラメータ  
   　・systemcodes: 取得したシステムコード(Array)
@@ -1917,9 +1919,9 @@ function(errorCode) {
  - errorCallback  
   取得に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  // Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
   
 ###**requestResponse**
@@ -1927,14 +1929,14 @@ function(errorCode) {
 
 - 応答要求を行います
 ```javascript
-  Felica.requestResponse(successCallback, errorCallback);
+Felica.requestResponse(successCallback, errorCallback);
 ``` 
  - successCallback  
   応答要求が正常に行われた場合に呼び出されます。
 ```javascript
-  function(mode) {
-  		// Do something with the mode.
-  }
+function(mode) {
+	// Do something with the mode.
+}
 ``` 
   パラメータ  
   　・mode: システムの最新状態
@@ -1942,9 +1944,9 @@ function(errorCode) {
  - errorCallback  
   取得に失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
   
 ###**readWithoutEncryption**
@@ -1952,10 +1954,10 @@ function(errorCode) {
 
 - 認証を必要としないサービスからブロックデータを読み出します。
 ```javascript
-  Felica.readWithoutEncryption(serviceCode, addr, successCallback, errorCallback);
+Felica.readWithoutEncryption(serviceCode, addr, successCallback, errorCallback);
 ``` 
  - serviceCode  
-  サービスコード<br/><br/>
+  サービスコード<br/>
 
  - addr  
   読み込みを開始するブロックデータアドレス
@@ -1963,9 +1965,9 @@ function(errorCode) {
  - successCallback  
   読み込みが正常に行われた場合に呼び出されます。
 ```javascript
-  function(blockdata) {
-  		// Do something with the block data.
-  }
+function(blockdata) {
+	// Do something with the block data.
+}
 ``` 
   パラメータ  
   　・blockdata: 読み込まれたブロックデータ
@@ -1973,9 +1975,9 @@ function(errorCode) {
  - errorCallback  
   読み込みに失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
 
 ###**writeWithoutEncryption**
@@ -1983,16 +1985,16 @@ function(errorCode) {
 
 - 認証を必要としないサービスへブロックデータを書き込みます。
 ```javascript
-  Felica.writeWithEncryption(serviceCode, addr, buff, successCallback, errorCallback);
+Felica.writeWithEncryption(serviceCode, addr, buff, successCallback, errorCallback);
 ``` 
  - serviceCode  
-  サービスコード<br/><br/>
+  サービスコード<br/>
 
  - serviceCode  
-  サービスコード<br/><br/>
+  サービスコード<br/>
 
  - addr  
-  書き込みを開始するブロックデータアドレス<br/><br/>
+  書き込みを開始するブロックデータアドレス<br/>
 
  - buff  
   書き込みデータ
@@ -2000,16 +2002,16 @@ function(errorCode) {
  - successCallback  
   書き込みが正常に行われた場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ``` 
   - errorCallback  
   書き込みに失敗した発生した場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ``` 
   ------------------------------------------------------------------------
 #AppVersion
@@ -2022,14 +2024,14 @@ function(errorCode) {
 
 - アプリバージョンを取得します。
 ```javascript
-  AppVersion.get(callback);
+AppVersion.get(callback);
 ``` 
   callback
   アプリバージョンが取得されます。
 ```javascript
-  function(version) {
-  // Do something with App Version.
-  }
+function(version) {
+	// Do something with App Version.
+}
 ``` 
   パラメータ  
   　・version: アプリバージョン(String)  
@@ -2047,7 +2049,7 @@ function(errorCode) {
 
 - 新しいコンタクトオブジェクトを作成します。
 ```javascript
-  var contact = Contacts.create();
+var contact = Contacts.create();
 ``` 
 
 ###**search**
@@ -2055,10 +2057,10 @@ function(errorCode) {
 
 - デバイス内の電話帳データベースから検索を行います
 ```javascript
-  Contacts.search(conditions, orderby, successCallback, errorCallback);
+Contacts.search(conditions, orderby, successCallback, errorCallback);
 ``` 
  - conditions  
-  検索条件<br/><br/>
+  検索条件<br/>
 
  - orderby  
   取得順
@@ -2066,26 +2068,26 @@ function(errorCode) {
  - successCallback  
   連絡先情報が正常に取得された場合に呼び出されます。
 ```javascript
-  function(contacts) {
-  		// Do something.
-  }
+function(contacts) {
+	// Do something.
+}
 ``` 
   - errorCallback
   連絡先情報取得に失敗した発生した場合に呼び出されます。
 ```javascript
-  function(message) {
-  		// Show a helpful message.
-  }
+function(message) {
+	// Show a helpful message.
+}
 ``` 
   パラメータ  
   　・message: ネイティブ側からのエラーメッセージ  
   
   サンプル
 ```javascript
-  var conditions = new Array();
-  conditions.push(“displayName = 'Test'”);
-  conditions.push(“addresses != ''”);
-  Contacts.search(conditions, Contacts.SEARCH_ORDER_ASC, successCallback, errorCallback);
+var conditions = new Array();
+conditions.push(“displayName = 'Test'”);
+conditions.push(“addresses != ''”);
+Contacts.search(conditions, Contacts.SEARCH_ORDER_ASC, successCallback, errorCallback);
 ``` 
   ------------------------------------------------------------------------
 #Contact
@@ -2116,23 +2118,23 @@ function(errorCode) {
 
 - 連絡先情報を削除します。
 ```javascript
-  Contact.remove(successCallback, errorCallback);
+Contact.remove(successCallback, errorCallback);
 ```
 
   - successCallback  
   連絡先情報が正常に削除された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
 
   - errorCallback  
   連絡先情報の削除に失敗した場合に呼び出されます。
 ```javascript
-  function(message) {
-  		// Show a helpful message.
-  }
+function(message) {
+	// Show a helpful message.
+}
 ```
 
   パラメータ  
@@ -2143,22 +2145,22 @@ function(errorCode) {
 
 - 連絡先情報を保存します。
 ```javascript
-  Contact.save(successCallback, errorCallback);
+Contact.save(successCallback, errorCallback);
 ``` 
  - successCallback  
   連絡先情報保存が正常に削除された場合に呼び出されます。
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ``` 
 
  - errorCallback  
   連絡先情報の保存に失敗した場合に呼び出されます。
 ```javascript
-  function(message) {
-  		// Show a helpful message.
-  }
+function(message) {
+	// Show a helpful message.
+}
 ``` 
   パラメータ  
   　・message: ネイティブ側からのエラーメッセージ
@@ -2213,6 +2215,7 @@ function(errorCode) {
 
   - type:URLタイプ
   - url:URL
+  
   ------------------------------------------------------------------------
 #ContactOrganization
 ###**プロパティ**  
@@ -2235,7 +2238,7 @@ function(errorCode) {
 
 - ファイルオブジェクトを使用してPDFを表示します
 ```javascript
-  PDFViewer.showWithFileObject(file);
+PDFViewer.showWithFileObject(file);
 ```
  - file  
   PDFファイルへのファイルオブジェクト
@@ -2245,7 +2248,7 @@ function(errorCode) {
 
 - ファイルパスで指定されたPDFを表示します
 ```javascript
-  PDFViewer.showWithFilePath(filePath);
+PDFViewer.showWithFilePath(filePath);
 ```
   - filePath  
   PDFファイルへのファイルパス
@@ -2255,11 +2258,12 @@ function(errorCode) {
 
 - URLで指定されたPDFを表示します
 ```javascript
-  PDFViewer.showWithURL(url);
+PDFViewer.showWithURL(url);
 ```
   - url  
   PDFファイルへのURL  
   ※PDFを表示する前に、該当ファイルをダウンロードします。
+  
   ------------------------------------------------------------------------
 #Ad
 ###**メソッド**  
@@ -2273,35 +2277,35 @@ function(errorCode) {
 
 - 広告表示用ビューを作成し、広告をロードします。
 ```javascript
-  Ad.create(position, successCallback, errorCallback, [options]);
+Ad.create(position, successCallback, errorCallback, [options]);
 ```
   - position  
   広告表示用ビューを表示する位置を指定します。指定値は以下の通り  
   　AD.POSITION_TOP : 0  
-  　AD.POSITION_BOTTOM : 1
+  　AD.POSITION_BOTTOM : 1  
 
- - successCallback  
+  - successCallback  
   広告表示用ビューが作成され、広告が正常に読み込まれた場合に呼ばれます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   
   - errorCallback  
   広告表示用ビューの作成に失敗した、もしくは広告の読み込みに失敗した場合に呼ばれます
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```
   - options  
   オプションを設定します
 ```javascript
-  {
+{
   id : a03ce87ff88282d3a7799fe89de30b // 例 ) パブリッシャー id :
   a14e62fe30c05d7
-  };
+};
 ```
   オプション  
   　・id:Admob用パブリッシャーID  
@@ -2312,22 +2316,22 @@ function(errorCode) {
  
 - 広告表示用ビューを表示します。
 ```javascript
-  Ad.show(successCallback, errorCallback);
+Ad.show(successCallback, errorCallback);
 ```
  - successCallback  
   広告表示用ビューが正常に表示された場合に呼ばれます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   
   - errorCallback  
   広告表示用ビューの表示に失敗した場合に呼ばれます
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```  
 
 ###**hide**
@@ -2335,21 +2339,21 @@ function(errorCode) {
  
 - 広告表示用ビューを非表示にします。
 ```javascript
-  Ad.hide(successCallback, errorCallback);
+Ad.hide(successCallback, errorCallback);
 ```
  - successCallback  
   広告表示用ビューが正常に非表示になった場合に呼ばれます
 ```javascript
-  function() {
-  		// Do something.
-  }
+function() {
+	// Do something.
+}
 ```
   
   - errorCallback  
   広告表示用ビューの非表示に失敗した場合に呼ばれます
 ```javascript
-  function() {
-  		// Do something in case of error.
-  }
+function() {
+	// Do something in case of error.
+}
 ```  
   ------------------------------------------------------------------------
