@@ -110,7 +110,7 @@ function(message) {
 ###**decrypt**
 ---
 
-- 文字列の復号化を行います。 
+- 文字列の復号化を行います 
 ```javascript
 Encryption.decrypt(encryptedString, successCallback, errorCallback);
 ```
@@ -400,7 +400,7 @@ function(errorCode) {
 ###**seek**
 ---
 
-- ファイルポインタを指定された位置に移動します。（バイト単位）
+- ファイルポインタを指定された位置に移動します（バイト単位）
 ```javascript
 writer.seek(pos);
 ```
@@ -507,8 +507,8 @@ function() {
 ###**addResource**
 ---
 
-- リソース（URL）データをキャッシュに追加します。  
-  追加されたデータURLからリソースのダウンロードを行います。
+- リソース（URL）データをキャッシュに追加します  
+  追加されたデータURLからリソースのダウンロードを行います
 ```javascript
 Cache.addResource(remoteContentsPath, expiredDate, successCallback,errorCallback);
 ```
@@ -696,7 +696,7 @@ function() {
 ###**getPicture**
 ---
 
-- カメラ、もしくはライブラリから画像を取得します。  
+- カメラ、もしくはライブラリから画像を取得します  
   画像のBase64エンコード文字列か画像ファイルのURIを返します
 ```javascript
 Camera.getPicture( successCallback, errorCallback, [ options ] );
@@ -742,7 +742,7 @@ function(message) {
 ###**recordVideo**
 ---
 
-- 動画の撮影を行います。
+- 動画の撮影を行います
 ```javascript
 Camera.recordVideo(successCallback, errorCallback);
 ```
@@ -765,6 +765,7 @@ function(message) {
 ```
   パラメータ  
   　・message: ネイティブ側からのエラーメッセージ
+  
 ------------------------------------------------------------------------
 #Sound
 ###**メソッド**  
@@ -857,7 +858,8 @@ sound.getCurrentPosition();
 sound.setCurrentPosition(pos, [func]);
 ```
  - pos  
- 再生位置（秒）  
+ 再生位置（秒）
+  
  - func  
  再生位置変更後に行うファンクション
 
@@ -991,7 +993,8 @@ movie.getCurrentPosition();
 movie.setCurrentPosition(pos, [func]);
 ```
   - pos  
-  再生位置（秒）  
+  再生位置（秒） 
+ 
   - func  
   再生位置変更後に行うファンクション
 
@@ -1037,6 +1040,7 @@ function(errorCode) {
   　・width: サムネイル画像の幅  
   　・height: サムネイル画像の高さ  
   　・offset:ムービー開始位置からのオフセット（どの位置のサムネイルを取得するか）※iOSのみ  
+  
 ------------------------------------------------------------------------
 #QRReader
 ###**メソッド**  
@@ -1074,6 +1078,7 @@ function() {
 ```
   オプション  
   　・source: どこからQRコードを読み込むか
+  
 ------------------------------------------------------------------------
 #LoadingScreen
 ###**メソッド**  
@@ -1314,19 +1319,19 @@ function(errorCode) {
 ###**show**
 ---
 
-- 電話帳UIを表示します。
+- 電話帳UIを表示します
 ```javascript
 AddressBook.show(successCallback, errorCallback);
 ```
   - successCallback  
-  電話帳UIが正常に表示された場合に呼び出されます。
+  電話帳UIが正常に表示された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ```
   - errorCallback  
-  電話帳UI表示時にエラーが発生した場合に呼び出されます。
+  電話帳UI表示時にエラーが発生した場合に呼び出されます
 ```javascript
 function(message) {
 	// Do something in case of error.
@@ -1338,12 +1343,12 @@ function(message) {
 ###**showForSelection**
 ---
 
-- 連絡先情報取得UIを表示します。
+- 連絡先情報取得UIを表示します
 ```javascript
 AddressBook.showForSelection(successCallback, errorCallback);
 ```
   - successCallback  
-  連絡先が正常に取得された場合に呼び出されます。
+  連絡先が正常に取得された場合に呼び出されます
 ```javascript
 function(data) {
 	// Do something.
@@ -1353,7 +1358,7 @@ function(data) {
   　・data: 選択したアドレス情報
 
   - errorCallback  
-  連絡先取得時にエラーが発生した場合に呼び出されます。
+  連絡先取得時にエラーが発生した場合に呼び出されます
 ```javascript
 function(message) {
 	// Do something in case of error.
@@ -1361,6 +1366,7 @@ function(message) {
 ```
   パラメータ  
   　・message: ネイティブ側からのエラーメッセージ
+  
 ------------------------------------------------------------------------
 #Bluetooth
 ###**プロパティ**  
@@ -1378,7 +1384,7 @@ function(message) {
 ###**discover**
 ---
 
-- デバイスの検索を開始します。
+- デバイスの検索を開始します
 ```javascript
 Bluetooth.discover();
 ```
@@ -1386,7 +1392,7 @@ Bluetooth.discover();
 ###**connect**
 ---
 
-- デバイスに接続します。
+- デバイスに接続します
 ```javascript
 Bluetooth.connect(peerData, successCallback, errorCallback);
 ```
@@ -1394,14 +1400,14 @@ Bluetooth.connect(peerData, successCallback, errorCallback);
   デバイス情報
 
  - successCallback  
-  接続が正常に取得された場合に呼び出されます。
+  接続が正常に取得された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ```
  - errorCallback  
-  接続に失敗した発生した場合に呼び出されます。
+  接続に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1411,7 +1417,7 @@ function() {
 ###**disconnect**
 ---
 
-- デバイスの接続を解除します。
+- デバイスの接続を解除します
 ```javascript
 Bluetooth.disconnect(peerData, successCallback, errorCallback);
 ```
@@ -1420,14 +1426,14 @@ Bluetooth.disconnect(peerData, successCallback, errorCallback);
   デバイス情報
 
  - successCallback  
-  接続解除が正常に取得された場合に呼び出されます。
+  接続解除が正常に取得された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ```
  - errorCallback  
-  接続解除に失敗した発生した場合に呼び出されます。
+  接続解除に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1437,7 +1443,7 @@ function() {
 ###**send**
 ---
 
-- デバイスへデータ送信を行います。
+- デバイスへデータ送信を行います
 ```javascript
 Bluetooth.send(peerData, sendData, successCallback, errorCallback);
 ```
@@ -1448,14 +1454,14 @@ Bluetooth.send(peerData, sendData, successCallback, errorCallback);
   送信データ（String）
 
   - successCallback  
-  正常にデータ送信された場合に呼び出されます。
+  正常にデータ送信された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ```
   - errorCallback  
-  データ送信に失敗した発生した場合に呼び出されます。
+  データ送信に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1464,8 +1470,8 @@ function() {
 ------------------------------------------------------------------------
 #Bluetooth4LE
   **※ご注意※**  
-  Androidでは現在ご利用頂けません。  
-  iPhone4以前のiPhone、iPad2以前のiPadではご利用頂けません。  
+  Androidでは現在ご利用頂けません  
+  iPhone4以前のiPhone、iPad2以前のiPadではご利用頂けません  
   
   **定数**  
   **Services**  
@@ -1615,7 +1621,7 @@ function() {
 ###**scanDevices**
 ---
 
-- デバイスのスキャンを開始します。
+- デバイスのスキャンを開始します
 ```javascript
 Bluetooth4LE.scanDevices(services);
 ```  
@@ -1625,7 +1631,7 @@ Bluetooth4LE.scanDevices(services);
 ###**connect**
 ---
 
-- デバイスへ接続します。
+- デバイスへ接続します
 ```javascript
 Bluetooth4LE.connect(peripheral, successCallback, errorCallback);
 ```
@@ -1633,14 +1639,14 @@ Bluetooth4LE.connect(peripheral, successCallback, errorCallback);
   デバイス情報
 
  - successCallback  
-  接続が正常に取得された場合に呼び出されます。
+  接続が正常に取得された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ```
  - errorCallback
-  接続に失敗した発生した場合に呼び出されます。
+  接続に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1650,7 +1656,7 @@ function() {
 ###**disconnect**
 ---
 
-- デバイスとの接続を解除します。
+- デバイスとの接続を解除します
 ```javascript
 Bluetooth4LE.disconnect(peripheral, successCallback, errorCallback);
 ```
@@ -1658,14 +1664,14 @@ Bluetooth4LE.disconnect(peripheral, successCallback, errorCallback);
   デバイス情報
 
  - successCallback  
-  接続解除が正常に取得された場合に呼び出されます。
+  接続解除が正常に取得された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ```
  - errorCallback  
-  接続解除に失敗した発生した場合に呼び出されます。
+  接続解除に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1674,8 +1680,8 @@ function() {
 ------------------------------------------------------------------------
 #Peripheral  
   **※ご注意※**  
-  Androidでは現在ご利用頂けません。  
-  iPhone4以前のiPhone、iPad2以前のiPadではご利用頂けません。  
+  Androidでは現在ご利用頂けません  
+  iPhone4以前のiPhone、iPad2以前のiPadではご利用頂けません  
   
 ###**プロパティ**  
  
@@ -1692,7 +1698,7 @@ function() {
 ###**writeValueForCharacteristic**
 ---
 
-- キャラクタリスティクに値を書き込みます。
+- キャラクタリスティクに値を書き込みます
 ```javascript
 peripheral.writeValueForCharacteristic(value, valueType, characteristic, writeType, successCallback,errorCallback);
 ``` 
@@ -1715,14 +1721,14 @@ peripheral.writeValueForCharacteristic(value, valueType, characteristic, writeTy
   　- WriteWithoutResponse : 1  
 
  - successCallback  
-  書き込みが正常終了した場合に呼び出されます。
+  書き込みが正常終了した場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ``` 
   - errorCallback  
-  書き込みに失敗した発生した場合に呼び出されます。
+  書き込みに失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1732,7 +1738,7 @@ function() {
 ###**readValueForCharacteristic**
 ---
 
-- キャラクタリスティクから値を読み込みます。
+- キャラクタリスティクから値を読み込みます
 ```javascript
 peripheral.readValueForCharacteristic(service, characteristic,valueType,  successCallback, errorCallback);
 ``` 
@@ -1746,7 +1752,7 @@ peripheral.readValueForCharacteristic(service, characteristic,valueType,  succes
   読み込む値のタイプ
 
  - successCallback  
-  読み込みが正常に取得された場合に呼び出されます。
+  読み込みが正常に取得された場合に呼び出されます
 ```javascript
 function(value) {
 	// Do something.
@@ -1756,7 +1762,7 @@ function(value) {
   　・value: 読み込んだ値
 
  - errorCallback  
-  読み込みに失敗した発生した場合に呼び出されます。
+  読み込みに失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1766,7 +1772,7 @@ function() {
 ###**writeValueForDescriptor**
 ---
 
-- ディスクリプタに値を書き込みます。
+- ディスクリプタに値を書き込みます
 ```javascript
 peripheral.writeValueForDescriptor(value, valueType, service, characteristic, descriptor,successCallback, errorCallback);
 ``` 
@@ -1787,14 +1793,14 @@ peripheral.writeValueForDescriptor(value, valueType, service, characteristic, de
   対象のディスクリプタ
 
  - successCallback  
-  書き込みが正常に取得された場合に呼び出されます。
+  書き込みが正常に取得された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ``` 
   - errorCallback  
-  書き込みに失敗した発生した場合に呼び出されます。
+  書き込みに失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1804,7 +1810,7 @@ function() {
 ###**readValueForDescriptor**
 ---
 
-- ディスクリプタから値を読み込みます。
+- ディスクリプタから値を読み込みます
 ```javascript
 peripheral.readValueForDescriptor(service, characteristic, descriptor, valueType, successCallback, errorCallback);
 ``` 
@@ -1818,7 +1824,7 @@ peripheral.readValueForDescriptor(service, characteristic, descriptor, valueType
   対象のディスクリプタ
 
  - successCallback  
-  読み込みが正常終了した場合に呼び出されます。
+  読み込みが正常終了した場合に呼び出されます
 ```javascript
 function(value) {
 	// Do something with the value.
@@ -1828,7 +1834,7 @@ function(value) {
   　・value: 読み込んだ値
 
  - errorCallback  
-  読み込みに失敗した発生した場合に呼び出されます。
+  読み込みに失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1837,8 +1843,8 @@ function() {
 ------------------------------------------------------------------------
 #Felica
   **※ご注意※**  
-  iOSではご利用頂けません。  
-  またAndroidでご使用の際はNFC機能を搭載した端末が必要です。  
+  iOSではご利用頂けません  
+  またAndroidでご使用の際はNFC機能を搭載した端末が必要です  
 
 **メソッド**  
 
@@ -1853,12 +1859,12 @@ function() {
 ###**getIDm**
 ---
 
-- IDmを取得します。
+- IDmを取得します
 ```javascript
 Felica.getIDm(successCallback, errorCallback);
 ``` 
  - successCallback  
-  IDmが正常に取得された場合に呼び出されます。
+  IDmが正常に取得された場合に呼び出されます
 ```javascript
 function(IDm) {
 	// Do something with the IDm.
@@ -1868,7 +1874,7 @@ function(IDm) {
   　・IDm: 取得したIDm(String)
 
  -  errorCallback  
-  取得に失敗した発生した場合に呼び出されます。
+  取得に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1878,12 +1884,12 @@ function() {
 ###**getPMm**
 ---
 
-- PMmを取得します。
+- PMmを取得します
 ```javascript
 Felica.getPMm(successCallback, errorCallback);
 ``` 
   - successCallback  
-  PMmが正常に取得された場合に呼び出されます。
+  PMmが正常に取得された場合に呼び出されます
 ```javascript
 function(PMm) {
 	// Do something with the PMm.
@@ -1893,7 +1899,7 @@ function(PMm) {
   　・PMm: 取得したPMm(String)
 
  - errorCallback  
-  取得に失敗した発生した場合に呼び出されます。
+  取得に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1903,12 +1909,12 @@ function() {
 ###**requestSystemCode**
 ---
 
-- システムコード取得要求を送信します。
+- システムコード取得要求を送信します
 ```javascript
-Felica.getPMm(successCallback, errorCallback);
+Felica.requestSystemCode(successCallback, errorCallback);
 ``` 
  - successCallback  
-  システムコードが正常に取得された場合に呼び出されます。
+  システムコードが正常に取得された場合に呼び出されます
 ```javascript
 function(systemcodes) {
 	// Do something with the system codes.
@@ -1918,7 +1924,7 @@ function(systemcodes) {
   　・systemcodes: 取得したシステムコード(Array)
 
  - errorCallback  
-  取得に失敗した発生した場合に呼び出されます。
+  取得に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1933,7 +1939,7 @@ function() {
 Felica.requestResponse(successCallback, errorCallback);
 ``` 
  - successCallback  
-  応答要求が正常に行われた場合に呼び出されます。
+  応答要求が正常に行われた場合に呼び出されます
 ```javascript
 function(mode) {
 	// Do something with the mode.
@@ -1943,7 +1949,7 @@ function(mode) {
   　・mode: システムの最新状態
 
  - errorCallback  
-  取得に失敗した発生した場合に呼び出されます。
+  取得に失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1953,7 +1959,7 @@ function() {
 ###**readWithoutEncryption**
 ---
 
-- 認証を必要としないサービスからブロックデータを読み出します。
+- 認証を必要としないサービスからブロックデータを読み出します
 ```javascript
 Felica.readWithoutEncryption(serviceCode, addr, successCallback, errorCallback);
 ``` 
@@ -1964,7 +1970,7 @@ Felica.readWithoutEncryption(serviceCode, addr, successCallback, errorCallback);
   読み込みを開始するブロックデータアドレス
 
  - successCallback  
-  読み込みが正常に行われた場合に呼び出されます。
+  読み込みが正常に行われた場合に呼び出されます
 ```javascript
 function(blockdata) {
 	// Do something with the block data.
@@ -1974,7 +1980,7 @@ function(blockdata) {
   　・blockdata: 読み込まれたブロックデータ
 
  - errorCallback  
-  読み込みに失敗した発生した場合に呼び出されます。
+  読み込みに失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -1984,9 +1990,9 @@ function() {
 ###**writeWithoutEncryption**
 ---
 
-- 認証を必要としないサービスへブロックデータを書き込みます。
+- 認証を必要としないサービスへブロックデータを書き込みます
 ```javascript
-Felica.writeWithEncryption(serviceCode, addr, buff, successCallback, errorCallback);
+Felica.writeWithoutEncryption(serviceCode, addr, buff, successCallback, errorCallback);
 ``` 
  - serviceCode  
   サービスコード<br/>
@@ -2001,14 +2007,14 @@ Felica.writeWithEncryption(serviceCode, addr, buff, successCallback, errorCallba
   書き込みデータ
 
  - successCallback  
-  書き込みが正常に行われた場合に呼び出されます。
+  書き込みが正常に行われた場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
 }
 ``` 
   - errorCallback  
-  書き込みに失敗した発生した場合に呼び出されます。
+  書き込みに失敗した発生した場合に呼び出されます
 ```javascript
 function() {
 	// Do something in case of error.
@@ -2023,12 +2029,12 @@ function() {
 ###**get**
 ---
 
-- アプリバージョンを取得します。
+- アプリバージョンを取得します
 ```javascript
 AppVersion.get(callback);
 ``` 
-  callback
-  アプリバージョンが取得されます。
+ - callback
+  アプリバージョン取得用コールバックを設定します
 ```javascript
 function(version) {
 	// Do something with App Version.
@@ -2038,6 +2044,7 @@ function(version) {
   　・version: アプリバージョン(String)  
   　　　　　　iOSの場合：info.plistに設定したbundle version  
   　　　　　　Androidの場合：AndroidManifest.xmlに設定したversionName
+  
 ------------------------------------------------------------------------
 #Contacts
 ###**メソッド**  
@@ -2048,7 +2055,7 @@ function(version) {
 ###**create**
 ---
 
-- 新しいコンタクトオブジェクトを作成します。
+- 新しいコンタクトオブジェクトを作成します
 ```javascript
 var contact = Contacts.create();
 ``` 
@@ -2067,14 +2074,14 @@ Contacts.search(conditions, orderby, successCallback, errorCallback);
   取得順
 
  - successCallback  
-  連絡先情報が正常に取得された場合に呼び出されます。
+  連絡先情報が正常に取得された場合に呼び出されます
 ```javascript
 function(contacts) {
 	// Do something.
 }
 ``` 
   - errorCallback
-  連絡先情報取得に失敗した発生した場合に呼び出されます。
+  連絡先情報取得に失敗した発生した場合に呼び出されます
 ```javascript
 function(message) {
 	// Show a helpful message.
@@ -2117,13 +2124,13 @@ Contacts.search(conditions, Contacts.SEARCH_ORDER_ASC, successCallback, errorCal
 ###**remove**
 ---
 
-- 連絡先情報を削除します。
+- 連絡先情報を削除します
 ```javascript
 Contact.remove(successCallback, errorCallback);
 ```
 
   - successCallback  
-  連絡先情報が正常に削除された場合に呼び出されます。
+  連絡先情報が正常に削除された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
@@ -2131,7 +2138,7 @@ function() {
 ```
 
   - errorCallback  
-  連絡先情報の削除に失敗した場合に呼び出されます。
+  連絡先情報の削除に失敗した場合に呼び出されます
 ```javascript
 function(message) {
 	// Show a helpful message.
@@ -2144,12 +2151,12 @@ function(message) {
 ###**save**
 ---
 
-- 連絡先情報を保存します。
+- 連絡先情報を保存します
 ```javascript
 Contact.save(successCallback, errorCallback);
 ``` 
  - successCallback  
-  連絡先情報保存が正常に削除された場合に呼び出されます。
+  連絡先情報保存が正常に削除された場合に呼び出されます
 ```javascript
 function() {
 	// Do something.
@@ -2157,7 +2164,7 @@ function() {
 ``` 
 
  - errorCallback  
-  連絡先情報の保存に失敗した場合に呼び出されます。
+  連絡先情報の保存に失敗した場合に呼び出されます
 ```javascript
 function(message) {
 	// Show a helpful message.
@@ -2165,6 +2172,7 @@ function(message) {
 ``` 
   パラメータ  
   　・message: ネイティブ側からのエラーメッセージ
+  
 ------------------------------------------------------------------------
 #ContactPhoneNumber
 ###**プロパティ**  
@@ -2263,7 +2271,7 @@ PDFViewer.showWithURL(url);
 ```
   - url  
   PDFファイルへのURL  
-  ※PDFを表示する前に、該当ファイルをダウンロードします。
+  ※PDFを表示する前に、該当ファイルをダウンロードします
   
 ------------------------------------------------------------------------
 #Ad
@@ -2276,12 +2284,12 @@ PDFViewer.showWithURL(url);
 ###**create**
 ---
 
-- 広告表示用ビューを作成し、広告をロードします。
+- 広告表示用ビューを作成し、広告をロードします
 ```javascript
 Ad.create(position, successCallback, errorCallback, [options]);
 ```
   - position  
-  広告表示用ビューを表示する位置を指定します。指定値は以下の通り  
+  広告表示用ビューを表示する位置を指定します指定値は以下の通り  
   　AD.POSITION_TOP : 0  
   　AD.POSITION_BOTTOM : 1  
 
@@ -2310,12 +2318,12 @@ function() {
 ```
   オプション  
   　・id:Admob用パブリッシャーID  
-   指定する文字列はEncryptorオブジェクトを使用して暗号化された文字列を指定してください。（※Androidのみ）
+   指定する文字列はEncryptorオブジェクトを使用して暗号化された文字列を指定してください（※Androidのみ）
    
 ###**show**
  ---
  
-- 広告表示用ビューを表示します。
+- 広告表示用ビューを表示します
 ```javascript
 Ad.show(successCallback, errorCallback);
 ```
@@ -2338,7 +2346,7 @@ function() {
 ###**hide**
  ---
  
-- 広告表示用ビューを非表示にします。
+- 広告表示用ビューを非表示にします
 ```javascript
 Ad.hide(successCallback, errorCallback);
 ```
