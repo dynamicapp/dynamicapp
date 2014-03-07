@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		F156592F14C53DEA0012474E /* DynamicApp-Universal */ = {
+		F126A9B318C9D867006E5329 /* DynamicApp-Universal */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = F156593014C53DEA0012474E /* Build configuration list for PBXAggregateTarget "DynamicApp-Universal" */;
+			buildConfigurationList = F126A9B418C9D868006E5329 /* Build configuration list for PBXAggregateTarget "DynamicApp-Universal" */;
 			buildPhases = (
-				F156593314C53E110012474E /* ShellScript */,
-				1934DAEA158B1E3B002223C8 /* CopyFiles */,
+				F126A9B718C9D884006E5329 /* ShellScript */,
 			);
 			dependencies = (
 			);
@@ -22,1064 +21,783 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		1915104815888B4D0031EA3C /* QRReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1915104A15888B4D0031EA3C /* QRReader.h */; };
-		1929C3A714C5884200AFD4AD /* Camera.h in Headers */ = {isa = PBXBuildFile; fileRef = 1929C3A514C5884200AFD4AD /* Camera.h */; };
-		1929C3A814C5884200AFD4AD /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = 1929C3A614C5884200AFD4AD /* Camera.m */; };
-		1934DAEB158B1E59002223C8 /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1915104D15888B960031EA3C /* Localizable.strings */; };
-		193F69C115AAE77E00796B39 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 193F69BF15AAE77E00796B39 /* random.c */; };
-		193F69C215AAE77E00796B39 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = 193F69C015AAE77E00796B39 /* random.h */; };
-		1959E3371664901D00B87DB0 /* Ad.h in Headers */ = {isa = PBXBuildFile; fileRef = 1959E3351664901D00B87DB0 /* Ad.h */; };
-		1959E3381664901D00B87DB0 /* Ad.m in Sources */ = {isa = PBXBuildFile; fileRef = 1959E3361664901D00B87DB0 /* Ad.m */; };
-		1959E33A1664902C00B87DB0 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1959E3391664902C00B87DB0 /* iAd.framework */; };
-		196095C71648FA9E00F29429 /* PDFViewer.h in Headers */ = {isa = PBXBuildFile; fileRef = 196095C51648FA9E00F29429 /* PDFViewer.h */; };
-		196095C81648FA9E00F29429 /* PDFViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = 196095C61648FA9E00F29429 /* PDFViewer.m */; };
-		196829AA1581DDE4008D04D6 /* QRReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 196829A81581DDE4008D04D6 /* QRReader.mm */; };
-		19830CBF15D90D8A007FE21C /* AddressBook.h in Headers */ = {isa = PBXBuildFile; fileRef = 19830CBD15D90D8A007FE21C /* AddressBook.h */; };
-		19830CC015D90D8A007FE21C /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 19830CBE15D90D8A007FE21C /* AddressBook.m */; };
-		19857246150858D000CFC178 /* Notification.h in Headers */ = {isa = PBXBuildFile; fileRef = 19857244150858D000CFC178 /* Notification.h */; };
-		19857247150858D000CFC178 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 19857245150858D000CFC178 /* Notification.m */; };
-		198825AF151191A4002028FE /* LoadingScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 198825AD151191A4002028FE /* LoadingScreen.h */; };
-		198825B0151191A4002028FE /* LoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 198825AE151191A4002028FE /* LoadingScreen.m */; };
-		199176D214FF1F5A00C7EA16 /* Encryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 199176D014FF1F5A00C7EA16 /* Encryptor.h */; };
-		199176D314FF1F5A00C7EA16 /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 199176D114FF1F5A00C7EA16 /* Encryptor.m */; };
-		19944E9C14E1146100C88D96 /* File.h in Headers */ = {isa = PBXBuildFile; fileRef = 19944E9A14E1146100C88D96 /* File.h */; };
-		19944E9D14E1146100C88D96 /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 19944E9B14E1146100C88D96 /* File.m */; };
-		1995DE29151304A100B04077 /* Cache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1995DE27151304A100B04077 /* Cache.h */; };
-		1995DE2A151304A100B04077 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1995DE28151304A100B04077 /* Cache.m */; };
-		19968F9915AFFCC10061B1E2 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19968F9815AFFCC10061B1E2 /* AssetsLibrary.framework */; };
-		1998B70114D7AF9E0039133A /* Sound.h in Headers */ = {isa = PBXBuildFile; fileRef = 1998B6FF14D7AF9D0039133A /* Sound.h */; };
-		1998B70214D7AF9E0039133A /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = 1998B70014D7AF9D0039133A /* Sound.m */; };
-		199B97F515808BF2004C8CC3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199B97F415808BF2004C8CC3 /* AudioToolbox.framework */; };
-		199B97F715808BFF004C8CC3 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199B97F615808BFF004C8CC3 /* CoreVideo.framework */; };
-		199B97F915808C0B004C8CC3 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199B97F815808C0B004C8CC3 /* CoreMedia.framework */; };
-		199B97FD15808C2C004C8CC3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199B97FC15808C2C004C8CC3 /* AddressBook.framework */; };
-		199B97FF15808C3A004C8CC3 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199B97FE15808C3A004C8CC3 /* AddressBookUI.framework */; };
-		19A6D680162676CD00FAD281 /* AppVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 19A6D67E162676CD00FAD281 /* AppVersion.h */; };
-		19A6D681162676CD00FAD281 /* AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A6D67F162676CD00FAD281 /* AppVersion.m */; };
-		19CF1CA914EE4BDE006AD14B /* ImageDecrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 19CF1CA714EE4BDE006AD14B /* ImageDecrypt.h */; };
-		19CF1CAA14EE4BDE006AD14B /* ImageDecrypt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1CA814EE4BDE006AD14B /* ImageDecrypt.mm */; };
-		19CF1CB614EE5137006AD14B /* FileEncryptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1CB014EE5137006AD14B /* FileEncryptor.cpp */; };
-		19CF1CB714EE5137006AD14B /* FileEncryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 19CF1CB114EE5137006AD14B /* FileEncryptor.h */; };
-		19CF1CB814EE5137006AD14B /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1CB214EE5137006AD14B /* md5.c */; };
-		19CF1CB914EE5137006AD14B /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 19CF1CB314EE5137006AD14B /* md5.h */; };
-		19CF1CBA14EE5137006AD14B /* vFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 19CF1CB414EE5137006AD14B /* vFile.cpp */; };
-		19CF1CBB14EE5137006AD14B /* vFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 19CF1CB514EE5137006AD14B /* vFile.h */; };
-		19CF1CC214EE623A006AD14B /* cppdefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 19CF1CC114EE623A006AD14B /* cppdefine.h */; };
-		19D8A97A14C6B61A001B4FDB /* DynamicAppPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 19D8A97814C6B619001B4FDB /* DynamicAppPlugin.h */; };
-		19D8A97B14C6B61A001B4FDB /* DynamicAppPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D8A97914C6B61A001B4FDB /* DynamicAppPlugin.m */; };
-		19DC3B6D14C7CB04003037B4 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 19DC3B6B14C7CB03003037B4 /* NSData+Base64.h */; };
-		19DC3B6E14C7CB04003037B4 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DC3B6C14C7CB03003037B4 /* NSData+Base64.m */; };
-		19DC6A1815F7463D00AC2891 /* Bluetooth4LE.h in Headers */ = {isa = PBXBuildFile; fileRef = 19DC6A1615F7463D00AC2891 /* Bluetooth4LE.h */; };
-		19DC6A1915F7463D00AC2891 /* Bluetooth4LE.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DC6A1715F7463D00AC2891 /* Bluetooth4LE.m */; };
-		19E22A3114DA66E40039A8CE /* Movie.h in Headers */ = {isa = PBXBuildFile; fileRef = 19E22A2F14DA66E40039A8CE /* Movie.h */; };
-		19E22A3214DA66E40039A8CE /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E22A3014DA66E40039A8CE /* Movie.m */; };
-		19E3999C14D26C1B005050B0 /* UrlCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 19E3999A14D26C1B005050B0 /* UrlCommand.h */; };
-		19E3999D14D26C1B005050B0 /* UrlCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E3999B14D26C1B005050B0 /* UrlCommand.m */; };
-		19E399B714D29D42005050B0 /* PluginResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 19E399B514D29D3F005050B0 /* PluginResult.h */; };
-		19E399B814D29D42005050B0 /* PluginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E399B614D29D40005050B0 /* PluginResult.m */; };
-		19E4E12E15E4ADA300C6F6E5 /* Bluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 19E4E12C15E4ADA300C6F6E5 /* Bluetooth.h */; };
-		19E4E12F15E4ADA300C6F6E5 /* Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 19E4E12D15E4ADA300C6F6E5 /* Bluetooth.m */; };
-		19E4E13515E4B10500C6F6E5 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E4E13415E4B10500C6F6E5 /* CoreBluetooth.framework */; };
-		19E4E14C15E4CAE900C6F6E5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19E4E14B15E4CAE900C6F6E5 /* GameKit.framework */; };
-		19EAF1F7159054F700291FAC /* Database.h in Headers */ = {isa = PBXBuildFile; fileRef = 19EAF1F5159054F600291FAC /* Database.h */; };
-		19EAF1F8159054F700291FAC /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EAF1F6159054F600291FAC /* Database.m */; };
-		19EE378815FF40140072F93C /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 196829A01581D8FA008D04D6 /* libZXingWidget.a */; };
-		19EE378B15FF4EE40072F93C /* Contacts.h in Headers */ = {isa = PBXBuildFile; fileRef = 19EE378915FF4EE40072F93C /* Contacts.h */; };
-		19EE378C15FF4EE50072F93C /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 19EE378A15FF4EE40072F93C /* Contacts.m */; };
-		19F1252B164A657500431BAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F1252A164A657500431BAC /* CoreData.framework */; };
-		19F1252D164A657E00431BAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F1252C164A657E00431BAC /* QuartzCore.framework */; };
-		19F522DB164CB7F90056CACE /* NSObject+ZXPDFObjectConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5227D164CB7F90056CACE /* NSObject+ZXPDFObjectConverter.h */; };
-		19F522DC164CB7F90056CACE /* ZXPDFCanvasViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5227E164CB7F90056CACE /* ZXPDFCanvasViewController.h */; };
-		19F522DD164CB7F90056CACE /* ZXPDFCatalogScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5227F164CB7F90056CACE /* ZXPDFCatalogScanner.h */; };
-		19F522DE164CB7F90056CACE /* ZXPDFCMap+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52280164CB7F90056CACE /* ZXPDFCMap+Utility.h */; };
-		19F522DF164CB7F90056CACE /* ZXPDFCMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52281164CB7F90056CACE /* ZXPDFCMap.h */; };
-		19F522E0164CB7F90056CACE /* ZXPDFCMapCIDMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52282164CB7F90056CACE /* ZXPDFCMapCIDMap.h */; };
-		19F522E1164CB7F90056CACE /* ZXPDFCMapCIDRangeMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52283164CB7F90056CACE /* ZXPDFCMapCIDRangeMap.h */; };
-		19F522E2164CB7F90056CACE /* ZXPDFCMapCodespaceRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52284164CB7F90056CACE /* ZXPDFCMapCodespaceRange.h */; };
-		19F522E3164CB7F90056CACE /* ZXPDFCMapCoreDataModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52285164CB7F90056CACE /* ZXPDFCMapCoreDataModels.h */; };
-		19F522E4164CB7F90056CACE /* ZXPDFCMapDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52286164CB7F90056CACE /* ZXPDFCMapDefinition.h */; };
-		19F522E5164CB7F90056CACE /* ZXPDFCMapEntryMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52287164CB7F90056CACE /* ZXPDFCMapEntryMaker.h */; };
-		19F522E6164CB7F90056CACE /* ZXPDFCMapFileParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52288164CB7F90056CACE /* ZXPDFCMapFileParser.h */; };
-		19F522E7164CB7F90056CACE /* ZXPDFCMapParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52289164CB7F90056CACE /* ZXPDFCMapParser.h */; };
-		19F522E8164CB7F90056CACE /* ZXPDFCMapStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5228A164CB7F90056CACE /* ZXPDFCMapStreamParser.h */; };
-		19F522E9164CB7F90056CACE /* ZXPDFCMapToUnicodeStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5228B164CB7F90056CACE /* ZXPDFCMapToUnicodeStreamParser.h */; };
-		19F522EA164CB7F90056CACE /* ZXPDFCMapUnicodeMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5228C164CB7F90056CACE /* ZXPDFCMapUnicodeMap.h */; };
-		19F522EB164CB7F90056CACE /* ZXPDFCMapUnicodeRangeMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5228D164CB7F90056CACE /* ZXPDFCMapUnicodeRangeMap.h */; };
-		19F522EC164CB7F90056CACE /* ZXPDFConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5228E164CB7F90056CACE /* ZXPDFConstants.h */; };
-		19F522ED164CB7F90056CACE /* ZXPDFDictionaryScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5228F164CB7F90056CACE /* ZXPDFDictionaryScanner.h */; };
-		19F522EE164CB7F90056CACE /* ZXPDFDocumentObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52290164CB7F90056CACE /* ZXPDFDocumentObject.h */; };
-		19F522EF164CB7F90056CACE /* ZXPDFDocumentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52291164CB7F90056CACE /* ZXPDFDocumentView.h */; };
-		19F522F0164CB7F90056CACE /* ZXPDFDocumentViewHardPageFlipAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52292164CB7F90056CACE /* ZXPDFDocumentViewHardPageFlipAnimator.h */; };
-		19F522F1164CB7F90056CACE /* ZXPDFDocumentViewLinearPageAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52293164CB7F90056CACE /* ZXPDFDocumentViewLinearPageAnimator.h */; };
-		19F522F2164CB7F90056CACE /* ZXPDFDocumentViewPageAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52294164CB7F90056CACE /* ZXPDFDocumentViewPageAnimation.h */; };
-		19F522F3164CB7F90056CACE /* ZXPDFDocumentViewSimplePageAnimator.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52295164CB7F90056CACE /* ZXPDFDocumentViewSimplePageAnimator.h */; };
-		19F522F4164CB7F90056CACE /* ZXPDFFontCharacterRangeWidth.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52296164CB7F90056CACE /* ZXPDFFontCharacterRangeWidth.h */; };
-		19F522F5164CB7F90056CACE /* ZXPDFFontCharacterRangeWidthVertical.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52297164CB7F90056CACE /* ZXPDFFontCharacterRangeWidthVertical.h */; };
-		19F522F6164CB7F90056CACE /* ZXPDFFontCharacterWidth.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52298164CB7F90056CACE /* ZXPDFFontCharacterWidth.h */; };
-		19F522F7164CB7F90056CACE /* ZXPDFFontCharacterWidthVertical.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F52299164CB7F90056CACE /* ZXPDFFontCharacterWidthVertical.h */; };
-		19F522F8164CB7F90056CACE /* ZXPDFFontCoreDataModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5229A164CB7F90056CACE /* ZXPDFFontCoreDataModels.h */; };
-		19F522F9164CB7F90056CACE /* ZXPDFFontInfo+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5229B164CB7F90056CACE /* ZXPDFFontInfo+Utility.h */; };
-		19F522FA164CB7F90056CACE /* ZXPDFFontInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5229C164CB7F90056CACE /* ZXPDFFontInfo.h */; };
-		19F522FB164CB7F90056CACE /* ZXPDFFontInfoMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5229D164CB7F90056CACE /* ZXPDFFontInfoMaker.h */; };
-		19F522FC164CB7F90056CACE /* ZXPDFFontParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5229E164CB7F90056CACE /* ZXPDFFontParser.h */; };
-		19F522FD164CB7F90056CACE /* ZXPDFLinkAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F5229F164CB7F90056CACE /* ZXPDFLinkAnnotation.h */; };
-		19F522FE164CB7F90056CACE /* ZXPDFLocalDestination.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A0164CB7F90056CACE /* ZXPDFLocalDestination.h */; };
-		19F522FF164CB7F90056CACE /* ZXPDFPageIndicatorDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A1164CB7F90056CACE /* ZXPDFPageIndicatorDetailViewController.h */; };
-		19F52300164CB7F90056CACE /* ZXPDFPageIndicatorViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A2164CB7F90056CACE /* ZXPDFPageIndicatorViewController.h */; };
-		19F52301164CB7F90056CACE /* ZXPDFPageListViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A3164CB7F90056CACE /* ZXPDFPageListViewCell.h */; };
-		19F52302164CB7F90056CACE /* ZXPDFPageListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A4164CB7F90056CACE /* ZXPDFPageListViewController.h */; };
-		19F52303164CB7F90056CACE /* ZXPDFPageObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A5164CB7F90056CACE /* ZXPDFPageObject.h */; };
-		19F52304164CB7F90056CACE /* ZXPDFPageThumbnailController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A6164CB7F90056CACE /* ZXPDFPageThumbnailController.h */; };
-		19F52305164CB7F90056CACE /* ZXPDFPageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A7164CB7F90056CACE /* ZXPDFPageView.h */; };
-		19F52306164CB7F90056CACE /* ZXPDFSearchCharacter+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A8164CB7F90056CACE /* ZXPDFSearchCharacter+Utility.h */; };
-		19F52307164CB7F90056CACE /* ZXPDFSearchCharacter.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522A9164CB7F90056CACE /* ZXPDFSearchCharacter.h */; };
-		19F52308164CB7F90056CACE /* ZXPDFSearchCoreDataModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522AA164CB7F90056CACE /* ZXPDFSearchCoreDataModels.h */; };
-		19F52309164CB7F90056CACE /* ZXPDFSearchDocument+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522AB164CB7F90056CACE /* ZXPDFSearchDocument+Utility.h */; };
-		19F5230A164CB7F90056CACE /* ZXPDFSearchDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522AC164CB7F90056CACE /* ZXPDFSearchDocument.h */; };
-		19F5230B164CB7F90056CACE /* ZXPDFSearchIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522AD164CB7F90056CACE /* ZXPDFSearchIndex.h */; };
-		19F5230C164CB7F90056CACE /* ZXPDFSearchIndexMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522AE164CB7F90056CACE /* ZXPDFSearchIndexMaker.h */; };
-		19F5230D164CB7F90056CACE /* ZXPDFSearchMorpheme+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522AF164CB7F90056CACE /* ZXPDFSearchMorpheme+Utility.h */; };
-		19F5230E164CB7F90056CACE /* ZXPDFSearchMorpheme.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B0164CB7F90056CACE /* ZXPDFSearchMorpheme.h */; };
-		19F5230F164CB7F90056CACE /* ZXPDFSearchPage+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B1164CB7F90056CACE /* ZXPDFSearchPage+Utility.h */; };
-		19F52310164CB7F90056CACE /* ZXPDFSearchPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B2164CB7F90056CACE /* ZXPDFSearchPage.h */; };
-		19F52311164CB7F90056CACE /* ZXPDFSearchResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B3164CB7F90056CACE /* ZXPDFSearchResult.h */; };
-		19F52312164CB7F90056CACE /* ZXPDFSearchResultController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B4164CB7F90056CACE /* ZXPDFSearchResultController.h */; };
-		19F52313164CB7F90056CACE /* ZXPDFSearchResultDocument+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B5164CB7F90056CACE /* ZXPDFSearchResultDocument+Utility.h */; };
-		19F52314164CB7F90056CACE /* ZXPDFSearchResultDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B6164CB7F90056CACE /* ZXPDFSearchResultDocument.h */; };
-		19F52315164CB7F90056CACE /* ZXPDFSearchResultPage+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B7164CB7F90056CACE /* ZXPDFSearchResultPage+Utility.h */; };
-		19F52316164CB7F90056CACE /* ZXPDFSearchResultPage.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B8164CB7F90056CACE /* ZXPDFSearchResultPage.h */; };
-		19F52317164CB7F90056CACE /* ZXPDFSearchViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522B9164CB7F90056CACE /* ZXPDFSearchViewController.h */; };
-		19F52318164CB7F90056CACE /* ZXPDFSearchViewControllerResultViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522BA164CB7F90056CACE /* ZXPDFSearchViewControllerResultViewCell.h */; };
-		19F52319164CB7F90056CACE /* ZXPDFSearchWord+Utility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522BB164CB7F90056CACE /* ZXPDFSearchWord+Utility.h */; };
-		19F5231A164CB7F90056CACE /* ZXPDFSearchWord.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522BC164CB7F90056CACE /* ZXPDFSearchWord.h */; };
-		19F5231B164CB7F90056CACE /* ZXPDFTextExtractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522BD164CB7F90056CACE /* ZXPDFTextExtractor.h */; };
-		19F5231C164CB7F90056CACE /* ZXPDFTextPositionState.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522BE164CB7F90056CACE /* ZXPDFTextPositionState.h */; };
-		19F5231D164CB7F90056CACE /* ZXPDFViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522BF164CB7F90056CACE /* ZXPDFViewController.h */; };
-		19F5231E164CB7F90056CACE /* ZXCanvasDrawSettingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C1164CB7F90056CACE /* ZXCanvasDrawSettingViewController.h */; };
-		19F5231F164CB7F90056CACE /* ZXCanvasEraseSettingViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C2164CB7F90056CACE /* ZXCanvasEraseSettingViewController.h */; };
-		19F52320164CB7F90056CACE /* ZXCanvasLineWidthViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C3164CB7F90056CACE /* ZXCanvasLineWidthViewController.h */; };
-		19F52321164CB7F90056CACE /* ZXCanvasView.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C4164CB7F90056CACE /* ZXCanvasView.h */; };
-		19F52322164CB7F90056CACE /* ZXCanvasViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C5164CB7F90056CACE /* ZXCanvasViewController.h */; };
-		19F52323164CB7F90056CACE /* ZXColorTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C6164CB7F90056CACE /* ZXColorTableViewController.h */; };
-		19F52324164CB7F90056CACE /* ZXCoreDataRepresentationBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C7164CB7F90056CACE /* ZXCoreDataRepresentationBase.h */; };
-		19F52325164CB7F90056CACE /* ZXCoWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C8164CB7F90056CACE /* ZXCoWorker.h */; };
-		19F52326164CB7F90056CACE /* ZXDebugMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522C9164CB7F90056CACE /* ZXDebugMacros.h */; };
-		19F52327164CB7F90056CACE /* ZXDrawGestureRecognizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522CA164CB7F90056CACE /* ZXDrawGestureRecognizer.h */; };
-		19F52328164CB7F90056CACE /* ZXDynamicPropertyHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522CB164CB7F90056CACE /* ZXDynamicPropertyHelper.h */; };
-		19F52329164CB7F90056CACE /* ZXExternalDisplayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522CC164CB7F90056CACE /* ZXExternalDisplayViewController.h */; };
-		19F5232A164CB7F90056CACE /* ZXGroupView.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522CD164CB7F90056CACE /* ZXGroupView.h */; };
-		19F5232B164CB7F90056CACE /* ZXLabelledTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522CE164CB7F90056CACE /* ZXLabelledTableViewCell.h */; };
-		19F5232C164CB7F90056CACE /* ZXLazyLoadingImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522CF164CB7F90056CACE /* ZXLazyLoadingImageView.h */; };
-		19F5232D164CB7F90056CACE /* ZXLoadingIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D0164CB7F90056CACE /* ZXLoadingIndicatorView.h */; };
-		19F5232E164CB7F90056CACE /* ZXSimpleQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D1164CB7F90056CACE /* ZXSimpleQueue.h */; };
-		19F5232F164CB7F90056CACE /* ZXSliderViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D2164CB7F90056CACE /* ZXSliderViewController.h */; };
-		19F52330164CB7F90056CACE /* ZXSplashScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D3164CB7F90056CACE /* ZXSplashScreen.h */; };
-		19F52331164CB7F90056CACE /* ZXSplashScreenViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D4164CB7F90056CACE /* ZXSplashScreenViewController.h */; };
-		19F52332164CB7F90056CACE /* ZXURLUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D5164CB7F90056CACE /* ZXURLUtility.h */; };
-		19F52333164CB7F90056CACE /* ZXUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D6164CB7F90056CACE /* ZXUtility.h */; };
-		19F52334164CB7F90056CACE /* mecab.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D8164CB7F90056CACE /* mecab.h */; };
-		19F52335164CB7F90056CACE /* ZXMecabNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522D9164CB7F90056CACE /* ZXMecabNode.h */; };
-		19F52336164CB7F90056CACE /* ZXMecabParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 19F522DA164CB7F90056CACE /* ZXMecabParser.h */; };
-		19F5235A164CB8BF0056CACE /* libZXPDFViewer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F52359164CB8BF0056CACE /* libZXPDFViewer.a */; };
-		F105044C18B58E350071C829 /* KeychainHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = F105044818B58E350071C829 /* KeychainHelper.h */; };
-		F105044D18B58E350071C829 /* KeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F105044918B58E350071C829 /* KeychainHelper.m */; };
-		F105044E18B58E350071C829 /* UUIDHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = F105044A18B58E350071C829 /* UUIDHelper.h */; };
-		F105044F18B58E350071C829 /* UUIDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F105044B18B58E350071C829 /* UUIDHelper.m */; };
-		F10EBD6114E8D84300C69F7D /* DynamicAppSplashViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F10EBD5F14E8D84300C69F7D /* DynamicAppSplashViewController.h */; };
-		F10EBD6214E8D84300C69F7D /* DynamicAppSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10EBD6014E8D84300C69F7D /* DynamicAppSplashViewController.m */; };
-		F11CA82714E8AC4400A87464 /* DownloadConttroller.h in Headers */ = {isa = PBXBuildFile; fileRef = F11CA82514E8AC4400A87464 /* DownloadConttroller.h */; };
-		F11CA82814E8AC4400A87464 /* DownloadConttroller.m in Sources */ = {isa = PBXBuildFile; fileRef = F11CA82614E8AC4400A87464 /* DownloadConttroller.m */; };
-		F11CA83414E8B61100A87464 /* DynamicAppViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F11CA83214E8B61100A87464 /* DynamicAppViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F11CA83514E8B61100A87464 /* DynamicAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F11CA83314E8B61100A87464 /* DynamicAppViewController.m */; };
-		F11FDC3914EA4A3600361891 /* define.h in Headers */ = {isa = PBXBuildFile; fileRef = F11FDC3814EA4A3600361891 /* define.h */; };
-		F15001F914C53CA900B45A0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15001F814C53CA900B45A0F /* Foundation.framework */; };
-		F150020714C53CA900B45A0F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F150020614C53CA900B45A0F /* SenTestingKit.framework */; };
-		F150020A14C53CA900B45A0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15001F814C53CA900B45A0F /* Foundation.framework */; };
-		F150020D14C53CA900B45A0F /* libDynamicApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F15001F514C53CA900B45A0F /* libDynamicApp.a */; };
-		F150021314C53CA900B45A0F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F150021114C53CA900B45A0F /* InfoPlist.strings */; };
-		F150021614C53CA900B45A0F /* DynamicAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F150021514C53CA900B45A0F /* DynamicAppTests.m */; };
-		F150022614C53D2000B45A0F /* DynamicAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F150022214C53D2000B45A0F /* DynamicAppDelegate.m */; };
-		F156593C14C578070012474E /* DynamicAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F150022114C53D2000B45A0F /* DynamicAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F169252F14C822D900E1B020 /* Shortcut.h in Headers */ = {isa = PBXBuildFile; fileRef = F169252D14C822D900E1B020 /* Shortcut.h */; };
-		F169253014C822D900E1B020 /* Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = F169252E14C822D900E1B020 /* Shortcut.m */; };
+		F126A86B18C9D2CF006E5329 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A86A18C9D2CF006E5329 /* Foundation.framework */; };
+		F126A87918C9D2CF006E5329 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A87818C9D2CF006E5329 /* XCTest.framework */; };
+		F126A87A18C9D2CF006E5329 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A86A18C9D2CF006E5329 /* Foundation.framework */; };
+		F126A87C18C9D2CF006E5329 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A87B18C9D2CF006E5329 /* UIKit.framework */; };
+		F126A87F18C9D2CF006E5329 /* libDynamicApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A86718C9D2CF006E5329 /* libDynamicApp.a */; };
+		F126A88518C9D2CF006E5329 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F126A88318C9D2CF006E5329 /* InfoPlist.strings */; };
+		F126A88718C9D2CF006E5329 /* DynamicAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A88618C9D2CF006E5329 /* DynamicAppTests.m */; };
+		F126A8EC18C9D32A006E5329 /* Ad.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A89218C9D32A006E5329 /* Ad.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8ED18C9D32A006E5329 /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A89418C9D32A006E5329 /* AddressBook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8EE18C9D32A006E5329 /* AppVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A89618C9D32A006E5329 /* AppVersion.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8EF18C9D32A006E5329 /* Bluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A89818C9D32A006E5329 /* Bluetooth.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F018C9D32A006E5329 /* Bluetooth4LE.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A89A18C9D32A006E5329 /* Bluetooth4LE.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F118C9D32A006E5329 /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A89C18C9D32A006E5329 /* Cache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F218C9D32A006E5329 /* Camera.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A89E18C9D32A006E5329 /* Camera.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F318C9D32A006E5329 /* Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8A018C9D32A006E5329 /* Contacts.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F418C9D32A006E5329 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8A318C9D32A006E5329 /* Database.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F518C9D32A006E5329 /* DynamicAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8A618C9D32A006E5329 /* DynamicAppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F618C9D32A006E5329 /* DynamicAppPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8A818C9D32A006E5329 /* DynamicAppPlugin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F718C9D32A006E5329 /* DynamicAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8AA18C9D32A006E5329 /* DynamicAppViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F818C9D32A006E5329 /* Encryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8AE18C9D32A006E5329 /* Encryptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8F918C9D32A006E5329 /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8B018C9D32A006E5329 /* File.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8FA18C9D32A006E5329 /* FileEncryptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F126A8B118C9D32A006E5329 /* FileEncryptor.cpp */; };
+		F126A8FB18C9D32A006E5329 /* ImageDecrypt.mm in Sources */ = {isa = PBXBuildFile; fileRef = F126A8B418C9D32A006E5329 /* ImageDecrypt.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8FC18C9D32A006E5329 /* KeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8B718C9D32A006E5329 /* KeychainHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8FD18C9D32A006E5329 /* LoadingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8B918C9D32A006E5329 /* LoadingScreen.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A8FE18C9D32A006E5329 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8BA18C9D32A006E5329 /* md5.c */; };
+		F126A8FF18C9D32A006E5329 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8BD18C9D32A006E5329 /* Movie.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90018C9D32A006E5329 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8BF18C9D32A006E5329 /* Notification.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90118C9D32A006E5329 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8C118C9D32A006E5329 /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90218C9D32A006E5329 /* DownloadConttroller.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8C418C9D32A006E5329 /* DownloadConttroller.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90318C9D32A006E5329 /* PDFViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8C618C9D32A006E5329 /* PDFViewer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90418C9D32A006E5329 /* PluginResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8C818C9D32A006E5329 /* PluginResult.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90518C9D32A006E5329 /* QRReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = F126A8C918C9D32A006E5329 /* QRReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90618C9D32A006E5329 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8CA18C9D32A006E5329 /* random.c */; };
+		F126A90718C9D32A006E5329 /* Shortcut.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8CD18C9D32A006E5329 /* Shortcut.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90818C9D32A006E5329 /* Sound.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8CF18C9D32A006E5329 /* Sound.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90918C9D32A006E5329 /* UrlCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8D118C9D32A006E5329 /* UrlCommand.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90A18C9D32A006E5329 /* UUIDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8D318C9D32A006E5329 /* UUIDHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90B18C9D32A006E5329 /* vFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F126A8D418C9D32A006E5329 /* vFile.cpp */; };
+		F126A90C18C9D32A006E5329 /* DynamicAppSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8D818C9D32A006E5329 /* DynamicAppSplashViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90D18C9D32A006E5329 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8DB18C9D32A006E5329 /* LoadingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A90E18C9D32A006E5329 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8DF18C9D32A006E5329 /* ioapi.c */; };
+		F126A90F18C9D32A006E5329 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E118C9D32A006E5329 /* mztools.c */; };
+		F126A91018C9D32A006E5329 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E318C9D32A006E5329 /* unzip.c */; };
+		F126A91118C9D32A006E5329 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E518C9D32A006E5329 /* zip.c */; };
+		F126A91218C9D32A006E5329 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E818C9D32A006E5329 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A91318C9D32A006E5329 /* ZXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8EB18C9D32A006E5329 /* ZXUtility.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F126A9A418C9D487006E5329 /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A99F18C9D470006E5329 /* libZXingWidget.a */; };
+		F126A9C018C9DF09006E5329 /* DynamicAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F126A8A518C9D32A006E5329 /* DynamicAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F126A9C118C9DF09006E5329 /* DynamicAppViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F126A8A918C9D32A006E5329 /* DynamicAppViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F1ADE3C818CA0C8300ED10C2 /* libZXPDFViewer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A9C718C9F384006E5329 /* libZXPDFViewer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1968299F1581D8FA008D04D6 /* PBXContainerItemProxy */ = {
+		F126A87D18C9D2CF006E5329 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 196829971581D8FA008D04D6 /* ZXingWidget.xcodeproj */;
+			containerPortal = F126A85F18C9D2CF006E5329 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F126A86618C9D2CF006E5329;
+			remoteInfo = DynamicApp;
+		};
+		F126A99E18C9D470006E5329 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F126A99918C9D46F006E5329 /* ZXingWidget.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = ZXingWidget;
 		};
-		196829A11581D8FA008D04D6 /* PBXContainerItemProxy */ = {
+		F126A9A018C9D470006E5329 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 196829971581D8FA008D04D6 /* ZXingWidget.xcodeproj */;
+			containerPortal = F126A99918C9D46F006E5329 /* ZXingWidget.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1D60398D13DF7CAD006F4B51;
 			remoteInfo = ZXingTests;
 		};
-		19EE378615FF400F0072F93C /* PBXContainerItemProxy */ = {
+		F126A9A218C9D47D006E5329 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 196829971581D8FA008D04D6 /* ZXingWidget.xcodeproj */;
+			containerPortal = F126A99918C9D46F006E5329 /* ZXingWidget.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = ZXingWidget;
 		};
-		F150020B14C53CA900B45A0F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F15001EC14C53CA900B45A0F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F15001F414C53CA900B45A0F;
-			remoteInfo = DynamicApp;
-		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		1934DAEA158B1E3B002223C8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 7;
-			files = (
-				1934DAEB158B1E59002223C8 /* Localizable.strings in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		1915104915888B4D0031EA3C /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/QRReader.h; sourceTree = "<group>"; };
-		1915104C15888B960031EA3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1915104E15888B9E0031EA3C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1929C3A514C5884200AFD4AD /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		1929C3A614C5884200AFD4AD /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
-		193F69BF15AAE77E00796B39 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
-		193F69C015AAE77E00796B39 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
-		1959E3351664901D00B87DB0 /* Ad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ad.h; sourceTree = "<group>"; };
-		1959E3361664901D00B87DB0 /* Ad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ad.m; sourceTree = "<group>"; };
-		1959E3391664902C00B87DB0 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
-		196095C51648FA9E00F29429 /* PDFViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewer.h; sourceTree = "<group>"; };
-		196095C61648FA9E00F29429 /* PDFViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewer.m; sourceTree = "<group>"; };
-		196829971581D8FA008D04D6 /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = dependencies/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = SOURCE_ROOT; };
-		196829A81581DDE4008D04D6 /* QRReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QRReader.mm; sourceTree = "<group>"; };
-		19830CBD15D90D8A007FE21C /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
-		19830CBE15D90D8A007FE21C /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
-		19857244150858D000CFC178 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
-		19857245150858D000CFC178 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
-		198825AD151191A4002028FE /* LoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScreen.h; sourceTree = "<group>"; };
-		198825AE151191A4002028FE /* LoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingScreen.m; sourceTree = "<group>"; };
-		199176D014FF1F5A00C7EA16 /* Encryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryptor.h; sourceTree = "<group>"; };
-		199176D114FF1F5A00C7EA16 /* Encryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryptor.m; sourceTree = "<group>"; };
-		19944E9A14E1146100C88D96 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
-		19944E9B14E1146100C88D96 /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
-		1995DE27151304A100B04077 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
-		1995DE28151304A100B04077 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
-		19968F9815AFFCC10061B1E2 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		1998B6FF14D7AF9D0039133A /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
-		1998B70014D7AF9D0039133A /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
-		199B97F415808BF2004C8CC3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		199B97F615808BFF004C8CC3 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		199B97F815808C0B004C8CC3 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		199B97FC15808C2C004C8CC3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		199B97FE15808C3A004C8CC3 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		19A6D67E162676CD00FAD281 /* AppVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersion.h; sourceTree = "<group>"; };
-		19A6D67F162676CD00FAD281 /* AppVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVersion.m; sourceTree = "<group>"; };
-		19C69EE314E395F100B77B01 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		19CF1CA714EE4BDE006AD14B /* ImageDecrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDecrypt.h; sourceTree = "<group>"; };
-		19CF1CA814EE4BDE006AD14B /* ImageDecrypt.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageDecrypt.mm; sourceTree = "<group>"; };
-		19CF1CB014EE5137006AD14B /* FileEncryptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileEncryptor.cpp; sourceTree = "<group>"; };
-		19CF1CB114EE5137006AD14B /* FileEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileEncryptor.h; sourceTree = "<group>"; };
-		19CF1CB214EE5137006AD14B /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
-		19CF1CB314EE5137006AD14B /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
-		19CF1CB414EE5137006AD14B /* vFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vFile.cpp; sourceTree = "<group>"; };
-		19CF1CB514EE5137006AD14B /* vFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vFile.h; sourceTree = "<group>"; };
-		19CF1CC114EE623A006AD14B /* cppdefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cppdefine.h; sourceTree = "<group>"; };
-		19D8A97814C6B619001B4FDB /* DynamicAppPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppPlugin.h; sourceTree = "<group>"; };
-		19D8A97914C6B61A001B4FDB /* DynamicAppPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppPlugin.m; sourceTree = "<group>"; };
-		19DC3B6B14C7CB03003037B4 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
-		19DC3B6C14C7CB03003037B4 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
-		19DC6A1615F7463D00AC2891 /* Bluetooth4LE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bluetooth4LE.h; sourceTree = "<group>"; };
-		19DC6A1715F7463D00AC2891 /* Bluetooth4LE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bluetooth4LE.m; sourceTree = "<group>"; };
-		19E22A2F14DA66E40039A8CE /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
-		19E22A3014DA66E40039A8CE /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
-		19E22A3614DA70610039A8CE /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		19E3999A14D26C1B005050B0 /* UrlCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCommand.h; sourceTree = "<group>"; };
-		19E3999B14D26C1B005050B0 /* UrlCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCommand.m; sourceTree = "<group>"; };
-		19E399B514D29D3F005050B0 /* PluginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginResult.h; sourceTree = "<group>"; };
-		19E399B614D29D40005050B0 /* PluginResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginResult.m; sourceTree = "<group>"; };
-		19E4E12C15E4ADA300C6F6E5 /* Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bluetooth.h; sourceTree = "<group>"; };
-		19E4E12D15E4ADA300C6F6E5 /* Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bluetooth.m; sourceTree = "<group>"; };
-		19E4E13415E4B10500C6F6E5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		19E4E14B15E4CAE900C6F6E5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		19EAF1F5159054F600291FAC /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
-		19EAF1F6159054F600291FAC /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
-		19EE378915FF4EE40072F93C /* Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contacts.h; sourceTree = "<group>"; };
-		19EE378A15FF4EE40072F93C /* Contacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contacts.m; sourceTree = "<group>"; };
-		19F1252A164A657500431BAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		19F1252C164A657E00431BAC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		19F5227D164CB7F90056CACE /* NSObject+ZXPDFObjectConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZXPDFObjectConverter.h"; sourceTree = "<group>"; };
-		19F5227E164CB7F90056CACE /* ZXPDFCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCanvasViewController.h; sourceTree = "<group>"; };
-		19F5227F164CB7F90056CACE /* ZXPDFCatalogScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCatalogScanner.h; sourceTree = "<group>"; };
-		19F52280164CB7F90056CACE /* ZXPDFCMap+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFCMap+Utility.h"; sourceTree = "<group>"; };
-		19F52281164CB7F90056CACE /* ZXPDFCMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMap.h; sourceTree = "<group>"; };
-		19F52282164CB7F90056CACE /* ZXPDFCMapCIDMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCIDMap.h; sourceTree = "<group>"; };
-		19F52283164CB7F90056CACE /* ZXPDFCMapCIDRangeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCIDRangeMap.h; sourceTree = "<group>"; };
-		19F52284164CB7F90056CACE /* ZXPDFCMapCodespaceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCodespaceRange.h; sourceTree = "<group>"; };
-		19F52285164CB7F90056CACE /* ZXPDFCMapCoreDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCoreDataModels.h; sourceTree = "<group>"; };
-		19F52286164CB7F90056CACE /* ZXPDFCMapDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapDefinition.h; sourceTree = "<group>"; };
-		19F52287164CB7F90056CACE /* ZXPDFCMapEntryMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapEntryMaker.h; sourceTree = "<group>"; };
-		19F52288164CB7F90056CACE /* ZXPDFCMapFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapFileParser.h; sourceTree = "<group>"; };
-		19F52289164CB7F90056CACE /* ZXPDFCMapParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapParser.h; sourceTree = "<group>"; };
-		19F5228A164CB7F90056CACE /* ZXPDFCMapStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapStreamParser.h; sourceTree = "<group>"; };
-		19F5228B164CB7F90056CACE /* ZXPDFCMapToUnicodeStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapToUnicodeStreamParser.h; sourceTree = "<group>"; };
-		19F5228C164CB7F90056CACE /* ZXPDFCMapUnicodeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapUnicodeMap.h; sourceTree = "<group>"; };
-		19F5228D164CB7F90056CACE /* ZXPDFCMapUnicodeRangeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapUnicodeRangeMap.h; sourceTree = "<group>"; };
-		19F5228E164CB7F90056CACE /* ZXPDFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFConstants.h; sourceTree = "<group>"; };
-		19F5228F164CB7F90056CACE /* ZXPDFDictionaryScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDictionaryScanner.h; sourceTree = "<group>"; };
-		19F52290164CB7F90056CACE /* ZXPDFDocumentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentObject.h; sourceTree = "<group>"; };
-		19F52291164CB7F90056CACE /* ZXPDFDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentView.h; sourceTree = "<group>"; };
-		19F52292164CB7F90056CACE /* ZXPDFDocumentViewHardPageFlipAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewHardPageFlipAnimator.h; sourceTree = "<group>"; };
-		19F52293164CB7F90056CACE /* ZXPDFDocumentViewLinearPageAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewLinearPageAnimator.h; sourceTree = "<group>"; };
-		19F52294164CB7F90056CACE /* ZXPDFDocumentViewPageAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewPageAnimation.h; sourceTree = "<group>"; };
-		19F52295164CB7F90056CACE /* ZXPDFDocumentViewSimplePageAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewSimplePageAnimator.h; sourceTree = "<group>"; };
-		19F52296164CB7F90056CACE /* ZXPDFFontCharacterRangeWidth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterRangeWidth.h; sourceTree = "<group>"; };
-		19F52297164CB7F90056CACE /* ZXPDFFontCharacterRangeWidthVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterRangeWidthVertical.h; sourceTree = "<group>"; };
-		19F52298164CB7F90056CACE /* ZXPDFFontCharacterWidth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterWidth.h; sourceTree = "<group>"; };
-		19F52299164CB7F90056CACE /* ZXPDFFontCharacterWidthVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterWidthVertical.h; sourceTree = "<group>"; };
-		19F5229A164CB7F90056CACE /* ZXPDFFontCoreDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCoreDataModels.h; sourceTree = "<group>"; };
-		19F5229B164CB7F90056CACE /* ZXPDFFontInfo+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFFontInfo+Utility.h"; sourceTree = "<group>"; };
-		19F5229C164CB7F90056CACE /* ZXPDFFontInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontInfo.h; sourceTree = "<group>"; };
-		19F5229D164CB7F90056CACE /* ZXPDFFontInfoMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontInfoMaker.h; sourceTree = "<group>"; };
-		19F5229E164CB7F90056CACE /* ZXPDFFontParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontParser.h; sourceTree = "<group>"; };
-		19F5229F164CB7F90056CACE /* ZXPDFLinkAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFLinkAnnotation.h; sourceTree = "<group>"; };
-		19F522A0164CB7F90056CACE /* ZXPDFLocalDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFLocalDestination.h; sourceTree = "<group>"; };
-		19F522A1164CB7F90056CACE /* ZXPDFPageIndicatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageIndicatorDetailViewController.h; sourceTree = "<group>"; };
-		19F522A2164CB7F90056CACE /* ZXPDFPageIndicatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageIndicatorViewController.h; sourceTree = "<group>"; };
-		19F522A3164CB7F90056CACE /* ZXPDFPageListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageListViewCell.h; sourceTree = "<group>"; };
-		19F522A4164CB7F90056CACE /* ZXPDFPageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageListViewController.h; sourceTree = "<group>"; };
-		19F522A5164CB7F90056CACE /* ZXPDFPageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageObject.h; sourceTree = "<group>"; };
-		19F522A6164CB7F90056CACE /* ZXPDFPageThumbnailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageThumbnailController.h; sourceTree = "<group>"; };
-		19F522A7164CB7F90056CACE /* ZXPDFPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageView.h; sourceTree = "<group>"; };
-		19F522A8164CB7F90056CACE /* ZXPDFSearchCharacter+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchCharacter+Utility.h"; sourceTree = "<group>"; };
-		19F522A9164CB7F90056CACE /* ZXPDFSearchCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchCharacter.h; sourceTree = "<group>"; };
-		19F522AA164CB7F90056CACE /* ZXPDFSearchCoreDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchCoreDataModels.h; sourceTree = "<group>"; };
-		19F522AB164CB7F90056CACE /* ZXPDFSearchDocument+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchDocument+Utility.h"; sourceTree = "<group>"; };
-		19F522AC164CB7F90056CACE /* ZXPDFSearchDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchDocument.h; sourceTree = "<group>"; };
-		19F522AD164CB7F90056CACE /* ZXPDFSearchIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchIndex.h; sourceTree = "<group>"; };
-		19F522AE164CB7F90056CACE /* ZXPDFSearchIndexMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchIndexMaker.h; sourceTree = "<group>"; };
-		19F522AF164CB7F90056CACE /* ZXPDFSearchMorpheme+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchMorpheme+Utility.h"; sourceTree = "<group>"; };
-		19F522B0164CB7F90056CACE /* ZXPDFSearchMorpheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchMorpheme.h; sourceTree = "<group>"; };
-		19F522B1164CB7F90056CACE /* ZXPDFSearchPage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchPage+Utility.h"; sourceTree = "<group>"; };
-		19F522B2164CB7F90056CACE /* ZXPDFSearchPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchPage.h; sourceTree = "<group>"; };
-		19F522B3164CB7F90056CACE /* ZXPDFSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResult.h; sourceTree = "<group>"; };
-		19F522B4164CB7F90056CACE /* ZXPDFSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResultController.h; sourceTree = "<group>"; };
-		19F522B5164CB7F90056CACE /* ZXPDFSearchResultDocument+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchResultDocument+Utility.h"; sourceTree = "<group>"; };
-		19F522B6164CB7F90056CACE /* ZXPDFSearchResultDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResultDocument.h; sourceTree = "<group>"; };
-		19F522B7164CB7F90056CACE /* ZXPDFSearchResultPage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchResultPage+Utility.h"; sourceTree = "<group>"; };
-		19F522B8164CB7F90056CACE /* ZXPDFSearchResultPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResultPage.h; sourceTree = "<group>"; };
-		19F522B9164CB7F90056CACE /* ZXPDFSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchViewController.h; sourceTree = "<group>"; };
-		19F522BA164CB7F90056CACE /* ZXPDFSearchViewControllerResultViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchViewControllerResultViewCell.h; sourceTree = "<group>"; };
-		19F522BB164CB7F90056CACE /* ZXPDFSearchWord+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchWord+Utility.h"; sourceTree = "<group>"; };
-		19F522BC164CB7F90056CACE /* ZXPDFSearchWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchWord.h; sourceTree = "<group>"; };
-		19F522BD164CB7F90056CACE /* ZXPDFTextExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFTextExtractor.h; sourceTree = "<group>"; };
-		19F522BE164CB7F90056CACE /* ZXPDFTextPositionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFTextPositionState.h; sourceTree = "<group>"; };
-		19F522BF164CB7F90056CACE /* ZXPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFViewController.h; sourceTree = "<group>"; };
-		19F522C1164CB7F90056CACE /* ZXCanvasDrawSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasDrawSettingViewController.h; sourceTree = "<group>"; };
-		19F522C2164CB7F90056CACE /* ZXCanvasEraseSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasEraseSettingViewController.h; sourceTree = "<group>"; };
-		19F522C3164CB7F90056CACE /* ZXCanvasLineWidthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasLineWidthViewController.h; sourceTree = "<group>"; };
-		19F522C4164CB7F90056CACE /* ZXCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasView.h; sourceTree = "<group>"; };
-		19F522C5164CB7F90056CACE /* ZXCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasViewController.h; sourceTree = "<group>"; };
-		19F522C6164CB7F90056CACE /* ZXColorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXColorTableViewController.h; sourceTree = "<group>"; };
-		19F522C7164CB7F90056CACE /* ZXCoreDataRepresentationBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCoreDataRepresentationBase.h; sourceTree = "<group>"; };
-		19F522C8164CB7F90056CACE /* ZXCoWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCoWorker.h; sourceTree = "<group>"; };
-		19F522C9164CB7F90056CACE /* ZXDebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDebugMacros.h; sourceTree = "<group>"; };
-		19F522CA164CB7F90056CACE /* ZXDrawGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDrawGestureRecognizer.h; sourceTree = "<group>"; };
-		19F522CB164CB7F90056CACE /* ZXDynamicPropertyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicPropertyHelper.h; sourceTree = "<group>"; };
-		19F522CC164CB7F90056CACE /* ZXExternalDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXExternalDisplayViewController.h; sourceTree = "<group>"; };
-		19F522CD164CB7F90056CACE /* ZXGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXGroupView.h; sourceTree = "<group>"; };
-		19F522CE164CB7F90056CACE /* ZXLabelledTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelledTableViewCell.h; sourceTree = "<group>"; };
-		19F522CF164CB7F90056CACE /* ZXLazyLoadingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLazyLoadingImageView.h; sourceTree = "<group>"; };
-		19F522D0164CB7F90056CACE /* ZXLoadingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLoadingIndicatorView.h; sourceTree = "<group>"; };
-		19F522D1164CB7F90056CACE /* ZXSimpleQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSimpleQueue.h; sourceTree = "<group>"; };
-		19F522D2164CB7F90056CACE /* ZXSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSliderViewController.h; sourceTree = "<group>"; };
-		19F522D3164CB7F90056CACE /* ZXSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSplashScreen.h; sourceTree = "<group>"; };
-		19F522D4164CB7F90056CACE /* ZXSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSplashScreenViewController.h; sourceTree = "<group>"; };
-		19F522D5164CB7F90056CACE /* ZXURLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXURLUtility.h; sourceTree = "<group>"; };
-		19F522D6164CB7F90056CACE /* ZXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUtility.h; sourceTree = "<group>"; };
-		19F522D8164CB7F90056CACE /* mecab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mecab.h; sourceTree = "<group>"; };
-		19F522D9164CB7F90056CACE /* ZXMecabNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMecabNode.h; sourceTree = "<group>"; };
-		19F522DA164CB7F90056CACE /* ZXMecabParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMecabParser.h; sourceTree = "<group>"; };
-		19F52339164CB8390056CACE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ZXUtilities.strings; sourceTree = "<group>"; };
-		19F5233A164CB8390056CACE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ZXUtilities.strings; sourceTree = "<group>"; };
-		19F5233B164CB8390056CACE /* ZXCanvasDrawSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasDrawSettingViewController.xib; sourceTree = "<group>"; };
-		19F5233C164CB8390056CACE /* ZXCanvasEraseSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasEraseSettingViewController.xib; sourceTree = "<group>"; };
-		19F5233D164CB8390056CACE /* ZXCanvasLineWidthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasLineWidthViewController.xib; sourceTree = "<group>"; };
-		19F5233E164CB8390056CACE /* ZXCanvasViewController-clear-button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-clear-button-bg.png"; sourceTree = "<group>"; };
-		19F5233F164CB8390056CACE /* ZXCanvasViewController-eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-eraser.png"; sourceTree = "<group>"; };
-		19F52340164CB8390056CACE /* ZXCanvasViewController-pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-pen.png"; sourceTree = "<group>"; };
-		19F52341164CB8390056CACE /* ZXCanvasViewController-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-redo.png"; sourceTree = "<group>"; };
-		19F52342164CB8390056CACE /* ZXCanvasViewController-sliderL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-sliderL.png"; sourceTree = "<group>"; };
-		19F52343164CB8390056CACE /* ZXCanvasViewController-sliderS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-sliderS.png"; sourceTree = "<group>"; };
-		19F52344164CB8390056CACE /* ZXCanvasViewController-undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-undo.png"; sourceTree = "<group>"; };
-		19F52345164CB8390056CACE /* ZXCanvasViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasViewController.xib; sourceTree = "<group>"; };
-		19F52346164CB8390056CACE /* ZXExternalDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXExternalDisplayViewController.xib; sourceTree = "<group>"; };
-		19F52347164CB8390056CACE /* ZXExternalDisplayViewPointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZXExternalDisplayViewPointer.png; sourceTree = "<group>"; };
-		19F52348164CB8390056CACE /* ZXSliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXSliderViewController.xib; sourceTree = "<group>"; };
-		19F5234B164CB8390056CACE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ZXPDFViewer.strings; sourceTree = "<group>"; };
-		19F5234C164CB8390056CACE /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ZXPDFViewer.strings; sourceTree = "<group>"; };
-		19F5234D164CB8390056CACE /* ZXPDFPageIndicatorDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFPageIndicatorDetailViewController.xib; sourceTree = "<group>"; };
-		19F5234E164CB8390056CACE /* ZXPDFPageIndicatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFPageIndicatorViewController.xib; sourceTree = "<group>"; };
-		19F5234F164CB8390056CACE /* ZXPDFPageListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFPageListViewCell.xib; sourceTree = "<group>"; };
-		19F52350164CB8390056CACE /* ZXPDFSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFSearchViewController.xib; sourceTree = "<group>"; };
-		19F52351164CB8390056CACE /* ZXPDFSearchViewControllerResultViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFSearchViewControllerResultViewCell.xib; sourceTree = "<group>"; };
-		19F52352164CB8390056CACE /* ZXPDFViewController-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-left.png"; sourceTree = "<group>"; };
-		19F52353164CB8390056CACE /* ZXPDFViewController-link_button_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-link_button_highlighted.png"; sourceTree = "<group>"; };
-		19F52354164CB8390056CACE /* ZXPDFViewController-link_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-link_button_normal.png"; sourceTree = "<group>"; };
-		19F52355164CB8390056CACE /* ZXPDFViewController-list_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-list_bg.png"; sourceTree = "<group>"; };
-		19F52356164CB8390056CACE /* ZXPDFViewController-mokuji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-mokuji.png"; sourceTree = "<group>"; };
-		19F52357164CB8390056CACE /* ZXPDFViewController-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-right.png"; sourceTree = "<group>"; };
-		19F52358164CB8390056CACE /* ZXPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFViewController.xib; sourceTree = "<group>"; };
-		19F52359164CB8BF0056CACE /* libZXPDFViewer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libZXPDFViewer.a; path = dependencies/libZXPDFViewer/libZXPDFViewer.a; sourceTree = "<group>"; };
-		F105044818B58E350071C829 /* KeychainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainHelper.h; sourceTree = "<group>"; };
-		F105044918B58E350071C829 /* KeychainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainHelper.m; sourceTree = "<group>"; };
-		F105044A18B58E350071C829 /* UUIDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUIDHelper.h; sourceTree = "<group>"; };
-		F105044B18B58E350071C829 /* UUIDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUIDHelper.m; sourceTree = "<group>"; };
-		F10EBD5F14E8D84300C69F7D /* DynamicAppSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppSplashViewController.h; sourceTree = "<group>"; };
-		F10EBD6014E8D84300C69F7D /* DynamicAppSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppSplashViewController.m; sourceTree = "<group>"; };
-		F117921114F778630094CDAA /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		F11CA82514E8AC4400A87464 /* DownloadConttroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadConttroller.h; sourceTree = "<group>"; };
-		F11CA82614E8AC4400A87464 /* DownloadConttroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadConttroller.m; sourceTree = "<group>"; };
-		F11CA83214E8B61100A87464 /* DynamicAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppViewController.h; sourceTree = "<group>"; };
-		F11CA83314E8B61100A87464 /* DynamicAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppViewController.m; sourceTree = "<group>"; };
-		F11FDC3814EA4A3600361891 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
-		F15001F514C53CA900B45A0F /* libDynamicApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDynamicApp.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F15001F814C53CA900B45A0F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		F150020514C53CA900B45A0F /* DynamicAppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicAppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F150020614C53CA900B45A0F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		F150021014C53CA900B45A0F /* DynamicAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DynamicAppTests-Info.plist"; sourceTree = "<group>"; };
-		F150021214C53CA900B45A0F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		F150021414C53CA900B45A0F /* DynamicAppTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicAppTests.h; sourceTree = "<group>"; };
-		F150021514C53CA900B45A0F /* DynamicAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicAppTests.m; sourceTree = "<group>"; };
-		F150022114C53D2000B45A0F /* DynamicAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppDelegate.h; sourceTree = "<group>"; };
-		F150022214C53D2000B45A0F /* DynamicAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppDelegate.m; sourceTree = "<group>"; };
-		F150022A14C53D2F00B45A0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F156593414C540CB0012474E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		F156593614C540F30012474E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		F169252D14C822D900E1B020 /* Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shortcut.h; path = ../Shortcut.h; sourceTree = "<group>"; };
-		F169252E14C822D900E1B020 /* Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shortcut.m; path = ../Shortcut.m; sourceTree = "<group>"; };
+		F126A86718C9D2CF006E5329 /* libDynamicApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDynamicApp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F126A86A18C9D2CF006E5329 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F126A86E18C9D2CF006E5329 /* DynamicApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DynamicApp-Prefix.pch"; sourceTree = "<group>"; };
+		F126A87718C9D2CF006E5329 /* DynamicAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DynamicAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F126A87818C9D2CF006E5329 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F126A87B18C9D2CF006E5329 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		F126A88218C9D2CF006E5329 /* DynamicAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DynamicAppTests-Info.plist"; sourceTree = "<group>"; };
+		F126A88418C9D2CF006E5329 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F126A88618C9D2CF006E5329 /* DynamicAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicAppTests.m; sourceTree = "<group>"; };
+		F126A89118C9D32A006E5329 /* Ad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ad.h; sourceTree = "<group>"; };
+		F126A89218C9D32A006E5329 /* Ad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ad.m; sourceTree = "<group>"; };
+		F126A89318C9D32A006E5329 /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
+		F126A89418C9D32A006E5329 /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
+		F126A89518C9D32A006E5329 /* AppVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppVersion.h; sourceTree = "<group>"; };
+		F126A89618C9D32A006E5329 /* AppVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppVersion.m; sourceTree = "<group>"; };
+		F126A89718C9D32A006E5329 /* Bluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bluetooth.h; sourceTree = "<group>"; };
+		F126A89818C9D32A006E5329 /* Bluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bluetooth.m; sourceTree = "<group>"; };
+		F126A89918C9D32A006E5329 /* Bluetooth4LE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bluetooth4LE.h; sourceTree = "<group>"; };
+		F126A89A18C9D32A006E5329 /* Bluetooth4LE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bluetooth4LE.m; sourceTree = "<group>"; };
+		F126A89B18C9D32A006E5329 /* Cache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
+		F126A89C18C9D32A006E5329 /* Cache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cache.m; sourceTree = "<group>"; };
+		F126A89D18C9D32A006E5329 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		F126A89E18C9D32A006E5329 /* Camera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Camera.m; sourceTree = "<group>"; };
+		F126A89F18C9D32A006E5329 /* Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contacts.h; sourceTree = "<group>"; };
+		F126A8A018C9D32A006E5329 /* Contacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contacts.m; sourceTree = "<group>"; };
+		F126A8A118C9D32A006E5329 /* cppdefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cppdefine.h; sourceTree = "<group>"; };
+		F126A8A218C9D32A006E5329 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		F126A8A318C9D32A006E5329 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		F126A8A418C9D32A006E5329 /* define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = define.h; sourceTree = "<group>"; };
+		F126A8A518C9D32A006E5329 /* DynamicAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppDelegate.h; sourceTree = "<group>"; };
+		F126A8A618C9D32A006E5329 /* DynamicAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppDelegate.m; sourceTree = "<group>"; };
+		F126A8A718C9D32A006E5329 /* DynamicAppPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppPlugin.h; sourceTree = "<group>"; };
+		F126A8A818C9D32A006E5329 /* DynamicAppPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppPlugin.m; sourceTree = "<group>"; };
+		F126A8A918C9D32A006E5329 /* DynamicAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppViewController.h; sourceTree = "<group>"; };
+		F126A8AA18C9D32A006E5329 /* DynamicAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppViewController.m; sourceTree = "<group>"; };
+		F126A8AC18C9D32A006E5329 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/QRReader.h; sourceTree = "<group>"; };
+		F126A8AD18C9D32A006E5329 /* Encryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Encryptor.h; sourceTree = "<group>"; };
+		F126A8AE18C9D32A006E5329 /* Encryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Encryptor.m; sourceTree = "<group>"; };
+		F126A8AF18C9D32A006E5329 /* File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
+		F126A8B018C9D32A006E5329 /* File.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
+		F126A8B118C9D32A006E5329 /* FileEncryptor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileEncryptor.cpp; sourceTree = "<group>"; };
+		F126A8B218C9D32A006E5329 /* FileEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileEncryptor.h; sourceTree = "<group>"; };
+		F126A8B318C9D32A006E5329 /* ImageDecrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDecrypt.h; sourceTree = "<group>"; };
+		F126A8B418C9D32A006E5329 /* ImageDecrypt.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageDecrypt.mm; sourceTree = "<group>"; };
+		F126A8B618C9D32A006E5329 /* KeychainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainHelper.h; sourceTree = "<group>"; };
+		F126A8B718C9D32A006E5329 /* KeychainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainHelper.m; sourceTree = "<group>"; };
+		F126A8B818C9D32A006E5329 /* LoadingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScreen.h; sourceTree = "<group>"; };
+		F126A8B918C9D32A006E5329 /* LoadingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingScreen.m; sourceTree = "<group>"; };
+		F126A8BA18C9D32A006E5329 /* md5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = md5.c; sourceTree = "<group>"; };
+		F126A8BB18C9D32A006E5329 /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
+		F126A8BC18C9D32A006E5329 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
+		F126A8BD18C9D32A006E5329 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
+		F126A8BE18C9D32A006E5329 /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		F126A8BF18C9D32A006E5329 /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		F126A8C018C9D32A006E5329 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		F126A8C118C9D32A006E5329 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		F126A8C318C9D32A006E5329 /* DownloadConttroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadConttroller.h; sourceTree = "<group>"; };
+		F126A8C418C9D32A006E5329 /* DownloadConttroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadConttroller.m; sourceTree = "<group>"; };
+		F126A8C518C9D32A006E5329 /* PDFViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewer.h; sourceTree = "<group>"; };
+		F126A8C618C9D32A006E5329 /* PDFViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewer.m; sourceTree = "<group>"; };
+		F126A8C718C9D32A006E5329 /* PluginResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginResult.h; sourceTree = "<group>"; };
+		F126A8C818C9D32A006E5329 /* PluginResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PluginResult.m; sourceTree = "<group>"; };
+		F126A8C918C9D32A006E5329 /* QRReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QRReader.mm; sourceTree = "<group>"; };
+		F126A8CA18C9D32A006E5329 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
+		F126A8CB18C9D32A006E5329 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = random.h; sourceTree = "<group>"; };
+		F126A8CC18C9D32A006E5329 /* Shortcut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shortcut.h; sourceTree = "<group>"; };
+		F126A8CD18C9D32A006E5329 /* Shortcut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shortcut.m; sourceTree = "<group>"; };
+		F126A8CE18C9D32A006E5329 /* Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sound.h; sourceTree = "<group>"; };
+		F126A8CF18C9D32A006E5329 /* Sound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sound.m; sourceTree = "<group>"; };
+		F126A8D018C9D32A006E5329 /* UrlCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCommand.h; sourceTree = "<group>"; };
+		F126A8D118C9D32A006E5329 /* UrlCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCommand.m; sourceTree = "<group>"; };
+		F126A8D218C9D32A006E5329 /* UUIDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUIDHelper.h; sourceTree = "<group>"; };
+		F126A8D318C9D32A006E5329 /* UUIDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUIDHelper.m; sourceTree = "<group>"; };
+		F126A8D418C9D32A006E5329 /* vFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vFile.cpp; sourceTree = "<group>"; };
+		F126A8D518C9D32A006E5329 /* vFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vFile.h; sourceTree = "<group>"; };
+		F126A8D718C9D32A006E5329 /* DynamicAppSplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicAppSplashViewController.h; sourceTree = "<group>"; };
+		F126A8D818C9D32A006E5329 /* DynamicAppSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppSplashViewController.m; sourceTree = "<group>"; };
+		F126A8DA18C9D32A006E5329 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		F126A8DB18C9D32A006E5329 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
+		F126A8DE18C9D32A006E5329 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		F126A8DF18C9D32A006E5329 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		F126A8E018C9D32A006E5329 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		F126A8E118C9D32A006E5329 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		F126A8E218C9D32A006E5329 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		F126A8E318C9D32A006E5329 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		F126A8E418C9D32A006E5329 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		F126A8E518C9D32A006E5329 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		F126A8E618C9D32A006E5329 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		F126A8E718C9D32A006E5329 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		F126A8E818C9D32A006E5329 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		F126A8EA18C9D32A006E5329 /* ZXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUtility.h; sourceTree = "<group>"; };
+		F126A8EB18C9D32A006E5329 /* ZXUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUtility.m; sourceTree = "<group>"; };
+		F126A91818C9D456006E5329 /* mecab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mecab.h; sourceTree = "<group>"; };
+		F126A91918C9D456006E5329 /* ZXMecabNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMecabNode.h; sourceTree = "<group>"; };
+		F126A91A18C9D456006E5329 /* ZXMecabParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMecabParser.h; sourceTree = "<group>"; };
+		F126A91B18C9D456006E5329 /* ZXPDFViewerData.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZXPDFViewerData.bundle; path = dependencies/libZXPDFViewer/ZXPDFViewerData.bundle; sourceTree = SOURCE_ROOT; };
+		F126A91D18C9D456006E5329 /* NSObject+ZXPDFObjectConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ZXPDFObjectConverter.h"; sourceTree = "<group>"; };
+		F126A91E18C9D456006E5329 /* ZXPDFCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCanvasViewController.h; sourceTree = "<group>"; };
+		F126A91F18C9D456006E5329 /* ZXPDFCatalogScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCatalogScanner.h; sourceTree = "<group>"; };
+		F126A92018C9D456006E5329 /* ZXPDFCMap+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFCMap+Utility.h"; sourceTree = "<group>"; };
+		F126A92118C9D456006E5329 /* ZXPDFCMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMap.h; sourceTree = "<group>"; };
+		F126A92218C9D456006E5329 /* ZXPDFCMapCIDMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCIDMap.h; sourceTree = "<group>"; };
+		F126A92318C9D456006E5329 /* ZXPDFCMapCIDRangeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCIDRangeMap.h; sourceTree = "<group>"; };
+		F126A92418C9D456006E5329 /* ZXPDFCMapCodespaceRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCodespaceRange.h; sourceTree = "<group>"; };
+		F126A92518C9D456006E5329 /* ZXPDFCMapCoreDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapCoreDataModels.h; sourceTree = "<group>"; };
+		F126A92618C9D456006E5329 /* ZXPDFCMapDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapDefinition.h; sourceTree = "<group>"; };
+		F126A92718C9D456006E5329 /* ZXPDFCMapEntryMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapEntryMaker.h; sourceTree = "<group>"; };
+		F126A92818C9D456006E5329 /* ZXPDFCMapFileParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapFileParser.h; sourceTree = "<group>"; };
+		F126A92918C9D456006E5329 /* ZXPDFCMapParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapParser.h; sourceTree = "<group>"; };
+		F126A92A18C9D456006E5329 /* ZXPDFCMapStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapStreamParser.h; sourceTree = "<group>"; };
+		F126A92B18C9D456006E5329 /* ZXPDFCMapToUnicodeStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapToUnicodeStreamParser.h; sourceTree = "<group>"; };
+		F126A92C18C9D456006E5329 /* ZXPDFCMapUnicodeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapUnicodeMap.h; sourceTree = "<group>"; };
+		F126A92D18C9D456006E5329 /* ZXPDFCMapUnicodeRangeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFCMapUnicodeRangeMap.h; sourceTree = "<group>"; };
+		F126A92E18C9D456006E5329 /* ZXPDFConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFConstants.h; sourceTree = "<group>"; };
+		F126A92F18C9D456006E5329 /* ZXPDFDictionaryScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDictionaryScanner.h; sourceTree = "<group>"; };
+		F126A93018C9D456006E5329 /* ZXPDFDocumentObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentObject.h; sourceTree = "<group>"; };
+		F126A93118C9D456006E5329 /* ZXPDFDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentView.h; sourceTree = "<group>"; };
+		F126A93218C9D456006E5329 /* ZXPDFDocumentViewHardPageFlipAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewHardPageFlipAnimator.h; sourceTree = "<group>"; };
+		F126A93318C9D456006E5329 /* ZXPDFDocumentViewLinearPageAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewLinearPageAnimator.h; sourceTree = "<group>"; };
+		F126A93418C9D456006E5329 /* ZXPDFDocumentViewPageAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewPageAnimation.h; sourceTree = "<group>"; };
+		F126A93518C9D456006E5329 /* ZXPDFDocumentViewSimplePageAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFDocumentViewSimplePageAnimator.h; sourceTree = "<group>"; };
+		F126A93618C9D456006E5329 /* ZXPDFFontCharacterRangeWidth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterRangeWidth.h; sourceTree = "<group>"; };
+		F126A93718C9D456006E5329 /* ZXPDFFontCharacterRangeWidthVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterRangeWidthVertical.h; sourceTree = "<group>"; };
+		F126A93818C9D456006E5329 /* ZXPDFFontCharacterWidth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterWidth.h; sourceTree = "<group>"; };
+		F126A93918C9D456006E5329 /* ZXPDFFontCharacterWidthVertical.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCharacterWidthVertical.h; sourceTree = "<group>"; };
+		F126A93A18C9D456006E5329 /* ZXPDFFontCoreDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontCoreDataModels.h; sourceTree = "<group>"; };
+		F126A93B18C9D456006E5329 /* ZXPDFFontInfo+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFFontInfo+Utility.h"; sourceTree = "<group>"; };
+		F126A93C18C9D456006E5329 /* ZXPDFFontInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontInfo.h; sourceTree = "<group>"; };
+		F126A93D18C9D456006E5329 /* ZXPDFFontInfoMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontInfoMaker.h; sourceTree = "<group>"; };
+		F126A93E18C9D456006E5329 /* ZXPDFFontParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFFontParser.h; sourceTree = "<group>"; };
+		F126A93F18C9D456006E5329 /* ZXPDFLinkAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFLinkAnnotation.h; sourceTree = "<group>"; };
+		F126A94018C9D456006E5329 /* ZXPDFLocalDestination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFLocalDestination.h; sourceTree = "<group>"; };
+		F126A94118C9D456006E5329 /* ZXPDFPageIndicatorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageIndicatorDetailViewController.h; sourceTree = "<group>"; };
+		F126A94218C9D456006E5329 /* ZXPDFPageIndicatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageIndicatorViewController.h; sourceTree = "<group>"; };
+		F126A94318C9D456006E5329 /* ZXPDFPageListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageListViewCell.h; sourceTree = "<group>"; };
+		F126A94418C9D456006E5329 /* ZXPDFPageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageListViewController.h; sourceTree = "<group>"; };
+		F126A94518C9D456006E5329 /* ZXPDFPageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageObject.h; sourceTree = "<group>"; };
+		F126A94618C9D456006E5329 /* ZXPDFPageThumbnailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageThumbnailController.h; sourceTree = "<group>"; };
+		F126A94718C9D456006E5329 /* ZXPDFPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFPageView.h; sourceTree = "<group>"; };
+		F126A94818C9D456006E5329 /* ZXPDFSearchCharacter+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchCharacter+Utility.h"; sourceTree = "<group>"; };
+		F126A94918C9D456006E5329 /* ZXPDFSearchCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchCharacter.h; sourceTree = "<group>"; };
+		F126A94A18C9D456006E5329 /* ZXPDFSearchCoreDataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchCoreDataModels.h; sourceTree = "<group>"; };
+		F126A94B18C9D456006E5329 /* ZXPDFSearchDocument+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchDocument+Utility.h"; sourceTree = "<group>"; };
+		F126A94C18C9D456006E5329 /* ZXPDFSearchDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchDocument.h; sourceTree = "<group>"; };
+		F126A94D18C9D456006E5329 /* ZXPDFSearchIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchIndex.h; sourceTree = "<group>"; };
+		F126A94E18C9D456006E5329 /* ZXPDFSearchIndexMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchIndexMaker.h; sourceTree = "<group>"; };
+		F126A94F18C9D456006E5329 /* ZXPDFSearchMorpheme+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchMorpheme+Utility.h"; sourceTree = "<group>"; };
+		F126A95018C9D456006E5329 /* ZXPDFSearchMorpheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchMorpheme.h; sourceTree = "<group>"; };
+		F126A95118C9D456006E5329 /* ZXPDFSearchPage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchPage+Utility.h"; sourceTree = "<group>"; };
+		F126A95218C9D456006E5329 /* ZXPDFSearchPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchPage.h; sourceTree = "<group>"; };
+		F126A95318C9D456006E5329 /* ZXPDFSearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResult.h; sourceTree = "<group>"; };
+		F126A95418C9D456006E5329 /* ZXPDFSearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResultController.h; sourceTree = "<group>"; };
+		F126A95518C9D456006E5329 /* ZXPDFSearchResultDocument+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchResultDocument+Utility.h"; sourceTree = "<group>"; };
+		F126A95618C9D456006E5329 /* ZXPDFSearchResultDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResultDocument.h; sourceTree = "<group>"; };
+		F126A95718C9D456006E5329 /* ZXPDFSearchResultPage+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchResultPage+Utility.h"; sourceTree = "<group>"; };
+		F126A95818C9D456006E5329 /* ZXPDFSearchResultPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchResultPage.h; sourceTree = "<group>"; };
+		F126A95918C9D456006E5329 /* ZXPDFSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchViewController.h; sourceTree = "<group>"; };
+		F126A95A18C9D456006E5329 /* ZXPDFSearchViewControllerResultViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchViewControllerResultViewCell.h; sourceTree = "<group>"; };
+		F126A95B18C9D456006E5329 /* ZXPDFSearchWord+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPDFSearchWord+Utility.h"; sourceTree = "<group>"; };
+		F126A95C18C9D456006E5329 /* ZXPDFSearchWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFSearchWord.h; sourceTree = "<group>"; };
+		F126A95D18C9D456006E5329 /* ZXPDFTextExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFTextExtractor.h; sourceTree = "<group>"; };
+		F126A95E18C9D456006E5329 /* ZXPDFTextPositionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFTextPositionState.h; sourceTree = "<group>"; };
+		F126A95F18C9D456006E5329 /* ZXPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPDFViewController.h; sourceTree = "<group>"; };
+		F126A96218C9D456006E5329 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ZXPDFViewer.strings; sourceTree = "<group>"; };
+		F126A96318C9D456006E5329 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ZXPDFViewer.strings; sourceTree = "<group>"; };
+		F126A96418C9D456006E5329 /* ZXPDFPageIndicatorDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFPageIndicatorDetailViewController.xib; sourceTree = "<group>"; };
+		F126A96518C9D456006E5329 /* ZXPDFPageIndicatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFPageIndicatorViewController.xib; sourceTree = "<group>"; };
+		F126A96618C9D456006E5329 /* ZXPDFPageListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFPageListViewCell.xib; sourceTree = "<group>"; };
+		F126A96718C9D456006E5329 /* ZXPDFSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFSearchViewController.xib; sourceTree = "<group>"; };
+		F126A96818C9D456006E5329 /* ZXPDFSearchViewControllerResultViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFSearchViewControllerResultViewCell.xib; sourceTree = "<group>"; };
+		F126A96918C9D456006E5329 /* ZXPDFViewController-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-left.png"; sourceTree = "<group>"; };
+		F126A96A18C9D456006E5329 /* ZXPDFViewController-link_button_highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-link_button_highlighted.png"; sourceTree = "<group>"; };
+		F126A96B18C9D456006E5329 /* ZXPDFViewController-link_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-link_button_normal.png"; sourceTree = "<group>"; };
+		F126A96C18C9D456006E5329 /* ZXPDFViewController-list_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-list_bg.png"; sourceTree = "<group>"; };
+		F126A96D18C9D456006E5329 /* ZXPDFViewController-mokuji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-mokuji.png"; sourceTree = "<group>"; };
+		F126A96E18C9D456006E5329 /* ZXPDFViewController-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXPDFViewController-right.png"; sourceTree = "<group>"; };
+		F126A96F18C9D456006E5329 /* ZXPDFViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXPDFViewController.xib; sourceTree = "<group>"; };
+		F126A97118C9D456006E5329 /* ZXCanvasDrawSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasDrawSettingViewController.h; sourceTree = "<group>"; };
+		F126A97218C9D456006E5329 /* ZXCanvasEraseSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasEraseSettingViewController.h; sourceTree = "<group>"; };
+		F126A97318C9D456006E5329 /* ZXCanvasLineWidthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasLineWidthViewController.h; sourceTree = "<group>"; };
+		F126A97418C9D456006E5329 /* ZXCanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasView.h; sourceTree = "<group>"; };
+		F126A97518C9D456006E5329 /* ZXCanvasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCanvasViewController.h; sourceTree = "<group>"; };
+		F126A97618C9D456006E5329 /* ZXColorTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXColorTableViewController.h; sourceTree = "<group>"; };
+		F126A97718C9D456006E5329 /* ZXCoreDataRepresentationBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCoreDataRepresentationBase.h; sourceTree = "<group>"; };
+		F126A97818C9D456006E5329 /* ZXCoWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCoWorker.h; sourceTree = "<group>"; };
+		F126A97918C9D456006E5329 /* ZXDebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDebugMacros.h; sourceTree = "<group>"; };
+		F126A97A18C9D456006E5329 /* ZXDrawGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDrawGestureRecognizer.h; sourceTree = "<group>"; };
+		F126A97B18C9D456006E5329 /* ZXDynamicPropertyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicPropertyHelper.h; sourceTree = "<group>"; };
+		F126A97C18C9D456006E5329 /* ZXExternalDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXExternalDisplayViewController.h; sourceTree = "<group>"; };
+		F126A97D18C9D456006E5329 /* ZXGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXGroupView.h; sourceTree = "<group>"; };
+		F126A97E18C9D456006E5329 /* ZXLabelledTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLabelledTableViewCell.h; sourceTree = "<group>"; };
+		F126A97F18C9D456006E5329 /* ZXLazyLoadingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLazyLoadingImageView.h; sourceTree = "<group>"; };
+		F126A98018C9D456006E5329 /* ZXLoadingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLoadingIndicatorView.h; sourceTree = "<group>"; };
+		F126A98118C9D456006E5329 /* ZXSimpleQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSimpleQueue.h; sourceTree = "<group>"; };
+		F126A98218C9D456006E5329 /* ZXSliderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSliderViewController.h; sourceTree = "<group>"; };
+		F126A98318C9D456006E5329 /* ZXSplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSplashScreen.h; sourceTree = "<group>"; };
+		F126A98418C9D456006E5329 /* ZXSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSplashScreenViewController.h; sourceTree = "<group>"; };
+		F126A98518C9D456006E5329 /* ZXURLUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXURLUtility.h; sourceTree = "<group>"; };
+		F126A98618C9D456006E5329 /* ZXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUtility.h; sourceTree = "<group>"; };
+		F126A98918C9D456006E5329 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ZXUtilities.strings; sourceTree = "<group>"; };
+		F126A98A18C9D456006E5329 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ZXUtilities.strings; sourceTree = "<group>"; };
+		F126A98B18C9D456006E5329 /* ZXCanvasDrawSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasDrawSettingViewController.xib; sourceTree = "<group>"; };
+		F126A98C18C9D456006E5329 /* ZXCanvasEraseSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasEraseSettingViewController.xib; sourceTree = "<group>"; };
+		F126A98D18C9D456006E5329 /* ZXCanvasLineWidthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasLineWidthViewController.xib; sourceTree = "<group>"; };
+		F126A98E18C9D456006E5329 /* ZXCanvasViewController-clear-button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-clear-button-bg.png"; sourceTree = "<group>"; };
+		F126A98F18C9D456006E5329 /* ZXCanvasViewController-eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-eraser.png"; sourceTree = "<group>"; };
+		F126A99018C9D456006E5329 /* ZXCanvasViewController-pen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-pen.png"; sourceTree = "<group>"; };
+		F126A99118C9D456006E5329 /* ZXCanvasViewController-redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-redo.png"; sourceTree = "<group>"; };
+		F126A99218C9D456006E5329 /* ZXCanvasViewController-sliderL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-sliderL.png"; sourceTree = "<group>"; };
+		F126A99318C9D456006E5329 /* ZXCanvasViewController-sliderS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-sliderS.png"; sourceTree = "<group>"; };
+		F126A99418C9D456006E5329 /* ZXCanvasViewController-undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ZXCanvasViewController-undo.png"; sourceTree = "<group>"; };
+		F126A99518C9D456006E5329 /* ZXCanvasViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCanvasViewController.xib; sourceTree = "<group>"; };
+		F126A99618C9D456006E5329 /* ZXExternalDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXExternalDisplayViewController.xib; sourceTree = "<group>"; };
+		F126A99718C9D456006E5329 /* ZXExternalDisplayViewPointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZXExternalDisplayViewPointer.png; sourceTree = "<group>"; };
+		F126A99818C9D456006E5329 /* ZXSliderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXSliderViewController.xib; sourceTree = "<group>"; };
+		F126A99918C9D46F006E5329 /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = dependencies/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = SOURCE_ROOT; };
+		F126A9C718C9F384006E5329 /* libZXPDFViewer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libZXPDFViewer.a; path = dependencies/libZXPDFViewer/libZXPDFViewer.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F15001F214C53CA900B45A0F /* Frameworks */ = {
+		F126A86418C9D2CF006E5329 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1959E33A1664902C00B87DB0 /* iAd.framework in Frameworks */,
-				19EE378815FF40140072F93C /* libZXingWidget.a in Frameworks */,
-				19F5235A164CB8BF0056CACE /* libZXPDFViewer.a in Frameworks */,
-				F15001F914C53CA900B45A0F /* Foundation.framework in Frameworks */,
-				19F1252D164A657E00431BAC /* QuartzCore.framework in Frameworks */,
-				19F1252B164A657500431BAC /* CoreData.framework in Frameworks */,
-				19E4E14C15E4CAE900C6F6E5 /* GameKit.framework in Frameworks */,
-				19E4E13515E4B10500C6F6E5 /* CoreBluetooth.framework in Frameworks */,
-				19968F9915AFFCC10061B1E2 /* AssetsLibrary.framework in Frameworks */,
-				199B97FF15808C3A004C8CC3 /* AddressBookUI.framework in Frameworks */,
-				199B97FD15808C2C004C8CC3 /* AddressBook.framework in Frameworks */,
-				199B97F915808C0B004C8CC3 /* CoreMedia.framework in Frameworks */,
-				199B97F715808BFF004C8CC3 /* CoreVideo.framework in Frameworks */,
-				199B97F515808BF2004C8CC3 /* AudioToolbox.framework in Frameworks */,
+				F1ADE3C818CA0C8300ED10C2 /* libZXPDFViewer.a in Frameworks */,
+				F126A9A418C9D487006E5329 /* libZXingWidget.a in Frameworks */,
+				F126A86B18C9D2CF006E5329 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F150020114C53CA900B45A0F /* Frameworks */ = {
+		F126A87418C9D2CF006E5329 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F150020714C53CA900B45A0F /* SenTestingKit.framework in Frameworks */,
-				F150020A14C53CA900B45A0F /* Foundation.framework in Frameworks */,
-				F150020D14C53CA900B45A0F /* libDynamicApp.a in Frameworks */,
+				F126A87918C9D2CF006E5329 /* XCTest.framework in Frameworks */,
+				F126A87C18C9D2CF006E5329 /* UIKit.framework in Frameworks */,
+				F126A87A18C9D2CF006E5329 /* Foundation.framework in Frameworks */,
+				F126A87F18C9D2CF006E5329 /* libDynamicApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		196829871581D4BD008D04D6 /* Dependencies */ = {
+		F126A85E18C9D2CF006E5329 = {
 			isa = PBXGroup;
 			children = (
-				19F52337164CB8390056CACE /* ZXUtilitiesResources */,
-				19F52349164CB8390056CACE /* ZXPDFViewerResources */,
-				19F5227C164CB7F90056CACE /* ZXPDFViewerHeaders */,
-				19F522C0164CB7F90056CACE /* ZXUtilitiesHeaders */,
-				19F522D7164CB7F90056CACE /* ZXMecabRepresentationHeaders */,
-				196829971581D8FA008D04D6 /* ZXingWidget.xcodeproj */,
+				F126A86C18C9D2CF006E5329 /* DynamicApp */,
+				F126A88018C9D2CF006E5329 /* DynamicAppTests */,
+				F126A86918C9D2CF006E5329 /* Frameworks */,
+				F126A86818C9D2CF006E5329 /* Products */,
 			);
-			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		196829981581D8FA008D04D6 /* Products */ = {
+		F126A86818C9D2CF006E5329 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				196829A01581D8FA008D04D6 /* libZXingWidget.a */,
-				196829A21581D8FA008D04D6 /* ZXingTests.octest */,
+				F126A86718C9D2CF006E5329 /* libDynamicApp.a */,
+				F126A87718C9D2CF006E5329 /* DynamicAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1969CA50159D4B8A00F56562 /* Plugins */ = {
+		F126A86918C9D2CF006E5329 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1959E3351664901D00B87DB0 /* Ad.h */,
-				1959E3361664901D00B87DB0 /* Ad.m */,
-				19830CBD15D90D8A007FE21C /* AddressBook.h */,
-				19830CBE15D90D8A007FE21C /* AddressBook.m */,
-				19A6D67E162676CD00FAD281 /* AppVersion.h */,
-				19A6D67F162676CD00FAD281 /* AppVersion.m */,
-				19E4E12C15E4ADA300C6F6E5 /* Bluetooth.h */,
-				19E4E12D15E4ADA300C6F6E5 /* Bluetooth.m */,
-				19DC6A1615F7463D00AC2891 /* Bluetooth4LE.h */,
-				19DC6A1715F7463D00AC2891 /* Bluetooth4LE.m */,
-				1995DE27151304A100B04077 /* Cache.h */,
-				1995DE28151304A100B04077 /* Cache.m */,
-				1929C3A514C5884200AFD4AD /* Camera.h */,
-				1929C3A614C5884200AFD4AD /* Camera.m */,
-				19EE378915FF4EE40072F93C /* Contacts.h */,
-				19EE378A15FF4EE40072F93C /* Contacts.m */,
-				19EAF1F5159054F600291FAC /* Database.h */,
-				19EAF1F6159054F600291FAC /* Database.m */,
-				199176D014FF1F5A00C7EA16 /* Encryptor.h */,
-				199176D114FF1F5A00C7EA16 /* Encryptor.m */,
-				19944E9A14E1146100C88D96 /* File.h */,
-				19944E9B14E1146100C88D96 /* File.m */,
-				19CF1CA714EE4BDE006AD14B /* ImageDecrypt.h */,
-				19CF1CA814EE4BDE006AD14B /* ImageDecrypt.mm */,
-				198825AD151191A4002028FE /* LoadingScreen.h */,
-				198825AE151191A4002028FE /* LoadingScreen.m */,
-				19E22A2F14DA66E40039A8CE /* Movie.h */,
-				19E22A3014DA66E40039A8CE /* Movie.m */,
-				19857244150858D000CFC178 /* Notification.h */,
-				19857245150858D000CFC178 /* Notification.m */,
-				19E399B514D29D3F005050B0 /* PluginResult.h */,
-				19E399B614D29D40005050B0 /* PluginResult.m */,
-				1915104A15888B4D0031EA3C /* QRReader.h */,
-				196829A81581DDE4008D04D6 /* QRReader.mm */,
-				1998B6FF14D7AF9D0039133A /* Sound.h */,
-				1998B70014D7AF9D0039133A /* Sound.m */,
-				196095C51648FA9E00F29429 /* PDFViewer.h */,
-				196095C61648FA9E00F29429 /* PDFViewer.m */,
+				F126A9C718C9F384006E5329 /* libZXPDFViewer.a */,
+				F126A86A18C9D2CF006E5329 /* Foundation.framework */,
+				F126A87818C9D2CF006E5329 /* XCTest.framework */,
+				F126A87B18C9D2CF006E5329 /* UIKit.framework */,
 			);
-			name = Plugins;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		19CF1CBC14EE5141006AD14B /* Encrypt */ = {
+		F126A86C18C9D2CF006E5329 /* DynamicApp */ = {
 			isa = PBXGroup;
 			children = (
-				193F69BF15AAE77E00796B39 /* random.c */,
-				193F69C015AAE77E00796B39 /* random.h */,
-				19CF1CC114EE623A006AD14B /* cppdefine.h */,
-				19CF1CB014EE5137006AD14B /* FileEncryptor.cpp */,
-				19CF1CB114EE5137006AD14B /* FileEncryptor.h */,
-				19CF1CB214EE5137006AD14B /* md5.c */,
-				19CF1CB314EE5137006AD14B /* md5.h */,
-				19CF1CB414EE5137006AD14B /* vFile.cpp */,
-				19CF1CB514EE5137006AD14B /* vFile.h */,
+				F126A91618C9D434006E5329 /* Dependencies */,
+				F126A89018C9D32A006E5329 /* Classes */,
+				F126A86D18C9D2CF006E5329 /* Supporting Files */,
 			);
-			name = Encrypt;
+			path = DynamicApp;
 			sourceTree = "<group>";
 		};
-		19F5227C164CB7F90056CACE /* ZXPDFViewerHeaders */ = {
+		F126A86D18C9D2CF006E5329 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				19F5227D164CB7F90056CACE /* NSObject+ZXPDFObjectConverter.h */,
-				19F5227E164CB7F90056CACE /* ZXPDFCanvasViewController.h */,
-				19F5227F164CB7F90056CACE /* ZXPDFCatalogScanner.h */,
-				19F52280164CB7F90056CACE /* ZXPDFCMap+Utility.h */,
-				19F52281164CB7F90056CACE /* ZXPDFCMap.h */,
-				19F52282164CB7F90056CACE /* ZXPDFCMapCIDMap.h */,
-				19F52283164CB7F90056CACE /* ZXPDFCMapCIDRangeMap.h */,
-				19F52284164CB7F90056CACE /* ZXPDFCMapCodespaceRange.h */,
-				19F52285164CB7F90056CACE /* ZXPDFCMapCoreDataModels.h */,
-				19F52286164CB7F90056CACE /* ZXPDFCMapDefinition.h */,
-				19F52287164CB7F90056CACE /* ZXPDFCMapEntryMaker.h */,
-				19F52288164CB7F90056CACE /* ZXPDFCMapFileParser.h */,
-				19F52289164CB7F90056CACE /* ZXPDFCMapParser.h */,
-				19F5228A164CB7F90056CACE /* ZXPDFCMapStreamParser.h */,
-				19F5228B164CB7F90056CACE /* ZXPDFCMapToUnicodeStreamParser.h */,
-				19F5228C164CB7F90056CACE /* ZXPDFCMapUnicodeMap.h */,
-				19F5228D164CB7F90056CACE /* ZXPDFCMapUnicodeRangeMap.h */,
-				19F5228E164CB7F90056CACE /* ZXPDFConstants.h */,
-				19F5228F164CB7F90056CACE /* ZXPDFDictionaryScanner.h */,
-				19F52290164CB7F90056CACE /* ZXPDFDocumentObject.h */,
-				19F52291164CB7F90056CACE /* ZXPDFDocumentView.h */,
-				19F52292164CB7F90056CACE /* ZXPDFDocumentViewHardPageFlipAnimator.h */,
-				19F52293164CB7F90056CACE /* ZXPDFDocumentViewLinearPageAnimator.h */,
-				19F52294164CB7F90056CACE /* ZXPDFDocumentViewPageAnimation.h */,
-				19F52295164CB7F90056CACE /* ZXPDFDocumentViewSimplePageAnimator.h */,
-				19F52296164CB7F90056CACE /* ZXPDFFontCharacterRangeWidth.h */,
-				19F52297164CB7F90056CACE /* ZXPDFFontCharacterRangeWidthVertical.h */,
-				19F52298164CB7F90056CACE /* ZXPDFFontCharacterWidth.h */,
-				19F52299164CB7F90056CACE /* ZXPDFFontCharacterWidthVertical.h */,
-				19F5229A164CB7F90056CACE /* ZXPDFFontCoreDataModels.h */,
-				19F5229B164CB7F90056CACE /* ZXPDFFontInfo+Utility.h */,
-				19F5229C164CB7F90056CACE /* ZXPDFFontInfo.h */,
-				19F5229D164CB7F90056CACE /* ZXPDFFontInfoMaker.h */,
-				19F5229E164CB7F90056CACE /* ZXPDFFontParser.h */,
-				19F5229F164CB7F90056CACE /* ZXPDFLinkAnnotation.h */,
-				19F522A0164CB7F90056CACE /* ZXPDFLocalDestination.h */,
-				19F522A1164CB7F90056CACE /* ZXPDFPageIndicatorDetailViewController.h */,
-				19F522A2164CB7F90056CACE /* ZXPDFPageIndicatorViewController.h */,
-				19F522A3164CB7F90056CACE /* ZXPDFPageListViewCell.h */,
-				19F522A4164CB7F90056CACE /* ZXPDFPageListViewController.h */,
-				19F522A5164CB7F90056CACE /* ZXPDFPageObject.h */,
-				19F522A6164CB7F90056CACE /* ZXPDFPageThumbnailController.h */,
-				19F522A7164CB7F90056CACE /* ZXPDFPageView.h */,
-				19F522A8164CB7F90056CACE /* ZXPDFSearchCharacter+Utility.h */,
-				19F522A9164CB7F90056CACE /* ZXPDFSearchCharacter.h */,
-				19F522AA164CB7F90056CACE /* ZXPDFSearchCoreDataModels.h */,
-				19F522AB164CB7F90056CACE /* ZXPDFSearchDocument+Utility.h */,
-				19F522AC164CB7F90056CACE /* ZXPDFSearchDocument.h */,
-				19F522AD164CB7F90056CACE /* ZXPDFSearchIndex.h */,
-				19F522AE164CB7F90056CACE /* ZXPDFSearchIndexMaker.h */,
-				19F522AF164CB7F90056CACE /* ZXPDFSearchMorpheme+Utility.h */,
-				19F522B0164CB7F90056CACE /* ZXPDFSearchMorpheme.h */,
-				19F522B1164CB7F90056CACE /* ZXPDFSearchPage+Utility.h */,
-				19F522B2164CB7F90056CACE /* ZXPDFSearchPage.h */,
-				19F522B3164CB7F90056CACE /* ZXPDFSearchResult.h */,
-				19F522B4164CB7F90056CACE /* ZXPDFSearchResultController.h */,
-				19F522B5164CB7F90056CACE /* ZXPDFSearchResultDocument+Utility.h */,
-				19F522B6164CB7F90056CACE /* ZXPDFSearchResultDocument.h */,
-				19F522B7164CB7F90056CACE /* ZXPDFSearchResultPage+Utility.h */,
-				19F522B8164CB7F90056CACE /* ZXPDFSearchResultPage.h */,
-				19F522B9164CB7F90056CACE /* ZXPDFSearchViewController.h */,
-				19F522BA164CB7F90056CACE /* ZXPDFSearchViewControllerResultViewCell.h */,
-				19F522BB164CB7F90056CACE /* ZXPDFSearchWord+Utility.h */,
-				19F522BC164CB7F90056CACE /* ZXPDFSearchWord.h */,
-				19F522BD164CB7F90056CACE /* ZXPDFTextExtractor.h */,
-				19F522BE164CB7F90056CACE /* ZXPDFTextPositionState.h */,
-				19F522BF164CB7F90056CACE /* ZXPDFViewController.h */,
+				F126A86E18C9D2CF006E5329 /* DynamicApp-Prefix.pch */,
 			);
-			name = ZXPDFViewerHeaders;
-			path = dependencies/libZXPDFViewer/ZXPDFViewerHeaders;
-			sourceTree = SOURCE_ROOT;
+			name = "Supporting Files";
+			sourceTree = "<group>";
 		};
-		19F522C0164CB7F90056CACE /* ZXUtilitiesHeaders */ = {
+		F126A88018C9D2CF006E5329 /* DynamicAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				19F522C1164CB7F90056CACE /* ZXCanvasDrawSettingViewController.h */,
-				19F522C2164CB7F90056CACE /* ZXCanvasEraseSettingViewController.h */,
-				19F522C3164CB7F90056CACE /* ZXCanvasLineWidthViewController.h */,
-				19F522C4164CB7F90056CACE /* ZXCanvasView.h */,
-				19F522C5164CB7F90056CACE /* ZXCanvasViewController.h */,
-				19F522C6164CB7F90056CACE /* ZXColorTableViewController.h */,
-				19F522C7164CB7F90056CACE /* ZXCoreDataRepresentationBase.h */,
-				19F522C8164CB7F90056CACE /* ZXCoWorker.h */,
-				19F522C9164CB7F90056CACE /* ZXDebugMacros.h */,
-				19F522CA164CB7F90056CACE /* ZXDrawGestureRecognizer.h */,
-				19F522CB164CB7F90056CACE /* ZXDynamicPropertyHelper.h */,
-				19F522CC164CB7F90056CACE /* ZXExternalDisplayViewController.h */,
-				19F522CD164CB7F90056CACE /* ZXGroupView.h */,
-				19F522CE164CB7F90056CACE /* ZXLabelledTableViewCell.h */,
-				19F522CF164CB7F90056CACE /* ZXLazyLoadingImageView.h */,
-				19F522D0164CB7F90056CACE /* ZXLoadingIndicatorView.h */,
-				19F522D1164CB7F90056CACE /* ZXSimpleQueue.h */,
-				19F522D2164CB7F90056CACE /* ZXSliderViewController.h */,
-				19F522D3164CB7F90056CACE /* ZXSplashScreen.h */,
-				19F522D4164CB7F90056CACE /* ZXSplashScreenViewController.h */,
-				19F522D5164CB7F90056CACE /* ZXURLUtility.h */,
-				19F522D6164CB7F90056CACE /* ZXUtility.h */,
+				F126A88618C9D2CF006E5329 /* DynamicAppTests.m */,
+				F126A88118C9D2CF006E5329 /* Supporting Files */,
 			);
-			name = ZXUtilitiesHeaders;
-			path = dependencies/libZXPDFViewer/ZXUtilitiesHeaders;
-			sourceTree = SOURCE_ROOT;
+			path = DynamicAppTests;
+			sourceTree = "<group>";
 		};
-		19F522D7164CB7F90056CACE /* ZXMecabRepresentationHeaders */ = {
+		F126A88118C9D2CF006E5329 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				19F522D8164CB7F90056CACE /* mecab.h */,
-				19F522D9164CB7F90056CACE /* ZXMecabNode.h */,
-				19F522DA164CB7F90056CACE /* ZXMecabParser.h */,
+				F126A88218C9D2CF006E5329 /* DynamicAppTests-Info.plist */,
+				F126A88318C9D2CF006E5329 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F126A89018C9D32A006E5329 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F126A89118C9D32A006E5329 /* Ad.h */,
+				F126A89218C9D32A006E5329 /* Ad.m */,
+				F126A89318C9D32A006E5329 /* AddressBook.h */,
+				F126A89418C9D32A006E5329 /* AddressBook.m */,
+				F126A89518C9D32A006E5329 /* AppVersion.h */,
+				F126A89618C9D32A006E5329 /* AppVersion.m */,
+				F126A89718C9D32A006E5329 /* Bluetooth.h */,
+				F126A89818C9D32A006E5329 /* Bluetooth.m */,
+				F126A89918C9D32A006E5329 /* Bluetooth4LE.h */,
+				F126A89A18C9D32A006E5329 /* Bluetooth4LE.m */,
+				F126A89B18C9D32A006E5329 /* Cache.h */,
+				F126A89C18C9D32A006E5329 /* Cache.m */,
+				F126A89D18C9D32A006E5329 /* Camera.h */,
+				F126A89E18C9D32A006E5329 /* Camera.m */,
+				F126A89F18C9D32A006E5329 /* Contacts.h */,
+				F126A8A018C9D32A006E5329 /* Contacts.m */,
+				F126A8A118C9D32A006E5329 /* cppdefine.h */,
+				F126A8A218C9D32A006E5329 /* Database.h */,
+				F126A8A318C9D32A006E5329 /* Database.m */,
+				F126A8A418C9D32A006E5329 /* define.h */,
+				F126A8A518C9D32A006E5329 /* DynamicAppDelegate.h */,
+				F126A8A618C9D32A006E5329 /* DynamicAppDelegate.m */,
+				F126A8A718C9D32A006E5329 /* DynamicAppPlugin.h */,
+				F126A8A818C9D32A006E5329 /* DynamicAppPlugin.m */,
+				F126A8A918C9D32A006E5329 /* DynamicAppViewController.h */,
+				F126A8AA18C9D32A006E5329 /* DynamicAppViewController.m */,
+				F126A8AB18C9D32A006E5329 /* QRReader.h */,
+				F126A8AD18C9D32A006E5329 /* Encryptor.h */,
+				F126A8AE18C9D32A006E5329 /* Encryptor.m */,
+				F126A8AF18C9D32A006E5329 /* File.h */,
+				F126A8B018C9D32A006E5329 /* File.m */,
+				F126A8B118C9D32A006E5329 /* FileEncryptor.cpp */,
+				F126A8B218C9D32A006E5329 /* FileEncryptor.h */,
+				F126A8B318C9D32A006E5329 /* ImageDecrypt.h */,
+				F126A8B418C9D32A006E5329 /* ImageDecrypt.mm */,
+				F126A8B618C9D32A006E5329 /* KeychainHelper.h */,
+				F126A8B718C9D32A006E5329 /* KeychainHelper.m */,
+				F126A8B818C9D32A006E5329 /* LoadingScreen.h */,
+				F126A8B918C9D32A006E5329 /* LoadingScreen.m */,
+				F126A8BA18C9D32A006E5329 /* md5.c */,
+				F126A8BB18C9D32A006E5329 /* md5.h */,
+				F126A8BC18C9D32A006E5329 /* Movie.h */,
+				F126A8BD18C9D32A006E5329 /* Movie.m */,
+				F126A8BE18C9D32A006E5329 /* Notification.h */,
+				F126A8BF18C9D32A006E5329 /* Notification.m */,
+				F126A8C018C9D32A006E5329 /* NSData+Base64.h */,
+				F126A8C118C9D32A006E5329 /* NSData+Base64.m */,
+				F126A8C218C9D32A006E5329 /* OtherControllers */,
+				F126A8C518C9D32A006E5329 /* PDFViewer.h */,
+				F126A8C618C9D32A006E5329 /* PDFViewer.m */,
+				F126A8C718C9D32A006E5329 /* PluginResult.h */,
+				F126A8C818C9D32A006E5329 /* PluginResult.m */,
+				F126A8C918C9D32A006E5329 /* QRReader.mm */,
+				F126A8CA18C9D32A006E5329 /* random.c */,
+				F126A8CB18C9D32A006E5329 /* random.h */,
+				F126A8CC18C9D32A006E5329 /* Shortcut.h */,
+				F126A8CD18C9D32A006E5329 /* Shortcut.m */,
+				F126A8CE18C9D32A006E5329 /* Sound.h */,
+				F126A8CF18C9D32A006E5329 /* Sound.m */,
+				F126A8D018C9D32A006E5329 /* UrlCommand.h */,
+				F126A8D118C9D32A006E5329 /* UrlCommand.m */,
+				F126A8D218C9D32A006E5329 /* UUIDHelper.h */,
+				F126A8D318C9D32A006E5329 /* UUIDHelper.m */,
+				F126A8D418C9D32A006E5329 /* vFile.cpp */,
+				F126A8D518C9D32A006E5329 /* vFile.h */,
+				F126A8D618C9D32A006E5329 /* ViewControllers */,
+				F126A8D918C9D32A006E5329 /* Views */,
+				F126A8DC18C9D32A006E5329 /* ZipArchive */,
+				F126A8E918C9D32A006E5329 /* ZXUtilities */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F126A8C218C9D32A006E5329 /* OtherControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F126A8C318C9D32A006E5329 /* DownloadConttroller.h */,
+				F126A8C418C9D32A006E5329 /* DownloadConttroller.m */,
+			);
+			path = OtherControllers;
+			sourceTree = "<group>";
+		};
+		F126A8D618C9D32A006E5329 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				F126A8D718C9D32A006E5329 /* DynamicAppSplashViewController.h */,
+				F126A8D818C9D32A006E5329 /* DynamicAppSplashViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		F126A8D918C9D32A006E5329 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F126A8DA18C9D32A006E5329 /* LoadingView.h */,
+				F126A8DB18C9D32A006E5329 /* LoadingView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F126A8DC18C9D32A006E5329 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				F126A8DD18C9D32A006E5329 /* minizip */,
+				F126A8E718C9D32A006E5329 /* ZipArchive.h */,
+				F126A8E818C9D32A006E5329 /* ZipArchive.mm */,
+			);
+			path = ZipArchive;
+			sourceTree = "<group>";
+		};
+		F126A8DD18C9D32A006E5329 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				F126A8DE18C9D32A006E5329 /* crypt.h */,
+				F126A8DF18C9D32A006E5329 /* ioapi.c */,
+				F126A8E018C9D32A006E5329 /* ioapi.h */,
+				F126A8E118C9D32A006E5329 /* mztools.c */,
+				F126A8E218C9D32A006E5329 /* mztools.h */,
+				F126A8E318C9D32A006E5329 /* unzip.c */,
+				F126A8E418C9D32A006E5329 /* unzip.h */,
+				F126A8E518C9D32A006E5329 /* zip.c */,
+				F126A8E618C9D32A006E5329 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		F126A8E918C9D32A006E5329 /* ZXUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				F126A8EA18C9D32A006E5329 /* ZXUtility.h */,
+				F126A8EB18C9D32A006E5329 /* ZXUtility.m */,
+			);
+			path = ZXUtilities;
+			sourceTree = "<group>";
+		};
+		F126A91618C9D434006E5329 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				F126A99918C9D46F006E5329 /* ZXingWidget.xcodeproj */,
+				F126A91718C9D456006E5329 /* ZXMecabRepresentationHeaders */,
+				F126A91B18C9D456006E5329 /* ZXPDFViewerData.bundle */,
+				F126A91C18C9D456006E5329 /* ZXPDFViewerHeaders */,
+				F126A96018C9D456006E5329 /* ZXPDFViewerResources */,
+				F126A97018C9D456006E5329 /* ZXUtilitiesHeaders */,
+				F126A98718C9D456006E5329 /* ZXUtilitiesResources */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		F126A91718C9D456006E5329 /* ZXMecabRepresentationHeaders */ = {
+			isa = PBXGroup;
+			children = (
+				F126A91818C9D456006E5329 /* mecab.h */,
+				F126A91918C9D456006E5329 /* ZXMecabNode.h */,
+				F126A91A18C9D456006E5329 /* ZXMecabParser.h */,
 			);
 			name = ZXMecabRepresentationHeaders;
 			path = dependencies/libZXPDFViewer/ZXMecabRepresentationHeaders;
 			sourceTree = SOURCE_ROOT;
 		};
-		19F52337164CB8390056CACE /* ZXUtilitiesResources */ = {
+		F126A91C18C9D456006E5329 /* ZXPDFViewerHeaders */ = {
 			isa = PBXGroup;
 			children = (
-				19F52338164CB8390056CACE /* ZXUtilities.strings */,
-				19F5233B164CB8390056CACE /* ZXCanvasDrawSettingViewController.xib */,
-				19F5233C164CB8390056CACE /* ZXCanvasEraseSettingViewController.xib */,
-				19F5233D164CB8390056CACE /* ZXCanvasLineWidthViewController.xib */,
-				19F5233E164CB8390056CACE /* ZXCanvasViewController-clear-button-bg.png */,
-				19F5233F164CB8390056CACE /* ZXCanvasViewController-eraser.png */,
-				19F52340164CB8390056CACE /* ZXCanvasViewController-pen.png */,
-				19F52341164CB8390056CACE /* ZXCanvasViewController-redo.png */,
-				19F52342164CB8390056CACE /* ZXCanvasViewController-sliderL.png */,
-				19F52343164CB8390056CACE /* ZXCanvasViewController-sliderS.png */,
-				19F52344164CB8390056CACE /* ZXCanvasViewController-undo.png */,
-				19F52345164CB8390056CACE /* ZXCanvasViewController.xib */,
-				19F52346164CB8390056CACE /* ZXExternalDisplayViewController.xib */,
-				19F52347164CB8390056CACE /* ZXExternalDisplayViewPointer.png */,
-				19F52348164CB8390056CACE /* ZXSliderViewController.xib */,
+				F126A91D18C9D456006E5329 /* NSObject+ZXPDFObjectConverter.h */,
+				F126A91E18C9D456006E5329 /* ZXPDFCanvasViewController.h */,
+				F126A91F18C9D456006E5329 /* ZXPDFCatalogScanner.h */,
+				F126A92018C9D456006E5329 /* ZXPDFCMap+Utility.h */,
+				F126A92118C9D456006E5329 /* ZXPDFCMap.h */,
+				F126A92218C9D456006E5329 /* ZXPDFCMapCIDMap.h */,
+				F126A92318C9D456006E5329 /* ZXPDFCMapCIDRangeMap.h */,
+				F126A92418C9D456006E5329 /* ZXPDFCMapCodespaceRange.h */,
+				F126A92518C9D456006E5329 /* ZXPDFCMapCoreDataModels.h */,
+				F126A92618C9D456006E5329 /* ZXPDFCMapDefinition.h */,
+				F126A92718C9D456006E5329 /* ZXPDFCMapEntryMaker.h */,
+				F126A92818C9D456006E5329 /* ZXPDFCMapFileParser.h */,
+				F126A92918C9D456006E5329 /* ZXPDFCMapParser.h */,
+				F126A92A18C9D456006E5329 /* ZXPDFCMapStreamParser.h */,
+				F126A92B18C9D456006E5329 /* ZXPDFCMapToUnicodeStreamParser.h */,
+				F126A92C18C9D456006E5329 /* ZXPDFCMapUnicodeMap.h */,
+				F126A92D18C9D456006E5329 /* ZXPDFCMapUnicodeRangeMap.h */,
+				F126A92E18C9D456006E5329 /* ZXPDFConstants.h */,
+				F126A92F18C9D456006E5329 /* ZXPDFDictionaryScanner.h */,
+				F126A93018C9D456006E5329 /* ZXPDFDocumentObject.h */,
+				F126A93118C9D456006E5329 /* ZXPDFDocumentView.h */,
+				F126A93218C9D456006E5329 /* ZXPDFDocumentViewHardPageFlipAnimator.h */,
+				F126A93318C9D456006E5329 /* ZXPDFDocumentViewLinearPageAnimator.h */,
+				F126A93418C9D456006E5329 /* ZXPDFDocumentViewPageAnimation.h */,
+				F126A93518C9D456006E5329 /* ZXPDFDocumentViewSimplePageAnimator.h */,
+				F126A93618C9D456006E5329 /* ZXPDFFontCharacterRangeWidth.h */,
+				F126A93718C9D456006E5329 /* ZXPDFFontCharacterRangeWidthVertical.h */,
+				F126A93818C9D456006E5329 /* ZXPDFFontCharacterWidth.h */,
+				F126A93918C9D456006E5329 /* ZXPDFFontCharacterWidthVertical.h */,
+				F126A93A18C9D456006E5329 /* ZXPDFFontCoreDataModels.h */,
+				F126A93B18C9D456006E5329 /* ZXPDFFontInfo+Utility.h */,
+				F126A93C18C9D456006E5329 /* ZXPDFFontInfo.h */,
+				F126A93D18C9D456006E5329 /* ZXPDFFontInfoMaker.h */,
+				F126A93E18C9D456006E5329 /* ZXPDFFontParser.h */,
+				F126A93F18C9D456006E5329 /* ZXPDFLinkAnnotation.h */,
+				F126A94018C9D456006E5329 /* ZXPDFLocalDestination.h */,
+				F126A94118C9D456006E5329 /* ZXPDFPageIndicatorDetailViewController.h */,
+				F126A94218C9D456006E5329 /* ZXPDFPageIndicatorViewController.h */,
+				F126A94318C9D456006E5329 /* ZXPDFPageListViewCell.h */,
+				F126A94418C9D456006E5329 /* ZXPDFPageListViewController.h */,
+				F126A94518C9D456006E5329 /* ZXPDFPageObject.h */,
+				F126A94618C9D456006E5329 /* ZXPDFPageThumbnailController.h */,
+				F126A94718C9D456006E5329 /* ZXPDFPageView.h */,
+				F126A94818C9D456006E5329 /* ZXPDFSearchCharacter+Utility.h */,
+				F126A94918C9D456006E5329 /* ZXPDFSearchCharacter.h */,
+				F126A94A18C9D456006E5329 /* ZXPDFSearchCoreDataModels.h */,
+				F126A94B18C9D456006E5329 /* ZXPDFSearchDocument+Utility.h */,
+				F126A94C18C9D456006E5329 /* ZXPDFSearchDocument.h */,
+				F126A94D18C9D456006E5329 /* ZXPDFSearchIndex.h */,
+				F126A94E18C9D456006E5329 /* ZXPDFSearchIndexMaker.h */,
+				F126A94F18C9D456006E5329 /* ZXPDFSearchMorpheme+Utility.h */,
+				F126A95018C9D456006E5329 /* ZXPDFSearchMorpheme.h */,
+				F126A95118C9D456006E5329 /* ZXPDFSearchPage+Utility.h */,
+				F126A95218C9D456006E5329 /* ZXPDFSearchPage.h */,
+				F126A95318C9D456006E5329 /* ZXPDFSearchResult.h */,
+				F126A95418C9D456006E5329 /* ZXPDFSearchResultController.h */,
+				F126A95518C9D456006E5329 /* ZXPDFSearchResultDocument+Utility.h */,
+				F126A95618C9D456006E5329 /* ZXPDFSearchResultDocument.h */,
+				F126A95718C9D456006E5329 /* ZXPDFSearchResultPage+Utility.h */,
+				F126A95818C9D456006E5329 /* ZXPDFSearchResultPage.h */,
+				F126A95918C9D456006E5329 /* ZXPDFSearchViewController.h */,
+				F126A95A18C9D456006E5329 /* ZXPDFSearchViewControllerResultViewCell.h */,
+				F126A95B18C9D456006E5329 /* ZXPDFSearchWord+Utility.h */,
+				F126A95C18C9D456006E5329 /* ZXPDFSearchWord.h */,
+				F126A95D18C9D456006E5329 /* ZXPDFTextExtractor.h */,
+				F126A95E18C9D456006E5329 /* ZXPDFTextPositionState.h */,
+				F126A95F18C9D456006E5329 /* ZXPDFViewController.h */,
 			);
-			name = ZXUtilitiesResources;
-			path = dependencies/libZXPDFViewer/ZXUtilitiesResources;
+			name = ZXPDFViewerHeaders;
+			path = dependencies/libZXPDFViewer/ZXPDFViewerHeaders;
 			sourceTree = SOURCE_ROOT;
 		};
-		19F52349164CB8390056CACE /* ZXPDFViewerResources */ = {
+		F126A96018C9D456006E5329 /* ZXPDFViewerResources */ = {
 			isa = PBXGroup;
 			children = (
-				19F5234A164CB8390056CACE /* ZXPDFViewer.strings */,
-				19F5234D164CB8390056CACE /* ZXPDFPageIndicatorDetailViewController.xib */,
-				19F5234E164CB8390056CACE /* ZXPDFPageIndicatorViewController.xib */,
-				19F5234F164CB8390056CACE /* ZXPDFPageListViewCell.xib */,
-				19F52350164CB8390056CACE /* ZXPDFSearchViewController.xib */,
-				19F52351164CB8390056CACE /* ZXPDFSearchViewControllerResultViewCell.xib */,
-				19F52352164CB8390056CACE /* ZXPDFViewController-left.png */,
-				19F52353164CB8390056CACE /* ZXPDFViewController-link_button_highlighted.png */,
-				19F52354164CB8390056CACE /* ZXPDFViewController-link_button_normal.png */,
-				19F52355164CB8390056CACE /* ZXPDFViewController-list_bg.png */,
-				19F52356164CB8390056CACE /* ZXPDFViewController-mokuji.png */,
-				19F52357164CB8390056CACE /* ZXPDFViewController-right.png */,
-				19F52358164CB8390056CACE /* ZXPDFViewController.xib */,
+				F126A96118C9D456006E5329 /* ZXPDFViewer.strings */,
+				F126A96418C9D456006E5329 /* ZXPDFPageIndicatorDetailViewController.xib */,
+				F126A96518C9D456006E5329 /* ZXPDFPageIndicatorViewController.xib */,
+				F126A96618C9D456006E5329 /* ZXPDFPageListViewCell.xib */,
+				F126A96718C9D456006E5329 /* ZXPDFSearchViewController.xib */,
+				F126A96818C9D456006E5329 /* ZXPDFSearchViewControllerResultViewCell.xib */,
+				F126A96918C9D456006E5329 /* ZXPDFViewController-left.png */,
+				F126A96A18C9D456006E5329 /* ZXPDFViewController-link_button_highlighted.png */,
+				F126A96B18C9D456006E5329 /* ZXPDFViewController-link_button_normal.png */,
+				F126A96C18C9D456006E5329 /* ZXPDFViewController-list_bg.png */,
+				F126A96D18C9D456006E5329 /* ZXPDFViewController-mokuji.png */,
+				F126A96E18C9D456006E5329 /* ZXPDFViewController-right.png */,
+				F126A96F18C9D456006E5329 /* ZXPDFViewController.xib */,
 			);
 			name = ZXPDFViewerResources;
 			path = dependencies/libZXPDFViewer/ZXPDFViewerResources;
 			sourceTree = SOURCE_ROOT;
 		};
-		F10EBD1414E8D64400C69F7D /* ZXUtilities */ = {
+		F126A97018C9D456006E5329 /* ZXUtilitiesHeaders */ = {
 			isa = PBXGroup;
 			children = (
-				F169252D14C822D900E1B020 /* Shortcut.h */,
-				F169252E14C822D900E1B020 /* Shortcut.m */,
+				F126A97118C9D456006E5329 /* ZXCanvasDrawSettingViewController.h */,
+				F126A97218C9D456006E5329 /* ZXCanvasEraseSettingViewController.h */,
+				F126A97318C9D456006E5329 /* ZXCanvasLineWidthViewController.h */,
+				F126A97418C9D456006E5329 /* ZXCanvasView.h */,
+				F126A97518C9D456006E5329 /* ZXCanvasViewController.h */,
+				F126A97618C9D456006E5329 /* ZXColorTableViewController.h */,
+				F126A97718C9D456006E5329 /* ZXCoreDataRepresentationBase.h */,
+				F126A97818C9D456006E5329 /* ZXCoWorker.h */,
+				F126A97918C9D456006E5329 /* ZXDebugMacros.h */,
+				F126A97A18C9D456006E5329 /* ZXDrawGestureRecognizer.h */,
+				F126A97B18C9D456006E5329 /* ZXDynamicPropertyHelper.h */,
+				F126A97C18C9D456006E5329 /* ZXExternalDisplayViewController.h */,
+				F126A97D18C9D456006E5329 /* ZXGroupView.h */,
+				F126A97E18C9D456006E5329 /* ZXLabelledTableViewCell.h */,
+				F126A97F18C9D456006E5329 /* ZXLazyLoadingImageView.h */,
+				F126A98018C9D456006E5329 /* ZXLoadingIndicatorView.h */,
+				F126A98118C9D456006E5329 /* ZXSimpleQueue.h */,
+				F126A98218C9D456006E5329 /* ZXSliderViewController.h */,
+				F126A98318C9D456006E5329 /* ZXSplashScreen.h */,
+				F126A98418C9D456006E5329 /* ZXSplashScreenViewController.h */,
+				F126A98518C9D456006E5329 /* ZXURLUtility.h */,
+				F126A98618C9D456006E5329 /* ZXUtility.h */,
 			);
-			path = ZXUtilities;
-			sourceTree = "<group>";
+			name = ZXUtilitiesHeaders;
+			path = dependencies/libZXPDFViewer/ZXUtilitiesHeaders;
+			sourceTree = SOURCE_ROOT;
 		};
-		F11CA82414E8AC4400A87464 /* OtherControllers */ = {
+		F126A98718C9D456006E5329 /* ZXUtilitiesResources */ = {
 			isa = PBXGroup;
 			children = (
-				F11CA82514E8AC4400A87464 /* DownloadConttroller.h */,
-				F11CA82614E8AC4400A87464 /* DownloadConttroller.m */,
+				F126A98818C9D456006E5329 /* ZXUtilities.strings */,
+				F126A98B18C9D456006E5329 /* ZXCanvasDrawSettingViewController.xib */,
+				F126A98C18C9D456006E5329 /* ZXCanvasEraseSettingViewController.xib */,
+				F126A98D18C9D456006E5329 /* ZXCanvasLineWidthViewController.xib */,
+				F126A98E18C9D456006E5329 /* ZXCanvasViewController-clear-button-bg.png */,
+				F126A98F18C9D456006E5329 /* ZXCanvasViewController-eraser.png */,
+				F126A99018C9D456006E5329 /* ZXCanvasViewController-pen.png */,
+				F126A99118C9D456006E5329 /* ZXCanvasViewController-redo.png */,
+				F126A99218C9D456006E5329 /* ZXCanvasViewController-sliderL.png */,
+				F126A99318C9D456006E5329 /* ZXCanvasViewController-sliderS.png */,
+				F126A99418C9D456006E5329 /* ZXCanvasViewController-undo.png */,
+				F126A99518C9D456006E5329 /* ZXCanvasViewController.xib */,
+				F126A99618C9D456006E5329 /* ZXExternalDisplayViewController.xib */,
+				F126A99718C9D456006E5329 /* ZXExternalDisplayViewPointer.png */,
+				F126A99818C9D456006E5329 /* ZXSliderViewController.xib */,
 			);
-			path = OtherControllers;
-			sourceTree = "<group>";
+			name = ZXUtilitiesResources;
+			path = dependencies/libZXPDFViewer/ZXUtilitiesResources;
+			sourceTree = SOURCE_ROOT;
 		};
-		F11CA82D14E8B59E00A87464 /* ViewControllers */ = {
+		F126A99A18C9D46F006E5329 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F10EBD5F14E8D84300C69F7D /* DynamicAppSplashViewController.h */,
-				F10EBD6014E8D84300C69F7D /* DynamicAppSplashViewController.m */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		F15001EA14C53CA900B45A0F = {
-			isa = PBXGroup;
-			children = (
-				F15001FA14C53CA900B45A0F /* DynamicApp */,
-				F150020E14C53CA900B45A0F /* DynamicAppTests */,
-				F15001F714C53CA900B45A0F /* Frameworks */,
-				F15001F614C53CA900B45A0F /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		F15001F614C53CA900B45A0F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				F15001F514C53CA900B45A0F /* libDynamicApp.a */,
-				F150020514C53CA900B45A0F /* DynamicAppTests.octest */,
+				F126A99F18C9D470006E5329 /* libZXingWidget.a */,
+				F126A9A118C9D470006E5329 /* ZXingTests.octest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F15001F714C53CA900B45A0F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				199B97FC15808C2C004C8CC3 /* AddressBook.framework */,
-				199B97FE15808C3A004C8CC3 /* AddressBookUI.framework */,
-				19968F9815AFFCC10061B1E2 /* AssetsLibrary.framework */,
-				199B97F415808BF2004C8CC3 /* AudioToolbox.framework */,
-				F156593614C540F30012474E /* AVFoundation.framework */,
-				19E4E13415E4B10500C6F6E5 /* CoreBluetooth.framework */,
-				19F1252A164A657500431BAC /* CoreData.framework */,
-				199B97F815808C0B004C8CC3 /* CoreMedia.framework */,
-				199B97F615808BFF004C8CC3 /* CoreVideo.framework */,
-				F15001F814C53CA900B45A0F /* Foundation.framework */,
-				19E4E14B15E4CAE900C6F6E5 /* GameKit.framework */,
-				1959E3391664902C00B87DB0 /* iAd.framework */,
-				19F52359164CB8BF0056CACE /* libZXPDFViewer.a */,
-				19E22A3614DA70610039A8CE /* MediaPlayer.framework */,
-				19C69EE314E395F100B77B01 /* MobileCoreServices.framework */,
-				19F1252C164A657E00431BAC /* QuartzCore.framework */,
-				F150020614C53CA900B45A0F /* SenTestingKit.framework */,
-				F156593414C540CB0012474E /* UIKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F15001FA14C53CA900B45A0F /* DynamicApp */ = {
-			isa = PBXGroup;
-			children = (
-				F150022014C53D2000B45A0F /* Classes */,
-				196829871581D4BD008D04D6 /* Dependencies */,
-				F150022914C53D2F00B45A0F /* Resources */,
-				F15001FB14C53CA900B45A0F /* Supporting Files */,
-			);
-			path = DynamicApp;
-			sourceTree = "<group>";
-		};
-		F15001FB14C53CA900B45A0F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F150020E14C53CA900B45A0F /* DynamicAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				F150021414C53CA900B45A0F /* DynamicAppTests.h */,
-				F150021514C53CA900B45A0F /* DynamicAppTests.m */,
-				F150020F14C53CA900B45A0F /* Supporting Files */,
-			);
-			path = DynamicAppTests;
-			sourceTree = "<group>";
-		};
-		F150020F14C53CA900B45A0F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				F150021014C53CA900B45A0F /* DynamicAppTests-Info.plist */,
-				F150021114C53CA900B45A0F /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F150022014C53D2000B45A0F /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				F105044818B58E350071C829 /* KeychainHelper.h */,
-				F105044918B58E350071C829 /* KeychainHelper.m */,
-				F105044A18B58E350071C829 /* UUIDHelper.h */,
-				F105044B18B58E350071C829 /* UUIDHelper.m */,
-				F11FDC3814EA4A3600361891 /* define.h */,
-				F150022114C53D2000B45A0F /* DynamicAppDelegate.h */,
-				F150022214C53D2000B45A0F /* DynamicAppDelegate.m */,
-				19D8A97914C6B61A001B4FDB /* DynamicAppPlugin.m */,
-				19D8A97814C6B619001B4FDB /* DynamicAppPlugin.h */,
-				F11CA83214E8B61100A87464 /* DynamicAppViewController.h */,
-				F11CA83314E8B61100A87464 /* DynamicAppViewController.m */,
-				19CF1CBC14EE5141006AD14B /* Encrypt */,
-				19DC3B6B14C7CB03003037B4 /* NSData+Base64.h */,
-				19DC3B6C14C7CB03003037B4 /* NSData+Base64.m */,
-				F11CA82414E8AC4400A87464 /* OtherControllers */,
-				1969CA50159D4B8A00F56562 /* Plugins */,
-				19E3999A14D26C1B005050B0 /* UrlCommand.h */,
-				19E3999B14D26C1B005050B0 /* UrlCommand.m */,
-				F11CA82D14E8B59E00A87464 /* ViewControllers */,
-				F10EBD1414E8D64400C69F7D /* ZXUtilities */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		F150022914C53D2F00B45A0F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				F117921114F778630094CDAA /* Settings.bundle */,
-				F150022A14C53D2F00B45A0F /* Info.plist */,
-				1915104D15888B960031EA3C /* Localizable.strings */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		F15001F314C53CA900B45A0F /* Headers */ = {
+		F126A9BF18C9DEAC006E5329 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F156593C14C578070012474E /* DynamicAppDelegate.h in Headers */,
-				F11CA83414E8B61100A87464 /* DynamicAppViewController.h in Headers */,
-				1929C3A714C5884200AFD4AD /* Camera.h in Headers */,
-				19D8A97A14C6B61A001B4FDB /* DynamicAppPlugin.h in Headers */,
-				19DC3B6D14C7CB04003037B4 /* NSData+Base64.h in Headers */,
-				F169252F14C822D900E1B020 /* Shortcut.h in Headers */,
-				19E3999C14D26C1B005050B0 /* UrlCommand.h in Headers */,
-				19E399B714D29D42005050B0 /* PluginResult.h in Headers */,
-				1998B70114D7AF9E0039133A /* Sound.h in Headers */,
-				19E22A3114DA66E40039A8CE /* Movie.h in Headers */,
-				19944E9C14E1146100C88D96 /* File.h in Headers */,
-				F11CA82714E8AC4400A87464 /* DownloadConttroller.h in Headers */,
-				F10EBD6114E8D84300C69F7D /* DynamicAppSplashViewController.h in Headers */,
-				F11FDC3914EA4A3600361891 /* define.h in Headers */,
-				19CF1CA914EE4BDE006AD14B /* ImageDecrypt.h in Headers */,
-				19CF1CB714EE5137006AD14B /* FileEncryptor.h in Headers */,
-				19CF1CB914EE5137006AD14B /* md5.h in Headers */,
-				19CF1CBB14EE5137006AD14B /* vFile.h in Headers */,
-				19CF1CC214EE623A006AD14B /* cppdefine.h in Headers */,
-				199176D214FF1F5A00C7EA16 /* Encryptor.h in Headers */,
-				19857246150858D000CFC178 /* Notification.h in Headers */,
-				198825AF151191A4002028FE /* LoadingScreen.h in Headers */,
-				1995DE29151304A100B04077 /* Cache.h in Headers */,
-				1915104815888B4D0031EA3C /* QRReader.h in Headers */,
-				19EAF1F7159054F700291FAC /* Database.h in Headers */,
-				193F69C215AAE77E00796B39 /* random.h in Headers */,
-				19830CBF15D90D8A007FE21C /* AddressBook.h in Headers */,
-				19E4E12E15E4ADA300C6F6E5 /* Bluetooth.h in Headers */,
-				19DC6A1815F7463D00AC2891 /* Bluetooth4LE.h in Headers */,
-				19EE378B15FF4EE40072F93C /* Contacts.h in Headers */,
-				19A6D680162676CD00FAD281 /* AppVersion.h in Headers */,
-				196095C71648FA9E00F29429 /* PDFViewer.h in Headers */,
-				19F522DB164CB7F90056CACE /* NSObject+ZXPDFObjectConverter.h in Headers */,
-				19F522DC164CB7F90056CACE /* ZXPDFCanvasViewController.h in Headers */,
-				19F522DD164CB7F90056CACE /* ZXPDFCatalogScanner.h in Headers */,
-				19F522DE164CB7F90056CACE /* ZXPDFCMap+Utility.h in Headers */,
-				19F522DF164CB7F90056CACE /* ZXPDFCMap.h in Headers */,
-				19F522E0164CB7F90056CACE /* ZXPDFCMapCIDMap.h in Headers */,
-				19F522E1164CB7F90056CACE /* ZXPDFCMapCIDRangeMap.h in Headers */,
-				19F522E2164CB7F90056CACE /* ZXPDFCMapCodespaceRange.h in Headers */,
-				19F522E3164CB7F90056CACE /* ZXPDFCMapCoreDataModels.h in Headers */,
-				19F522E4164CB7F90056CACE /* ZXPDFCMapDefinition.h in Headers */,
-				19F522E5164CB7F90056CACE /* ZXPDFCMapEntryMaker.h in Headers */,
-				19F522E6164CB7F90056CACE /* ZXPDFCMapFileParser.h in Headers */,
-				19F522E7164CB7F90056CACE /* ZXPDFCMapParser.h in Headers */,
-				19F522E8164CB7F90056CACE /* ZXPDFCMapStreamParser.h in Headers */,
-				F105044E18B58E350071C829 /* UUIDHelper.h in Headers */,
-				19F522E9164CB7F90056CACE /* ZXPDFCMapToUnicodeStreamParser.h in Headers */,
-				19F522EA164CB7F90056CACE /* ZXPDFCMapUnicodeMap.h in Headers */,
-				19F522EB164CB7F90056CACE /* ZXPDFCMapUnicodeRangeMap.h in Headers */,
-				19F522EC164CB7F90056CACE /* ZXPDFConstants.h in Headers */,
-				19F522ED164CB7F90056CACE /* ZXPDFDictionaryScanner.h in Headers */,
-				19F522EE164CB7F90056CACE /* ZXPDFDocumentObject.h in Headers */,
-				19F522EF164CB7F90056CACE /* ZXPDFDocumentView.h in Headers */,
-				19F522F0164CB7F90056CACE /* ZXPDFDocumentViewHardPageFlipAnimator.h in Headers */,
-				19F522F1164CB7F90056CACE /* ZXPDFDocumentViewLinearPageAnimator.h in Headers */,
-				19F522F2164CB7F90056CACE /* ZXPDFDocumentViewPageAnimation.h in Headers */,
-				19F522F3164CB7F90056CACE /* ZXPDFDocumentViewSimplePageAnimator.h in Headers */,
-				19F522F4164CB7F90056CACE /* ZXPDFFontCharacterRangeWidth.h in Headers */,
-				19F522F5164CB7F90056CACE /* ZXPDFFontCharacterRangeWidthVertical.h in Headers */,
-				19F522F6164CB7F90056CACE /* ZXPDFFontCharacterWidth.h in Headers */,
-				19F522F7164CB7F90056CACE /* ZXPDFFontCharacterWidthVertical.h in Headers */,
-				19F522F8164CB7F90056CACE /* ZXPDFFontCoreDataModels.h in Headers */,
-				19F522F9164CB7F90056CACE /* ZXPDFFontInfo+Utility.h in Headers */,
-				19F522FA164CB7F90056CACE /* ZXPDFFontInfo.h in Headers */,
-				19F522FB164CB7F90056CACE /* ZXPDFFontInfoMaker.h in Headers */,
-				19F522FC164CB7F90056CACE /* ZXPDFFontParser.h in Headers */,
-				19F522FD164CB7F90056CACE /* ZXPDFLinkAnnotation.h in Headers */,
-				19F522FE164CB7F90056CACE /* ZXPDFLocalDestination.h in Headers */,
-				19F522FF164CB7F90056CACE /* ZXPDFPageIndicatorDetailViewController.h in Headers */,
-				19F52300164CB7F90056CACE /* ZXPDFPageIndicatorViewController.h in Headers */,
-				19F52301164CB7F90056CACE /* ZXPDFPageListViewCell.h in Headers */,
-				19F52302164CB7F90056CACE /* ZXPDFPageListViewController.h in Headers */,
-				19F52303164CB7F90056CACE /* ZXPDFPageObject.h in Headers */,
-				19F52304164CB7F90056CACE /* ZXPDFPageThumbnailController.h in Headers */,
-				19F52305164CB7F90056CACE /* ZXPDFPageView.h in Headers */,
-				19F52306164CB7F90056CACE /* ZXPDFSearchCharacter+Utility.h in Headers */,
-				19F52307164CB7F90056CACE /* ZXPDFSearchCharacter.h in Headers */,
-				19F52308164CB7F90056CACE /* ZXPDFSearchCoreDataModels.h in Headers */,
-				19F52309164CB7F90056CACE /* ZXPDFSearchDocument+Utility.h in Headers */,
-				19F5230A164CB7F90056CACE /* ZXPDFSearchDocument.h in Headers */,
-				19F5230B164CB7F90056CACE /* ZXPDFSearchIndex.h in Headers */,
-				19F5230C164CB7F90056CACE /* ZXPDFSearchIndexMaker.h in Headers */,
-				19F5230D164CB7F90056CACE /* ZXPDFSearchMorpheme+Utility.h in Headers */,
-				19F5230E164CB7F90056CACE /* ZXPDFSearchMorpheme.h in Headers */,
-				19F5230F164CB7F90056CACE /* ZXPDFSearchPage+Utility.h in Headers */,
-				19F52310164CB7F90056CACE /* ZXPDFSearchPage.h in Headers */,
-				19F52311164CB7F90056CACE /* ZXPDFSearchResult.h in Headers */,
-				19F52312164CB7F90056CACE /* ZXPDFSearchResultController.h in Headers */,
-				19F52313164CB7F90056CACE /* ZXPDFSearchResultDocument+Utility.h in Headers */,
-				19F52314164CB7F90056CACE /* ZXPDFSearchResultDocument.h in Headers */,
-				19F52315164CB7F90056CACE /* ZXPDFSearchResultPage+Utility.h in Headers */,
-				19F52316164CB7F90056CACE /* ZXPDFSearchResultPage.h in Headers */,
-				19F52317164CB7F90056CACE /* ZXPDFSearchViewController.h in Headers */,
-				19F52318164CB7F90056CACE /* ZXPDFSearchViewControllerResultViewCell.h in Headers */,
-				19F52319164CB7F90056CACE /* ZXPDFSearchWord+Utility.h in Headers */,
-				19F5231A164CB7F90056CACE /* ZXPDFSearchWord.h in Headers */,
-				19F5231B164CB7F90056CACE /* ZXPDFTextExtractor.h in Headers */,
-				19F5231C164CB7F90056CACE /* ZXPDFTextPositionState.h in Headers */,
-				19F5231D164CB7F90056CACE /* ZXPDFViewController.h in Headers */,
-				19F5231E164CB7F90056CACE /* ZXCanvasDrawSettingViewController.h in Headers */,
-				19F5231F164CB7F90056CACE /* ZXCanvasEraseSettingViewController.h in Headers */,
-				F105044C18B58E350071C829 /* KeychainHelper.h in Headers */,
-				19F52320164CB7F90056CACE /* ZXCanvasLineWidthViewController.h in Headers */,
-				19F52321164CB7F90056CACE /* ZXCanvasView.h in Headers */,
-				19F52322164CB7F90056CACE /* ZXCanvasViewController.h in Headers */,
-				19F52323164CB7F90056CACE /* ZXColorTableViewController.h in Headers */,
-				19F52324164CB7F90056CACE /* ZXCoreDataRepresentationBase.h in Headers */,
-				19F52325164CB7F90056CACE /* ZXCoWorker.h in Headers */,
-				19F52326164CB7F90056CACE /* ZXDebugMacros.h in Headers */,
-				19F52327164CB7F90056CACE /* ZXDrawGestureRecognizer.h in Headers */,
-				19F52328164CB7F90056CACE /* ZXDynamicPropertyHelper.h in Headers */,
-				19F52329164CB7F90056CACE /* ZXExternalDisplayViewController.h in Headers */,
-				19F5232A164CB7F90056CACE /* ZXGroupView.h in Headers */,
-				19F5232B164CB7F90056CACE /* ZXLabelledTableViewCell.h in Headers */,
-				19F5232C164CB7F90056CACE /* ZXLazyLoadingImageView.h in Headers */,
-				19F5232D164CB7F90056CACE /* ZXLoadingIndicatorView.h in Headers */,
-				19F5232E164CB7F90056CACE /* ZXSimpleQueue.h in Headers */,
-				19F5232F164CB7F90056CACE /* ZXSliderViewController.h in Headers */,
-				19F52330164CB7F90056CACE /* ZXSplashScreen.h in Headers */,
-				19F52331164CB7F90056CACE /* ZXSplashScreenViewController.h in Headers */,
-				19F52332164CB7F90056CACE /* ZXURLUtility.h in Headers */,
-				19F52333164CB7F90056CACE /* ZXUtility.h in Headers */,
-				19F52334164CB7F90056CACE /* mecab.h in Headers */,
-				19F52335164CB7F90056CACE /* ZXMecabNode.h in Headers */,
-				19F52336164CB7F90056CACE /* ZXMecabParser.h in Headers */,
-				1959E3371664901D00B87DB0 /* Ad.h in Headers */,
+				F126A9C018C9DF09006E5329 /* DynamicAppDelegate.h in Headers */,
+				F126A9C118C9DF09006E5329 /* DynamicAppViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		F15001F414C53CA900B45A0F /* DynamicApp */ = {
+		F126A86618C9D2CF006E5329 /* DynamicApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F150021914C53CA900B45A0F /* Build configuration list for PBXNativeTarget "DynamicApp" */;
+			buildConfigurationList = F126A88A18C9D2CF006E5329 /* Build configuration list for PBXNativeTarget "DynamicApp" */;
 			buildPhases = (
-				F15001F114C53CA900B45A0F /* Sources */,
-				F15001F214C53CA900B45A0F /* Frameworks */,
-				F15001F314C53CA900B45A0F /* Headers */,
+				F126A86318C9D2CF006E5329 /* Sources */,
+				F126A86418C9D2CF006E5329 /* Frameworks */,
+				F126A9BF18C9DEAC006E5329 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				19EE378715FF400F0072F93C /* PBXTargetDependency */,
+				F126A9A318C9D47D006E5329 /* PBXTargetDependency */,
 			);
 			name = DynamicApp;
 			productName = DynamicApp;
-			productReference = F15001F514C53CA900B45A0F /* libDynamicApp.a */;
+			productReference = F126A86718C9D2CF006E5329 /* libDynamicApp.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		F150020414C53CA900B45A0F /* DynamicAppTests */ = {
+		F126A87618C9D2CF006E5329 /* DynamicAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F150021C14C53CA900B45A0F /* Build configuration list for PBXNativeTarget "DynamicAppTests" */;
+			buildConfigurationList = F126A88D18C9D2CF006E5329 /* Build configuration list for PBXNativeTarget "DynamicAppTests" */;
 			buildPhases = (
-				F150020014C53CA900B45A0F /* Sources */,
-				F150020114C53CA900B45A0F /* Frameworks */,
-				F150020214C53CA900B45A0F /* Resources */,
-				F150020314C53CA900B45A0F /* ShellScript */,
+				F126A87318C9D2CF006E5329 /* Sources */,
+				F126A87418C9D2CF006E5329 /* Frameworks */,
+				F126A87518C9D2CF006E5329 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F150020C14C53CA900B45A0F /* PBXTargetDependency */,
+				F126A87E18C9D2CF006E5329 /* PBXTargetDependency */,
 			);
 			name = DynamicAppTests;
 			productName = DynamicAppTests;
-			productReference = F150020514C53CA900B45A0F /* DynamicAppTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = F126A87718C9D2CF006E5329 /* DynamicAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F15001EC14C53CA900B45A0F /* Project object */ = {
+		F126A85F18C9D2CF006E5329 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = "ZYYX Inc.";
+				ORGANIZATIONNAME = zyyx;
 			};
-			buildConfigurationList = F15001EF14C53CA900B45A0F /* Build configuration list for PBXProject "DynamicApp" */;
+			buildConfigurationList = F126A86218C9D2CF006E5329 /* Build configuration list for PBXProject "DynamicApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1087,54 +805,54 @@
 				en,
 				ja,
 			);
-			mainGroup = F15001EA14C53CA900B45A0F;
-			productRefGroup = F15001F614C53CA900B45A0F /* Products */;
+			mainGroup = F126A85E18C9D2CF006E5329;
+			productRefGroup = F126A86818C9D2CF006E5329 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 196829981581D8FA008D04D6 /* Products */;
-					ProjectRef = 196829971581D8FA008D04D6 /* ZXingWidget.xcodeproj */;
+					ProductGroup = F126A99A18C9D46F006E5329 /* Products */;
+					ProjectRef = F126A99918C9D46F006E5329 /* ZXingWidget.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				F15001F414C53CA900B45A0F /* DynamicApp */,
-				F150020414C53CA900B45A0F /* DynamicAppTests */,
-				F156592F14C53DEA0012474E /* DynamicApp-Universal */,
+				F126A86618C9D2CF006E5329 /* DynamicApp */,
+				F126A87618C9D2CF006E5329 /* DynamicAppTests */,
+				F126A9B318C9D867006E5329 /* DynamicApp-Universal */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		196829A01581D8FA008D04D6 /* libZXingWidget.a */ = {
+		F126A99F18C9D470006E5329 /* libZXingWidget.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libZXingWidget.a;
-			remoteRef = 1968299F1581D8FA008D04D6 /* PBXContainerItemProxy */;
+			remoteRef = F126A99E18C9D470006E5329 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		196829A21581D8FA008D04D6 /* ZXingTests.octest */ = {
+		F126A9A118C9D470006E5329 /* ZXingTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ZXingTests.octest;
-			remoteRef = 196829A11581D8FA008D04D6 /* PBXContainerItemProxy */;
+			remoteRef = F126A9A018C9D470006E5329 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F150020214C53CA900B45A0F /* Resources */ = {
+		F126A87518C9D2CF006E5329 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F150021314C53CA900B45A0F /* InfoPlist.strings in Resources */,
+				F126A88518C9D2CF006E5329 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F150020314C53CA900B45A0F /* ShellScript */ = {
+		F126A9B718C9D884006E5329 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1145,153 +863,150 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		F156593314C53E110012474E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.2.2\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\nFRAMEWORK_PACKAGE_NAME=\"${FRAMEWORK_NAME}.${FRAMEWORK_VERSION_NUMBER}.zip\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator${IPHONEOS_DEPLOYMENT_TARGET} -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos${IPHONEOS_DEPLOYMENT_TARGET} -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} clean build\n\n# create framework directories.\nmkdir -p ${FRAMEWORK_DIR}\nmkdir -p ${FRAMEWORK_DIR}/Versions\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\nmkdir -p ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/www\n\n# create symlinks\nln -s ${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION} ${FRAMEWORK_DIR}/Versions/Current\nln -s ${FRAMEWORK_DIR}/Versions/Current/Headers ${FRAMEWORK_DIR}/Headers\nln -s ${FRAMEWORK_DIR}/Versions/Current/Resources ${FRAMEWORK_DIR}/Resources\nln -s ${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME} ${FRAMEWORK_DIR}/${FRAMEWORK_NAME}\n\n# create the universal library\nlipo ${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a ${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a -create -output \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncp ${SRCROOT}/build/${CONFIGURATION}-iphoneos/Headers/*.h ${FRAMEWORK_DIR}/Headers/\ncp ${SRCROOT}/${FRAMEWORK_NAME}/Resources/Info.plist ${FRAMEWORK_DIR}/Resources\ncp -R ${SRCROOT}/${FRAMEWORK_NAME}/Resources/Settings.bundle ${FRAMEWORK_DIR}/Resources/\ncp -R ${SRCROOT}/${FRAMEWORK_NAME}/Resources/*.lproj ${FRAMEWORK_DIR}/Resources/\n\n# zip (配布用に TestFramework.framework ディレクトリをZIP圧縮するだけなので、配布しないなら以下はコメントアウトしてもよい)\ncd ${FRAMEWORK_BUILD_PATH}\nzip -ry ${FRAMEWORK_PACKAGE_NAME} $(basename $FRAMEWORK_DIR)";
+			shellScript = "# Environment Variables\nFRAMEWORK_NAME=${PROJECT_NAME}\nFRAMEWORK_VERSION=A\nFRAMEWORK_VERSION_NUMBER=1.2.2\nFRAMEWORK_BUILD_PATH=\"${SRCROOT}/build/${CONFIGURATION}-framework\"\nFRAMEWORK_DIR=\"${FRAMEWORK_BUILD_PATH}/${FRAMEWORK_NAME}.framework\"\n\n# Clean directories\nrm -rf \"${FRAMEWORK_BUILD_PATH}\"\n\n# Build simulator and device binaries.\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphonesimulator${IPHONEOS_DEPLOYMENT_TARGET} -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} clean build\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -sdk iphoneos${IPHONEOS_DEPLOYMENT_TARGET} -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} clean build\n\n# create framework directories.\nmkdir -p \"${FRAMEWORK_DIR}\"\nmkdir -p \"${FRAMEWORK_DIR}/Versions\"\nmkdir -p \"${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}\"\nmkdir -p \"${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Resources\"\nmkdir -p \"${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/Headers\"\nmkdir -p \"${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}/www\"\n\n# create symlinks\nln -s \"${FRAMEWORK_DIR}/Versions/${FRAMEWORK_VERSION}\" \"${FRAMEWORK_DIR}/Versions/Current\"\nln -s \"${FRAMEWORK_DIR}/Versions/Current/Headers\" \"${FRAMEWORK_DIR}/Headers\"\nln -s \"${FRAMEWORK_DIR}/Versions/Current/Resources\" \"${FRAMEWORK_DIR}/Resources\"\nln -s \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\" \"${FRAMEWORK_DIR}/${FRAMEWORK_NAME}\"\n\n# create the universal library\nlipo \"${SRCROOT}/build/${CONFIGURATION}-iphoneos/lib${FRAMEWORK_NAME}.a\" \"${SRCROOT}/build/${CONFIGURATION}-iphonesimulator/lib${FRAMEWORK_NAME}.a\" -create -output \"${FRAMEWORK_DIR}/Versions/Current/${FRAMEWORK_NAME}\"\n\n# copy files\ncd \"./build/${CONFIGURATION}-iphoneos/Headers\"\ncp *.h \"${FRAMEWORK_DIR}/Headers/\"\ncp \"${SRCROOT}/${FRAMEWORK_NAME}/Resources/Info.plist\" \"${FRAMEWORK_DIR}/Resources\"\ncp -R \"${SRCROOT}/${FRAMEWORK_NAME}/Resources/Settings.bundle\" \"${FRAMEWORK_DIR}/Resources/\"\ncd \"${SRCROOT}/${FRAMEWORK_NAME}/Resources\"\ncp -R *.lproj \"${FRAMEWORK_DIR}/Resources/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F15001F114C53CA900B45A0F /* Sources */ = {
+		F126A86318C9D2CF006E5329 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F150022614C53D2000B45A0F /* DynamicAppDelegate.m in Sources */,
-				1929C3A814C5884200AFD4AD /* Camera.m in Sources */,
-				19D8A97B14C6B61A001B4FDB /* DynamicAppPlugin.m in Sources */,
-				19DC3B6E14C7CB04003037B4 /* NSData+Base64.m in Sources */,
-				F169253014C822D900E1B020 /* Shortcut.m in Sources */,
-				F105044D18B58E350071C829 /* KeychainHelper.m in Sources */,
-				19E3999D14D26C1B005050B0 /* UrlCommand.m in Sources */,
-				F105044F18B58E350071C829 /* UUIDHelper.m in Sources */,
-				19E399B814D29D42005050B0 /* PluginResult.m in Sources */,
-				1998B70214D7AF9E0039133A /* Sound.m in Sources */,
-				19E22A3214DA66E40039A8CE /* Movie.m in Sources */,
-				19944E9D14E1146100C88D96 /* File.m in Sources */,
-				F11CA82814E8AC4400A87464 /* DownloadConttroller.m in Sources */,
-				F11CA83514E8B61100A87464 /* DynamicAppViewController.m in Sources */,
-				F10EBD6214E8D84300C69F7D /* DynamicAppSplashViewController.m in Sources */,
-				19CF1CAA14EE4BDE006AD14B /* ImageDecrypt.mm in Sources */,
-				19CF1CB614EE5137006AD14B /* FileEncryptor.cpp in Sources */,
-				19CF1CB814EE5137006AD14B /* md5.c in Sources */,
-				19CF1CBA14EE5137006AD14B /* vFile.cpp in Sources */,
-				199176D314FF1F5A00C7EA16 /* Encryptor.m in Sources */,
-				19857247150858D000CFC178 /* Notification.m in Sources */,
-				198825B0151191A4002028FE /* LoadingScreen.m in Sources */,
-				1995DE2A151304A100B04077 /* Cache.m in Sources */,
-				196829AA1581DDE4008D04D6 /* QRReader.mm in Sources */,
-				19EAF1F8159054F700291FAC /* Database.m in Sources */,
-				193F69C115AAE77E00796B39 /* random.c in Sources */,
-				19830CC015D90D8A007FE21C /* AddressBook.m in Sources */,
-				19E4E12F15E4ADA300C6F6E5 /* Bluetooth.m in Sources */,
-				19DC6A1915F7463D00AC2891 /* Bluetooth4LE.m in Sources */,
-				19EE378C15FF4EE50072F93C /* Contacts.m in Sources */,
-				19A6D681162676CD00FAD281 /* AppVersion.m in Sources */,
-				196095C81648FA9E00F29429 /* PDFViewer.m in Sources */,
-				1959E3381664901D00B87DB0 /* Ad.m in Sources */,
+				F126A8F218C9D32A006E5329 /* Camera.m in Sources */,
+				F126A90D18C9D32A006E5329 /* LoadingView.m in Sources */,
+				F126A90F18C9D32A006E5329 /* mztools.c in Sources */,
+				F126A90C18C9D32A006E5329 /* DynamicAppSplashViewController.m in Sources */,
+				F126A91218C9D32A006E5329 /* ZipArchive.mm in Sources */,
+				F126A8FC18C9D32A006E5329 /* KeychainHelper.m in Sources */,
+				F126A90318C9D32A006E5329 /* PDFViewer.m in Sources */,
+				F126A8FF18C9D32A006E5329 /* Movie.m in Sources */,
+				F126A90218C9D32A006E5329 /* DownloadConttroller.m in Sources */,
+				F126A90718C9D32A006E5329 /* Shortcut.m in Sources */,
+				F126A90518C9D32A006E5329 /* QRReader.mm in Sources */,
+				F126A90118C9D32A006E5329 /* NSData+Base64.m in Sources */,
+				F126A8F118C9D32A006E5329 /* Cache.m in Sources */,
+				F126A8F718C9D32A006E5329 /* DynamicAppViewController.m in Sources */,
+				F126A8FD18C9D32A006E5329 /* LoadingScreen.m in Sources */,
+				F126A8FE18C9D32A006E5329 /* md5.c in Sources */,
+				F126A8EF18C9D32A006E5329 /* Bluetooth.m in Sources */,
+				F126A8EE18C9D32A006E5329 /* AppVersion.m in Sources */,
+				F126A90618C9D32A006E5329 /* random.c in Sources */,
+				F126A90818C9D32A006E5329 /* Sound.m in Sources */,
+				F126A91018C9D32A006E5329 /* unzip.c in Sources */,
+				F126A90B18C9D32A006E5329 /* vFile.cpp in Sources */,
+				F126A8FB18C9D32A006E5329 /* ImageDecrypt.mm in Sources */,
+				F126A8F918C9D32A006E5329 /* File.m in Sources */,
+				F126A90418C9D32A006E5329 /* PluginResult.m in Sources */,
+				F126A8F518C9D32A006E5329 /* DynamicAppDelegate.m in Sources */,
+				F126A91118C9D32A006E5329 /* zip.c in Sources */,
+				F126A8F318C9D32A006E5329 /* Contacts.m in Sources */,
+				F126A8EC18C9D32A006E5329 /* Ad.m in Sources */,
+				F126A8F018C9D32A006E5329 /* Bluetooth4LE.m in Sources */,
+				F126A90918C9D32A006E5329 /* UrlCommand.m in Sources */,
+				F126A90A18C9D32A006E5329 /* UUIDHelper.m in Sources */,
+				F126A90018C9D32A006E5329 /* Notification.m in Sources */,
+				F126A8FA18C9D32A006E5329 /* FileEncryptor.cpp in Sources */,
+				F126A8F618C9D32A006E5329 /* DynamicAppPlugin.m in Sources */,
+				F126A8F418C9D32A006E5329 /* Database.m in Sources */,
+				F126A91318C9D32A006E5329 /* ZXUtility.m in Sources */,
+				F126A8ED18C9D32A006E5329 /* AddressBook.m in Sources */,
+				F126A8F818C9D32A006E5329 /* Encryptor.m in Sources */,
+				F126A90E18C9D32A006E5329 /* ioapi.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F150020014C53CA900B45A0F /* Sources */ = {
+		F126A87318C9D2CF006E5329 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F150021614C53CA900B45A0F /* DynamicAppTests.m in Sources */,
+				F126A88718C9D2CF006E5329 /* DynamicAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		19EE378715FF400F0072F93C /* PBXTargetDependency */ = {
+		F126A87E18C9D2CF006E5329 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F126A86618C9D2CF006E5329 /* DynamicApp */;
+			targetProxy = F126A87D18C9D2CF006E5329 /* PBXContainerItemProxy */;
+		};
+		F126A9A318C9D47D006E5329 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZXingWidget;
-			targetProxy = 19EE378615FF400F0072F93C /* PBXContainerItemProxy */;
-		};
-		F150020C14C53CA900B45A0F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F15001F414C53CA900B45A0F /* DynamicApp */;
-			targetProxy = F150020B14C53CA900B45A0F /* PBXContainerItemProxy */;
+			targetProxy = F126A9A218C9D47D006E5329 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1915104A15888B4D0031EA3C /* QRReader.h */ = {
+		F126A88318C9D2CF006E5329 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1915104915888B4D0031EA3C /* en */,
+				F126A88418C9D2CF006E5329 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F126A8AB18C9D32A006E5329 /* QRReader.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F126A8AC18C9D32A006E5329 /* en */,
 			);
 			name = QRReader.h;
 			sourceTree = "<group>";
 		};
-		1915104D15888B960031EA3C /* Localizable.strings */ = {
+		F126A96118C9D456006E5329 /* ZXPDFViewer.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				1915104C15888B960031EA3C /* en */,
-				1915104E15888B9E0031EA3C /* ja */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		19F52338164CB8390056CACE /* ZXUtilities.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				19F52339164CB8390056CACE /* en */,
-				19F5233A164CB8390056CACE /* ja */,
-			);
-			name = ZXUtilities.strings;
-			sourceTree = "<group>";
-		};
-		19F5234A164CB8390056CACE /* ZXPDFViewer.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				19F5234B164CB8390056CACE /* en */,
-				19F5234C164CB8390056CACE /* ja */,
+				F126A96218C9D456006E5329 /* en */,
+				F126A96318C9D456006E5329 /* ja */,
 			);
 			name = ZXPDFViewer.strings;
 			sourceTree = "<group>";
 		};
-		F150021114C53CA900B45A0F /* InfoPlist.strings */ = {
+		F126A98818C9D456006E5329 /* ZXUtilities.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F150021214C53CA900B45A0F /* en */,
+				F126A98918C9D456006E5329 /* en */,
+				F126A98A18C9D456006E5329 /* ja */,
 			);
-			name = InfoPlist.strings;
+			name = ZXUtilities.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		F150021714C53CA900B45A0F /* Debug */ = {
+		F126A88818C9D2CF006E5329 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = "";
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1299,18 +1014,31 @@
 			};
 			name = Debug;
 		};
-		F150021814C53CA900B45A0F /* Release */ = {
+		F126A88918C9D2CF006E5329 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
-				CLANG_CXX_LIBRARY = "compiler-default";
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = "";
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
@@ -1318,138 +1046,145 @@
 			};
 			name = Release;
 		};
-		F150021A14C53CA900B45A0F /* Debug */ = {
+		F126A88B18C9D2CF006E5329 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/DynamicApp.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicApp/DynamicApp-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					dependencies/cpp/core/src,
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"dependencies/iphone/ZXingWidget/Classes/**",
+					dependencies/cpp/core/src,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/dependencies\"",
-					"\"$(SRCROOT)/dependencies/libZXPDFViewer\"",
+					"/Users/zyyx/Desktop/project/DynamicApp/new\\ framework/DynamicApp/dependencies/libZXPDFViewer",
 				);
-				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = DynamicApp;
-				PUBLIC_HEADERS_FOLDER_PATH = /headers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /Headers;
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "i386 armv6 armv7";
 			};
 			name = Debug;
 		};
-		F150021B14C53CA900B45A0F /* Release */ = {
+		F126A88C18C9D2CF006E5329 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/DynamicApp.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicApp/DynamicApp-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
-					dependencies/cpp/core/src,
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"dependencies/iphone/ZXingWidget/Classes/**",
+					dependencies/cpp/core/src,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/dependencies\"",
-					"\"$(SRCROOT)/dependencies/libZXPDFViewer\"",
+					"/Users/zyyx/Desktop/project/DynamicApp/new\\ framework/DynamicApp/dependencies/libZXPDFViewer",
 				);
-				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = DynamicApp;
-				PUBLIC_HEADERS_FOLDER_PATH = /headers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /Headers;
 				SKIP_INSTALL = YES;
-				VALID_ARCHS = "i386 armv6 armv7";
 			};
 			name = Release;
 		};
-		F150021D14C53CA900B45A0F /* Debug */ = {
+		F126A88E18C9D2CF006E5329 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DynamicApp/DynamicApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DynamicAppTests/DynamicAppTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F126A88F18C9D2CF006E5329 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicApp/DynamicApp-Prefix.pch";
 				INFOPLIST_FILE = "DynamicAppTests/DynamicAppTests-Info.plist";
-				PRODUCT_NAME = DynamicAppTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		F150021E14C53CA900B45A0F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DynamicApp/DynamicApp-Prefix.pch";
-				INFOPLIST_FILE = "DynamicAppTests/DynamicAppTests-Info.plist";
-				PRODUCT_NAME = DynamicAppTests;
-				WRAPPER_EXTENSION = octest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
-		F156593114C53DEA0012474E /* Debug */ = {
+		F126A9B518C9D868006E5329 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "DynamicApp-Universal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		F156593214C53DEA0012474E /* Release */ = {
+		F126A9B618C9D868006E5329 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = "DynamicApp-Universal";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F15001EF14C53CA900B45A0F /* Build configuration list for PBXProject "DynamicApp" */ = {
+		F126A86218C9D2CF006E5329 /* Build configuration list for PBXProject "DynamicApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F150021714C53CA900B45A0F /* Debug */,
-				F150021814C53CA900B45A0F /* Release */,
+				F126A88818C9D2CF006E5329 /* Debug */,
+				F126A88918C9D2CF006E5329 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F150021914C53CA900B45A0F /* Build configuration list for PBXNativeTarget "DynamicApp" */ = {
+		F126A88A18C9D2CF006E5329 /* Build configuration list for PBXNativeTarget "DynamicApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F150021A14C53CA900B45A0F /* Debug */,
-				F150021B14C53CA900B45A0F /* Release */,
+				F126A88B18C9D2CF006E5329 /* Debug */,
+				F126A88C18C9D2CF006E5329 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F150021C14C53CA900B45A0F /* Build configuration list for PBXNativeTarget "DynamicAppTests" */ = {
+		F126A88D18C9D2CF006E5329 /* Build configuration list for PBXNativeTarget "DynamicAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F150021D14C53CA900B45A0F /* Debug */,
-				F150021E14C53CA900B45A0F /* Release */,
+				F126A88E18C9D2CF006E5329 /* Debug */,
+				F126A88F18C9D2CF006E5329 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F156593014C53DEA0012474E /* Build configuration list for PBXAggregateTarget "DynamicApp-Universal" */ = {
+		F126A9B418C9D868006E5329 /* Build configuration list for PBXAggregateTarget "DynamicApp-Universal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F156593114C53DEA0012474E /* Debug */,
-				F156593214C53DEA0012474E /* Release */,
+				F126A9B518C9D868006E5329 /* Debug */,
+				F126A9B618C9D868006E5329 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F15001EC14C53CA900B45A0F /* Project object */;
+	rootObject = F126A85F18C9D2CF006E5329 /* Project object */;
 }

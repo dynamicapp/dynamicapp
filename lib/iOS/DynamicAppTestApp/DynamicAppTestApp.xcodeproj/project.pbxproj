@@ -655,13 +655,15 @@
 		F169263B14C834D100E1B020 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../build/Debug-framework\"",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"/**",
-					"\"$(SRCROOT)/../build/Release-framework\"",
+					"\\\"$(SRCROOT)/../build/Debug-framework\\\"",
+					"\\\"$(DEVELOPER_FRAMEWORKS_DIR)\\\"/**",
+					"\\\"$(SRCROOT)/../build/Release-framework\\\"",
+					"/Users/zyyx/Desktop/project/DynamicApp/src/flyapp/trunk/OpenSource/git/dynamicapp/lib/iOS/build/Release-framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicAppTestApp/DynamicAppTestApp-Prefix.pch";
@@ -688,13 +690,15 @@
 		F169263C14C834D100E1B020 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"/**",
-					"\"$(SRCROOT)/../build/Release-framework\"",
-					"\"$(SRCROOT)/../build/Debug-framework\"",
+					"\\\"$(DEVELOPER_FRAMEWORKS_DIR)\\\"/**",
+					"\\\"$(SRCROOT)/../build/Release-framework\\\"",
+					"\\\"$(SRCROOT)/../build/Debug-framework\\\"",
+					"/Users/zyyx/Desktop/project/DynamicApp/src/flyapp/trunk/OpenSource/git/dynamicapp/lib/iOS/build/Release-framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DynamicAppTestApp/DynamicAppTestApp-Prefix.pch";

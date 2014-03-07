@@ -28,7 +28,7 @@ namespace zxing {
 using namespace std;
 
 void GF256Poly::fixCoefficients() {
-  int coefficientsLength = coefficients.size();
+  int coefficientsLength = (int)coefficients.size();
   if (coefficientsLength > 1 && coefficients[0] == 0) {
     // Leading term must be non-zero for anything except
     // the constant polynomial "0"
@@ -37,7 +37,7 @@ void GF256Poly::fixCoefficients() {
       firstNonZero++;
     }
     if (firstNonZero == coefficientsLength) {
-      coefficientsLength = field.getZero()->coefficients.size();
+      coefficientsLength = (int)field.getZero()->coefficients.size();
       coefficients.reset(new Array<int> (coefficientsLength));
       *coefficients = *(field.getZero()->coefficients);
     } else {
@@ -61,7 +61,7 @@ GF256Poly::~GF256Poly() {
 }
 
 int GF256Poly::getDegree() {
-  return coefficients.size() - 1;
+  return (int)(coefficients.size() - 1);
 }
 
 bool GF256Poly::isZero() {
@@ -76,7 +76,7 @@ int GF256Poly::evaluateAt(int a) {
   if (a == 0) {
     return getCoefficient(0);
   }
-  int size = coefficients.size();
+  int size = (int)coefficients.size();
   if (a == 1) {
     // Just the sum of the coefficients
     int result = 0;
@@ -113,7 +113,7 @@ Ref<GF256Poly> GF256Poly::addOrSubtract(Ref<GF256Poly> b) {
 
   ArrayRef<int> sumDiff(new Array<int> (largerCoefficients.size()));
 
-  unsigned lengthDiff = largerCoefficients.size() - smallerCoefficients.size();
+  unsigned lengthDiff = (unsigned)(largerCoefficients.size() - smallerCoefficients.size());
   for (unsigned i = 0; i < lengthDiff; i++) {
     sumDiff[i] = largerCoefficients[i];
   }
@@ -131,9 +131,9 @@ Ref<GF256Poly> GF256Poly::multiply(Ref<GF256Poly> b) {
     return field.getZero();
   }
   ArrayRef<int> aCoefficients = coefficients;
-  int aLength = aCoefficients.size();
+  int aLength = (int)aCoefficients.size();
   ArrayRef<int> bCoefficients = b->coefficients;
-  int bLength = bCoefficients.size();
+  int bLength = (int)bCoefficients.size();
   int productLength = aLength + bLength - 1;
   ArrayRef<int> product(new Array<int> (productLength));
   for (int i = 0; i < aLength; i++) {
@@ -153,7 +153,7 @@ Ref<GF256Poly> GF256Poly::multiply(int scalar) {
   if (scalar == 1) {
     return Ref<GF256Poly>(this);
   }
-  int size = coefficients.size();
+  int size = (int)coefficients.size();
   ArrayRef<int> product(new Array<int> (size));
   for (int i = 0; i < size; i++) {
     product[i] = field.multiply(coefficients[i], scalar);
@@ -168,7 +168,7 @@ Ref<GF256Poly> GF256Poly::multiplyByMonomial(int degree, int coefficient) {
   if (coefficient == 0) {
     return field.getZero();
   }
-  int size = coefficients.size();
+  int size = (int)coefficients.size();
   ArrayRef<int> product(new Array<int> (size + degree));
   for (int i = 0; i < size; i++) {
     product[i] = field.multiply(coefficients[i], coefficient);
