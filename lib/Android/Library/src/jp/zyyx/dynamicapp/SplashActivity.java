@@ -88,7 +88,7 @@ public class SplashActivity extends Activity {
 			}
 			progressDialog.setCancelable(false);
 			progressDialog.setCanceledOnTouchOutside(false);
-			progressDialog.setMessage(context.getString(R.string.wait_msg));
+			progressDialog.setMessage("お待ちください....");
 			if (!progressDialog.isShowing()) {
 				progressDialog.show();
 			}

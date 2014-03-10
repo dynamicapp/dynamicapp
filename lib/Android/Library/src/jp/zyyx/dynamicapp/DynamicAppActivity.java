@@ -246,13 +246,16 @@ public class DynamicAppActivity extends Activity {
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 			setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-			mainLayout = (RelativeLayout) View.inflate(this, R.layout.main, null);
-			webView = (WebView) mainLayout.findViewById(R.id.mainWebView);
+			mainLayout = new RelativeLayout(this);
+			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+			mainLayout.setLayoutParams(params);
+			webView = new WebView(this);
 			videoView = new DynamicAppVideoView(this);
 			videoView.setBackgroundColor(Color.TRANSPARENT);
 			LinearLayout linearLayout = new LinearLayout(this);
 			linearLayout.addView(videoView);
 			webView.addView(linearLayout);
+			mainLayout.addView(webView);
 			setContentView(mainLayout);
 
 			Utilities.VideoViewRef = videoView;
