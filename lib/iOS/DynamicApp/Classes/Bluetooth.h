@@ -60,7 +60,7 @@
 @property (nonatomic, retain) NSMutableDictionary *peerList;
 @property (nonatomic) BOOL waitingDisconnect;
 #else
-@property (nonatomic, retain) GKSession *session;NSMutableDictionary
+@property (nonatomic, retain) GKSession *session;
 @property (nonatomic, retain) NSMutableArray *peerList;
 #endif
 

@@ -69,6 +69,6 @@ int BitSource::readBits(int numBits) {
 }
 
 int BitSource::available() {
-  return 8 * (bytes_.size() - byteOffset_) - bitOffset_;
+  return (int)(8 * (bytes_.size() - byteOffset_) - bitOffset_);
 }
 }

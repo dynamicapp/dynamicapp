@@ -74,7 +74,7 @@ void ReedSolomonDecoder::decode(ArrayRef<int> received, int twoS) {
   ArrayRef<int> errorLocations = findErrorLocations(sigmaOmega[0]);
   ArrayRef<int> errorMagitudes = findErrorMagnitudes(sigmaOmega[1], errorLocations, dataMatrix);
   for (unsigned i = 0; i < errorLocations->size(); i++) {
-    int position = received->size() - 1 - field.log(errorLocations[i]);
+    int position = (int)(received->size() - 1 - field.log(errorLocations[i]));
     //TODO: check why the position would be invalid
     if (position < 0 || (size_t)position >= received.size())
       throw IllegalArgumentException("Invalid position (ReedSolomonDecoder)");
@@ -176,7 +176,7 @@ ArrayRef<int> ReedSolomonDecoder::findErrorLocations(Ref<GF256Poly> errorLocator
 
 ArrayRef<int> ReedSolomonDecoder::findErrorMagnitudes(Ref<GF256Poly> errorEvaluator, ArrayRef<int> errorLocations, bool dataMatrix) {
   // This is directly applying Forney's Formula
-  int s = errorLocations.size();
+  int s = (int)errorLocations.size();
   ArrayRef<int> result(s);
   for (int i = 0; i < s; i++) {
     int xiInverse = field.inverse(errorLocations[i]);
