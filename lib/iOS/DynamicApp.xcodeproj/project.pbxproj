@@ -62,11 +62,6 @@
 		F126A90B18C9D32A006E5329 /* vFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F126A8D418C9D32A006E5329 /* vFile.cpp */; };
 		F126A90C18C9D32A006E5329 /* DynamicAppSplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8D818C9D32A006E5329 /* DynamicAppSplashViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F126A90D18C9D32A006E5329 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8DB18C9D32A006E5329 /* LoadingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F126A90E18C9D32A006E5329 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8DF18C9D32A006E5329 /* ioapi.c */; };
-		F126A90F18C9D32A006E5329 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E118C9D32A006E5329 /* mztools.c */; };
-		F126A91018C9D32A006E5329 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E318C9D32A006E5329 /* unzip.c */; };
-		F126A91118C9D32A006E5329 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E518C9D32A006E5329 /* zip.c */; };
-		F126A91218C9D32A006E5329 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = F126A8E818C9D32A006E5329 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F126A91318C9D32A006E5329 /* ZXUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = F126A8EB18C9D32A006E5329 /* ZXUtility.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F126A9A418C9D487006E5329 /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F126A99F18C9D470006E5329 /* libZXingWidget.a */; };
 		F126A9C018C9DF09006E5329 /* DynamicAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F126A8A518C9D32A006E5329 /* DynamicAppDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -185,17 +180,6 @@
 		F126A8D818C9D32A006E5329 /* DynamicAppSplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicAppSplashViewController.m; sourceTree = "<group>"; };
 		F126A8DA18C9D32A006E5329 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		F126A8DB18C9D32A006E5329 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
-		F126A8DE18C9D32A006E5329 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		F126A8DF18C9D32A006E5329 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		F126A8E018C9D32A006E5329 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		F126A8E118C9D32A006E5329 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		F126A8E218C9D32A006E5329 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
-		F126A8E318C9D32A006E5329 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		F126A8E418C9D32A006E5329 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		F126A8E518C9D32A006E5329 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		F126A8E618C9D32A006E5329 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		F126A8E718C9D32A006E5329 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
-		F126A8E818C9D32A006E5329 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		F126A8EA18C9D32A006E5329 /* ZXUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUtility.h; sourceTree = "<group>"; };
 		F126A8EB18C9D32A006E5329 /* ZXUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUtility.m; sourceTree = "<group>"; };
 		F126A91818C9D456006E5329 /* mecab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mecab.h; sourceTree = "<group>"; };
@@ -486,7 +470,6 @@
 				F126A8D518C9D32A006E5329 /* vFile.h */,
 				F126A8D618C9D32A006E5329 /* ViewControllers */,
 				F126A8D918C9D32A006E5329 /* Views */,
-				F126A8DC18C9D32A006E5329 /* ZipArchive */,
 				F126A8E918C9D32A006E5329 /* ZXUtilities */,
 			);
 			path = Classes;
@@ -517,32 +500,6 @@
 				F126A8DB18C9D32A006E5329 /* LoadingView.m */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		F126A8DC18C9D32A006E5329 /* ZipArchive */ = {
-			isa = PBXGroup;
-			children = (
-				F126A8DD18C9D32A006E5329 /* minizip */,
-				F126A8E718C9D32A006E5329 /* ZipArchive.h */,
-				F126A8E818C9D32A006E5329 /* ZipArchive.mm */,
-			);
-			path = ZipArchive;
-			sourceTree = "<group>";
-		};
-		F126A8DD18C9D32A006E5329 /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				F126A8DE18C9D32A006E5329 /* crypt.h */,
-				F126A8DF18C9D32A006E5329 /* ioapi.c */,
-				F126A8E018C9D32A006E5329 /* ioapi.h */,
-				F126A8E118C9D32A006E5329 /* mztools.c */,
-				F126A8E218C9D32A006E5329 /* mztools.h */,
-				F126A8E318C9D32A006E5329 /* unzip.c */,
-				F126A8E418C9D32A006E5329 /* unzip.h */,
-				F126A8E518C9D32A006E5329 /* zip.c */,
-				F126A8E618C9D32A006E5329 /* zip.h */,
-			);
-			path = minizip;
 			sourceTree = "<group>";
 		};
 		F126A8E918C9D32A006E5329 /* ZXUtilities */ = {
@@ -874,9 +831,7 @@
 			files = (
 				F126A8F218C9D32A006E5329 /* Camera.m in Sources */,
 				F126A90D18C9D32A006E5329 /* LoadingView.m in Sources */,
-				F126A90F18C9D32A006E5329 /* mztools.c in Sources */,
 				F126A90C18C9D32A006E5329 /* DynamicAppSplashViewController.m in Sources */,
-				F126A91218C9D32A006E5329 /* ZipArchive.mm in Sources */,
 				F126A8FC18C9D32A006E5329 /* KeychainHelper.m in Sources */,
 				F126A90318C9D32A006E5329 /* PDFViewer.m in Sources */,
 				F126A8FF18C9D32A006E5329 /* Movie.m in Sources */,
@@ -892,13 +847,11 @@
 				F126A8EE18C9D32A006E5329 /* AppVersion.m in Sources */,
 				F126A90618C9D32A006E5329 /* random.c in Sources */,
 				F126A90818C9D32A006E5329 /* Sound.m in Sources */,
-				F126A91018C9D32A006E5329 /* unzip.c in Sources */,
 				F126A90B18C9D32A006E5329 /* vFile.cpp in Sources */,
 				F126A8FB18C9D32A006E5329 /* ImageDecrypt.mm in Sources */,
 				F126A8F918C9D32A006E5329 /* File.m in Sources */,
 				F126A90418C9D32A006E5329 /* PluginResult.m in Sources */,
 				F126A8F518C9D32A006E5329 /* DynamicAppDelegate.m in Sources */,
-				F126A91118C9D32A006E5329 /* zip.c in Sources */,
 				F126A8F318C9D32A006E5329 /* Contacts.m in Sources */,
 				F126A8EC18C9D32A006E5329 /* Ad.m in Sources */,
 				F126A8F018C9D32A006E5329 /* Bluetooth4LE.m in Sources */,
@@ -911,7 +864,6 @@
 				F126A91318C9D32A006E5329 /* ZXUtility.m in Sources */,
 				F126A8ED18C9D32A006E5329 /* AddressBook.m in Sources */,
 				F126A8F818C9D32A006E5329 /* Encryptor.m in Sources */,
-				F126A90E18C9D32A006E5329 /* ioapi.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

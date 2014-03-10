@@ -128,15 +128,11 @@
             self.imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;
         }
         
-        if ([self.viewController respondsToSelector:@selector(presentViewController:::)]) {
-            [self.viewController presentViewController:self.imagePicker animated:YES completion:nil];
-        } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED > 50100
-            [self.viewController presentViewController:self.imagePicker animated:YES completion:nil];
+        [self.viewController presentViewController:self.imagePicker animated:YES completion:nil];
 #else
-            [self.viewController presentModalViewController:self.imagePicker animated:YES ];
+        [self.viewController presentModalViewController:self.imagePicker animated:YES ];
 #endif
-        }
     }
 }
 
