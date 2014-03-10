@@ -1,0 +1,412 @@
+@charset "utf-8";
+
+html, body {
+    /* get rid of default spacing on the edges */
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    /* fill the height & width of the browser */
+    height: 100%;
+    width: 100%;
+}
+
+/*=================================================================================
+	リセット
+===============================================================================*/
+body,div,span,h1,h2,h3,h4,h5,h6,p,a,strong,dl,dt,dd,ol,ul,li,form,label {margin: 0; padding: 0; border: 0; font-size: 100%;vertical-align: baseline; background: transparent;}
+table,tr,th,td {font-size: 100%;}
+h1,h2,h3,h4,h5,h6 {font-weight: normal;}
+ol,ul,dl {list-style: none;}
+li {list-style-position: outside;}
+table {border-collapse: collapse; border-spacing: 0; empty-cells: show;}
+th,td {font-weight: normal; text-align: left;}
+img {border: 0;vertical-align: top;}
+a img {vertical-align: bottom;}
+button {margin: 0; padding: 0; border: 0; font-size: 0; vertical-align: top; background: transparent;}
+
+
+
+/*=================================================================================
+	文字規定
+===============================================================================*/
+body {
+	font-family: "ヒラギノ角ゴ Pro W3",Hiragino Kaku Gothic Pro,Osaka,"ＭＳ Ｐゴシック",sans-serif;
+	Xfont-family: "ヒラギノ角ゴ pro w3","Hiragino Kaku Gothic Pro",sans-self;
+	font-size: 16px;
+	color: #333333;
+	line-height: 1.4;
+	-webkit-text-size-adjust: none;
+    -webkit-touch-callout: none;
+}
+
+
+
+/*================================================
+	フレーム構成
+================================================*/
+
+body {
+	background: #e2e2e2;
+	position: relative;
+}
+
+#header {
+
+	background: #3093c7;
+	border-bottom: #257099 2px solid;
+}
+
+#header h1 {
+	text-align: center;
+}
+
+#header p#back {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#contents {
+	width: auto;
+	height: auto;
+	margin: 25px auto 0;
+	text-align: center;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	background-image: -webkit-gradient(linear, left top, left bottom,color-stop(0, rgb(200, 200, 200)),color-stop(0.1, rgb(223, 220, 212)));
+}
+
+
+/* 背景アイコン */
+#bg-wrap {
+	position: relative;
+}
+
+#bg-wrap p#bg-music {
+	position: absolute;
+	top: -5px;
+	left: 64%;
+	background: url(../images/bg_music.png) no-repeat;
+	width: 72px; height: 81px;
+	-webkit-background-size: 72px 81px;
+	background-size: 72px 81px;
+	z-index: -10;
+}
+
+p#bg-movie {
+	position: absolute;
+	top: -5px;
+	left: 64%;
+	background: url(../images/bg_movie.png) no-repeat;
+	width: 84px; height: 96px;
+	-webkit-background-size: 84px 96px;
+	background-size: 84px 96px;
+	z-index: -10;
+}
+
+p#bg-camera {
+	position: absolute;
+	top: 5px;
+	left: 64%;
+	background: url(../images/bg_camera.png) no-repeat;
+	width: 76px; height: 55px;
+	-webkit-background-size: 76px 55px;
+	background-size: 76px 55px;
+	z-index: -10;
+}
+
+
+
+/*-----------------------------------------------
+	index.html
+-----------------------------------------------*/
+
+#contents #top {
+	text-align: left;
+}
+
+#contents #top h2 {
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#contents #top table {
+	margin: 50px auto 40px;
+}
+
+#contents #top table tr th,
+#contents #top table tr td {
+	padding: 2px;
+}
+
+#contents #top table tr td {
+	text-align: center;
+}
+
+#contents #top table tr th p.icon-camera a {
+	display: block;
+	background: url(../images/icon_camera.png) no-repeat;
+	width: 96px;
+	height: 96px;
+	-webkit-background-size: 96px 96px;
+	background-size: 96px 96px;
+}
+
+#contents #top table tr th p.icon-movie a {
+	display: block;
+	background: url(../images/icon_movie.png) no-repeat;
+	width: 96px;
+	height: 96px;
+	-webkit-background-size: 96px 96px;
+	background-size: 96px 96px;
+}
+
+#contents #top table tr th p.icon-music a {
+	display: block;
+	background: url(../images/icon_music.png) no-repeat;
+	width: 96px;
+	height: 96px;
+	-webkit-background-size: 96px 96px;
+	background-size: 96px 96px;
+}
+
+#contents #top table tr th p.icon-notify a {
+	display: block;
+	background: url(../images/icn_notifications.png) no-repeat;
+	width: 96px;
+	height: 96px;
+	-webkit-background-size: 96px 96px;
+	background-size: 96px 96px;
+}
+
+#contents #top table tr th p a span {
+	display: none;
+}
+
+#footer p.top-foot {
+	margin: 0 auto;
+	padding: 40px 0;
+	font-size: 12px;
+	text-align: center;
+}
+
+
+
+/*-----------------------------------------------
+	movie-list.html
+-----------------------------------------------*/
+
+#contents table#movie-list {
+	margin: 10px auto 30px;
+}
+
+#contents table#movie-list th,
+#contents table#movie-list td {
+	padding: 6px;
+}
+
+#contents table#movie-list td ul {
+	font-size: 12px;
+}
+
+
+
+/*-----------------------------------------------
+	movie.html, sound.html
+-----------------------------------------------*/
+
+#contents p.movie-name {
+	margin: 10px 0 20px;
+}
+
+/* movie 画像サイズ固定*/
+#contents #movie-wrap {
+	width: 300px;
+	margin: 0 auto;
+    overflow: hidden;
+}
+
+/* music 画像サイズ固定 */
+#contents #music-wrap {
+	width: 170px;
+	margin: 0 auto;
+    overflow: hidden;
+}
+
+#contents #movie-wrap p.movie-bg {
+	width: 300px;
+	height: 170px;
+	background: #666666;
+	margin-top: -10px;
+}
+
+#slider {
+	background: #aaaaaa !important;
+	height: 6px !important;
+    border: none !important;
+    //padding-top: 1px !important;
+}
+
+#contents #movie-wrap p.slider-play,
+#contents #music-wrap p.slider-play,
+.ui-slider-range {
+	background: url(../images/slider_play.png) top left !important;
+	height: 6px;
+	//-webkit-background-size: 2px 6px;
+	width: 0%;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+#contents #movie-wrap p.slider-on,
+#contents #music-wrap p.slider-on {
+	margin-top: 0px;
+	margin-left: 0px;
+	//background: url(../images/slider_on.png) top left !important;
+	height: 6px;
+	//-webkit-background-size: 5px 6px;
+	z-index: 10;
+    width: 5px !important;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+	background: url(../images/slider_on.png) top left !important;
+    border: none !important;
+	height: 6px !important;
+    margin-top: 5px !important;
+    margin-left: -2px !important;
+    width: 5px !important;
+}
+
+#contents #movie-wrap #time p.time_play,
+#contents #music-wrap #time p.time_play {
+	float: left;
+	font-size: 12px;
+}
+
+#contents #movie-wrap #time p.time_all,
+#contents #music-wrap #time p.time_all {
+	float: right;
+	font-size: 12px;
+}
+
+
+/* 操作ボタン */
+#contents ul#ope-button{
+	margin: 20px 0 10px;
+}
+
+#contents ul#ope-button li {
+	display: inline-block;
+	width: 71px;
+}
+
+#contents ul#ope-button li.btn-rewind a {
+	display: block;
+	background: url(../images/btn_rewind.png) no-repeat;
+	height: 71px;
+	-webkit-background-size: 71px 71px;
+	background-size: 71px 71px;
+}
+
+#contents ul#ope-button li.btn-play a {
+	display: block;
+	background: url(../images/btn_play.png) no-repeat;
+	height: 71px;
+	-webkit-background-size: 71px 71px;
+	background-size: 71px 71px;
+}
+
+#contents ul#ope-button li.btn-stop a {
+	display: block;
+	background: url(../images/btn_stop.png) no-repeat;
+	height: 71px;
+	-webkit-background-size: 71px 71px;
+	background-size: 71px 71px;
+}
+
+#contents ul#ope-button li.btn-fast a {
+	display: block;
+	background: url(../images/btn_fast.png) no-repeat;
+	height: 71px;
+	-webkit-background-size: 71px 71px;
+	background-size: 71px 71px;
+}
+
+#contents ul#ope-button li.btn-pause a {
+	display: block;
+	background: url(../images/btn_pause.png) no-repeat;
+	height: 71px;
+	-webkit-background-size: 71px 71px;
+	background-size: 71px 71px;
+}
+
+#contents ul#ope-button li span {
+	display: none;
+}
+
+
+
+/*-----------------------------------------------
+	camera.html
+-----------------------------------------------*/
+
+#camera-frame {
+	margin: 30px auto 20px;
+	text-align: center;
+}
+
+table#camera tr td {
+	padding: 2px;
+}
+
+#footer table {
+	text-align: center;
+	margin: 0 auto;
+	}
+
+#footer table tr td.btn-camera {
+	padding: 20px 0;
+}
+
+#footer table tr td.btn-camera a {
+	display: block;
+	background: url(../images/btn_camera.png) no-repeat;
+	width: 98px;
+	height: 53px;
+	-webkit-background-size: 98px 53px;
+	background-size: 98px 53px;
+}
+
+#footer table tr td.btn-camera a span {
+	display: none;
+}
+
+
+
+/*-----------------------------------------------
+	clear fix
+-----------------------------------------------*/
+
+.clear:after,
+#contents #movie-wrap #time:after,
+#contents #music-wrap #time:after {
+	content: " ";
+	display: block;
+	height: 0;
+	/*visibility: hidden;*/
+	clear: both; 
+}
+
+.clear
+#contents #movie-wrap #time,
+#contents #music-wrap #time {
+	min-height: 1px;
+}
+

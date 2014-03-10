@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>MOVIE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" lang="ja" content="" />
+<meta name="description" lang="ja" content="" />
+<meta name="format-detection" content="telephone=no" />
+<link href="common/css/style.css" rel="stylesheet" type="text/css" />
+<link href="common/css/smoothness/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+<script type='text/javascript' src='js/jquery-ui-1.8.17.custom.min.js'></script>
+<script type="text/javascript" src="js/DynamicApp.js"></script>
+<script language="javascript">
+<!--
+    var qsParm = new Array();
+    var previous, next, play, stop, prevpage;
+    var movieTitles = ["1.mp4",
+                       "2.mp4",
+                       "3.mp4",
+                       "4.mp4",
+                       "5.mp4"];
+    var currentMovie;
+    var moviePlaylist = new Array();
+    var processFlg = false; 
+    var waitFlg = 0;
+    var timerID;
+    var seconds = 0;
+    var duration, currentTime;    
+    var slider;
+
+    var WAITE_STOP = 1;
+    var WAITE_PREV = 2;
+    var WAITE_NEXT = 3;
+    var WAITE_PREVPAGE = 4;
+        
+    function UpdateTime() {
+        if(moviePlaylist[currentMovie] && moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING) {
+            seconds++;
+            if(seconds <= moviePlaylist[currentMovie].duration) {
+                currentTime.html(TimerFormat(seconds));
+                slider.slider('value', seconds);
+            }
+        }
+    }
+    
+    function TimerFormat(seconds) {
+        var m=Math.floor(seconds/60)<10?'0'+Math.floor(seconds/60):Math.floor(seconds/60);
+        var s=Math.floor(seconds-(m*60))<10?'0'+Math.floor(seconds-(m*60)):Math.floor(seconds-(m*60));
+        return m+":"+s;        
+    }
+    
+    function onclickMoviePlay() {
+        if(!moviePlaylist[currentMovie]) {
+            var mainContentMovie = $('#movieContents');
+            var offset = mainContentMovie.offset();
+            
+            var successCallback = function() {
+                var movie = moviePlaylist[currentMovie];
+                switch(movie.state) {
+                    case Movie.MOVIE_RUNNING :
+                            if(seconds <= 0){
+                                slider = $('#slider')
+                                    .slider({
+                                        disabled: false,
+                                        min: 0,
+                                        max: movie.duration,
+                                        range: "min",
+                                        value: 0,
+                                        animate: true,
+                                        slide: function(event, ui) {
+                                            movie.setCurrentPosition(ui.value - 1, function(){
+                                                processFlg = true;
+                                                seconds = ui.value - 1;
+                                                currentTime.html(TimerFormat(seconds));
+                                                UpdateTime();
+                                            });
+                                        }
+                                    });
+                            }
+                    
+                            $('#li-Play').attr('class', 'btn-pause');
+                            timerID = setInterval('UpdateTime()', 1000);
+                            duration.html(TimerFormat(Math.ceil(moviePlaylist[currentMovie].getDuration())));
+                            break;
+                    case Movie.MOVIE_STOPPED :
+                            clearInterval(timerID);
+                            if(waitFlg == WAITE_PREVPAGE) {
+                                document.location = "movie-list.html";
+                            } else {
+                                processFlg = false;
+                                $('#li-Play').attr('class', 'btn-play');
+                                play.val('play');
+                                currentTime.html('00:00');
+                                duration.html('00:00');
+                                seconds = 0;
+                                slider.slider('value', 0);
+                                
+                                delete moviePlaylist[currentMovie];
+
+                                if(waitFlg == WAITE_PREV) {
+                                    previousMovie();
+                                } else if(waitFlg == WAITE_NEXT) {
+                                    nextMovie();
+                                }
+                                
+                                waitFlg = 0;
+                             }
+                            
+                            break;
+                    case Movie.MOVIE_PAUSED :
+                            clearInterval(timerID);
+                            $('#li-Play').attr('class', 'btn-play');
+                            break;
+                    default :
+                            break;
+                }
+            };
+            var errorCallback = function(error) {
+                alert('Error: ' + error);
+            };
+            var options = {
+                frame:{posX:offset.left, posY: offset.top, width:mainContentMovie.width(), height:mainContentMovie.height()}, 
+                scalingMode:Movie.SCALING_ASPECT_FIT,
+                controlStyle:Movie.CONTROL_NONE
+            };
+            
+            moviePlaylist[currentMovie] = new Movie(movieTitles[currentMovie], successCallback, errorCallback, options);
+        }
+        moviePlaylist[currentMovie].play();
+    }
+
+    function previousMovie() {
+        if (currentMovie > 0) {
+            currentMovie--;
+        }
+
+        $('#title').html(movieTitles[currentMovie]);
+    }
+
+    function nextMovie() {
+        var max = movieTitles.length - 1;
+        if (currentMovie < max) {
+            currentMovie++;
+        }
+        $('#title').html(movieTitles[currentMovie]);   
+    }
+    
+    $(function(){
+        currentMovie = window.localStorage.getItem('movie');
+        if(currentMovie == null || currentMovie < 0) {
+            currentMovie = 0;
+        }
+        
+        previous = $('#previous');
+        next = $('#next');
+        play = $('#play');
+        stop = $('#stop');
+        prevpage = $('#prevpage');
+        currentTime = $('#currentTime');
+        duration = $('#duration');
+      
+        previous.click(function (event) {
+            if(waitFlg != 0) {
+                return;
+            }
+
+            if(moviePlaylist[currentMovie] && (moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING ||
+                moviePlaylist[currentMovie].state == Movie.MOVIE_PAUSED)) {
+                waitFlg = WAITE_PREV;
+                stop.click();
+            } else {
+                previousMovie();
+            }
+        });
+  
+        play.click(function (event) {
+            if(waitFlg != 0) {
+                return;
+            }
+
+            var me = $(this);
+            if (me.val() == 'play') {
+            	$('#title').html(movieTitles[currentMovie]);
+                processFlg = true;
+                me.val('pause');
+                onclickMoviePlay();
+            } else {
+                processFlg = false;
+                me.val('play');
+                moviePlaylist[currentMovie].pause();
+            }
+        });
+  
+        stop.click(function (event) {
+            if(!(waitFlg == 0 || waitFlg == WAITE_NEXT || waitFlg == WAITE_PREV)) {
+                return;
+            }
+                   
+            if(moviePlaylist[currentMovie] && (moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING ||
+                moviePlaylist[currentMovie].state == Movie.MOVIE_PAUSED)) {
+                moviePlaylist[currentMovie].stop();
+                //waitFlg = WAITE_STOP;
+                slider.slider('option', 'disabled', true);
+            }
+        });
+
+        next.click(function (event) {
+            if(waitFlg != 0) {
+                return;
+            }
+        
+            if(moviePlaylist[currentMovie] && (moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING ||
+                moviePlaylist[currentMovie].state == Movie.MOVIE_PAUSED)) {
+                waitFlg = WAITE_NEXT;
+                stop.click();
+            } else {
+                nextMovie();
+            }
+        }); 
+        
+        prevpage.click(function (event) {
+            if(moviePlaylist[currentMovie] && (moviePlaylist[currentMovie].state == Movie.MOVIE_RUNNING ||
+                moviePlaylist[currentMovie].state == Movie.MOVIE_PAUSED)) {
+                waitFlg = WAITE_PREVPAGE;
+                moviePlaylist[currentMovie].stop();
+            } else {
+                setTimeout(function(){document.location = 'movie-list.html';}, 1000);
+            } 
+        });
+        
+        $('#title').html(movieTitles[currentMovie]);
+        play.val("play");
+        setTimeout(function(){play.click();}, 1000);
+});
+// -->
+</script>
+</head>
+
+<body>
+    <!-- #header[srart] -->
+    <div id="header">
+        <h1><img src="common/images/header_title.png" width="190" alt="Dynamic Apps Demo" /></h1>
+        <p id="back"><a href="javascript:void(0)" id="prevpage"><img src="common/images/btn_back.png" width="48" alt="戻る" /></a></p>
+    </div>
+    <!-- / #header[end] -->
+    
+    <div id="bg-wrap">
+        <p id="bg-movie"> </p>
+    </div>
+
+    <!-- #contents[start] -->
+    <div id="contents">
+        <h2><img src="common/images/title_movie.png" width="87" alt="movie" /></h2>
+        <p class="movie-name" id="title"></p>
+        
+        <!-- #movie-wrap[start] -->
+        <div id="movie-wrap">
+            <p class="movie-bg" id="movieContents"></p>
+            <div id="slider" class="ui-corner-all">
+                <p class="slider-on ui-corner-all"></p>
+            </div>
+        
+            <div id="time">
+                <p class="time_play" id="currentTime">00:00</p>
+                <p class="time_all" id="duration">00:00</p>
+            </div>
+        
+        </div>
+        <!-- / #movie-wrap[end] -->
+        
+        <ul id="ope-button">
+            <li class="btn-rewind"><a href="javascript:void(0)" id="previous"><span>rewind</span></a></li>
+            <li class="btn-play" id="li-Play"><a href="javascript:void(0)" id="play"><span>play</span></a></li>
+            <!--<li class="btn-pause"><a href="#"><span>play</span></a></li>-->
+            <li class="btn-stop"><a href="javascript:void(0)" id="stop"><span>stop</span></a></li>
+            <li class="btn-fast"><a href="javascript:void(0)" id="next"><span>fast</span></a></li>
+        </ul>
+        
+    </div>
+    <!-- #contents[end] -->
+</body>
+</html>

@@ -1,0 +1,166 @@
+/* 
+  Localizable.strings
+  DynamicAppDemoApp
+
+  Created by zyyx on 2013/02/24.
+  Copyright zyyx 2013年. All rights reserved.
+*/
+/* Add Contact? */
+"AddContactAction alert message" = "連絡先を追加しますか？";
+
+/* Cancel */
+"AddContactAction cancel button title" = "キャンセル";
+
+/* Add Contact */
+"AddContactAction confirm button title" = "連絡先を追加";
+
+/* Add Contact */
+"AddContactAction title" = "連絡先を追加";
+
+/* Call %@ */
+"CallAction action title" = "%@を呼び出す";
+
+/* Call */
+"CallAction alert button title" = "呼び出す";
+
+/* Call %@? */
+"CallAction alert message" = "%@を呼び出しますか？";
+
+/* Call */
+"CallAction alert title" = "呼び出す";
+
+/* Compose */
+"SMSAction alert title" = "作成する";
+
+/* Contact */
+"Contact Result Type Name" = "連絡先";
+
+/* No barcode detected. */
+"Decoder BarcodeDetectionFailure" = "バーコードが検出されません";
+
+/* Decoding ... */
+"Decoder MessageWhileDecoding" = "デコードしています ...";
+
+/* ZXing */
+"DecoderViewController AppTitle" = "バーコード";
+
+/* Cancel */
+"DecoderViewController cancel button title" = "キャンセル";
+
+/* About */
+"DecoderViewController about button title" = "機能についで";
+
+/* Hints */
+"DecoderViewController Hints MessageViewController title" = "ヒント";
+
+/* About */
+"DecoderViewController About MessageViewController title" = "機能についで";
+
+/* Decoding image (%.0fx%.0f) ... */
+"DecoderViewController MessageWhileDecodingWithDimensions" = "画像をデコードしています (%.0fx%.0f) ...";
+
+/* Please take or choose a picture containing a barcode */
+"DecoderViewController take or choose picture" = "バーコードを含む写真を撮るか、バーコードを含む画像を選択してください";
+
+/* Email %@ */
+"EmailAction action title" = "メール %@";
+
+/* Compose */
+"EmailAction alert button title" = "作成する";
+
+/* Compose Email to %@? */
+"EmailAction alert message" = "%@へメールを作成しますか？";
+
+/* Compose Email */
+"EmailAction alert title" = "メールの作成";
+
+/* %@ */
+"EmailParsedResult Display: Body" = "%@";
+
+/* To: %@ */
+"EmailParsedResult Display: Recipient" = "To: %@";
+
+/* Subject: %@ */
+"EmailParsedResult Display: Subject" = "Subject: %@";
+
+/* Email */
+"EmailParsedResult type name" = "Email";
+
+/* Geo: %@ */
+"GeoParsedResult display" = "Geo: %@";
+
+/* Geolocation */
+"GeoParsedResult type name" = "Geolocation";
+
+/* Open URL */
+"OpenURLAction action title" = "Open URL";
+
+/* Open */
+"OpenURLAction alert button title" = "Open";
+
+/* Open URL <%@>? */
+"OpenURLAction alert message" = "Open URL <%@>?";
+
+/* Open URL */
+"OpenURLAction alert title" = "Open URL";
+
+/* Cancel */
+"OpenURLAction cancel button title" = "キャンセル";
+
+/* Scan Archive */
+"ScanArchiveTitle" = "Scan Archive";
+
+/* Scan */
+"ScanViewController title" = "Scan";
+
+/* Show on Map */
+"ShowMapAction action title" = "マップ上に表示";
+
+/* Show */
+"ShowMapAction alert button title" = "表示する";
+
+/* Show location %@ on Map ? */
+"ShowMapAction alert message" = "マップ上に%@のロケーションを表示しますか？";
+
+/* Show on Map */
+"ShowMapAction alert title" = "マップ上に表示";
+
+/* Compose SMS to %@ */
+"SMSAction action title" = "%@へのSMSを作成する";
+
+/* Compose */
+"SMSAction alert button title" = "作成する";
+
+/* Compose SMS to %@? */
+"SMSAction alert message" = "%@へのSMSを作成しますか？";
+
+/* SMS */
+"SMSParsedResult type name" = "SMS";
+
+/* Tel */
+"TelParsedResult type name" = "Tel";
+
+/* Text */
+"TextParsedResult type name" = "Text";
+
+/* URI */
+"URIParsedResult type name" = "URI";
+
+/*Latest result will appear here once you have scanned a barcode at least once*/
+
+"Latest result will appear here once you have scanned a barcode at least once" = "バーコードをスキャンした後、最新の結果がここに表示されます";
+
+/*Back*/
+"Back" = "戻る";
+
+/*Button title when no action is available for latest results*/
+"No Actions" = "アクションがありません";
+
+/*Button title when multiple actions are available*/
+"Actions ..." = "Actions ...";
+
+/* QR Reader Viewfinder message */
+"Place a barcode inside the viewfinder rectangle to scan it." = "スキャンするにはファインダーの四角形の内部にバーコードを配置してください";
+
+/* QR Reader Viewfinder Cancel button */
+"Cancel" = "キャンセル";

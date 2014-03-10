@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>MUSIC</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" lang="ja" content="" />
+<meta name="description" lang="ja" content="" />
+<meta name="format-detection" content="telephone=no" />
+<link href="common/css/style.css" rel="stylesheet" type="text/css" />
+<link href="common/css/smoothness/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+<script type='text/javascript' src='js/jquery-ui-1.8.17.custom.min.js'></script>
+<script type='text/javascript' src='js/iscroll.js'></script>
+<script type="text/javascript" src="js/DynamicApp.js"></script>
+
+<script language="javascript">
+ <!--
+    var previous, next, play, stop, prevpage;
+    var processFlag = true;
+    var soundTitles = ["Crash-Boom-Kapow_Traffic-Jam-Jam-320.mp3",
+                       "djnarcs_Freedom-320.mp3",
+                       "sifer2424_Zero-Hero-320.mp3"];
+    var currentSound = 0;
+    var soundPlaylist = new Array();
+    var waitFlg = 0;
+    var timerID;
+    var seconds = 0;
+    var duration, currentTime;
+    var slider;
+    
+    var WAITE_STOP = 1;
+    var WAITE_PREV = 2;
+    var WAITE_NEXT = 3;
+    var WAITE_PREVPAGE = 4;
+    
+    function UpdateTime() {
+        if(soundPlaylist[currentSound] && soundPlaylist[currentSound].state == Sound.SOUND_RUNNING) {
+            seconds++;
+            
+            if(seconds <= soundPlaylist[currentSound].duration) {
+                currentTime.html(TimerFormat(seconds));
+                slider.slider('value', seconds);
+            }
+        }
+    }
+    
+    function TimerFormat(seconds) {
+        var m=Math.floor(seconds/60)<10?'0'+Math.floor(seconds/60):Math.floor(seconds/60);
+        var s=Math.floor(seconds-(m*60))<10?'0'+Math.floor(seconds-(m*60)):Math.floor(seconds-(m*60));
+        return m+":"+s;        
+    }
+    
+    function onclickSoundPlay() {
+        if(!soundPlaylist[currentSound]) {
+            var successCallback = function(result) {
+                var sound = soundPlaylist[currentSound];
+                
+                switch(sound.state) {
+                    case Sound.SOUND_RUNNING :
+                            if(seconds <= 0){
+                                    slider = $('#slider')
+                                        .slider({
+                                                disabled: false,
+                                                min: 0,
+                                                max: sound.duration,
+                                                range: "min",
+                                                value: 0,
+                                                animate: true,
+                                                slide: function(event, ui) {
+                                                    processFlag = false;
+                                                    sound.setCurrentPosition(ui.value - 1, function(){
+                                                         processFlag = true;
+                                                         seconds = ui.value - 1;
+                                                         currentTime.html(TimerFormat(seconds));
+                                                         UpdateTime();
+                                                     });
+                                                }
+                                    });
+                            }
+                            timerID = setInterval('UpdateTime()', 1000);
+                    
+                            $('#li-Play').attr('class', 'btn-pause');                        
+                            sound.getDuration();
+                            duration.html(TimerFormat(sound.duration));
+                    
+                            break;
+                    case Sound.SOUND_STOPPED :
+                            clearInterval(timerID);
+                            
+                            if(waitFlg == WAITE_PREVPAGE) {
+                                document.location = 'index.html';
+                            } else {
+                                processFlg = false;
+                                $('#li-Play').attr('class', 'btn-play');          
+                                play.val('play');
+                                currentTime.html('00:00');
+                                duration.html('00:00');
+                                seconds = 0;
+                                slider.slider('value', 0);
+                                
+                                delete soundPlaylist[currentSound];
+                                
+                                if(waitFlg == WAITE_PREV) {
+                                    previousSound();
+                                } else if(waitFlg == WAITE_NEXT) {
+                                    nextSound();
+                                }
+                                
+                                waitFlg = 0;
+                            }
+                            
+                            break;
+                    case Sound.SOUND_PAUSED :
+                            clearInterval(timerID);
+                            $('#li-Play').attr('class', 'btn-play');
+                            break;
+                    default :
+                            break;
+                }
+                
+            };
+            var errorCallback = function(error) {
+                alert('Error: ' + error);
+            };
+            
+            soundPlaylist[currentSound] = new Sound(soundTitles[currentSound], successCallback, errorCallback);
+        }
+        soundPlaylist[currentSound].play();
+    }
+     
+    function onclickSoundRelease() {
+        soundPlaylist[currentSound].release();
+    }
+    
+    function previousSound() {
+        if (currentSound > 0) {
+            currentSound--;
+        }
+
+        $('#title').html(soundTitles[currentSound]);
+    }
+
+    function nextSound() {
+        var max = soundTitles.length - 1;
+        if (currentSound < max) {
+            currentSound++;
+        }
+
+        $('#title').html(soundTitles[currentSound]);
+    }
+    
+    $(function () {
+        previous = $('#previous');
+        next = $('#next');
+        play = $('#play');
+        stop = $('#stop');
+        prevpage = $('#prevpage');   
+        currentTime = $('#currentTime');
+        duration = $('#duration');
+      
+        previous.click(function (event) {
+            if(waitFlg != 0) {
+                return;
+            }
+            
+            if(soundPlaylist[currentSound] && (soundPlaylist[currentSound].state == Sound.SOUND_RUNNING ||
+                soundPlaylist[currentSound].state == Sound.SOUND_PAUSED)) {
+                waitFlg = WAITE_PREV;
+                stop.click();
+            } else {
+                previousSound();
+            }
+        });
+      
+        play.click(function (event) {
+            if(waitFlg != 0) {
+                return;
+            }
+            
+            var me = $(this);
+            if (me.val() == 'play') {
+                $('#title').html(soundTitles[currentSound]);
+                processFlag = true;
+                me.val('pause');
+                onclickSoundPlay();
+            } else {
+                processFlag = false;
+                me.val('play');
+                soundPlaylist[currentSound].pause();
+            }
+        });
+      
+        stop.click(function (event) {
+            if(!(waitFlg == 0 || waitFlg == WAITE_NEXT || waitFlg == WAITE_PREV)) {
+                return;
+            }
+            //clearInterval(timerID);
+            if(soundPlaylist[currentSound] && (soundPlaylist[currentSound].state == Sound.SOUND_RUNNING ||
+                soundPlaylist[currentSound].state == Sound.SOUND_PAUSED)) {
+                soundPlaylist[currentSound].stop();
+                //waitFlg = WAITE_STOP;
+                slider.slider('option', 'disabled', true);
+            }
+        });
+      
+        next.click(function (event) {
+            if(waitFlg != 0) {
+                return;
+            }
+            
+            if(soundPlaylist[currentSound] && (soundPlaylist[currentSound].state == Sound.SOUND_RUNNING ||
+                soundPlaylist[currentSound].state == Sound.SOUND_PAUSED)) {
+                waitFlg = WAITE_NEXT;
+                stop.click();
+            } else {
+                nextSound();
+            }
+        });
+        
+        prevpage.click(function (event) {
+            if(waitFlg != 0) {
+                return;
+            }
+            
+            if(soundPlaylist[currentSound] && (soundPlaylist[currentSound].state == Sound.SOUND_RUNNING ||
+                soundPlaylist[currentSound].state == Sound.SOUND_PAUSED)) {
+                waitFlg = WAITE_PREVPAGE;
+                soundPlaylist[currentSound].stop();
+            } else {
+                setTimeout(function(){document.location = 'index.html';}, 1000);
+            }
+        });
+        
+        play.val('play');
+        $('#title').html(soundTitles[0]);
+    });
+// -->
+</script>    
+</head>
+
+<body>
+    <!-- #header[srart] -->
+    <div id="header">
+        <h1><img src="common/images/header_title.png" width="190" alt="Dynamic Apps Demo" /></h1>
+        <p id="back"><a href="javascript:void(0)" id="prevpage"><img src="common/images/btn_back.png" width="48" alt="戻る" /></a></p>
+    </div>
+    <!-- / #header[end] -->
+
+    <div id="bg-wrap">
+        <p id="bg-music"> </p>
+    </div>
+
+    <!-- #contents[start] -->
+    <div id="contents">
+        <h2><img src="common/images/title_music.png" width="86" alt="movie" /></h2>
+        <p class="movie-name" id="title"></p>
+        
+        <!-- #movie-wrap[start] -->
+        <div id="music-wrap">
+            <p style="height:170px"><a href="#"><img src="common/images/music_photo.png" width="170" /></a></p>
+        
+            <div id="slider" class="ui-corner-all">
+                <p class="slider-on ui-corner-all"></p>
+            </div>
+        
+            <div id="time">
+                <p class="time_play" id="currentTime">00:00</p>
+                <p class="time_all" id="duration">00:00</p>
+            </div>
+        
+        </div>
+        <!-- / #movie-wrap[end] -->
+        
+        <ul id="ope-button">
+            <li class="btn-rewind"><a href="javascript:void(0)" id="previous"><span>rewind</span></a></li>
+            <li class="btn-play" id="li-Play"><a href="javascript:void(0)" id="play"><span>play</span></a></li>
+            <!--<li class="btn-pause"><a href="#"><span>play</span></a></li>-->
+            <li class="btn-stop"><a href="javascript:void(0)" id="stop"><span>stop</span></a></li>
+            <li class="btn-fast"><a href="javascript:void(0)" id="next"><span>fast</span></a></li>
+        </ul>
+        
+    </div>
+    <!-- #contents[end] -->
+
+</body>
+</html>

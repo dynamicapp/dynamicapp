@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>MOVIE</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" lang="ja" content="" />
+<meta name="description" lang="ja" content="" />
+<meta name="format-detection" content="telephone=no" />
+<link href="common/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#movie-list a').click(function(e) {
+            window.localStorage.setItem('movie', $("#movie-list a").index($(this)));
+            e.preventDefault();
+            window.location = 'movie.html';
+        });
+    });
+</script>
+
+</head>
+
+<body>
+	<!-- header[srart] -->
+	<div id="header">
+		<h1><img src="common/images/header_title.png" width="190" alt="Dynamic Apps Demo" /></h1>
+		<p id="back"><a href="index.html"><img src="common/images/btn_back.png" width="48" alt="戻る" /></a></p>
+	</div>
+	<!-- / header[end] -->
+
+	<div id="bg-wrap">
+		<p id="bg-movie"> </p>
+	</div>
+
+	<!-- contents[start] -->
+	<div id="contents">
+		<h2><img src="common/images/title_movie.png" width="87" alt="movie" /></h2>
+		
+		
+		<table id="movie-list">
+			<tr>
+			<th><a href="movie.html?id=0"><img src="common/images/1.png" width="95" alt="" /></a></th>
+			<td>
+				<p>1.mp4</p>
+				<ul>
+					<li>00:29</li>
+					<li>2012/02/28</li>
+				</ul>
+			</td>
+			</tr>
+			<tr>
+			<th><a href="movie.html?id=1"><img src="common/images/2.png" width="95" alt="" /></a></th>
+			<td>
+				<p>2.mp4</p>
+				<ul>
+					<li>00:40</li>
+					<li>2012/02/28</li>
+				</ul>
+			</td>
+			</tr>
+			<tr>
+			<th><a href="movie.html?id=2"><img src="common/images/3.png" width="95" alt="" /></a></th>
+			<td>
+				<p>3.mp4</p>
+				<ul>
+					<li>00:45</li>
+					<li>2012/02/28</li>
+				</ul>
+			</td>
+			</tr>
+			<tr>
+			<th><a href="movie.html?id=3"><img src="common/images/4.png" width="95" alt="" /></a></th>
+			<td>
+				<p>4.mp4</p>
+				<ul>
+					<li>00:20</li>
+					<li>2012/02/28</li>
+				</ul>
+			</td>
+			</tr>
+			<tr>
+			<th><a href="movie.html?id=4"><img src="common/images/5.png" width="95" alt="" /></a></th>
+			<td>
+				<p>5.mp4</p>
+				<ul>
+					<li>00:15</li>
+					<li>2012/02/28</li>
+				</ul>
+			</td>
+			</tr>
+		</table>
+		
+	</div>
+	<!-- contents[end] -->
+
+</body>
+</html>

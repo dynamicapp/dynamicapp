@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>Dynamic Apps Demo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="keywords" lang="ja" content="" />
+<meta name="description" lang="ja" content="" />
+<meta name="format-detection" content="telephone=no" />
+<link href="common/css/style.css" rel="stylesheet" type="text/css" />
+<link href="common/css/jquery.alerts.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src='js/jquery-1.7.1.min.js'></script>
+<script type='text/javascript' src='js/jquery.alerts.js'></script>
+<script type="text/javascript" src="js/iscroll4.js"></script>
+<script type="text/javascript" src="js/DynamicApp.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var menuScroll = new iScroll('menuDiv', {
+            bounce: true,
+            hideScrollbar: true,
+            fadeScrollbar: true,
+            snap: true
+        });
+
+        window.localStorage.setItem('badge', 1);
+  
+        $('.icon-notify').click(function() {
+            var _badge = window.localStorage.getItem('badge');
+    
+            var successCallback = function() {
+                window.localStorage.setItem('badge', ++_badge);
+                jAlert('登録しました', '');                
+            };
+            
+            var errorCallback = function() {
+                jAlert('登録に失敗しました', '');
+            };
+            
+        	jConfirm('通知登録を行います。<br />よろしいですか？', '確認',function(r) {
+				if(r==true){
+                        var timeNow = new Date();
+                        timeNow.setSeconds(timeNow.getSeconds() + 10);
+                        var date = timeNow.getFullYear()+'-'+(timeNow.getMonth()+1)+'-'+timeNow.getDate()
+                                +' '+timeNow.getHours()+':'+timeNow.getMinutes()+':'+timeNow.getSeconds();
+                        var message = '通知テスト';
+                        var options = {
+                            badge: _badge,
+                            hasAction: true,
+                            action: 'Ok'
+                        };
+                   
+                        Notification.notify(date, message, successCallback, errorCallback, options);
+				}
+			});
+        });
+    });
+</script>
+</head>
+
+<body>
+	<!-- #header[srart] -->
+	<div id="header">
+		<h1><img src="common/images/header_title.png" width="190" alt="Dynamic Apps Demo" /></h1>
+	</div>
+	<!-- / #header[end] -->
+
+	<!-- #contents[start] -->
+	<div id="contents" style="margin:25px 10px 0 !important;">
+		<!-- / #top[start] -->
+		<div id="top">
+            <h2>ダイナミックアプリとは？</h2>
+            <p>HTML５とネイティブアプリを融合することにより、マルチデバイス環境へ、アプリケーションの同時リリースを可能にするフレームワークです。</p>
+            <div id="menuDiv" style="position:relative;height:180px;">
+                <table style="width:400px;">
+                    <tr>
+                    <th><p class="icon-camera"><a href="camera_fr.html"><span>カメラアイコン</span></a></p></th>
+                    <th><p class="icon-movie"><a href="movie-list.html"><span>映像アイコン</span></a></p></th>
+                    <th><p class="icon-music"><a href="music.html"><span>音楽アイコン</span></a></p></th>
+                    <th><p class="icon-notify"><a href="#"><span>通知アイコン</span></a></p></th>
+                    </tr>
+                    <tr>
+                    <td>CAMERA</td>
+                    <td>MOVIE</td>
+                    <td>MUSIC</td>
+                    <td>NOTIFY</td>
+                    </tr>
+                </table>
+            </div>
+		</div>
+		<!-- / #top[end] -->
+		
+		
+	</div>
+	<!-- / #contents[end] -->
+	
+	<div id="footer">
+		<p class="top-foot">Copyright(C) ZYYX Inc. All rights reserved.</p>
+	</div>
+
+</body>
+</html>
