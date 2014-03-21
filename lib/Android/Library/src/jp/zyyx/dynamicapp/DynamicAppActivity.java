@@ -161,8 +161,8 @@ public class DynamicAppActivity extends Activity {
 				}
 			}
 		}
-		webView.destroy();
-		webView = null;
+		//webView.destroy();
+		//webView = null;
 	}
 
 	@Override
