@@ -1,6 +1,9 @@
 package jp.zyyx.dynamicapp.plugins;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import android.app.Activity;
@@ -181,16 +184,11 @@ public class DynamicAppCamera extends Plugin {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		final int RESULT_OK = Activity.RESULT_OK;
-		
 		if (requestCode == ACTIVITY_REQUEST_CD_CAMERA) {
-			if (resultCode == RESULT_OK) {
+			if (resultCode == Activity.RESULT_OK) {
 				CompressFormat format = (DynamicAppCamera.encodingType == 0) ? CompressFormat.JPEG : CompressFormat.PNG;
 				
 				Uri selectedImage = intent.getData();
-				ByteArrayOutputStream bos = null;
-				Bitmap bMap = null;
-				
 		        switch(destinationType) {
 		        	case DESTINATION_TYPE_DATA_URL:
 		        		selectedImage = intent.getData();
@@ -202,36 +200,42 @@ public class DynamicAppCamera extends Plugin {
 			            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 			            String filePath = cursor.getString(columnIndex);
 			            cursor.close();
-			            
-			            bMap = getScaledPic(filePath);
-			            
-			            bos = new ByteArrayOutputStream();
-		        		bMap.compress(format, quality, bos);
-		    			byte[] _bArray = bos.toByteArray();
-		    			String contents = Base64.encodeToString(_bArray, Base64.DEFAULT);
-		    			contents = "data:image/jpeg;base64," + contents;
-		    			DynamicAppCamera.onSuccessResult(contents);
-		    			
+
+		    			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		    			Bitmap bitmap = null;
+			            try {
+			    			bitmap = BitmapFactory.decodeStream(new FileInputStream(filePath));
+			        		bitmap.compress(format, quality, outputStream);
+
+				            bitmap = getScaledPic(outputStream.toByteArray());
+							bitmap.compress(format, 100, outputStream);
+							byte[] data = outputStream.toByteArray();
+
+			    			String contents = Base64.encodeToString(data, Base64.DEFAULT);
+			    			contents = "data:image/jpeg;base64," + contents;
+			    			DynamicAppCamera.onSuccessResult(contents);
+			            } catch (FileNotFoundException e) {
+			            	e.printStackTrace();
+			            } finally {
+					        if (bitmap != null) {
+					        	bitmap.recycle();
+					        	bitmap = null;
+					        }
+			    			try {
+								outputStream.flush();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+			            }
 		        		break;
 		        	case DESTINATION_TYPE_FILE_URI:
 		        		DynamicAppCamera.onSuccessResult(selectedImage.toString());
-		        		
 		        		break;
 		        }
-		        
-		        if (bMap != null) {
-		        	bMap.recycle();
-		        	bMap = null;
-		        }
-		        
-		        if (bos != null) {
-		        	bos = null;
-		        }
-		        
 		        System.gc();
 			}
 		} else if(requestCode == ACTIVITY_REQUEST_CD_TAKE_VIDEO) {
-			if(resultCode == RESULT_OK) {
+			if(resultCode == Activity.RESULT_OK) {
 				handleCameraVideo(intent);
 			} else {
 				mainActivity.callJsEvent(PROCESSING_FALSE);
@@ -239,24 +243,18 @@ public class DynamicAppCamera extends Plugin {
 		}
 	}
 	
-	public static Bitmap getScaledPic(String photoPath) {
+	public static Bitmap getScaledPic(byte[] image) {
 	    int targetW = targetWidth;
 	    int targetH = targetHeight;
 
 	    BitmapFactory.Options bmOptions = new BitmapFactory.Options();
 	    bmOptions.inJustDecodeBounds = true;
-	    BitmapFactory.decodeFile(photoPath, bmOptions);
-	    int photoW = bmOptions.outWidth;
-	    int photoH = bmOptions.outHeight;
+	    BitmapFactory.decodeByteArray(image, 0, image.length, bmOptions);
 
-	    int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-	  
+	    int scaleFactor = Math.min(bmOptions.outWidth/targetW, bmOptions.outHeight/targetH);
 	    bmOptions.inJustDecodeBounds = false;
 	    bmOptions.inSampleSize = scaleFactor;
 	    bmOptions.inPurgeable = true;
-	  
-	    Bitmap bitmap = BitmapFactory.decodeFile(photoPath, bmOptions);
-	    
-	    return bitmap;
+	    return BitmapFactory.decodeByteArray(image, 0, image.length, bmOptions);
 	}
 }
