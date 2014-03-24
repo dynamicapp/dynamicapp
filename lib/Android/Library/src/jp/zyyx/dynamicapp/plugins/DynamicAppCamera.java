@@ -184,6 +184,8 @@ public class DynamicAppCamera extends Plugin {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		DebugLog.e(TAG, "onActivityResult requestCode:" + requestCode + "|resultCode:" + resultCode +
+				"|RESULT_OK:" + Activity.RESULT_OK + "|RESULT_CANCELED:" + Activity.RESULT_CANCELED + "***");
 		if (requestCode == ACTIVITY_REQUEST_CD_CAMERA) {
 			if (resultCode == Activity.RESULT_OK) {
 				CompressFormat format = (DynamicAppCamera.encodingType == 0) ? CompressFormat.JPEG : CompressFormat.PNG;
@@ -206,7 +208,6 @@ public class DynamicAppCamera extends Plugin {
 			            try {
 			    			bitmap = BitmapFactory.decodeStream(new FileInputStream(filePath));
 			        		bitmap.compress(format, quality, outputStream);
-
 				            bitmap = getScaledPic(outputStream.toByteArray());
 							bitmap.compress(format, 100, outputStream);
 							byte[] data = outputStream.toByteArray();

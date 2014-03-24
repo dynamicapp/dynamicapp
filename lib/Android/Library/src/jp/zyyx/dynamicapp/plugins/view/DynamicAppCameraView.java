@@ -126,18 +126,15 @@ public class DynamicAppCameraView extends SurfaceView implements Callback, Pictu
 			Bitmap orientedBitmap = null;
 			ByteArrayOutputStream bos = null;
 			BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 8;
-            
-			Bitmap bmp = BitmapFactory.decodeByteArray(this.result, 0,
-					this.result.length, options);
+            options.inSampleSize = 1;
+
+			Bitmap bmp = BitmapFactory.decodeByteArray(this.result, 0, this.result.length, options);
 			
 			Boolean isSDPresent = android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED);
 			String mCapturedImageURI = null;
 			
-			if(isSDPresent)
-    		{
-				mCapturedImageURI = MediaStore.Images.Media.insertImage(getContext()
-    					.getContentResolver(), bmp, "", null);
+			if(isSDPresent) {
+				mCapturedImageURI = MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bmp, "", null);
     		}
 			
 	        Matrix matrix = new Matrix();
@@ -163,15 +160,11 @@ public class DynamicAppCameraView extends SurfaceView implements Callback, Pictu
 			int targetHeight = activity.getTargetHeight();
 			
 			if((targetHeight > 0 && targetWidth > 0) && (targetHeight <= bmp.getHeight() && targetWidth <= bmp.getWidth())) {
-				orientedBitmap = Bitmap.createBitmap(
-		        		bmp, 0, 0, targetWidth, targetHeight, matrix, true);
+				orientedBitmap = Bitmap.createBitmap(bmp, 0, 0, targetWidth, targetHeight, matrix, true);
 			} else {
-				orientedBitmap = Bitmap.createBitmap(
-		        		bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
+				orientedBitmap = Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(), matrix, true);
 			}
-			
 			Bitmap.CompressFormat format = (encodingType == 0) ? CompressFormat.JPEG :CompressFormat.PNG;
-			
 	        switch(destinationType) {
 	        	case DESTINATION_TYPE_DATA_URL:
 	        		bos = new ByteArrayOutputStream();
@@ -183,13 +176,10 @@ public class DynamicAppCameraView extends SurfaceView implements Callback, Pictu
 	    			
 	        		break;
 	        	case DESTINATION_TYPE_FILE_URI:
-	        		if(mCapturedImageURI != null)
-	        		{
+	        		if(mCapturedImageURI != null) {
 	        			DebugLog.w(TAG, "image uri:"+ mCapturedImageURI);
 		        		DynamicAppCamera.onSuccessResult(mCapturedImageURI);
-	        		}
-	        		else
-	        		{
+	        		} else {
 	        			DynamicAppCamera.onError("1");
 	        		}
 
@@ -197,7 +187,6 @@ public class DynamicAppCameraView extends SurfaceView implements Callback, Pictu
 	    				orientedBitmap.recycle();
 	    				orientedBitmap = null;
 	    	        }
-	        		
 	        		break;
 	        }
 	        
@@ -205,12 +194,10 @@ public class DynamicAppCameraView extends SurfaceView implements Callback, Pictu
 				orientedBitmap.recycle();
 				orientedBitmap = null;
 	        }
-	        
 	        if (bmp != null) {
 	        	bmp.recycle();
 	        	bmp = null;
 	        }
-	        
 	        if (bos != null) {
 	        	bos = null;
 	        }
