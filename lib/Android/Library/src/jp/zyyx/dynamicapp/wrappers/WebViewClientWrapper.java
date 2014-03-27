@@ -73,7 +73,7 @@ public class WebViewClientWrapper extends WebViewClient {
 
 	@Override
 	public boolean shouldOverrideUrlLoading(WebView webView, String url) {
-		DebugLog.e(TAG, "shouldOverrideUrlLoading url:" + url + "***");
+		DebugLog.w(TAG, "shouldOverrideUrlLoading url:" + url + "***");
 		Uri uri = Uri.parse(url);
 		String scheme = uri.getScheme();
 		if (scheme.equalsIgnoreCase(Constant.APP_TAG)) {

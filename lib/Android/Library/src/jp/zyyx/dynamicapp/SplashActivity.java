@@ -111,7 +111,7 @@ public class SplashActivity extends Activity {
 				case DOWNGRADED :
 				case SAME:
 					File wwwFolder = new File(Utilities.makePath(Constant.WWW_FOLDER));
-					copy_flag = (!wwwFolder.exists())? true : false;
+					copy_flag = (wwwFolder.exists()) ? false : true;
 					updatedVersion = savedAppVersion;
 					break;
 				case UPGRADED:

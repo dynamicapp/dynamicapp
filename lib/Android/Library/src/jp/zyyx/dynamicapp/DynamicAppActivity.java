@@ -81,6 +81,7 @@ public class DynamicAppActivity extends Activity {
 
 	private HashMap<String, Boolean> plugins = null;
 	private boolean isMissing = false;
+	private boolean webViewRestored = false;
 
 	public static JSONObjectWrapper strings = null;
 
@@ -91,6 +92,7 @@ public class DynamicAppActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		DebugLog.e(TAG, "onCreate");
 
 		init();
 		// comment out this line below to disable orientation/rotation
@@ -104,7 +106,7 @@ public class DynamicAppActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		DebugLog.w(TAG, "onResume");
+		DebugLog.e(TAG, "onResume");
 		/**
 		 * Call onResume on plugins that are recently paused
 		 */
@@ -126,6 +128,7 @@ public class DynamicAppActivity extends Activity {
 	@Override
 	public void onPause() {
 		super.onPause();
+		DebugLog.e(TAG, "onPause");
 		/**
 		 * Call onPause on plugins that are active or playing
 		 */
@@ -143,6 +146,7 @@ public class DynamicAppActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		DebugLog.e(TAG, "onDestroy");
 		if (Utilities.currentCommand != null) {
 			Utilities.currentCommand.onDestroy();
 		}
@@ -150,23 +154,57 @@ public class DynamicAppActivity extends Activity {
 			bluetooth4LEPlugin.onDestroy();
 		}
 
-		File cache = getCacheDir();
-		File appDir = new File(cache.getParent());
-		if (appDir.exists()) {
-			String[] children = appDir.list();
-			for (String s : children) {
-				if (!s.equals("libs") && !s.equals("databases")) {
-					Utilities.deletefile(new File(appDir, s));
-					DebugLog.w(TAG, "File /data/data/APP_PACKAGE/" + s + " DELETED");
-				}
-			}
-		}
+//TODO		File cache = getCacheDir();
+//		File appDir = new File(cache.getParent());
+//		if (appDir.exists()) {
+//			String[] children = appDir.list();
+//			for (String s : children) {
+//				if (!s.equals("libs") && !s.equals("databases")) {
+//					Utilities.deletefile(new File(appDir, s));
+//					DebugLog.e(TAG, "File /data/data/APP_PACKAGE/" + s + " DELETED");
+//				}
+//			}
+//		}
 		//webView.destroy();
 		//webView = null;
 	}
 
 	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		DebugLog.e(TAG, "onSaveInstanceState");
+		if (webView != null && outState != null) {
+			DebugLog.e(TAG, "Saving webview state...");
+			webView.saveState(outState);
+		}
+	}
+
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		DebugLog.e(TAG, "onRestoreInstanceState");
+		if (webView == null) {
+			webView = new WebView(this);
+		}
+		if (webView != null && savedInstanceState != null) {
+			DebugLog.e(TAG, "Restoring webview state...");
+			webView.restoreState(savedInstanceState);
+			webViewRestored = true;
+		}
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		DebugLog.e(TAG, "onConfigurationChanged");
+		if (isPluginEnabled(PluginsFactory.PLUGIN_AD)) {
+			Ads.getInstance().onConfigurationChanged(newConfig); // changes plug-in layout on config change 
+		}
+	}
+
+	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		DebugLog.e(TAG, "onKeyDown keyCode:" + keyCode + "***");
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (Utilities.currentCommand != null) {
 				Utilities.currentCommand.onBackKeyDown();
@@ -188,16 +226,9 @@ public class DynamicAppActivity extends Activity {
 	}
 
 	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		super.onConfigurationChanged(newConfig);
-		if (isPluginEnabled(PluginsFactory.PLUGIN_AD)) {
-			Ads.getInstance().onConfigurationChanged(newConfig); // changes plug-in layout on config change 
-		}
-	}
-
-	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
+		DebugLog.e(TAG, "onCreateOptionsMenu");
 		if (Utilities.download_flg) {
 			menu.add(0 , MENU_ID_MENU1 , Menu.NONE , "Server Settings");
 		}
@@ -206,6 +237,7 @@ public class DynamicAppActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		DebugLog.e(TAG, "onOptionsItemSelected menu:" + item.getTitle() + "***");
 		switch (item.getItemId()) {
 		default:
 			super.onOptionsItemSelected(item);
@@ -228,6 +260,8 @@ public class DynamicAppActivity extends Activity {
 	@SuppressLint({ "InlinedApi", "SetJavaScriptEnabled" })
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+		DebugLog.e(TAG, "onActivityResult requestCode:" + requestCode + "|resultCode:" + resultCode +
+				"|RESULT_OK:" + Activity.RESULT_OK + "|RESULT_CANCELED:" + Activity.RESULT_CANCELED + "***");
 		// Relays intent results to the plug-in
 		if (Utilities.currentCommand != null) {
 			Utilities.currentCommand.onActivityResult(requestCode, resultCode, intent);
@@ -249,7 +283,9 @@ public class DynamicAppActivity extends Activity {
 			mainLayout = new RelativeLayout(this);
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 			mainLayout.setLayoutParams(params);
-			webView = new WebView(this);
+			if (webView == null) {
+				webView = new WebView(this);
+			}
 			videoView = new DynamicAppVideoView(this);
 			videoView.setBackgroundColor(Color.TRANSPARENT);
 			LinearLayout linearLayout = new LinearLayout(this);
@@ -286,8 +322,9 @@ public class DynamicAppActivity extends Activity {
 				}
 			});
 
-			String path = "file://" + Utilities.makePath("www/index.html");
-			webView.loadUrl(path);
+			if (!webViewRestored) {
+				webView.loadUrl("file://" + Utilities.makePath("www/index.html"));
+			}
 		} else if (requestCode == ACTIVITY_REQUEST_CD_NOTIFICATION) {
 			CustomNotification.hideStatusBar();
 			String action = intent.getAction();
