@@ -1012,7 +1012,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/zyyx/Desktop/project/DynamicApp/new\\ framework/DynamicApp/dependencies/libZXPDFViewer",
+					"$(SRCROOT)/dependencies/libZXPDFViewer",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1036,7 +1036,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/zyyx/Desktop/project/DynamicApp/new\\ framework/DynamicApp/dependencies/libZXPDFViewer",
+					"$(SRCROOT)/dependencies/libZXPDFViewer",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
